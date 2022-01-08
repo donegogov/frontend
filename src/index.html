@@ -23,7 +23,7 @@
                         // check if the sticky header true
                             // scroll function
                             $window.on('scroll', function () {
-                              menu = document.getElementsByClassName("menu")[0];
+                              //menu = document.getElementsByClassName("menu")[0];
                               console.log(menu.offsetTop);
                               console.log(window.pageYOffset);
                               if (window.pageYOffset >= (menu.offsetTop + menu.offsetHeight)) {
@@ -69,7 +69,7 @@
     var body = document.body;
     console.log(body);
     const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
-    var menu = body.querySelector("menu");
+    var menu = document.body.querySelector(".menu");
     console.log(menu);
     const menuItems = menu.querySelectorAll(".menu__item");
     console.log(menuItems);
