@@ -1,13 +1,128 @@
 <!doctype html>
-<html lang="en">
+<html lang="mk">
 <head>
   <meta charset="utf-8">
-  <title>Client</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Client</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script>
+    var scrollFlag = true;
+    // sticky header
+    function stickyHeader() {
+                    // variable
+                    var $window = $(window);
+                        
+                        scrollFlagMobile = true;
+                        // off the scroll
+                        $window.off('scroll');
+                        // check if the sticky header true
+                            // scroll function
+                            $window.on('scroll', function () {
+                              menu = document.getElementsByClassName("menu")[0];
+                              console.log(menu.offsetTop);
+                              console.log(window.pageYOffset);
+                              if (window.pageYOffset >= (menu.offsetTop + menu.offsetHeight)) {
+                                    // check if flag true
+                                    if (scrollFlag === true) {
+                                        // fade out
+                                        $(".menu").fadeOut(200, function () {
+                                            // add class and fade in
+                                            $(".menu").addClass('desktopTopFixed').fadeIn(200);
+                                        });
+                                        // scroll flag false
+                                        scrollFlag = false;
+                                    }
+                                } else {
+                                    // check if flag false
+                                    if (scrollFlag === false) {
+                                        // fade out
+                                        $(".menu").fadeOut(200, function () {
+                                            // add class and fade in
+                                            $(".menu").removeClass('desktopTopFixed').fadeIn(200);
+                                        });
+                                        // scroll flag true
+                                        scrollFlag = true;
+                                    }
+                                }
+                            });
+                        };
+
+
+
+
+
+    document.addEventListener('scroll', function(e){
+      stickyHeader();
+     }, true);
+</script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+  </app-root>
+  <script>
+    $( document ).ready(function() {
+    var body = document.body;
+    console.log(body);
+    const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
+    var menu = body.querySelector("menu");
+    console.log(menu);
+    const menuItems = menu.querySelectorAll(".menu__item");
+    console.log(menuItems);
+    const menuBorder = menu.querySelector(".menu__border");
+    console.log(menuBorder);
+    let activeItem = menu.querySelector(".active");
+    console.log(activeItem);
+    //console.log(menu);
+    function clickItem(item, index) {
+    
+        menu.style.removeProperty("--timeOut");
+        
+        if (activeItem == item) return;
+        
+        if (activeItem) {
+            activeItem.classList.remove("active");
+        }
+    
+        
+        item.classList.add("active");
+        body.style.backgroundColor = bgColorsBody[index];
+        //console.log(menuItems[index]);
+        //menuItems[2].style.backgroundColor = bgColorsBody[index];
+        activeItem = item;
+        offsetMenuBorder(activeItem, menuBorder);
+    }
+    
+    function offsetMenuBorder(element, menuBorder) {
+    
+        const offsetActiveItem = element.getBoundingClientRect();
+        const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
+        const top = (99*(menu.offsetHeight)/100) + 'px';
+        console.log(top);
+        menuBorder.style.transform = `translate3d(${left}, ${top} , 0)`
+        menuBorder.style.transform += `rotate(180deg)`;
+        //menuBorder.style.marginTop = (menu.offsetTop + menu.offsetHeight);
+        console.log('menu height ' + menu.offsetHeight);
+        console.log('offset top ' + menu.offsetTop);
+    }
+    
+    offsetMenuBorder(activeItem, menuBorder);
+    
+    menuItems.forEach((item, index) => {
+    
+        item.addEventListener("click", () => clickItem(item, index));
+        
+    })
+    
+    window.addEventListener("resize", () => {
+        offsetMenuBorder(activeItem, menuBorder);
+        menu.style.setProperty("--timeOut", "none");
+    });                
+  });
+  </script>
 </body>
 </html>

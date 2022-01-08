@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+
+	box-sizing: border-box;
+	--bgColorMenu : #1d1d27;
+	--duration: .7s;
+}
+
+html *,
+html *::before,
+html *::after {
+
+	box-sizing: inherit;
+
+}
