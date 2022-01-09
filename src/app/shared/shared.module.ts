@@ -19,7 +19,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MagicMainMenuComponent
   ]
 })
 export class SharedModule { }

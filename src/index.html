@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base href="/">
-  <title>Client</title>
+  <title>Солидарност.мк</title>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -11,6 +11,15 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script><script>
+  function docReady(fn) {
+    // see if DOM is already available
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        // call on next available tick
+        setTimeout(fn, 1);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+
     var scrollFlag = true;
     // sticky header
     function stickyHeader() {
@@ -23,7 +32,7 @@
                         // check if the sticky header true
                             // scroll function
                             $window.on('scroll', function () {
-                              //menu = document.getElementsByClassName("menu")[0];
+                              menu = document.getElementsByClassName("menu")[0];
                               console.log(menu.offsetTop);
                               console.log(window.pageYOffset);
                               if (window.pageYOffset >= (menu.offsetTop + menu.offsetHeight)) {
@@ -59,69 +68,75 @@
     document.addEventListener('scroll', function(e){
       stickyHeader();
      }, true);
+    
+     var matSelectOffsetHeight = document.getElementById("home-city");
+     console.log('matSelectOffsetHeight' + matSelectOffsetHeight);
+     document.documentElement.style.setProperty('--selectPanelCityMargin', matSelectOffsetHeight + 'px'); //suffix may be px or ''
+
+    }
 </script>
 </head>
-<body>
+<body style="color: rgba(0,0,0,.87); font-family: Roboto, Helvetica Neue, sans-serif;">
   <app-root>
   </app-root>
   <script>
-    $( document ).ready(function() {
-    var body = document.body;
-    console.log(body);
-    const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
-    var menu = document.body.querySelector(".menu");
-    console.log(menu);
-    const menuItems = menu.querySelectorAll(".menu__item");
-    console.log(menuItems);
-    const menuBorder = menu.querySelector(".menu__border");
-    console.log(menuBorder);
-    let activeItem = menu.querySelector(".active");
-    console.log(activeItem);
-    //console.log(menu);
-    function clickItem(item, index) {
+    docReady(function() {
+        const body = document.body;
+const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
+const menu = body.querySelector(".menu");
+const menuItems = menu.querySelectorAll(".menu__item");
+const menuBorder = menu.querySelector(".menu__border");
+let activeItem = menu.querySelector(".active");
+
+function clickItem(item, index) {
+
+    menu.style.removeProperty("--timeOut");
     
-        menu.style.removeProperty("--timeOut");
-        
-        if (activeItem == item) return;
-        
-        if (activeItem) {
-            activeItem.classList.remove("active");
-        }
+    if (activeItem == item) return;
     
-        
-        item.classList.add("active");
-        body.style.backgroundColor = bgColorsBody[index];
-        //console.log(menuItems[index]);
-        //menuItems[2].style.backgroundColor = bgColorsBody[index];
-        activeItem = item;
-        offsetMenuBorder(activeItem, menuBorder);
+    if (activeItem) {
+        activeItem.classList.remove("active");
     }
+
     
-    function offsetMenuBorder(element, menuBorder) {
-    
-        const offsetActiveItem = element.getBoundingClientRect();
-        const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
-        const top = (99*(menu.offsetHeight)/100) + 'px';
-        console.log(top);
-        menuBorder.style.transform = `translate3d(${left}, ${top} , 0)`
-        menuBorder.style.transform += `rotate(180deg)`;
-        //menuBorder.style.marginTop = (menu.offsetTop + menu.offsetHeight);
-        console.log('menu height ' + menu.offsetHeight);
-        console.log('offset top ' + menu.offsetTop);
-    }
-    
+    item.classList.add("active");
+    body.style.backgroundColor = bgColorsBody[index];
+    activeItem = item;
     offsetMenuBorder(activeItem, menuBorder);
     
-    menuItems.forEach((item, index) => {
     
-        item.addEventListener("click", () => clickItem(item, index));
-        
-    })
+}
+
+function offsetMenuBorder(element, menuBorder) {
+
+    /* const offsetActiveItem = element.getBoundingClientRect();
+    const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
+    menuBorder.style.transform = `translate3d(${left}, 0 , 0)`; */
+
+    const offsetActiveItem = element.getBoundingClientRect();
+        const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
+        /* const top = (menu.offsetTop + menu.offsetHeight) + 'px';
+        console.log(top); */
+        menuBorder.style.transform = `translate3d(${left}, 0, 0)`
+        menuBorder.style.transform += `rotate(180deg)`;
+        /* menuBorder.style.marginTop = (menu.offsetTop + menu.offsetHeight);
+        console.log('menu height ' + menu.offsetHeight);
+        console.log('offset top ' + menu.offsetTop); */
+
+}
+
+offsetMenuBorder(activeItem, menuBorder);
+
+menuItems.forEach((item, index) => {
+
+    item.addEventListener("click", () => clickItem(item, index));
     
-    window.addEventListener("resize", () => {
-        offsetMenuBorder(activeItem, menuBorder);
-        menu.style.setProperty("--timeOut", "none");
-    });                
+})
+
+window.addEventListener("resize", () => {
+    offsetMenuBorder(activeItem, menuBorder);
+    menu.style.setProperty("--timeOut", "none");
+});          
   });
   </script>
 </body>

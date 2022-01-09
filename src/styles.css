@@ -1,8 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 html {
 
 	box-sizing: border-box;
-	--bgColorMenu : #1d1d27;
+	--bgColorMenu : orange;
 	--duration: .7s;
 }
 
@@ -12,4 +11,26 @@ html *::after {
 
 	box-sizing: inherit;
 
+}
+
+body{
+	
+	margin: 0 auto;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffb457;
+	-webkit-tap-highlight-color: transparent;
+	transition: background-color var(--duration);
+
+}
+
+:root {
+    --selectPanelCityMargin: 0px;
+    --selectPanelBackgroundColor: yellow;
+}
+
+.mat-select-panel-home-city {
+	margin-top: var(--selectPanelCityMargin) !important;
+	background: var(--selectPanelBackgroundColor);
 }
