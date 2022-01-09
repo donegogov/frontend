@@ -1,7 +1,7 @@
 html {
 
 	box-sizing: border-box;
-	--bgColorMenu : orange;
+	--bgColorMenu : #1d1d27;
 	--duration: .7s;
 }
 
