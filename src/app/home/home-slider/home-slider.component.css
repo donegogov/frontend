@@ -2,17 +2,41 @@
     margin: 0 auto;
     width: 100%;
     height: 718px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 50% ,
-    rgba(255, 255, 255, 0) 100% 
-  ), url('../../../assets/images/slider/1.6.png') no-repeat;
-
-  margin: 0;
+    margin: 0;
     display: flex;
     padding: 0 0;
     position: relative;
+}
+
+.arrow-wrapper,
+.slider-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.arrow-wrapper {
+  z-index: 10;
+}
+
+.slider1 {
+    background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 10%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.3) 70%,
+    rgba(255, 255, 255, 0.2) 80%,
+    rgba(255, 255, 255, 0.1) 90%,
+    rgba(255, 255, 255, 0) 100% 
+  ), url('../../../assets/images/slider/1.6.png') no-repeat;
+    width: 100%;
+    height: 718px;
 }
 
 .arrows {
@@ -20,46 +44,52 @@
         all: unset;
         flex-grow: 1;
         z-index: 100;
-        display: inline;
         cursor: pointer;
         position: relative;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
         height: 100px !important;
-        width: 100px !important;
-        
+        width: 100px !important;        
 }
 
 @keyframes rotate-left {
-
-    100% {
-
-        transform: rotateZ(-45deg);
-
+    0% {
+        transform: rotateZ(0deg);
+        transform: scale(1);
     }
-
+    20% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        transform: rotateZ(-45deg);
+    }
 }
 
 .rotate-left-anim-wrapper {
     animation-name: rotate-left;
-    animation-duration: 0.1s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
 
 @keyframes rotate-right {
-
-    100% {
-
-        transform: rotateZ(45deg);
-
+    0% {
+        transform: rotateZ(0deg);
+        transform: scale(1);
     }
-
+    20% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        transform: rotateZ(45deg);
+    }
 }
 
 .rotate-right-anim-wrapper {
     animation-name: rotate-right;
-    animation-duration: 0.1s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
 
@@ -83,6 +113,7 @@
     transition: 1s ease;
     width: 100px;
     height: 100px;
+    opacity: 0.3;
 }
 .right {
     position: relative;
@@ -91,12 +122,15 @@
     transition: 1s ease;
     width: 100px;
     height: 100px;
+    opacity: 0.3;
 }
 
 .left:hover {
     transform: scale(2);
+    opacity: 0.8;
 }
 
 .right:hover {
     transform: scale(2);
+    opacity: 0.8;
 }
