@@ -136,8 +136,42 @@ menuItems.forEach((item, index) => {
 window.addEventListener("resize", () => {
     offsetMenuBorder(activeItem, menuBorder);
     menu.style.setProperty("--timeOut", "none");
-});          
+});
+
+
+function clickLeftArrow(leftArrow) {
+  if(!leftArrow.classList.contains('rotate-left-anim-wrapper')){
+    leftArrow.classList.add('rotate-left-anim-wrapper');
+  } else {
+    leftArrow.classList.remove('rotate-left-anim-wrapper');
+    // Add it back after 3 seconds;
+    setTimeout(function(){
+        leftArrow.classList.add('rotate-left-anim-wrapper');
+    }, 100);
+  }
+}
+
+function clickRightArrow(rightArrow) {
+    if(!rightArrow.classList.contains('rotate-right-anim-wrapper')){
+        rightArrow.classList.add('rotate-right-anim-wrapper');
+  } else {
+    rightArrow.classList.remove('rotate-right-anim-wrapper');
+    // Add it back after 3 seconds;
+    setTimeout(function(){
+        rightArrow.classList.add('rotate-right-anim-wrapper');
+    }, 100);
+  }
+}
+
+var leftArrow = body.querySelector('.left-arrow');
+console.log(leftArrow);
+leftArrow.addEventListener("click", () => clickLeftArrow(leftArrow));
+
+var rightArrow = body.querySelector('.right-arrow');
+rightArrow.addEventListener("click", () => clickRightArrow(rightArrow));
+
   });
+
   </script>
 </body>
 </html>
