@@ -122,7 +122,7 @@
   }
   .arrow-container {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: 1fr;
     justify-items: center;
     align-items: center;
@@ -140,8 +140,8 @@
   }
   .right-arrow {
     /* border: 10px solid black; */
-    grid-column-start: 9;
-    grid-column-end: 11;
+    grid-column-start: 7;
+    grid-column-end: 9;
     width: 100%;
     height: 100%;
     justify-self: center;
