@@ -12,6 +12,7 @@ export class HomeSliderComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
+    freeDrag: true,
     dots: false,
     center: true,
     lazyLoad: true,
