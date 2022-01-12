@@ -109,9 +109,9 @@
 }
 
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 918px) {
     .menu{
-        font-size: .8em;
+        font-size: 1.2em;
     }
 }
   

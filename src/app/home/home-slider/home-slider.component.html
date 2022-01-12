@@ -42,7 +42,7 @@
       <div class="arrow-container">
         <div class="left-arrow">
             <div class="arrow-animation-helper">
-            <button class="left arrows-button">
+            <button class="left arrows-button" (click)="owlCar.prev()">
                 <svg class="arrow-icon" style="fill-rule:evenodd;text-rendering:geometricPrecision;image-rendering:optimizeQuality;clip-rule:evenodd;shape-rendering:geometricPrecision"
                 viewBox="0 0 8487 8487"
                 >
@@ -55,7 +55,7 @@
         </div>
         <div class="right-arrow">
             <div class="arrow-animation-helper">
-            <button class="right arrows-button">
+            <button class="right arrows-button" (click)="owlCar.next()">
                 <svg class="arrow-icon" style="fill-rule:evenodd;text-rendering:geometricPrecision;image-rendering:optimizeQuality;clip-rule:evenodd;shape-rendering:geometricPrecision"
                 viewBox="0 0 8487 8487"
                 >
@@ -69,6 +69,16 @@
       </div>
     </div>
     <div class="slider">
-        <div class="slider1"></div>
+        <owl-carousel-o [options]="customOptions" #owlCar>
+            <ng-template carouselSlide>
+                <img class="imgage-slider-options" src="../../../assets/images/slider/1.4.png" (load)="changeImageDimension($event.target)"/>
+            </ng-template>  
+            <ng-template carouselSlide>
+                    <img class="imgage-slider-options" src="../../../assets/images/slider/1.5.png" (load)="changeImageDimension($event.target)"/>
+            </ng-template>  
+            <ng-template carouselSlide>
+                <img class="imgage-slider-options" src="../../../assets/images/slider/1.6.png" (load)="changeImageDimension($event.target)"/>
+            </ng-template>  
+        </owl-carousel-o>
     </div>
   </div>

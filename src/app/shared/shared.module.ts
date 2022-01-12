@@ -5,6 +5,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    CarouselModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    MagicMainMenuComponent
+    MagicMainMenuComponent,
+    CarouselModule
   ]
 })
 export class SharedModule { }
