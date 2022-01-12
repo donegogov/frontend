@@ -22,6 +22,7 @@ body{
 	background-color: #ffb457;
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color var(--duration);
+	font-size: 18px;
 
 }
 
@@ -34,3 +35,34 @@ body{
 	margin-top: var(--selectPanelCityMargin) !important;
 	background: var(--selectPanelBackgroundColor);
 }
+
+/* // X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap */
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+	body{
+		font-size: 26px;
+	
+	}
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+	
+ }
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+	
+}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+	
+ }

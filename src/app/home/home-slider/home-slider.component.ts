@@ -11,7 +11,7 @@ export class HomeSliderComponent implements OnInit {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
-    pullDrag: false,
+    pullDrag: true,
     dots: false,
     center: true,
     lazyLoad: true,
@@ -81,21 +81,3 @@ export class HomeSliderComponent implements OnInit {
   }
 
 }
-
-
-/* if(width > maxWidth){
-  ratio = maxWidth / width;   // get ratio for scaling image
-  (image as ElementRef).nativeElement.setAttribute('style', 'width: ' + maxWidth + 'px !important'); // Set new width
-  (image as ElementRef).nativeElement.setAttribute('style', 'height: ' + (height * ratio) + 'px !important');  // Scale height based on ratio
-  height = height * ratio;    // Reset height to match scaled image
-  width = width * ratio;    // Reset width to match scaled image
-}
-
-// Check if current height is larger than max
-if(height > maxHeight){
-  ratio = maxHeight / height; // get ratio for scaling image
-  (image as ElementRef).nativeElement.setAttribute('style', 'height: ' + maxHeight + 'px !important');   // Set new height
-  (image as ElementRef).nativeElement.setAttribute('style', 'width: ' + (width * ratio) + 'px !important');    // Scale width based on ratio
-  width = width * ratio;    // Reset width to match scaled image
-  height = height * ratio;    // Reset height to match scaled image
-} */

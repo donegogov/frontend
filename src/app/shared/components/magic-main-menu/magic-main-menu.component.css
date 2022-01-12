@@ -107,13 +107,6 @@
     width: 0;
     height: 0;
 }
-
-
-@media screen and (max-width: 918px) {
-    .menu{
-        font-size: 1.2em;
-    }
-}
   
   .menu__item.active.menu__item__home1::before{
     
