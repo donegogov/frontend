@@ -18,6 +18,11 @@ import { MainContentComponent } from './main-content/main-content.component';
     CommonModule,
     HomeRoutingModule,
     SharedModule
+  ],
+  exports: [
+    HomeSliderComponent,
+    MainContentComponent,
+    HomeComponent
   ]
 })
 export class HomeModule { }
