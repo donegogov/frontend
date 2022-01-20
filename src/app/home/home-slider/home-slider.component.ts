@@ -10,18 +10,18 @@ import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.servic
 export class HomeSliderComponent implements OnInit, AfterViewInit {
   customOptions: OwlOptions = {
     loop: true,
-    rewind: false,
+    rewind: true,
     mouseDrag: true,
     touchDrag: true,
-    pullDrag: true,
-    freeDrag: true,
+    pullDrag: false,
+    freeDrag: false,
     dots: false,
     center: true,
-    lazyLoad: false,
-    lazyLoadEager: 2,
+    lazyLoad: true,
+    lazyLoadEager: 1,
     autoplay: true,
     autoplayHoverPause: false,
-    animateOut: false,
+    animateOut: "fadeOut 0.1s linear",
     animateIn: false,
     navSpeed: 700,
     navText: ['', ''],
@@ -142,8 +142,9 @@ ngOnInit(): void {
             height = height * ratio;    // Reset height to match scaled image
         }
       } else {
-        (image as HTMLElement).style.width = this.scrWidth + 'px';
-        (image as HTMLElement).style.height = (this.scrHeight - 50) + 'px';
+        (image as HTMLElement).style.width = (this.scrWidth - 100) + 'px';
+        (image as HTMLElement).style.height = '700px';
+        //(image as HTMLElement).style.borderRadius = '50%';
       }
   }
 

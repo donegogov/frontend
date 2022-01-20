@@ -96,7 +96,7 @@
 
 
 .slider-arrow-container {
-    height: 718px;
+    height: 900px;
     background-color: transparent;
     width: 100%;
     display: flex;
@@ -104,6 +104,7 @@
     position: relative;
     align-items: center;
     justify-content: center;
+    margin-top: 200px;
   }
   .arrows {
     background-color: transparent;
@@ -123,13 +124,14 @@
   }
   .arrow-container {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     justify-items: center;
     align-items: center;
     width: 100%;
     height: 100%;
     z-index:-1;
+    height: 900px;
   }
   .left-arrow {
     /* border: 10px solid green; */
@@ -151,7 +153,9 @@
 
   .imgage-slider-options {
       object-position: center;
-      margin: 0 auto;
+      margin: 0 auto; 
+      overflow: hidden;
+      border-radius: 100px;
   }
 
   .slider-content {
@@ -161,6 +165,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    
   }
 .slider-title {
     animation-name: fadeInDown;
@@ -168,6 +173,7 @@
     animation-timing-function: ease-out;
     animation-duration: 0.7s;
     animation-delay: 0.7s;
+    font-size: 80px;
 }
 
 .slider-subtitle {
@@ -176,6 +182,8 @@
     animation-timing-function: ease-out;
     animation-duration: 0.7s;
     animation-delay: 0.7s;
+    font-size: 40px !important;
+    margin-top: 100px;
 }
 
 .slider-image {
@@ -191,8 +199,59 @@
     animation-timing-function: ease-out;
     animation-duration: 0.7s;
     animation-delay: 1.32s;
+    font-size: 37px;
+    margin-top: 200px;
+    display: inline-block;
+        width: fit-content;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 30px;
+        padding: 30px 40px;
 }
 
 .content {
-    margin: auto auto auto 230px;
+    margin: auto auto auto auto;
+    width: 100%;
+}
+
+@media (max-width: 992px) { 
+	.content {
+		margin: auto auto;
+		height: 700px;
+	}
+
+    .arrow-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 1fr;
+		justify-items: center;
+		align-items: center;
+		width: 100%;
+		height: 900px;
+		z-index:-1;
+	  }
+	  .left-arrow {
+		/* border: 10px solid green; */
+		grid-column: 1 / 2;
+		width: 100%;
+		height: 100%;
+		justify-self: center;
+		align-self: center;
+	  }
+	  .right-arrow {
+		/* border: 10px solid black; */
+		grid-column-start: 2;
+		grid-column-end: 3;
+		width: 100%;
+		height: 100%;
+		justify-self: center;
+		align-self: center;
+	  }
+      .slider-button {
+        
+    }
+    .slider-arrow-container {
+        height: 900px;
+      }
 }
