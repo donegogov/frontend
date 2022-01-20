@@ -156,7 +156,7 @@
       margin: 0 auto; 
       overflow: hidden;
       border-radius: 100px;
-      height: 718px !important;
+      height: 718px;
   }
 
   .slider-content {
@@ -172,8 +172,8 @@
     animation-name: fadeInDown;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.7s;
-    animation-delay: 0.7s;
+    animation-duration: 0.6s;
+    animation-delay: 0.3s;
     font-size: 80px;
 }
 
@@ -181,8 +181,8 @@
     animation-name: fadeInDown;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.7s;
-    animation-delay: 0.7s;
+    animation-duration: 0.6s;
+    animation-delay: 0.2s;
     font-size: 40px !important;
     margin-top: 100px;
 }
@@ -191,16 +191,16 @@
     animation-name: fadeIn;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 2s;
+    animation-duration: 0.8s;
     animation-delay: 0s;
 }
 .slider-button {
     animation-name: rollIn;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.7s;
-    animation-delay: 1.32s;
-    font-size: 37px;
+    animation-duration: 0.6s;
+    animation-delay: 0.5s;
+    font-size: 40px;
     margin-top: 200px;
     display: inline-block;
         width: fit-content;
@@ -218,41 +218,29 @@
 
 @media (max-width: 992px) { 
 	.content {
-		margin: auto auto;
-		height: 700px;
+		height: 1200px !important;
+        margin-top: 200px;
+        z-index: 10004 !important;
 	}
 
+    .slider-content {
+        height: 1200px !important;
+      }
+
     .arrow-container {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: 1fr;
-		justify-items: center;
-		align-items: center;
-		width: 100%;
-		height: 900px;
-		z-index:-1;
-	  }
-	  .left-arrow {
-		/* border: 10px solid green; */
-		grid-column: 1 / 2;
-		width: 100%;
-		height: 100%;
-		justify-self: center;
-		align-self: center;
-	  }
-	  .right-arrow {
-		/* border: 10px solid black; */
-		grid-column-start: 2;
-		grid-column-end: 3;
-		width: 100%;
-		height: 100%;
-		justify-self: center;
-		align-self: center;
+		height: 1400px;
 	  }
       .slider-button {
-        
+        margin-top: 500px;
+        z-index: 10004 !important;
     }
     .slider-arrow-container {
-        height: 900px;
+        height: 1200px;
+      }
+      .imgage-slider-options {
+        height: 1200px;
+    }
+    .slider-arrow-container {
+        height: 1400px;
       }
 }

@@ -25,11 +25,33 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     animateIn: false,
     navSpeed: 700,
     navText: ['', ''],
-    smartSpeed: 8000,
+    smartSpeed: 1000,
     autoplaySpeed: true,
-    autoplayTimeout: 8000,
+    autoplayTimeout: 2000,
     fluidSpeed: true,
     autoHeight: true,
+    responsive: {
+      993: {
+        items: 1,
+        loop: true,
+        rewind: true,
+        mouseDrag: false,
+        touchDrag: true,
+        pullDrag: false,
+        freeDrag: false,
+        dots: false,
+        center: true,
+        autoplay: true,
+        animateOut: false,
+        animateIn: false,
+        navSpeed: 500,
+        smartSpeed: undefined,
+        autoplaySpeed: 6000,
+        fluidSpeed: false,
+        autoHeight: true,
+        nav: false
+      }
+    },
     nav: false,
     items: 1
   }
@@ -79,21 +101,6 @@ ngOnInit(): void {
 }
 
   ngAfterViewInit() {
-    /* this.contentSliderh1.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    });
-    this.contentSliderh4.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    });
-    this.contentSliderButton.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    }); */
   }
 
   changeImageDimension(image: any) {
@@ -127,35 +134,14 @@ ngOnInit(): void {
             width = width * ratio;    // Reset width to match scaled image
             height = height * ratio;    // Reset height to match scaled image
         }
-      } /* else {
+      } else {
         (image as HTMLElement).style.width = (this.scrWidth - 100) + 'px';
-        (image as HTMLElement).style.height = '700px';
+        (image as HTMLElement).style.height = '1200px';
         //(image as HTMLElement).style.borderRadius = '50%';
-      } */
+      }
   }
 
 getData(data: SlidesOutputData) {
-  /* var slides = data.slides ?? [];
-console.log(slides[0]?.id);
-var slidesId = '#' + slides[0]?.id.toString();
-  let domElement = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .content');
-  //domElement = domElement.children;
-  var tempIndex = data.startPosition ?? 0;
-  console.log(domElement[tempIndex] as HTMLElement);
-  
-  domElement[tempIndex].style.animation = 'none'; // clear animation
-  //domElement[tempIndex].classList.remove("slider-title");
-  domElement[tempIndex].offsetHeight; 
-
-
-  //void  element.nativeElement.offsetWidth;
-  //domElement[tempIndex].classList.add("slider-title");
-  domElement[tempIndex].style.animation = 'fadeIn 2s forwards linear';
-  //void element.nativeElement.offsetWidth;
-  console.log(domElement[tempIndex]);
-  domElement[tempIndex].onanimationend = () => {
-    domElement[tempIndex].style.animation = 'none';
-  }; */
   var tempIndex = data.startPosition ?? 0;
   if ( tempIndex === 0) {
     var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
@@ -172,90 +158,11 @@ var slidesId = '#' + slides[0]?.id.toString();
     this.handlePreviousSlide(previousSliderContent);
     this.handleMomentSlide(momentSliderContent);
 
-    if (this.scrWidth <= 993) {
+    /* if (this.scrWidth <= 993) {
       momentSliderContent.getElementsByTagName('img')[0].style.width = (this.scrWidth - 100) + 'px';
-      momentSliderContent.getElementsByTagName('img')[0].style.height = '718px';
-    }
+      momentSliderContent.getElementsByTagName('img')[0].style.height = '1200px';
+    } */
   }
-    //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
-    /* this.contentSliderh1.forEach((element, index) => {
-      var tempIndex = data.startPosition ?? 0;
-      if (index == 4) {
-        console.log(data);
-        console.log(element.nativeElement);
-
-        element.nativeElement.style.animation = 'none'; // clear animation
-        element.nativeElement.classList.remove("slider-title");
-        element.nativeElement.offsetHeight; 
-
-
-        //void  element.nativeElement.offsetWidth;
-        element.nativeElement.classList.add("slider-title");
-        element.nativeElement.style.animation = 'fadeIn 2s forwards linear';
-        //void element.nativeElement.offsetWidth;
-        console.log(element.nativeElement);
-    };
-  }); */
-    //this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.style.opacity = 0;
-    
-
-    
-  //this.customOptions.animateIn = "animate__animated animate__" + this.getAnimation().toString();
-  //this.customOptions.animateOut = "animate__animated animate__" + this.getAnimation().toString();
-  /* console.log(this.owlCar.options);
-  const anyService = this.owlCar as any;
- const carouselService = anyService.carouselService as CarouselService;
-  var tempOptions = this.customOptions;
-  carouselService.setOptions(this.customOptions);
-  carouselService.refresh(); */
-  //carouselService.update();
-  //console.log(data);
-  //console.log(this.owlCar);
-
-  
-  /* if(data.startPosition! === 0) {
-    console.log(this.contentSliderh1.toArray()[data.startPosition!].nativeElement);
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
-    
-    this.contentSliderh1.last.nativeElement.style.opacity = 0;
-    this.contentSliderh1.last.nativeElement.classList.remove("slider-title");
-
-    void this.contentSliderh1.last.nativeElement.offsetWidth;
-  } else {
-    console.log(this.contentSliderh1.toArray()[data.startPosition!].nativeElement);
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
-    
-    this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.style.opacity = 0;
-    this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.classList.remove("slider-title");
-
-    void this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.offsetWidth;
-  } */
-
-  //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
-  //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
-
-  /* this.contentSliderh1.toArray()[data.startPosition!].nativeElement.onanimationend = () => {
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.remove("slider-title");
-    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 0;
-  }; */
-
-  /* this.contentSliderh1.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    });
-    this.contentSliderh4.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    });
-    this.contentSliderButton.forEach(element => {
-      element.nativeElement.onanimationstart = () => {
-        element.nativeElement.style.opacity = 1;
-      };
-    }); */
 }
 
 handleMomentSlide(momentSliderContent: HTMLElement) {
@@ -278,28 +185,20 @@ handleMomentSlide(momentSliderContent: HTMLElement) {
 
     momentSliderContent.getElementsByTagName('h1')[0].onanimationstart = () => {
       momentSliderContent.getElementsByTagName('h1')[0].style.opacity = '1';
-      momentSliderContent.getElementsByTagName('h1')[0].style.visibility = 'visible';
+      //momentSliderContent.getElementsByTagName('h1')[0].style.visibility = 'visible';
     };
     momentSliderContent.getElementsByTagName('h4')[0].onanimationstart = () => {
       momentSliderContent.getElementsByTagName('h4')[0].style.opacity = '1';
-      momentSliderContent.getElementsByTagName('h4')[0].style.visibility = 'visible';
+      //momentSliderContent.getElementsByTagName('h4')[0].style.visibility = 'visible';
     };
     momentSliderContent.getElementsByTagName('button')[0].onanimationstart = () => {
       momentSliderContent.getElementsByTagName('button')[0].style.opacity = '1';
-      momentSliderContent.getElementsByTagName('button')[0].style.visibility = 'visible';
+      //momentSliderContent.getElementsByTagName('button')[0].style.visibility = 'visible';
     };
     momentSliderContent.getElementsByTagName('img')[0].onanimationstart = () => {
       momentSliderContent.getElementsByTagName('img')[0].style.opacity = '1';
-      momentSliderContent.getElementsByTagName('img')[0].style.visibility = 'visible';
+      //momentSliderContent.getElementsByTagName('img')[0].style.visibility = 'visible';
     };
-    /* momentSliderContent.getElementsByTagName('h1')[0].style.opacity = '1';
-    momentSliderContent.getElementsByTagName('h4')[0].style.opacity = '1';
-    momentSliderContent.getElementsByTagName('button')[0].style.opacity = '1';
-    momentSliderContent.getElementsByTagName('img')[0].style.opacity = '1';
-    momentSliderContent.getElementsByTagName('h1')[0].style.visibility = 'visible';
-    momentSliderContent.getElementsByTagName('h4')[0].style.visibility = 'visible';
-    momentSliderContent.getElementsByTagName('button')[0].style.visibility = 'visible';
-    momentSliderContent.getElementsByTagName('img')[0].style.visibility = 'visible'; */
 }
 
 handlePreviousSlide(previousSliderContent: HTMLElement) {
@@ -307,10 +206,6 @@ handlePreviousSlide(previousSliderContent: HTMLElement) {
   previousSliderContent.getElementsByTagName('h4')[0].style.opacity = '0';
   previousSliderContent.getElementsByTagName('button')[0].style.opacity = '0';
   previousSliderContent.getElementsByTagName('img')[0].style.opacity = '0';
-  previousSliderContent.getElementsByTagName('h1')[0].style.visibility = 'hidden';
-  previousSliderContent.getElementsByTagName('h4')[0].style.visibility = 'hidden'
-  previousSliderContent.getElementsByTagName('button')[0].style.visibility = 'hidden';
-  previousSliderContent.getElementsByTagName('img')[0].style.visibility = 'hidden';
 }
 
 getAnimation() {

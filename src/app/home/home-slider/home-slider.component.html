@@ -73,10 +73,10 @@
             <ng-container *ngFor="let content of sliderContent; let index = index">
             <ng-template carouselSlide style="position: absolute !important;">
                 <div class="slider-content" style="position: relative; text-align: center; width: 100%;">
-                    <div class="content" style="z-index: 121;  display: flex; width: 100%; height: auto; flex-direction: column">
+                    <div class="content" style="z-index: 121;  display: flex; width: 100%; height: 100%; flex-direction: column">
                         <h1 [ngClass]="{'slider-title': index === 0}" style="color: white; opacity: 0;" >{{content.title}}</h1>
                         <h4 class="" [ngClass]="{'slider-subtitle': index === 0}" style="color: white; opacity: 0; font-size: large;">{{content.subTitle}}</h4>
-                        <button class="" [ngClass]="{'slider-button': index === 0}" type="button" style="opacity: 0;">{{content.buttonText}}</button>
+                        <button class="" [ngClass]="{'slider-button': index === 0}" type="button" onclick="alert('Hello')" style="opacity: 0;">{{content.buttonText}}</button>
                     </div>
                     <div class="slider-image img-content" style="position: absolute; width: 100%;">
                         <img class="imgage-slider-options" style="position: relative;"
