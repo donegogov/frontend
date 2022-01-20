@@ -49,7 +49,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
         autoplaySpeed: 6000,
         fluidSpeed: false,
         autoHeight: true,
-        nav: false
+        nav: false,
       }
     },
     nav: false,
@@ -166,11 +166,6 @@ getData(data: SlidesOutputData) {
 }
 
 handleMomentSlide(momentSliderContent: HTMLElement) {
-  momentSliderContent.getElementsByTagName('h1')[0].classList.remove("slider-title");
-    momentSliderContent.getElementsByTagName('h4')[0].classList.remove("slider-subtitle");
-    momentSliderContent.getElementsByTagName('button')[0].classList.remove("slider-button");
-    momentSliderContent.getElementsByTagName('img')[0].classList.remove("slider-image");
-
     //void domElement[tempIndex].offsetHeight; 
     void momentSliderContent.getElementsByTagName('h1')[0].offsetHeight;
     void momentSliderContent.getElementsByTagName('h4')[0].offsetHeight;
@@ -202,6 +197,11 @@ handleMomentSlide(momentSliderContent: HTMLElement) {
 }
 
 handlePreviousSlide(previousSliderContent: HTMLElement) {
+  previousSliderContent.getElementsByTagName('h1')[0].classList.remove("slider-title");
+  previousSliderContent.getElementsByTagName('h4')[0].classList.remove("slider-subtitle");
+  previousSliderContent.getElementsByTagName('button')[0].classList.remove("slider-button");
+    previousSliderContent.getElementsByTagName('img')[0].classList.remove("slider-image");
+
   previousSliderContent.getElementsByTagName('h1')[0].style.opacity = '0';
   previousSliderContent.getElementsByTagName('h4')[0].style.opacity = '0';
   previousSliderContent.getElementsByTagName('button')[0].style.opacity = '0';
