@@ -65,19 +65,19 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     {
       title: "BOOK",
       subTitle: "BOOK SUBTITLE",
-      buttonText: "ADD TO CART",
+      buttonText: "SHOP BOOK",
       imageSrc: "../../../assets/images/slider/1.7.jpg"
     },
     {
       title: "BOOK 2",
       subTitle: "BOOK SUBTITLE",
-      buttonText: "ADD TO CART",
+      buttonText: "SHOP BOOK 2",
       imageSrc: "../../../assets/images/slider/1.8.jpg"
     },
     {
       title: "BOOK 3",
       subTitle: "BOOK SUBTITLE",
-      buttonText: "ADD TO CART",
+      buttonText: "SHOP BOOK 3",
       imageSrc: "../../../assets/images/slider/1.9.jpg"
     }
   ];
@@ -101,6 +101,9 @@ ngOnInit(): void {
 }
 
   ngAfterViewInit() {
+    var firstSlide = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content')[0] as HTMLElement;
+
+    this.handleMomentSlide(firstSlide);
   }
 
   changeImageDimension(image: any) {
@@ -141,22 +144,30 @@ ngOnInit(): void {
       }
   }
 
-getData(data: any) {
+  sliderChanged(data: any) {
   var tempIndex = data.startPosition ?? 0;
   if ( tempIndex === 0) {
     var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
     var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
     var previousSliderContent = allSliderContent[allSliderContent.length - 1] as HTMLElement;
 
-    this.handlePreviousSlide(previousSliderContent);
-    this.handleMomentSlide(momentSliderContent);
+    if ( previousSliderContent != undefined) {
+      this.handlePreviousSlide(previousSliderContent);
+    }
+    if ( momentSliderContent != undefined) {
+      this.handleMomentSlide(momentSliderContent);
+    }
   } else {
     var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
     var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
     var previousSliderContent = allSliderContent[tempIndex - 1] as HTMLElement;
     
-    this.handlePreviousSlide(previousSliderContent);
-    this.handleMomentSlide(momentSliderContent);
+    if ( previousSliderContent != undefined) {
+      this.handlePreviousSlide(previousSliderContent);
+    }
+    if ( momentSliderContent != undefined) {
+      this.handleMomentSlide(momentSliderContent);
+    }
 
     /* if (this.scrWidth <= 993) {
       momentSliderContent.getElementsByTagName('img')[0].style.width = (this.scrWidth - 100) + 'px';
@@ -230,6 +241,10 @@ getAnimation() {
   ];
 
   return allAnimations[Math.floor(Math.random()*allAnimations.length)];
+}
+
+addToCart() {
+  alert('Hello');
 }
 
 }
