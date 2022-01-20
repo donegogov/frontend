@@ -28,7 +28,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     smartSpeed: 7000,
     slideTransition: "ease",
     autoplaySpeed: true,
-    autoplayTimeout: 7000,
+    autoplayTimeout: 500,
     fluidSpeed: false,
     autoHeight: true,
     responsive: {
@@ -141,11 +141,11 @@ ngOnInit(): void {
             width = width * ratio;    // Reset width to match scaled image
             height = height * ratio;    // Reset height to match scaled image
         }
-      } else {
+      } /* else {
         (image as HTMLElement).style.width = (this.scrWidth - 100) + 'px';
         (image as HTMLElement).style.height = '700px';
         //(image as HTMLElement).style.borderRadius = '50%';
-      }
+      } */
   }
 
 getData(data: SlidesOutputData) {
@@ -185,6 +185,11 @@ var slidesId = '#' + slides[0]?.id.toString();
     
     this.handlePreviousSlide(previousSliderContent);
     this.handleMomentSlide(momentSliderContent);
+
+    if (this.scrWidth <= 993) {
+      momentSliderContent.getElementsByTagName('img')[0].style.width = (this.scrWidth - 100) + 'px';
+      momentSliderContent.getElementsByTagName('img')[0].style.height = '718px';
+    }
   }
     //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
     /* this.contentSliderh1.forEach((element, index) => {

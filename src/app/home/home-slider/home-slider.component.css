@@ -156,6 +156,7 @@
       margin: 0 auto; 
       overflow: hidden;
       border-radius: 100px;
+      height: 718px !important;
   }
 
   .slider-content {
