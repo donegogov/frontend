@@ -141,7 +141,7 @@ ngOnInit(): void {
       }
   }
 
-getData(data: SlidesOutputData) {
+getData(data: any) {
   var tempIndex = data.startPosition ?? 0;
   if ( tempIndex === 0) {
     var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
