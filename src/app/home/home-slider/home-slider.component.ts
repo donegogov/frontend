@@ -30,7 +30,8 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     autoplayTimeout: 8000,
     fluidSpeed: true,
     autoHeight: true,
-    nav: false
+    nav: false,
+    items: 1
   }
   imagesLoad = 0;
   @ViewChild('owlCar') owlCar!: any;
