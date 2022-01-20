@@ -45,5 +45,13 @@ body{
 		font-size: 26px;
 	
 	}
+
+	.content {
+		margin: auto auto auto 81px;
+	}
 }
 
+
+.owl-carousel, .owl-carousel .owl-item {
+    position: initial;
+}

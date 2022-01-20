@@ -9,7 +9,7 @@ import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.servic
 })
 export class HomeSliderComponent implements OnInit, AfterViewInit {
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     rewind: false,
     mouseDrag: true,
     touchDrag: true,
@@ -17,18 +17,18 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     freeDrag: true,
     dots: false,
     center: true,
-    lazyLoad: true,
+    lazyLoad: false,
     lazyLoadEager: 2,
-    autoplay: false,
+    autoplay: true,
     autoplayHoverPause: false,
-    animateOut: false,
-    animateIn: false,
+    animateOut: "fadeIn 0s forwards",
+    animateIn: "fadeIn 0s forwards",
     navSpeed: 700,
     navText: ['', ''],
-    smartSpeed: 2000,
-    slideTransition: "linear",
-    autoplaySpeed: false,
-    autoplayTimeout: 2000,
+    smartSpeed: 7000,
+    slideTransition: "ease",
+    autoplaySpeed: true,
+    autoplayTimeout: 7000,
     fluidSpeed: false,
     autoHeight: true,
     responsive: {
@@ -53,7 +53,28 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   @ViewChildren('contentSliderh4') contentSliderh4!: QueryList<ElementRef>;
   @ViewChildren('contentSliderButton') contentSliderButton!: QueryList<ElementRef>;
 
-  constructor(private elRef: ElementRef) { }
+  sliderContent: any = [
+    {
+      title: "BOOK",
+      subTitle: "BOOK SUBTITLE",
+      buttonText: "ADD TO CART",
+      imageSrc: "../../../assets/images/slider/1.7.jpg"
+    },
+    {
+      title: "BOOK 2",
+      subTitle: "BOOK SUBTITLE",
+      buttonText: "ADD TO CART",
+      imageSrc: "../../../assets/images/slider/1.8.jpg"
+    },
+    {
+      title: "BOOK 3",
+      subTitle: "BOOK SUBTITLE",
+      buttonText: "ADD TO CART",
+      imageSrc: "../../../assets/images/slider/1.9.jpg"
+    }
+  ]
+
+  constructor(private elRef: ElementRef, private _elementRef : ElementRef) { }
   
 
 ngOnInit(): void {
@@ -61,7 +82,7 @@ ngOnInit(): void {
 }
 
   ngAfterViewInit() {
-    this.contentSliderh1.forEach(element => {
+    /* this.contentSliderh1.forEach(element => {
       element.nativeElement.onanimationstart = () => {
         element.nativeElement.style.opacity = 1;
       };
@@ -75,7 +96,7 @@ ngOnInit(): void {
       element.nativeElement.onanimationstart = () => {
         element.nativeElement.style.opacity = 1;
       };
-    });
+    }); */
   }
 
   changeImageDimension(image: any) {
@@ -111,6 +132,66 @@ ngOnInit(): void {
   }
 
 getData(data: SlidesOutputData) {
+  /* var slides = data.slides ?? [];
+console.log(slides[0]?.id);
+var slidesId = '#' + slides[0]?.id.toString();
+  let domElement = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .content');
+  //domElement = domElement.children;
+  var tempIndex = data.startPosition ?? 0;
+  console.log(domElement[tempIndex] as HTMLElement);
+  
+  domElement[tempIndex].style.animation = 'none'; // clear animation
+  //domElement[tempIndex].classList.remove("slider-title");
+  domElement[tempIndex].offsetHeight; 
+
+
+  //void  element.nativeElement.offsetWidth;
+  //domElement[tempIndex].classList.add("slider-title");
+  domElement[tempIndex].style.animation = 'fadeIn 2s forwards linear';
+  //void element.nativeElement.offsetWidth;
+  console.log(domElement[tempIndex]);
+  domElement[tempIndex].onanimationend = () => {
+    domElement[tempIndex].style.animation = 'none';
+  }; */
+  var tempIndex = data.startPosition ?? 0;
+  if ( tempIndex === 0) {
+    var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
+    var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
+    var previousSliderContent = allSliderContent[allSliderContent.length - 1] as HTMLElement;
+
+    this.handlePreviousSlide(previousSliderContent);
+    this.handleMomentSlide(momentSliderContent);
+  } else {
+    var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
+    var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
+    var previousSliderContent = allSliderContent[tempIndex - 1] as HTMLElement;
+    
+    this.handlePreviousSlide(previousSliderContent);
+    this.handleMomentSlide(momentSliderContent);
+  }
+    //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
+    /* this.contentSliderh1.forEach((element, index) => {
+      var tempIndex = data.startPosition ?? 0;
+      if (index == 4) {
+        console.log(data);
+        console.log(element.nativeElement);
+
+        element.nativeElement.style.animation = 'none'; // clear animation
+        element.nativeElement.classList.remove("slider-title");
+        element.nativeElement.offsetHeight; 
+
+
+        //void  element.nativeElement.offsetWidth;
+        element.nativeElement.classList.add("slider-title");
+        element.nativeElement.style.animation = 'fadeIn 2s forwards linear';
+        //void element.nativeElement.offsetWidth;
+        console.log(element.nativeElement);
+    };
+  }); */
+    //this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.style.opacity = 0;
+    
+
+    
   //this.customOptions.animateIn = "animate__animated animate__" + this.getAnimation().toString();
   //this.customOptions.animateOut = "animate__animated animate__" + this.getAnimation().toString();
   /* console.log(this.owlCar.options);
@@ -120,6 +201,108 @@ getData(data: SlidesOutputData) {
   carouselService.setOptions(this.customOptions);
   carouselService.refresh(); */
   //carouselService.update();
+  //console.log(data);
+  //console.log(this.owlCar);
+
+  
+  /* if(data.startPosition! === 0) {
+    console.log(this.contentSliderh1.toArray()[data.startPosition!].nativeElement);
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
+    
+    this.contentSliderh1.last.nativeElement.style.opacity = 0;
+    this.contentSliderh1.last.nativeElement.classList.remove("slider-title");
+
+    void this.contentSliderh1.last.nativeElement.offsetWidth;
+  } else {
+    console.log(this.contentSliderh1.toArray()[data.startPosition!].nativeElement);
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
+    
+    this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.style.opacity = 0;
+    this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.classList.remove("slider-title");
+
+    void this.contentSliderh1.toArray()[data.startPosition! - 1].nativeElement.offsetWidth;
+  } */
+
+  //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.add("slider-title");
+  //this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 1;
+
+  /* this.contentSliderh1.toArray()[data.startPosition!].nativeElement.onanimationend = () => {
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.classList.remove("slider-title");
+    this.contentSliderh1.toArray()[data.startPosition!].nativeElement.style.opacity = 0;
+  }; */
+
+  /* this.contentSliderh1.forEach(element => {
+      element.nativeElement.onanimationstart = () => {
+        element.nativeElement.style.opacity = 1;
+      };
+    });
+    this.contentSliderh4.forEach(element => {
+      element.nativeElement.onanimationstart = () => {
+        element.nativeElement.style.opacity = 1;
+      };
+    });
+    this.contentSliderButton.forEach(element => {
+      element.nativeElement.onanimationstart = () => {
+        element.nativeElement.style.opacity = 1;
+      };
+    }); */
+}
+
+handleMomentSlide(momentSliderContent: HTMLElement) {
+  momentSliderContent.getElementsByTagName('h1')[0].classList.remove("slider-title");
+    momentSliderContent.getElementsByTagName('h4')[0].classList.remove("slider-subtitle");
+    momentSliderContent.getElementsByTagName('button')[0].classList.remove("slider-button");
+    momentSliderContent.getElementsByTagName('img')[0].classList.remove("slider-image");
+
+    //void domElement[tempIndex].offsetHeight; 
+    void momentSliderContent.getElementsByTagName('h1')[0].offsetHeight;
+    void momentSliderContent.getElementsByTagName('h4')[0].offsetHeight;
+    void momentSliderContent.getElementsByTagName('button')[0].offsetHeight;
+    void momentSliderContent.getElementsByTagName('img')[0].offsetHeight;
+
+    momentSliderContent.getElementsByTagName('h1')[0].classList.add("slider-title");
+    momentSliderContent.getElementsByTagName('h4')[0].classList.add("slider-subtitle");
+    momentSliderContent.getElementsByTagName('button')[0].classList.add("slider-button");
+    momentSliderContent.getElementsByTagName('img')[0].classList.add("slider-image");
+
+
+    momentSliderContent.getElementsByTagName('h1')[0].onanimationstart = () => {
+      momentSliderContent.getElementsByTagName('h1')[0].style.opacity = '1';
+      momentSliderContent.getElementsByTagName('h1')[0].style.visibility = 'visible';
+    };
+    momentSliderContent.getElementsByTagName('h4')[0].onanimationstart = () => {
+      momentSliderContent.getElementsByTagName('h4')[0].style.opacity = '1';
+      momentSliderContent.getElementsByTagName('h4')[0].style.visibility = 'visible';
+    };
+    momentSliderContent.getElementsByTagName('button')[0].onanimationstart = () => {
+      momentSliderContent.getElementsByTagName('button')[0].style.opacity = '1';
+      momentSliderContent.getElementsByTagName('button')[0].style.visibility = 'visible';
+    };
+    momentSliderContent.getElementsByTagName('img')[0].onanimationstart = () => {
+      momentSliderContent.getElementsByTagName('img')[0].style.opacity = '1';
+      momentSliderContent.getElementsByTagName('img')[0].style.visibility = 'visible';
+    };
+    /* momentSliderContent.getElementsByTagName('h1')[0].style.opacity = '1';
+    momentSliderContent.getElementsByTagName('h4')[0].style.opacity = '1';
+    momentSliderContent.getElementsByTagName('button')[0].style.opacity = '1';
+    momentSliderContent.getElementsByTagName('img')[0].style.opacity = '1';
+    momentSliderContent.getElementsByTagName('h1')[0].style.visibility = 'visible';
+    momentSliderContent.getElementsByTagName('h4')[0].style.visibility = 'visible';
+    momentSliderContent.getElementsByTagName('button')[0].style.visibility = 'visible';
+    momentSliderContent.getElementsByTagName('img')[0].style.visibility = 'visible'; */
+}
+
+handlePreviousSlide(previousSliderContent: HTMLElement) {
+  previousSliderContent.getElementsByTagName('h1')[0].style.opacity = '0';
+  previousSliderContent.getElementsByTagName('h4')[0].style.opacity = '0';
+  previousSliderContent.getElementsByTagName('button')[0].style.opacity = '0';
+  previousSliderContent.getElementsByTagName('img')[0].style.opacity = '0';
+  previousSliderContent.getElementsByTagName('h1')[0].style.visibility = 'hidden';
+  previousSliderContent.getElementsByTagName('h4')[0].style.visibility = 'hidden'
+  previousSliderContent.getElementsByTagName('button')[0].style.visibility = 'hidden';
+  previousSliderContent.getElementsByTagName('img')[0].style.visibility = 'hidden';
 }
 
 getAnimation() {
