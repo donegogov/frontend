@@ -73,12 +73,18 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
       imageSrc: "../../../assets/images/slider/1.9.jpg"
     }
   ];
-  mobHeight: any;
-  mobWidth: any;
+  scrHeight:any;
+  scrWidth:any;
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
 
   constructor(private elRef: ElementRef, private _elementRef : ElementRef) {
-    this.mobHeight = window.screen.height;
-    this.mobWidth = window.screen.width;
+    this.getScreenSize();
    }
   
 
@@ -105,7 +111,7 @@ ngOnInit(): void {
   }
 
   changeImageDimension(image: any) {
-    if (this.mobWidth > 993) {
+    if (this.scrWidth > 993) {
     //console.log(image.nativeElement.offsetHeight);
     (image as HTMLImageElement).width = 800;
     console.log((image as HTMLImageElement).offsetHeight);
@@ -136,8 +142,8 @@ ngOnInit(): void {
             height = height * ratio;    // Reset height to match scaled image
         }
       } else {
-        (image as HTMLElement).style.width = this.mobWidth + 'px';
-        (image as HTMLElement).style.height = (this.mobHeight - 200) + 'px';
+        (image as HTMLElement).style.width = this.scrWidth + 'px';
+        (image as HTMLElement).style.height = (this.scrHeight - 50) + 'px';
       }
   }
 
