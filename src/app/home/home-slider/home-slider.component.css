@@ -172,8 +172,8 @@
     animation-name: fadeInDown;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.6s;
-    animation-delay: 0.3s;
+    animation-duration: 0.15s;
+    animation-delay: 0.1s;
     font-size: 80px;
 }
 
@@ -181,8 +181,8 @@
     animation-name: fadeInDown;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.6s;
-    animation-delay: 0.2s;
+    animation-duration: 0.15s;
+    animation-delay: 0.1s;
     font-size: 40px !important;
     margin-top: 100px;
 }
@@ -191,15 +191,15 @@
     animation-name: fadeIn;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.8s;
+    animation-duration: 0.15s;
     animation-delay: 0s;
 }
 .slider-button {
     animation-name: rollIn;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
-    animation-duration: 0.6s;
-    animation-delay: 0.5s;
+    animation-duration: 0.23s;
+    animation-delay: 0.2s;
     font-size: 40px;
     margin-top: 200px;
     display: inline-block;
