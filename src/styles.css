@@ -47,8 +47,36 @@ body{
 	}
 
 	.content {
-		margin: auto auto auto 81px;
+		margin: auto auto auto 80px;
 	}
+
+	.arrow-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 1fr;
+		justify-items: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		z-index:-1;
+	  }
+	  .left-arrow {
+		/* border: 10px solid green; */
+		grid-column: 0 / 1;
+		width: 100%;
+		height: 100%;
+		justify-self: center;
+		align-self: center;
+	  }
+	  .right-arrow {
+		/* border: 10px solid black; */
+		grid-column-start: 1;
+		grid-column-end: 2;
+		width: 100%;
+		height: 100%;
+		justify-self: center;
+		align-self: center;
+	  }
 }
 
 

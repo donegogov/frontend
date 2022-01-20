@@ -72,9 +72,14 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
       buttonText: "ADD TO CART",
       imageSrc: "../../../assets/images/slider/1.9.jpg"
     }
-  ]
+  ];
+  mobHeight: any;
+  mobWidth: any;
 
-  constructor(private elRef: ElementRef, private _elementRef : ElementRef) { }
+  constructor(private elRef: ElementRef, private _elementRef : ElementRef) {
+    this.mobHeight = window.screen.height;
+    this.mobWidth = window.screen.width;
+   }
   
 
 ngOnInit(): void {
@@ -100,6 +105,7 @@ ngOnInit(): void {
   }
 
   changeImageDimension(image: any) {
+    if (this.mobWidth > 993) {
     //console.log(image.nativeElement.offsetHeight);
     (image as HTMLImageElement).width = 800;
     console.log((image as HTMLImageElement).offsetHeight);
@@ -129,6 +135,10 @@ ngOnInit(): void {
             width = width * ratio;    // Reset width to match scaled image
             height = height * ratio;    // Reset height to match scaled image
         }
+      } else {
+        (image as HTMLElement).style.width = this.mobWidth + 'px';
+        (image as HTMLElement).style.height = (this.mobHeight - 200) + 'px';
+      }
   }
 
 getData(data: SlidesOutputData) {
