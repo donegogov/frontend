@@ -25,25 +25,11 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     animateIn: false,
     navSpeed: 700,
     navText: ['', ''],
-    smartSpeed: 2000,
+    smartSpeed: 8000,
     autoplaySpeed: true,
-    autoplayTimeout: 2000,
+    autoplayTimeout: 8000,
     fluidSpeed: true,
     autoHeight: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      }
-    },
     nav: false
   }
   imagesLoad = 0;
