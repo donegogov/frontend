@@ -6,13 +6,15 @@ import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ShopProductsComponent } from './components/shop-products/shop-products.component';
 
 
 @NgModule({
   declarations: [
     MagicMainMenuComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ShopProductsComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HeaderComponent,
     FooterComponent,
     MagicMainMenuComponent,
-    CarouselModule
+    CarouselModule,
+    ShopProductsComponent
   ]
 })
 export class SharedModule { }

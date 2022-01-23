@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { OwlOptions, SlideModel, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions, SlideModel, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
 
 @Component({
@@ -17,8 +17,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
     freeDrag: true,
     dots: false,
     center: true,
-    lazyLoad: true,
-    lazyLoadEager: 1,
+    lazyLoad: false,
     autoplay: true,
     autoplayHoverPause: true,
     animateOut: "fadeOut 0.1s linear",
@@ -83,6 +82,8 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   ];
   scrHeight:any;
   scrWidth:any;
+  mobile = false;
+  previousIndex = -1;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -93,6 +94,10 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
 
   constructor(private elRef: ElementRef, private _elementRef : ElementRef) {
     this.getScreenSize();
+
+    if (this.scrWidth <= 993) {
+      this.mobile = true;
+    }
    }
   
 
@@ -145,35 +150,24 @@ ngOnInit(): void {
   }
 
   sliderChanged(data: any) {
-  var tempIndex = data.startPosition ?? 0;
-  if ( tempIndex === 0) {
-    var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
-    var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
-    var previousSliderContent = allSliderContent[allSliderContent.length - 1] as HTMLElement;
-
-    if ( previousSliderContent != undefined) {
-      this.handlePreviousSlide(previousSliderContent);
-    }
-    if ( momentSliderContent != undefined) {
-      this.handleMomentSlide(momentSliderContent);
-    }
-  } else {
-    var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
-    var momentSliderContent = allSliderContent[tempIndex] as HTMLElement;
-    var previousSliderContent = allSliderContent[tempIndex - 1] as HTMLElement;
-    
-    if ( previousSliderContent != undefined) {
-      this.handlePreviousSlide(previousSliderContent);
-    }
-    if ( momentSliderContent != undefined) {
-      this.handleMomentSlide(momentSliderContent);
-    }
-
-    /* if (this.scrWidth <= 993) {
-      momentSliderContent.getElementsByTagName('img')[0].style.width = (this.scrWidth - 100) + 'px';
-      momentSliderContent.getElementsByTagName('img')[0].style.height = '1200px';
-    } */
+    console.log('changed ' + data.startPosition ?? 0);
+  var indexCurrentSlide = data.startPosition ?? 0;
+  if (this.previousIndex == -1){
+    this.previousIndex = 0;
   }
+
+    var allSliderContent = this._elementRef.nativeElement.querySelectorAll('.owl-item:not(.cloned) .slider-content');
+    var momentSliderContent = allSliderContent[indexCurrentSlide] as HTMLElement;
+    var previousSliderContent = allSliderContent[this.previousIndex] as HTMLElement;
+
+    if ( previousSliderContent != undefined) {
+      this.handlePreviousSlide(previousSliderContent);
+    }
+    if ( momentSliderContent != undefined) {
+      this.handleMomentSlide(momentSliderContent);
+    }
+
+    this.previousIndex = indexCurrentSlide;
 }
 
 handleMomentSlide(momentSliderContent: HTMLElement) {
@@ -245,6 +239,23 @@ getAnimation() {
 
 addToCart() {
   alert('Hello');
+}
+
+prev() {
+  if(this.previousIndex == 0) {
+    this.owlCar.to((this.sliderContent.length - 1).toString());
+  }
+  else {
+    this.owlCar.to((this.previousIndex - 1).toString());
+  }
+}
+next() {
+  if(this.previousIndex == this.sliderContent.length - 1) {
+    this.owlCar.to('0');
+  }
+  else {
+    this.owlCar.to((this.previousIndex + 1).toString());
+  }
 }
 
 }
