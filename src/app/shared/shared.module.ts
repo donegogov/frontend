@@ -6,7 +6,8 @@ import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ShopProductsComponent } from './components/shop-products/shop-products.component';
+import { ShopProductsComponent } from './shop-products/shop-products.component';
+import { ShopTitleComponent } from './components/shop-title/shop-title.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ShopProductsComponent } from './components/shop-products/shop-products.
     MagicMainMenuComponent,
     HeaderComponent,
     FooterComponent,
-    ShopProductsComponent
+    ShopProductsComponent,
+    ShopTitleComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { ShopProductsComponent } from './components/shop-products/shop-products.
     FooterComponent,
     MagicMainMenuComponent,
     CarouselModule,
-    ShopProductsComponent
+    ShopProductsComponent,
+    ShopTitleComponent
   ]
 })
 export class SharedModule { }

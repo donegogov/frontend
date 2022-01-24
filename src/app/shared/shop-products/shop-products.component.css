@@ -1,0 +1,58 @@
+.loader__inner {
+    --size: 50px;
+    --speed: 2s;
+}
+
+.shop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.shop-title {
+    font-size: 100px;
+    flex-grow: 1;
+    order: 2;
+    align-self: center;
+}
+  
+  .loader {
+    width: var(--size);
+    height: var(--size);
+  }
+  
+  .loader__inner {
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    box-shadow: 
+      -20px -30px 0 0 #ffffff,
+      20px -30px 0 0 #ffffff,
+      20px 30px 0 0 #ffffff,
+      -20px 30px 0 0 #ffffff,
+      35px 0px 0 0 #ffffff,
+      -35px 0px 0 0 #ffffff;
+    background: #ffff00;
+    animation: rotate var(--speed) linear infinite;
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .left {
+    flex-grow: 1;
+    order: 1;
+    align-self: center;
+  }
+
+  .right {
+    flex-grow: 1;
+    order: 3;
+    align-self: center;
+  }
