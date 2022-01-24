@@ -26,7 +26,11 @@
 
               "src/favicon.ico",
               "src/assets",
-              "src/assets/images/slider"
+              "src/assets/images/slider",
+              "src/assets/fonts/Diner-Regular-webfont.woff",
+              "src/assets/fonts/medio.otf",
+              "src/assets/fonts/EagleLake-Regular.ttf",
+              "src/assets/fonts"
             ],
             "styles": [
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
