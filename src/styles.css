@@ -14,10 +14,10 @@ html *::after {
 }
 
 @font-face {
-	font-family: 'medio';
+	font-family: 'Soria';
 	font-style: normal;
 	font-weight: normal;
-	src: local('Tangerine'), url('assets/fonts/medio.otf') format('truetype');
+	src: local('Soria'), url('assets/fonts/soria-font.ttf') format('truetype');
   }
 
 body{
@@ -30,7 +30,7 @@ body{
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color var(--duration);
 	font-size: 18px;
-	font-family: 'medio', serif;
+	font-family: 'Soria', serif;
 }
 
 :root {
