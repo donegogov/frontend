@@ -1,0 +1,65 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+    /* border: 10px solid green; */
+  }
+  
+  .example-option-img {
+    vertical-align: middle;
+    margin-right: 50px !important;
+  }
+
+  .mat-input-class {
+      border-radius: 50px;
+  }
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 200px !important;
+}
+
+.mat-option {
+    margin: 20px 0px 20px 20px;
+    border-radius: 50px;
+    color: black;
+    background-color: transparent;
+    font-size: 28px;
+}
+
+.mat-autocomplete-panel {
+    max-height: 710px !important;
+}
+
+.mat-autocomplete-panel.mat-autocomplete-visible {
+    border-radius: 50px;
+}
+
+.mat-autocomplete-panel-above .mat-autocomplete-panel {
+    border-radius: 50px !important;
+}
+
+.mat-form-field-underline {
+    display: none;
+}
+
+.mat-form-field-label {
+    
+    color: black !important;
+    font-size: 28px !important;
+    margin-left: 15px !important;
+}
+
+.mat-focused .mat-form-field-label{ 
+    color: lightslategrey !important;
+    font-size: 20px !important;
+    margin-left: 20px !important;
+}
+
+input.mat-input-element {
+    font-size: 28px;
+    padding: 17px 17px !important;
+}

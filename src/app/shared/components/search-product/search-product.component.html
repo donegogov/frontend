@@ -1,0 +1,13 @@
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>State</mat-label>
+  <input matInput
+         aria-label="State"
+         [matAutocomplete]="auto"
+         [formControl]="stateCtrl" class="mat-input-class">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+      <img class="example-option-img" aria-hidden [src]="state.flag" height="100">
+      <span>{{state.name}}</span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
