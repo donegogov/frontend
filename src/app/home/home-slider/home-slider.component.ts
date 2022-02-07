@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CarouselComponent, OwlOptions, SlideModel, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
+import { ProductsForHomePageSlider } from 'src/app/shared/_models/products-for-home-page-slider';
+import { ProductsService } from 'src/app/shared/_services/products.service';
 
 @Component({
   selector: 'app-home-slider',
@@ -8,6 +11,24 @@ import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.servic
   styleUrls: ['./home-slider.component.css']
 })
 export class HomeSliderComponent implements OnInit, AfterViewInit {
+  @Input() sliderProducts: ProductsForHomePageSlider[] = 
+    [
+    {
+        id: 0,
+        name: "demo",
+        short_description: "demo",
+        full_description: "demo",
+        show_on_home_page: true,
+        price: 0,
+        images: [{
+          attachment: "",
+          id: 0,
+          pictureId: 0,
+          position: 0,
+          src: ""
+        }]
+    }
+  ];
   customOptions: OwlOptions = {
     loop: true,
     rewind: true,
@@ -56,30 +77,6 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   }
   imagesLoad = 0;
   @ViewChild('owlCar') owlCar!: any;
-  @ViewChildren('contentSliderh1') contentSliderh1!: QueryList<ElementRef>;
-  @ViewChildren('contentSliderh4') contentSliderh4!: QueryList<ElementRef>;
-  @ViewChildren('contentSliderButton') contentSliderButton!: QueryList<ElementRef>;
-
-  sliderContent: any = [
-    {
-      title: "BOOK",
-      subTitle: "BOOK SUBTITLE",
-      buttonText: "SHOP BOOK",
-      imageSrc: "../../../assets/images/slider/1.7.jpg"
-    },
-    {
-      title: "BOOK 2",
-      subTitle: "BOOK SUBTITLE",
-      buttonText: "SHOP BOOK 2",
-      imageSrc: "../../../assets/images/slider/1.8.jpg"
-    },
-    {
-      title: "BOOK 3",
-      subTitle: "BOOK SUBTITLE",
-      buttonText: "SHOP BOOK 3",
-      imageSrc: "../../../assets/images/slider/1.9.jpg"
-    }
-  ];
   scrHeight:any;
   scrWidth:any;
   mobile = false;
@@ -92,7 +89,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
         console.log(this.scrHeight, this.scrWidth);
   }
 
-  constructor(private elRef: ElementRef, private _elementRef : ElementRef) {
+  constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService) {
     this.getScreenSize();
 
     if (this.scrWidth <= 993) {
@@ -102,7 +99,19 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   
 
 ngOnInit(): void {
-    
+  if (this.productsService.sliderProducts == undefined || this.productsService.sliderProducts == null || this.productsService.sliderProducts.length == 0) {
+    this.productsService.getHomePageSliderProducts(8, 1).subscribe(data => {
+      if (data) {
+        console.log(data);
+        this.sliderProducts = data.products;
+        this.productsService.sliderProducts = data.products;
+      }
+    });
+  } else {
+    this.sliderProducts = this.productsService.sliderProducts;
+    console.log(this.productsService.sliderProducts);
+    console.log('this.productsService.sliderProducts');
+  }
 }
 
   ngAfterViewInit() {
@@ -243,14 +252,14 @@ addToCart() {
 
 prev() {
   if(this.previousIndex == 0) {
-    this.owlCar.to((this.sliderContent.length - 1).toString());
+    this.owlCar.to((this.sliderProducts.length - 1).toString());
   }
   else {
     this.owlCar.to((this.previousIndex - 1).toString());
   }
 }
 next() {
-  if(this.previousIndex == this.sliderContent.length - 1) {
+  if(this.previousIndex == this.sliderProducts.length - 1) {
     this.owlCar.to('0');
   }
   else {

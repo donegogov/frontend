@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProductSearchAsRootObject } from '../_models/products-search-as-root-object';
 
 @Component({
   selector: 'app-shop-products',

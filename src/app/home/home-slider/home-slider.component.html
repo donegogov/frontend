@@ -31,17 +31,17 @@
     </div>
     <div class="slider">
         <owl-carousel-o [options]="customOptions" #owlCar (changed)="sliderChanged($event)">
-            <ng-container *ngFor="let content of sliderContent; let index = index">
+            <ng-container *ngFor="let content of sliderProducts; let index = index">
             <ng-template carouselSlide style="position: absolute !important;" id="{{index}}">
                 <div class="slider-content" style="position: relative; text-align: center; width: 100%;">
                     <div class="content" style="z-index: 121;  display: flex; width: 100%; height: 100%; flex-direction: column">
-                        <h1 [ngClass]="{'slider-title': index === 0}" style="color: white; opacity: 0;" >{{content.title}}</h1>
-                        <h4 class="" [ngClass]="{'slider-subtitle': index === 0}" style="color: white; opacity: 0; font-size: large;">{{content.subTitle}}</h4>
-                        <button class="" [ngClass]="{'slider-button': index === 0}" type="button" (click)="addToCart()" style="opacity: 0;">{{content.buttonText}}</button>
+                        <h1 [ngClass]="{'slider-title': index === 0}" style=" opacity: 0;" >{{content.name}}</h1>
+                        <h4 class="" [ngClass]="{'slider-subtitle': index === 0}" style="opacity: 0; font-size: large;">{{content.short_description}}</h4>
+                        <button class="" [ngClass]="{'slider-button': index === 0}" type="button" (click)="addToCart()" style="opacity: 0;">ADD TO CART</button>
                     </div>
                     <div class="slider-image img-content" style="position: absolute; width: 100%;">
                         <img class="imgage-slider-options" style="position: relative;"
-                        [ngClass]="{'slider-image': index === 0}" src="{{content.imageSrc}}" (load)="changeImageDimension($event.target)"/>
+                        [ngClass]="{'slider-image': index === 0}" src="{{content.images[0].src}}" (load)="changeImageDimension($event.target)"/>
                     </div>
             </div>
             </ng-template>

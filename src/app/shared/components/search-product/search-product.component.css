@@ -9,9 +9,10 @@
     /* border: 10px solid green; */
   }
   
-  .example-option-img {
+  .option-img {
     vertical-align: middle;
     margin-right: 50px !important;
+    border-radius: 100% !important;
   }
 
   .mat-input-class {
@@ -20,6 +21,7 @@
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-option {
@@ -28,10 +30,12 @@
     color: black;
     background-color: transparent;
     font-size: 28px;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    height: 200px !important;
 }
 
 .mat-autocomplete-panel {
-    max-height: 710px !important;
+    max-height: 500px !important;
 }
 
 .mat-autocomplete-panel.mat-autocomplete-visible {
@@ -48,13 +52,13 @@
 
 .mat-form-field-label {
     
-    color: black !important;
+    color: rgba(0, 0, 0, 0.87);
     font-size: 28px !important;
     margin-left: 15px !important;
 }
 
 .mat-focused .mat-form-field-label{ 
-    color: lightslategrey !important;
+    color: rgba(0, 0, 0, 0.87);
     font-size: 20px !important;
     margin-left: 20px !important;
 }
@@ -62,4 +66,14 @@
 input.mat-input-element {
     font-size: 28px;
     padding: 17px 17px !important;
+}
+.img-div {
+    all: unset;
+}
+.mat-standard-chip {
+    font-size: 27px;
+    background-color: floralwhite !important;
+    height: 70px !important;
+    border-radius: 100% !important;
+    cursor: pointer;
 }
