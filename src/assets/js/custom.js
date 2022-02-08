@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+function magin_menu() {
     const body = document.body;
 const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
 const menu = body.querySelector(".menu");
@@ -88,7 +88,7 @@ leftArrow.addEventListener("click", () => clickLeftArrow(leftArrow));
 var rightArrow = body.querySelector('.right');
 rightArrow.addEventListener("click", () => clickRightArrow(rightArrow));
 
-});
+};
 
 $( document ).ready(function() {
         var scrollFlag = true;
