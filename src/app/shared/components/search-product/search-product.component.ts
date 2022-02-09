@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent} from '@angular/material/chips';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
 import { ViewEncapsulation } from '@angular/core';
 import { ProductsService } from '../../_services/products.service';
 import { ProductsForHomePageSlider } from '../../_models/products-for-home-page-slider';
@@ -24,9 +24,9 @@ export class SearchProductComponent implements OnInit {
     [
     {
         id: 0,
-        name: "demo",
-        short_description: "demo",
-        full_description: "demo",
+        name: "",
+        short_description: "",
+        full_description: "",
         show_on_home_page: true,
         price: 0,
         images: [{
@@ -52,54 +52,28 @@ export class SearchProductComponent implements OnInit {
 
   constructor(private productsService: ProductsService,
     private route: ActivatedRoute) {
-      console.log('search component');
-      console.log('this.productsService.searchProducts');
-      console.log(this.productsService.searchProducts);
-      if (this.productsService.searchProducts == undefined || this.productsService.searchProducts == null || this.productsService.searchProducts.length == 0) {
-        this.productsService.getSearchProducts(250, 1).subscribe(data => {
-          if (data) {
-            console.log(data);
-            this.allSearchProducts = data.products;
-            this.productsService.searchProducts = data.products;
-
-            this.filteredProducts = this.productCtrl.valueChanges.pipe(
-              startWith(null),
-              map((productName: string | null) => (productName? this._filteredProducts(productName) : this.allSearchProducts.slice())),
-            );
-          }
-        });
-      } else {
-        this.allSearchProducts = this.productsService.searchProducts;
-        console.log(this.productsService.searchProducts);
-        console.log('this.productsService.searchProducts');
-      }
+      this.filteredProducts = this.productCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          debounceTime(400),
+          distinctUntilChanged(),
+          switchMap(productName => {
+            return this._filteredProducts(productName || '')
+          })
+        );       
   }
 
-  private _filteredProducts(productName: string): ProductsForHomePageSearch[] {
+  private _filteredProducts(productName: string) {
     const filterValue = productName.toLowerCase();
-
-    return this.allSearchProducts.filter(product => product.name.toLowerCase().includes(filterValue));
+    // call the service which makes the http-request
+    return this.productsService.getSearchProducts(7, 1, filterValue, true, true, true)
+     .pipe(
+       map((response: ProductSearchAsRootObject) => {
+         return response.products;
+       }));
   }
 
   ngOnInit(): void {
-    /* this.route.data.subscribe(data => {
-      console.log('data');
-      console.log(data);
-      this.allSearchProducts = data['searchProduct'].products;
-    }); */
-    /* if (this.productsService.searchProducts == undefined || this.productsService.searchProducts == null || this.productsService.searchProducts.length == 0) {
-      this.productsService.getSearchProducts(250, 1).subscribe(data => {
-        if (data) {
-          console.log(data);
-          this.allSearchProducts = data.products;
-          this.productsService.searchProducts = data.products;
-        }
-      });
-    } else {
-      this.allSearchProducts = this.productsService.searchProducts;
-      console.log(this.productsService.searchProducts);
-      console.log('this.productsService.searchProducts');
-    } */
   }
 
   add(event: MatChipInputEvent): void {

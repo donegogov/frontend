@@ -16,6 +16,6 @@ export class SearchProductResolver implements Resolve<ProductSearchAsRootObject>
   constructor(private productService: ProductsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProductSearchAsRootObject> {
-    return this.productService.getSearchProducts(250, 1);
+    return this.productService.getHomePageSliderProducts(250, 1);
   }
 }
