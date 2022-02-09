@@ -64,6 +64,7 @@ export class SearchProductComponent implements OnInit {
   }
 
   private _filteredProducts(productName: string) {
+    if(productName != '' && productName != null) {
     const filterValue = productName.toLowerCase();
     // call the service which makes the http-request
     return this.productsService.getSearchProducts(7, 1, filterValue, true, true, true)
@@ -71,6 +72,9 @@ export class SearchProductComponent implements OnInit {
        map((response: ProductSearchAsRootObject) => {
          return response.products;
        }));
+      } else {
+        return [];
+      }
   }
 
   ngOnInit(): void {
