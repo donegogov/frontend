@@ -26,9 +26,15 @@ getHomePageSliderProducts(limit: number, page: number) {
 }
 
 getSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean, search_full_description: boolean) : Observable<ProductSearchAsRootObject> {
-    return this.http.get<ProductSearchAsRootObject>(this.apiUrl + 'search-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
-    + '&SearchTearm=' + searchTearm + '&SearchName=' + search_name.toString() + '&SearchShortDescription=' + search_short_description.toString()
-    + '&SearchFullDescription=' + search_short_description.toString());
+    if (searchTearm != '' && searchTearm != null) {
+        return this.http.get<ProductSearchAsRootObject>(this.apiUrl + 'search-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
+        + '&SearchTearm=' + searchTearm + '&SearchName=' + search_name.toString() + '&SearchShortDescription=' + search_short_description.toString()
+        + '&SearchFullDescription=' + search_short_description.toString());
+    }
+    else {
+        var empthyProduct: Observable<ProductSearchAsRootObject> = new Observable<ProductSearchAsRootObject>();
+        return empthyProduct;
+    }
 }
 
 changesearchProduct(products: ProductsForHomePageSearch[]) {
