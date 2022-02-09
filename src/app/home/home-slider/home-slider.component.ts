@@ -100,7 +100,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
 
 ngOnInit(): void {
   if (this.productsService.sliderProducts == undefined || this.productsService.sliderProducts == null || this.productsService.sliderProducts.length == 0) {
-    this.productsService.getHomePageSliderProducts(8, 1).subscribe(data => {
+    this.productsService.getHomePageSliderProducts(4, 1).subscribe(data => {
       if (data) {
         console.log(data);
         this.sliderProducts = data.products;
