@@ -16,9 +16,12 @@
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
+            "options": {
             "customWebpackConfig": {
-              "path": "./webpack.config.js"
+              "path": "./webpack.config.js",
+              "mergeRules": {
+                "externals": "replace"
+              }
             },
             "outputPath": "dist/",
             "index": "src/index.html",
@@ -72,7 +75,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

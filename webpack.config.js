@@ -1,8 +1,37 @@
 const zlib = require("zlib");
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    mode: 'production',
+    loader: {
+          test: /\.s|css$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            "css-loader",
+            "postcss-loader",
+            "sass-loader"
+          ]
+    },
+    optimization: {
+        concatenateModules: true,
+        mangleWasmImports: true,
+        mergeDuplicateChunks: true,
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            test: /\.js$|\.css$|\.html$|\.wof2$|\.ico|[path]\.js$/,
+        })],
+        nodeEnv: 'production',
+        portableRecords: true,
+        providedExports: true,
+        removeAvailableModules: true,
+        removeEmptyChunks: true,
+        sideEffects: true,
+        usedExports: true,
+      },
   plugins: [
+      new MiniCssExtractPlugin({ filename: "[name].[fullhash].css" }),
     new CompressionPlugin({
       filename: "[path][base].gz",
       algorithm: "gzip",
