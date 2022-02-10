@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp compress"
+    "prod": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -32,12 +32,15 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^13.1.0",
     "@angular-devkit/build-angular": "~13.2.0",
     "@angular/cli": "~13.2.0",
     "@angular/compiler-cli": "~13.2.0",
     "@types/jasmine": "~3.10.0",
     "@types/jquery": "^3.5.13",
     "@types/node": "^12.11.1",
+    "brotli-webpack-plugin": "^1.1.0",
+    "compression-webpack-plugin": "^9.2.0",
     "gulp": "^4.0.2",
     "gulp-gzip": "^1.4.2",
     "jasmine-core": "~3.10.0",
