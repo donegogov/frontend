@@ -31,6 +31,7 @@ module.exports = {
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
+      whitelist: ['/**/index.html', '/**/magic-main-menu.component.css', '/**/home-slider.component.css','index.html', 'magic-main-menu.component.css', 'home-slider.component.css'],
     }),
     new CompressionPlugin({
       filename: "[path][base].gz",
