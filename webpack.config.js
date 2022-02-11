@@ -11,7 +11,7 @@ const DeadCodePlugin = require('webpack-deadcode-plugin');
 module.exports = {
     mode: 'production',
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['[path]/**/*.*'],
     },
     output: {
       //Add hash only in production environment

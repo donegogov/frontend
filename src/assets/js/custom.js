@@ -162,5 +162,5 @@ $( document ).ready(function() {
   } catch (e) {}
 
   // Use our detect's results. passive applied if supported, capture will be false either way.
-  elem.addEventListener('touchstart', fn, supportsPassive ? { passive: true } : false); 
+  window.addEventListener('touchstart', fn, supportsPassive ? { passive: true } : false); 
 });
