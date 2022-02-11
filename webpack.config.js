@@ -6,7 +6,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const path = require("path");
-const whitelister = require('purgecss-whitelister');
+const DeadCodePlugin = require('webpack-deadcode-plugin');
 
 module.exports = {
     mode: 'production',
@@ -31,6 +31,7 @@ module.exports = {
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
+      safelist: ('src/app//**/*','/**/index.html', '/**/magic-main-menu.component.css', '/**/home-slider.component.css','index.html', 'magic-main-menu.component.css', 'home-slider.component.css'),
     }),
     new CompressionPlugin({
       filename: "[path][base].gz",

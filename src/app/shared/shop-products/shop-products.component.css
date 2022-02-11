@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 .shop {
     display: flex;
     flex-direction: column;
@@ -10,3 +11,4 @@
     order: 1;
     align-self: center; */
 }
+/*! purgecss end ignore */
