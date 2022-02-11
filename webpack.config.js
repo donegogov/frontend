@@ -18,16 +18,6 @@ module.exports = {
       filename: "[name].[contenthash].bundle.js"
     },
     optimization: {
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      },
-      runtimeChunk: 'single',
       moduleIds: "deterministic",
       runtimeChunk: true,
         concatenateModules: true,
@@ -70,14 +60,6 @@ module.exports = {
         usedExports: true,
       },
   plugins: [
-    new DeadCodePlugin({
-      patterns: [
-        'src/**/*.(js|jsx|css)',
-      ],
-      exclude: [
-        '**/*.(stories|spec).(js|jsx)',
-      ],
-    }),
     new MiniCssExtractPlugin({
       filename: "[fullhash].[name].css",
     }),
@@ -122,7 +104,7 @@ module.exports = {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  plugins: [["postcss-preset-env"]],
+                  externalsplugins: [["postcss-preset-env"]],
                 },
               },
             },
