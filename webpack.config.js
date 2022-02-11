@@ -18,6 +18,16 @@ module.exports = {
       filename: "[name].[contenthash].bundle.js"
     },
     optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+      runtimeChunk: 'single',
       moduleIds: "deterministic",
       runtimeChunk: true,
         concatenateModules: true,
@@ -97,7 +107,7 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.module\.(scss|sass)$/,
+          test: /\.module\.(scss|sass|css)$/,
           use: [
             "style-loader",
             MiniCssExtractPlugin. Loader, // production environment only
