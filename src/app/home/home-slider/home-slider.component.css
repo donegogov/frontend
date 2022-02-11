@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 .slider1 {
     background: linear-gradient(
     90deg,
@@ -245,3 +246,4 @@
         height: 1400px;
       }
 }
+/*! purgecss end ignore */

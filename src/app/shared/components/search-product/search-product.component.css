@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -77,3 +78,4 @@ input.mat-input-element {
     border-radius: 100% !important;
     cursor: pointer;
 }
+/*! purgecss end ignore */
