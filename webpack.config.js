@@ -80,7 +80,7 @@ module.exports = {
                 workerParallelJobs: 2,
               },
             },
-            "sass-loader",
+            "sass-loader", 
           ].filter(Boolean),
         },
       ],
