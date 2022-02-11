@@ -10,18 +10,8 @@ const DeadCodePlugin = require('webpack-deadcode-plugin');
 
 module.exports = {
     mode: 'production',
-    resolve: {
-      extensions: ['[path]/**/*.*'],
-    },
-    output: {
-      //Add hash only in production environment
-      filename: "[name].[contenthash].bundle.js"
-    },
     optimization: {
         minimizer: [
-        new CssMinimizerPlugin({
-          parallel: 4,
-        }),
         new TerserPlugin({
         })],
       }, 
@@ -52,37 +42,4 @@ module.exports = {
       minRatio: Number.MAX_SAFE_INTEGER,
     }),
   ],
-    module: {
-      rules: [
-        {
-          test: /\.module\.(scss|sass)$/,
-          use: [
-            "style-loader",
-            MiniCssExtractPlugin. Loader, // production environment only
-            {
-              loader: "css-loader",
-              options: {
-                modules: true,
-                importLoaders: 2,
-              },
-            },
-            {
-              loader: "postcss-loader",
-              options: {
-                postcssOptions: {
-                  externalsplugins: [["postcss-preset-env"]],
-                },
-              },
-            },
-            {
-              loader: "thread-loader",
-              options: {
-                workerParallelJobs: 2,
-              },
-            },
-            "sass-loader", 
-          ].filter(Boolean),
-        },
-      ],
-    },
 };
