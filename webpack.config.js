@@ -24,14 +24,13 @@ module.exports = {
         }),
         new TerserPlugin({
         })],
-      },
+      }, 
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[fullhash].[name].css",
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
-      safelist: ('src/app//**/*','/**/index.html', '/**/magic-main-menu.component.css', '/**/home-slider.component.css','index.html', 'magic-main-menu.component.css', 'home-slider.component.css'),
     }),
     new CompressionPlugin({
       filename: "[path][base].gz",
