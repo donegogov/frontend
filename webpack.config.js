@@ -1,5 +1,6 @@
 const zlib = require("zlib");
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
