@@ -18,45 +18,20 @@ module.exports = {
       filename: "[name].[contenthash].bundle.js"
     },
     optimization: {
-      moduleIds: "deterministic",
-      runtimeChunk: true,
-        concatenateModules: true,
-        mangleWasmImports: true,
-        mergeDuplicateChunks: true,
-        minimize: true,
-        innerGraph: true,
-        removeAvailableModules: true,
         minimizer: [
-        new TerserPlugin({
+        new CssMinimizerPlugin({
           parallel: 4,
-            test: /\.js$|\.css$|\.html$|\.wof2$|\.ico|[path]\.js$/,
-            terserOptions: {
-          ecma: 8,
-          parse: {},
-          compress: {},
-          mangle: true, // Note `mangle.properties` is `false` by default.
-          module: false,
-          // Deprecated
-          output: null,
-          format: null,
-          toplevel: false,
-          nameCache: null,
-          ie8: false,
-          keep_classnames: undefined,
-          keep_fnames: false,
-          safari10: false,
-          parallel: true,
-        },
+        }),
+        new TerserPlugin({
         })],
-        nodeEnv: 'production',
-        portableRecords: true,
-        providedExports: true,
-        removeAvailableModules: true,
-        removeEmptyChunks: true,
-        sideEffects: true,
-        usedExports: true,
       },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[fullhash].[name].css",
+    }),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
+    }),
     new CompressionPlugin({
       filename: "[path][base].gz",
       algorithm: "gzip",
@@ -80,7 +55,7 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.module\.(scss|sass|css)$/,
+          test: /\.module\.(scss|sass)$/,
           use: [
             "style-loader",
             MiniCssExtractPlugin. Loader, // production environment only
