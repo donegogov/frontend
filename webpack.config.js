@@ -27,9 +27,6 @@ module.exports = {
         innerGraph: true,
         removeAvailableModules: true,
         minimizer: [
-        new CssMinimizerPlugin({
-          parallel: 4,
-        }),
         new TerserPlugin({
           parallel: 4,
             test: /\.js$|\.css$|\.html$|\.wof2$|\.ico|[path]\.js$/,
@@ -60,12 +57,6 @@ module.exports = {
         usedExports: true,
       },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[fullhash].[name].css",
-    }),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
-    }),
     new CompressionPlugin({
       filename: "[path][base].gz",
       algorithm: "gzip",
