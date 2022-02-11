@@ -1,12 +1,9 @@
 const zlib = require("zlib");
 const CompressionPlugin = require('compression-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const path = require("path");
-const DeadCodePlugin = require('webpack-deadcode-plugin');
 
 module.exports = {
     mode: 'production',
