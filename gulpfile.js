@@ -10,7 +10,6 @@ const cleanCSS = require('gulp-clean-css');
 const purgecss = require('gulp-purgecss');
 const closureCompiler = require('google-closure-compiler').gulp();
 var concat = require('gulp-concat');
-var plumber = require('gulp-plumber')
 
 
 gulp.task('scripts', function() {
@@ -66,18 +65,18 @@ gulp.task('compress-js-terser', async function () {
 
 gulp.task('js-compile', function () {
   return gulp.src('./dist/*.js', {base: './'})
-      .pipe(plumber())
       .pipe(closureCompiler({
           compilation_level: 'ADVANCED',
           warning_level: 'VERBOSE',
-          language_in: 'ECMASCRIPT6_STRICT',
-          language_out: 'ECMASCRIPT5_STRICT',
+          language_in: 'ECMASCRIPT_2020',
+          language_out: 'ECMASCRIPT_2021',
           output_wrapper: '(function(){\n%output%\n}).call(this)',
-          js_output_file: 'output.min.js',
-          ignoreFailingProcessing: true
+          js_output_file: './dist',
         }, {
-          platform: ['native', 'java', 'javascript']
+          platform: ['native', 'java', 'javascript'],
+          ignore_failing_processing: true
         }))
+        .on('error', console.log)
       .pipe(gulp.dest('./dist'));
 });
 
