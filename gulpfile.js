@@ -7,8 +7,17 @@ var gulpBrotli = require('gulp-brotli');
 var zlib = require('zlib');
 const terser = require('gulp-terser');
 const cleanCSS = require('gulp-clean-css');
-const purgecss = require('gulp-purgecss')
+const purgecss = require('gulp-purgecss');
+const closureCompiler = require('google-closure-compiler').gulp();
+var concat = require('gulp-concat');
+var plumber = require('gulp-plumber')
 
+
+gulp.task('scripts', function() {
+  return gulp.src('./dist/*.js')
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('./dist'));
+});
  
 gulp.task('compress-js', function () {
   return pipeline(
@@ -19,30 +28,30 @@ gulp.task('compress-js', function () {
 });
 
 gulp.task('compress-js-terser', async function () {
-    gulp.src('./dist/*.js', '!./dist/custom.js', '!./dist/assets/js/custom.js')
+    gulp.src('./dist/*.js')
     .pipe(terser({
       keep_fnames: true,
-      keep_classnames: /magic_menu/,
+      keep_classnames: true,
       mangle: {
-        keep_classnames: /magic_menu/,
-        keep_fnames: /magic_menu/,
+        keep_classnames: true,
+        keep_fnames: true,
         toplevel: true,
         safari10: true,
-        reserved: ['magic_menu'],
+        reserved: [''],
       },
       toplevel: true,
       ie8: true,
       safari10: true,
       compress: {
         defaults: false,
-        keep_classnames: /magic_menu/,
-        pure_funcs: [ 'magic_menu' ],
+        keep_classnames: true,
+        pure_funcs: [ '' ],
         dead_code: true,
         unused: true,
         arrows: false,
         booleans: false,
         drop_console: true,
-        ecma: 2015,
+        ecma: 2020,
         keep_fargs: false,
         module: true,
         passes: 1,
@@ -53,6 +62,25 @@ gulp.task('compress-js-terser', async function () {
     }))
     .pipe(gulp.dest('./dist'));
 });
+
+
+gulp.task('js-compile', function () {
+  return gulp.src('./dist/*.js', {base: './'})
+      .pipe(plumber())
+      .pipe(closureCompiler({
+          compilation_level: 'ADVANCED',
+          warning_level: 'VERBOSE',
+          language_in: 'ECMASCRIPT6_STRICT',
+          language_out: 'ECMASCRIPT5_STRICT',
+          output_wrapper: '(function(){\n%output%\n}).call(this)',
+          js_output_file: 'output.min.js',
+          ignoreFailingProcessing: true
+        }, {
+          platform: ['native', 'java', 'javascript']
+        }))
+      .pipe(gulp.dest('./dist'));
+});
+
 
 gulp.task('purgecss', () => {
   return gulp.src('./dist/*.css')

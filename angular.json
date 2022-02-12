@@ -23,11 +23,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "custom.js",
-                "input": "src/assets/js/",
-                "output": "."
-              },
               "src/favicon.ico",
               "src/assets",
               "src/assets/images/slider",
@@ -47,8 +42,7 @@
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jquery-ui-dist/jquery-ui.js",
-              "src/assets/js/custom.js"
+              "node_modules/jquery-ui-dist/jquery-ui.js"
             ]
           },
           "configurations": {

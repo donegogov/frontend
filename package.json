@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp compress-js-terser && gulp compress-js && gulp purgecss && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --prod && gulp scripts && gulp compress-js && gulp compress-js-terser && gulp js-compile && gulp purgecss && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {
@@ -47,10 +47,13 @@
     "@types/jasmine": "~3.10.0",
     "@types/jquery": "^3.5.13",
     "@types/node": "^12.11.1",
+    "google-closure-compiler": "^20220202.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
     "gulp-flatmap": "^1.0.2",
     "gulp-gzip": "^1.4.2",
+    "gulp-purgecss": "^4.1.3",
     "gulp-terser": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "jasmine-core": "~3.10.0",
