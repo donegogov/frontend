@@ -1,12 +1,13 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var pipeline = require('readable-stream').pipeline;
-var purify = require('gulp-purifycss');
+/* var purify = require('gulp-purifycss'); */
 var gzip = require('gulp-gzip');
 var gulpBrotli = require('gulp-brotli');
 var zlib = require('zlib');
 const terser = require('gulp-terser');
-const cleanCSS = require('gulp-clean-css');
+/* const cleanCSS = require('gulp-clean-css'); */
+const purgecss = require('gulp-purgecss')
 
  
 gulp.task('compress-js', function () {
@@ -53,7 +54,20 @@ gulp.task('compress-js-terser', async function () {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('compress-css', async function() {
+gulp.task('purgecss', () => {
+  return gulp.src('./dist/*.css')
+      .pipe(purgecss({
+          content: ['./dist/*.html'],
+          safelist: {
+            standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+            deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+            greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+          }
+      }))
+      .pipe(gulp.dest('./dist'))
+})
+
+/* gulp.task('compress-css', async function() {
     gulp.src('./dist/*.css')
     .pipe(purify(['./dist/*.js', './dist/*.html']))
     .pipe(gulp.dest('./dist'));
@@ -63,7 +77,7 @@ gulp.task('minify-css', function() {
   return gulp.src('./dist/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist'));
-});
+}); */
 
 gulp.task('compress-gzip', async function() {
   gulp.src('./dist/*.*')
