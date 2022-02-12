@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve ",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp scripts && gulp js-compile && gulp purgecss && gulp compress-css && gulp minify-css && gulp replace-script-tags && gulp delete && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --prod && gulp scripts && gulp compress-js && gulp compress-js-terser && gulp js-compile && gulp purgecss && gulp compress-css && gulp minify-css && gulp replace-script-tags && gulp delete && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +27,6 @@
     "gulp-brotli": "^3.0.0",
     "gulp-purifycss": "^0.2.0",
     "jquery": "^3.6.0",
-    "jquery-ui-dist": "^1.13.0",
     "material-design-icons": "^3.0.1",
     "ngx-owl-carousel-o": "^7.0.1",
     "readable-stream": "^3.6.0",
