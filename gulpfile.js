@@ -43,17 +43,6 @@ gulp.task('compress-js-terser', async function () {
         passes: 1,
         side_effects: true,
         toplevel: true,
-        unsafe: true,
-        unsafe_arrows: true,
-        unsafe_comps: true,
-        unsafe_Function: true,
-        unsafe_math: true,
-        unsafe_symbols: true,
-        unsafe_methods: true,
-        unsafe_proto: true,
-        unsafe_regexp: true,
-        unsafe_undefined: true,
-
       }
     }))
     .pipe(gulp.dest('./dist'));
