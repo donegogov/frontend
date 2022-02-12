@@ -18,13 +18,13 @@ gulp.task('compress-js', function () {
 });
 
 gulp.task('compress-js-terser', async function () {
-    gulp.src('./dist/*.js')
+    gulp.src('./dist/*.js', '!./dist/custom.js', '!./dist/assets/js/custom.js')
     .pipe(terser({
       keep_fnames: true,
       keep_classnames: /magic_menu/,
       mangle: {
         keep_classnames: /magic_menu/,
-        keep_fnames: true,
+        keep_fnames: /magic_menu/,
         toplevel: true,
         safari10: true,
         reserved: ['magic_menu'],
@@ -33,7 +33,7 @@ gulp.task('compress-js-terser', async function () {
       ie8: true,
       safari10: true,
       compress: {
-        defaults: true,
+        defaults: false,
         keep_classnames: /magic_menu/,
         pure_funcs: [ 'magic_menu' ],
         dead_code: true,
