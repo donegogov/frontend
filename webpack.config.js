@@ -23,6 +23,14 @@ module.exports = {
           }
         }
       },
+      module: {
+        rules: [
+          {
+            test: /\.(js)$/,
+            use: ['babel-loader']
+          }
+        ]
+      },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -35,7 +43,7 @@ module.exports = {
         greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
       }
     }),
-    new CompressionPlugin({
+    /* new CompressionPlugin({
       filename: "[path][base].gz",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$|\.png$|\.webp$|\.ttf$|\.wof2$|\.eot$|\.ttf$|\.ico|\.txt$|[path].ttf$|[path].webp|[path].js$/,
@@ -53,6 +61,6 @@ module.exports = {
       },
       threshold: 0,
       minRatio: Number.MAX_SAFE_INTEGER,
-    }),
+    }), */
   ],
 };
