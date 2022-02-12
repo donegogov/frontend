@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
-declare var magic_menu: any;
-
 @Component({
   selector: 'app-magic-main-menu',
   templateUrl: './magic-main-menu.component.html',
@@ -15,7 +13,6 @@ export class MagicMainMenuComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    magic_menu();
   }
 
 }

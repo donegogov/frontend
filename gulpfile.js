@@ -37,7 +37,7 @@ gulp.task('compress-js-terser', async function () {
         keep_classnames: /magic_menu/,
         pure_funcs: [ 'magic_menu' ],
         dead_code: true,
-        unused: false,
+        unused: true,
         arrows: false,
         booleans: false,
         drop_console: true,
