@@ -1,12 +1,12 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var pipeline = require('readable-stream').pipeline;
-/* var purify = require('gulp-purifycss'); */
+var purify = require('gulp-purifycss');
 var gzip = require('gulp-gzip');
 var gulpBrotli = require('gulp-brotli');
 var zlib = require('zlib');
 const terser = require('gulp-terser');
-/* const cleanCSS = require('gulp-clean-css'); */
+const cleanCSS = require('gulp-clean-css');
 const purgecss = require('gulp-purgecss')
 
  
@@ -67,7 +67,7 @@ gulp.task('purgecss', () => {
       .pipe(gulp.dest('./dist'))
 })
 
-/* gulp.task('compress-css', async function() {
+gulp.task('compress-css', async function() {
     gulp.src('./dist/*.css')
     .pipe(purify(['./dist/*.js', './dist/*.html']))
     .pipe(gulp.dest('./dist'));
@@ -77,7 +77,7 @@ gulp.task('minify-css', function() {
   return gulp.src('./dist/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist'));
-}); */
+});
 
 gulp.task('compress-gzip', async function() {
   gulp.src('./dist/*.*')

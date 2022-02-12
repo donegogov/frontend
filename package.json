@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp compress-js-terser && gulp compress-js && gulp purgecss && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --prod && gulp compress-js-terser && gulp compress-js && gulp purgecss && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +25,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^5.1.3",
     "gulp-brotli": "^3.0.0",
+    "gulp-purifycss": "^0.2.0",
     "jquery": "^3.6.0",
     "jquery-ui-dist": "^1.13.0",
     "material-design-icons": "^3.0.1",
@@ -47,9 +48,9 @@
     "@types/jquery": "^3.5.13",
     "@types/node": "^12.11.1",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-flatmap": "^1.0.2",
     "gulp-gzip": "^1.4.2",
-    "gulp-purgecss": "^4.1.3",
     "gulp-terser": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "jasmine-core": "~3.10.0",
@@ -58,6 +59,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "mini-css-extract-plugin": "^2.5.3",
     "typescript": "~4.5.2",
     "zlib": "^1.0.5"
   }
