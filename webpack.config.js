@@ -29,7 +29,11 @@ module.exports = {
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
-      safelist: ['*owl*', '*ng-star*']
+      safelist: {
+        standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
+        deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
+        greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
+      }
     }),
     new CompressionPlugin({
       filename: "[path][base].gz",
