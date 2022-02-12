@@ -1,21 +1,4 @@
-<Files ~ ".(doc|xlsx|xlsm|xls|pdf|docx|txt|rtf|rdf|odf)$">
-    Allow from all
-</Files>
-# Page Content
-<Files ~ ".(html|css|js)$">
-    Allow from all
-</Files>
-<Files ~ ".(gz|br)$">
-    Allow from all
-</Files>
-# Images
-<Files ~ ".(jpe?g|png|gif|bmp|cur|ico|webp)$">
-    Allow from all
-</Files>
-# Fonts
-<Files ~ ".(svgz?|eot|otf|ttf|tt[cf]|woff2?)$">
-    Allow from all
-</Files>
+Allow from all
 
 <IfModule mod_headers.c> 
     RewriteCond "%{HTTP:Accept-encoding}" "br" RewriteCond "%{REQUEST_FILENAME}.br" -s 
