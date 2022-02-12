@@ -40,7 +40,7 @@ gulp.task('compress-js-terser', async function () {
         ecma: 2015,
         keep_fargs: false,
         module: true,
-        passes: 3,
+        passes: 1,
         side_effects: true,
         toplevel: true,
         unsafe: true,
