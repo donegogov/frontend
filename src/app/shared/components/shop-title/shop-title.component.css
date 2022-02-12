@@ -70,7 +70,7 @@
                #999 4px 6px 3px,
                #ccc 8px 11px 10px;
   display: inline;
-  font-size: 80px;
+  font-size: 100px;
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
