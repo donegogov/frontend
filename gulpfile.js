@@ -22,19 +22,19 @@ gulp.task('compress-css', function() {
 });
 
 gulp.task('compress-gzip', async function() {
-  gulp.src('./dist')
+  gulp.src('./dist/*.*')
   .pipe(gzip())
-  .pipe(gulp.dest('./dist'));
+  .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('compress-brotli', async function() {
-    gulp.src(`./dist`)
+    gulp.src(`./dist/*.*`)
     .pipe(gulpBrotli.compress({
-      extension: 'brotli',
+      extension: 'br',
       skipLarger: true,
       params: {
         [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
       },
     }))
-    .pipe(gulp.dest(`./dist`))
+    .pipe(gulp.dest(`./dist/`))
 });
