@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp compress-js && gulp compress-css && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --prod && gulp compress-js && gulp compress-js-terser && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "ngx-owl-carousel-o": "^7.0.1",
     "readable-stream": "^3.6.0",
     "rxjs": "~7.4.0",
+    "terser": "^5.10.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -47,8 +48,10 @@
     "@types/jquery": "^3.5.13",
     "@types/node": "^12.11.1",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-flatmap": "^1.0.2",
     "gulp-gzip": "^1.4.2",
+    "gulp-terser": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
