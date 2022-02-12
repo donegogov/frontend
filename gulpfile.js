@@ -22,35 +22,42 @@ gulp.task('scripts', function() {
  
 gulp.task('compress-js', function () {
   return pipeline(
-        gulp.src('./dist/*.js'),
-        uglify(),
+        gulp.src('./dist/bundle*.js'),
+        uglify({
+          compress: {
+            dead_code: true,
+            global_defs: {
+                DEBUG: false
+            },
+            unused: true,
+            side_effects: true,
+        }
+        }),
         gulp.dest('./dist')
   );
 });
 
 gulp.task('compress-js-terser', async function () {
-    gulp.src('./dist/*.js')
+    gulp.src('./dist/bundle*.js*')
     .pipe(terser({
-      keep_fnames: true,
-      keep_classnames: true,
+      keep_fnames: false,
+      keep_classnames: false,
       mangle: {
-        keep_classnames: true,
-        keep_fnames: true,
+        keep_classnames: false,
+        keep_fnames: false,
         toplevel: true,
         safari10: true,
-        reserved: [''],
       },
       toplevel: true,
       ie8: true,
       safari10: true,
       compress: {
-        defaults: false,
-        keep_classnames: true,
-        pure_funcs: [ '' ],
+        defaults: true,
+        keep_classnames: false,
         dead_code: true,
         unused: true,
-        arrows: false,
-        booleans: false,
+        arrows: true,
+        booleans: true,
         drop_console: true,
         ecma: 2020,
         keep_fargs: false,
@@ -58,7 +65,7 @@ gulp.task('compress-js-terser', async function () {
         passes: 1,
         side_effects: true,
         toplevel: true,
-        keep_fnames: true,
+        keep_fnames: false,
       }
     }))
     .pipe(gulp.dest('./dist'));
