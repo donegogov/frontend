@@ -73,10 +73,11 @@ gulp.task('js-compile', function () {
           language_in: 'ECMASCRIPT_2020',
           language_out: 'ECMASCRIPT_2021',
           output_wrapper: '(function(){\n%output%\n}).call(this)',
-          js_output_file: 'bundle.min.js'
+          js_output_file: 'bundle.min.js',
         }, {
           platform: ['native', 'java', 'javascript'],
-          ignore_failing_processing: true
+          ignore_failing_processing: true,
+          manage_closure_dependencies: true,
         }))
         .on('error', console.log)
       .pipe(gulp.dest('./dist'));
