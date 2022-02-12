@@ -1,4 +1,4 @@
-function magin_menu() {
+function magic_menu() {
     const body = document.body;
 const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
 const menu = body.querySelector(".menu");
