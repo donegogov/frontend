@@ -30,9 +30,9 @@ module.exports = {
     new PurgeCSSPlugin({
       paths: glob.sync(`${path.appSrc}/**/*`, { nodir: true }),
       safelist: {
-        standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
-        deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
-        greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/],
+        standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+        deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+        greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
       }
     }),
     new CompressionPlugin({
