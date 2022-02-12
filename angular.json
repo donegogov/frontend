@@ -28,6 +28,11 @@
                 "input": "src/assets/js/",
                 "output": "."
               },
+              {
+                "glob": ".htaccess",
+                "input": "src/assets/htaccess/",
+                "output": "."
+              },
               "src/favicon.ico",
               "src/assets",
               "src/assets/images/slider",
