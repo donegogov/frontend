@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --prod && gulp compress-js-terser && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --prod && gulp compress-js && gulp compress-js-terser && gulp compress-css && gulp minify-css && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {
