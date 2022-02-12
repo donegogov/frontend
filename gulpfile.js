@@ -20,11 +20,11 @@ gulp.task('compress-js', function () {
 gulp.task('compress-js-terser', async function () {
     gulp.src('./dist/*.js')
     .pipe(terser({
-      keep_fnames: /magic_menu/,
+      keep_fnames: true,
       keep_classnames: /magic_menu/,
       mangle: {
         keep_classnames: /magic_menu/,
-        keep_fnames: /magic_menu/,
+        keep_fnames: true,
         toplevel: true,
         safari10: true,
         reserved: ['magic_menu'],
@@ -34,10 +34,12 @@ gulp.task('compress-js-terser', async function () {
       safari10: true,
       compress: {
         defaults: true,
-        dead_code: true, 
-        unused: true,
-        arrows: true,
-        booleans: true,
+        keep_classnames: /magic_menu/,
+        pure_funcs: [ 'magic_menu' ],
+        dead_code: true,
+        unused: false,
+        arrows: false,
+        booleans: false,
         drop_console: true,
         ecma: 2015,
         keep_fargs: false,
@@ -45,8 +47,7 @@ gulp.task('compress-js-terser', async function () {
         passes: 1,
         side_effects: true,
         toplevel: true,
-        keep_fnames: /magic_menu/,
-        keep_classnames: /magic_menu/,
+        keep_fnames: true,
       }
     }))
     .pipe(gulp.dest('./dist'));
