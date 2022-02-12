@@ -10,11 +10,13 @@ const cleanCSS = require('gulp-clean-css');
 const purgecss = require('gulp-purgecss');
 const closureCompiler = require('google-closure-compiler').gulp();
 var concat = require('gulp-concat');
+var gulpReplace = require('gulp-replace');
+var del = require('del');
 
 
 gulp.task('scripts', function() {
   return gulp.src('./dist/*.js')
-    .pipe(concat('all.js'))
+    .pipe(concat('bundle.js'))
     .pipe(gulp.dest('./dist'));
 });
  
@@ -64,14 +66,14 @@ gulp.task('compress-js-terser', async function () {
 
 
 gulp.task('js-compile', function () {
-  return gulp.src('./dist/*.js', {base: './'})
+  return gulp.src('./dist/bundle.js', {base: './'})
       .pipe(closureCompiler({
-          compilation_level: 'ADVANCED',
-          warning_level: 'VERBOSE',
+          compilation_level: 'SIMPLE',
+          warning_level: 'DEFAULT',
           language_in: 'ECMASCRIPT_2020',
           language_out: 'ECMASCRIPT_2021',
           output_wrapper: '(function(){\n%output%\n}).call(this)',
-          js_output_file: './dist',
+          js_output_file: 'bundle.min.js'
         }, {
           platform: ['native', 'java', 'javascript'],
           ignore_failing_processing: true
@@ -106,6 +108,17 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('replace-script-tags', function() {
+return gulp.src('./dist/index.html', { base: './' })
+        .pipe(gulpReplace('<script src="runtime.js" type="module">', '<script src="bundle.min.js" type="module"></script>'))
+        .pipe(gulpReplace('</script><script src="polyfills.js" type="module"></script>', ''))
+        .pipe(gulpReplace('<script src="scripts.js" defer></script>', ''))
+        .pipe(gulpReplace('<script src="vendor.js" type="module"></script>', ''))
+        .pipe(gulpReplace('<script src="main.js" type="module"></script>', ''))
+        .pipe(gulp.dest('./'));
+});
+
+
 gulp.task('compress-gzip', async function() {
   gulp.src('./dist/*.*')
   .pipe(gzip())
@@ -122,4 +135,8 @@ gulp.task('compress-brotli', async function() {
       },
     }))
     .pipe(gulp.dest(`./dist`))
+});
+
+gulp.task('delete', async function() {
+  del(['dist/vendor.js', 'dist/scripts.js', 'dist/runtime.js', 'dist/polyfills.js', 'dist/main.js', 'dist/bundle.js']);
 });
