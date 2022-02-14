@@ -6,7 +6,6 @@ allow from all
 
     # Turn on mod_rewrite
     RewriteEngine On
-    RewriteBase /
     RewriteCond "%{HTTP:Accept-encoding}" "br"    RewriteCond "%{REQUEST_FILENAME}.br" -s
     RewriteRule "^(.*)\.(html|css|js)$"         "/$1.$2.br" [QSA]
 
