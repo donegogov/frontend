@@ -12,7 +12,8 @@ const closureCompiler = require('google-closure-compiler').gulp();
 var concat = require('gulp-concat');
 var gulpReplace = require('gulp-replace');
 var del = require('del');
-
+var path = require('path');
+var merge = require('merge-stream');
 
 gulp.task('concat', function() {
   return gulp.src('./dist/*.js')
@@ -126,24 +127,57 @@ return gulp.src('./dist/index.html', { base: './' })
         .pipe(gulp.dest('./'));
 });
 
+var folders = ['./dist/assets/fonts/*.ttf', './dist/assets/images/*.webp', './dist/*.css', './dist/*.html', './dist/*.js', './dist/*.ttf', './dist/*.txt', './dist/*.ico', './dist/*.webp', './dist/*.eot', './dist/*.woff', './dist/*.woff2', './dist/*.png'];
+
 
 gulp.task('compress-gzip', async function() {
-  gulp.src('./dist/*.*')
+  var tasks = folders.map(function(element){
+  return gulp.src(element, {base: './'})
   .pipe(gzip())
-  .pipe(gulp.dest('./dist'));
+  .pipe(gulp.dest('./'));
+  });
+  return merge(tasks);
 });
 
 gulp.task('compress-brotli', async function() {
-    gulp.src(`./dist/*.*`)
-    .pipe(gulpBrotli.compress({
+  var tasks = folders.map(function(element){
+    return gulp.src(element, {base: './'})   
+     .pipe(gulpBrotli.compress({
       extension: 'br',
-      skipLarger: true,
       params: {
         [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
       },
-    }))
-    .pipe(gulp.dest(`./dist`))
+      }))
+      .pipe(gulp.dest(`./`))
+  });
+  return merge(tasks);
 });
+
+/* var folders = ['./dist/assets/fonts/*.ttf', './dist/assets/images/*.webp'];
+
+
+gulp.task('compress-gzip-assets', async function() {
+  var tasks = folders.map(function(element){
+  return gulp.src(element, {base: './'})
+  .pipe(gzip())
+  .pipe(gulp.dest('./'));
+  });
+  return merge(tasks);
+});
+
+gulp.task('compress-brotli-assets', async function() {
+  var tasks = folders.map(function(element){
+    return gulp.src(element, {base: './'})   
+     .pipe(gulpBrotli.compress({
+      extension: 'br',
+      params: {
+        [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+      },
+      }))
+      .pipe(gulp.dest(`./`))
+  });
+  return merge(tasks);
+}); */
 
 gulp.task('delete', async function() {
   del(['dist/vendor.js', 'dist/scripts.js', 'dist/runtime.js', 'dist/polyfills.js', 'dist/main.js', 'dist/bundle.js']);

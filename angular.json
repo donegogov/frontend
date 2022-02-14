@@ -25,11 +25,7 @@
             "assets": [
               { "glob": ".htaccess", "input": "src/assets/htaccess", "output": "./" },
               "src/favicon.ico",
-              "src/assets",
-              "src/assets/images/slider",
-              "src/assets/fonts/Diner-Regular-webfont.woff",
-              "src/assets/fonts/medio.otf",
-              "src/assets/fonts/EagleLake-Regular.ttf",
+              "src/assets/images",
               "src/assets/fonts"
             ],
             "styles": [

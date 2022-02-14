@@ -21,6 +21,37 @@ allow from all
     AddType "text/html" .br
     AddEncoding br .br
 </Files>
+<Files *.ico.br>
+    AddType "image/vnd.microsoft.icon" .br
+    AddEncoding br .br
+</Files>
+<Files *.webp.br>
+    AddType "image/webp" .br
+    AddEncoding br .br
+</Files>
+<Files *.ttf.br>
+    AddType "application/font-sfnt" .br
+    AddEncoding br .br
+</Files>
+<Files *.eot.br>
+    AddType "application/vnd.ms-fontobject" .br
+    AddEncoding br .br
+</Files>
+
+<Files *.woff.br>
+    AddType "font/woff" .br
+    AddEncoding br .br
+</Files>
+<Files *.woff2.br>
+    AddType "font/woff2" .br
+    AddEncoding br .br
+</Files>
+<Files *.png.br>
+    AddType "image/png" .br
+    AddEncoding br .br
+</Files>
+
+
 
 # Specify gzip-encoded assets
 <Files *.js.gz>
@@ -37,6 +68,35 @@ allow from all
 </Files>
 <Files *.html.gz>
     AddType "text/html" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.ico.gz>
+    AddType "image/vnd.microsoft.icon" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.webp.gz>
+    AddType "image/webp" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.ttf.gz>
+    AddType "application/font-sfnt" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.eot.gz>
+    AddType "application/vnd.ms-fontobject" .gz
+    AddEncoding gz .gz
+</Files>
+
+<Files *.woff.gz>
+    AddType "font/woff" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.woff2.gz>
+    AddType "font/woff2" .gz
+    AddEncoding gz .gz
+</Files>
+<Files *.png.gz>
+    AddType "image/png" .gz
     AddEncoding gz .gz
 </Files>
 
