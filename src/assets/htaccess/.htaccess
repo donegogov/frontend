@@ -22,7 +22,7 @@ allow from all
     AddEncoding br .br
 </Files>
 <Files *.ico.br>
-    AddType "image/vnd.microsoft.icon" .br
+    AddType "text/html" .br
     AddEncoding br .br
 </Files>
 <Files *.webp.br>
@@ -71,7 +71,7 @@ allow from all
     AddEncoding gz .gz
 </Files>
 <Files *.ico.gz>
-    AddType "image/vnd.microsoft.icon" .gz
+    AddType "text/html" .gz
     AddEncoding gz .gz
 </Files>
 <Files *.webp.gz>
