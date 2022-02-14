@@ -4,8 +4,12 @@ allow from all
     deny from all
 </Files>
 
-    RewriteCond "%{HTTP:Accept-encoding}" "br"    RewriteCond "%{REQUEST_FILENAME}.br" -s
-    RewriteRule "^(.*)\.(html|css|js)$"         "/$1.$2.br" [QSA]
+RewriteEngine On
+RewriteBase /
+
+    RewriteCond "%{HTTP:Accept-encoding}" "br"    
+    RewriteCond "%{REQUEST_FILENAME}.br" -s
+    RewriteRule "^(.*)\.(html|css|js)$" "/$1.$2.br" [QSA]
 
     RewriteRule "\.html\.br$" "-" [T=text/html,E=no-brotli:1,E=no-gzip:1]
     RewriteRule "\.css\.br$" "-" [T=text/css,E=no-brotli:1,E=no-gzip:1]
@@ -16,8 +20,9 @@ allow from all
       Header append Vary Accept-Encoding
     </FilesMatch>
 
-    RewriteCond "%{HTTP:Accept-encoding}" "gzip"    RewriteCond "%{REQUEST_FILENAME}.gz" -s
-    RewriteRule "^(.*)\.(html|css|js)$"         "/$1.$2.gz" [QSA]
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"    
+    RewriteCond "%{REQUEST_FILENAME}.gz" -s
+    RewriteRule "^(.*)\.(html|css|js)$" "/$1.$2.gz" [QSA]
 
     RewriteRule "\.html\.gz$" "-" [T=text/html,E=no-brotli:1,E=no-gzip:1]
     RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-brotli:1,E=no-gzip:1]
