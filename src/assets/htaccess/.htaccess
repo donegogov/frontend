@@ -33,6 +33,6 @@ allow from all
 </IfModule>
 
 <IfModule mod_deflate.c>
-    LoadModule filter_module
+    LoadModule filter_module modules/mod_filter.so
     AddOutputFilterByType DEFLATE text/plain text/xml application/xml
 </IfModule>
