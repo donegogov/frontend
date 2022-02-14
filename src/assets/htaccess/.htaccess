@@ -3,6 +3,13 @@ allow from all
 <Files .htaccess>
     deny from all
 </Files>
+
+<IfModule mod_headers.c>
+  <FilesMatch ~ ^(.*)\.(ttf|css|js|webp)$>
+  Header set Cache-Control max-age=10,public
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_headers.c>
     # Turn on mod_rewrite
     RewriteEngine On
