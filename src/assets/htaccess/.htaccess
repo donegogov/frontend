@@ -3,7 +3,7 @@ allow from all
 <Files .htaccess>
     deny from all
 </Files>
-
+<IfModule mod_headers.c>
     # Turn on mod_rewrite
     RewriteEngine On
 
@@ -32,3 +32,4 @@ allow from all
       Header append Content-Encoding gzip
       Header append Vary Accept-Encoding
     </FilesMatch>
+</IfModule>
