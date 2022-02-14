@@ -3,11 +3,10 @@ allow from all
 <Files .htaccess>
     deny from all
 </Files>
-# Turn on mod_rewrite
+
+    # Turn on mod_rewrite
     RewriteEngine On
     RewriteBase /
-
-<IfModule mod_headers.c>
     RewriteCond "%{HTTP:Accept-encoding}" "br"    RewriteCond "%{REQUEST_FILENAME}.br" -s
     RewriteRule "^(.*)\.(html|css|js)$"         "/$1.$2.br" [QSA]
 
@@ -31,4 +30,3 @@ allow from all
       Header append Content-Encoding gzip
       Header append Vary Accept-Encoding
     </FilesMatch>
-</IfModule>
