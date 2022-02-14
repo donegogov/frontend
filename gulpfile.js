@@ -14,15 +14,15 @@ var gulpReplace = require('gulp-replace');
 var del = require('del');
 
 
-gulp.task('scripts', function() {
+gulp.task('concat', function() {
   return gulp.src('./dist/*.js')
     .pipe(concat('bundle.js'))
     .pipe(gulp.dest('./dist'));
 });
  
-gulp.task('compress-js', function () {
+gulp.task('compress-js-uglify', function () {
   return pipeline(
-        gulp.src('./dist/bundle*.js'),
+        gulp.src('./dist/bundle.min.js'),
         uglify({
           compress: {
             dead_code: true,
@@ -72,7 +72,7 @@ gulp.task('compress-js-terser', async function () {
 });
 
 
-gulp.task('js-compile', function () {
+gulp.task('js-compile-closure', function () {
   return gulp.src('./dist/bundle.js', {base: './'})
       .pipe(closureCompiler({
           compilation_level: 'SIMPLE',
