@@ -5,8 +5,7 @@ allow from all
 </Files>
 # Turn on mod_rewrite
 RewriteEngine On
-<IfModule mod_headers.c>
-    
+
     RewriteCond "%{HTTP:Accept-encoding}" "br"    RewriteCond "%{REQUEST_FILENAME}.br" -s
     RewriteRule "^(.*)\.(html|css|js)$"         "/$1.$2.br" [QSA]
 
@@ -30,4 +29,3 @@ RewriteEngine On
       Header append Content-Encoding gzip
       Header append Vary Accept-Encoding
     </FilesMatch>
-</IfModule>
