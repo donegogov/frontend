@@ -4,12 +4,17 @@ allow from all
     deny from all
 </Files>
 
-<IfModule mod_headers.c>
-
-<FilesMatch ~ ^(.*)\.(ttf|css|js|webp)$>
-  Header set Cache-Control max-age=10,public
+<FilesMatch ^(.*)\.(ttf|webp)$>
+  Header set Cache-Control max-age=172800,public
   </FilesMatch>
 
+  <FilesMatch ^(.*)\.(css|js)$>
+  Header set Cache-Control max-age=172800,private
+  </FilesMatch>
+
+
+
+<IfModule mod_headers.c>
     # Turn on mod_rewrite
     RewriteEngine On
 
