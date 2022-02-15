@@ -5,7 +5,7 @@ allow from all
 </Files>
 
 <FilesMatch ^(.*)\.(ttf|webp)$>
-  Header set Cache-Control max-age=172800,public
+  Header set Cache-Control max-age=1728000,public
   </FilesMatch>
 
   <FilesMatch ^(.*)\.(css|js|css.gz|js.gz|css.br|js.br)$>
