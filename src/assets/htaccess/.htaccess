@@ -8,7 +8,7 @@ allow from all
   Header set Cache-Control max-age=172800,public
   </FilesMatch>
 
-  <FilesMatch ^(.*)\.(css|js)$>
+  <FilesMatch ^(.*)\.(css|js|css.gz|js.gz|css.br|js.br)$>
   Header set Cache-Control max-age=172800,private
   </FilesMatch>
 
