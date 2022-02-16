@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 :root {
     --marginSizeChipSelectPanel: 150px;
 }
@@ -193,3 +194,4 @@ input.mat-input-element {
   .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: rgba(0, 0, 0, 0.87);;
   }
+  /*! purgecss end ignore */
