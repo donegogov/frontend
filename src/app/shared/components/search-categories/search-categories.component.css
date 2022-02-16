@@ -33,7 +33,7 @@
 }
 
 .mat-select {
-    background: #ff2519 !important;
+    background: #fafafa !important;
     min-height: var(--marginSizeChipSelectPanel) !important;
     border-radius: 50px !important;
 }
