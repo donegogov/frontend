@@ -97,9 +97,9 @@ gulp.task('purgecss', () => {
       .pipe(purgecss({
           content: ['./dist/*.html'],
           safelist: {
-            standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
-            deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
-            greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/],
+            standard: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/, /mat-icon/, /notranslate/, /mat-chip-remove/, /mat-chip-trailing-icon/, /material-icons/, /mat-icon-no-color/, /ng-star-inserted/],
+            deep: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/, /mat-icon/, /notranslate/, /mat-chip-remove/, /mat-chip-trailing-icon/, /material-icons/, /mat-icon-no-color/, /ng-star-inserted/],
+            greedy: [/owl/, /ng-star/, /row/, /container/, /col/, /slideInUp/, /fadeIn/, /fadeInDown/, /mat-icon/, /notranslate/, /mat-chip-remove/, /mat-chip-trailing-icon/, /material-icons/, /mat-icon-no-color/, /ng-star-inserted/],
           }
       }))
       .pipe(gulp.dest('./dist'))
