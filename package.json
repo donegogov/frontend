@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --configuration production && gulp concat && gulp js-compile-closure && gulp compress-js-uglify && gulp compress-js-terser && gulp purgecss && gulp compress-css && gulp minify-css && gulp replace-script-tags && gulp delete && gulp compress-gzip && gulp compress-brotli"
+    "prod": "ng build --configuration production && gulp concat && gulp js-compile-closure && gulp compress-js-uglify && gulp compress-js-terser && gulp purgecss && gulp replace-script-tags && gulp delete && gulp compress-gzip && gulp compress-brotli"
   },
   "private": true,
   "dependencies": {

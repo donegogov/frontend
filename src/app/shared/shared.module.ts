@@ -8,6 +8,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select'; 
+import {MatSliderModule} from '@angular/material/slider'; 
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
@@ -22,6 +23,7 @@ import { ProductsService } from './_services/products.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { SearchCategoriesComponent } from './components/search-categories/search-categories.component';
+import { PriceFromToComponent } from './components/price-from-to/price-from-to.component';
 
 
 
@@ -34,6 +36,7 @@ import { SearchCategoriesComponent } from './components/search-categories/search
     ShopTitleComponent,
     SearchProductComponent,
     SearchCategoriesComponent,
+    PriceFromToComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,8 @@ import { SearchCategoriesComponent } from './components/search-categories/search
     MatIconModule,
     MatCheckboxModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatSliderModule
   ],
   providers: [
     HomePageSliderResolver,
