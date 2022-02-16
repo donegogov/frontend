@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select'; 
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
@@ -19,6 +21,7 @@ import { HomePageSliderResolver } from './_resolvers/home-page-slider.resolver';
 import { ProductsService } from './_services/products.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
+import { SearchCategoriesComponent } from './components/search-categories/search-categories.component';
 
 
 
@@ -30,6 +33,7 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
     ShopProductsComponent,
     ShopTitleComponent,
     SearchProductComponent,
+    SearchCategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,10 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
     ReactiveFormsModule,
     MatChipsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [
     HomePageSliderResolver,
@@ -55,7 +62,6 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
     MagicMainMenuComponent,
     CarouselModule,
     ShopProductsComponent,
-    ShopTitleComponent
   ]
 })
 export class SharedModule { }

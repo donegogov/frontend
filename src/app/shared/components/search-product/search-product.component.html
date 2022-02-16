@@ -1,9 +1,4 @@
-<mat-form-field class="example-full-width" appearance="fill">
-  <!--<mat-label>State</mat-label>
-   <input matInput
-         aria-label="State"
-         [matAutocomplete]="auto"
-         [formControl]="stateCtrl" class="mat-input-class"> -->
+<mat-form-field class="full-width" appearance="fill">
          <mat-chip-list #chipList>
           <mat-chip
             *ngFor="let product_name of searchProduct"
@@ -13,8 +8,10 @@
             {{product_name}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input
-            placeholder="Product..."
+          <mat-form-field class="searchForm" appearance="outline">
+            <mat-label for="inputProduct">Start Typing Keywords...</mat-label>
+          <input id="inputProduct"
+            matInput
             #productInput
             [formControl]="productCtrl"
             [matAutocomplete]="auto"
@@ -22,9 +19,10 @@
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
             (matChipInputTokenEnd)="add($event)">
+          </mat-form-field>
         </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let product of filteredProducts | async" [value]="product.name">
+    <mat-option class="mp-sp" *ngFor="let product of filteredProducts | async" [value]="product.name">
       <div class="img-div" *ngFor="let image of product.images; let index = index">
         <img *ngIf="index < 5" class="option-img" aria-hidden [src]="image.src" height="100">
       </div>

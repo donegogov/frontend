@@ -5,8 +5,9 @@
     width: 100%;
   }
   
-  .example-full-width {
+  .full-width {
     width: 100%;
+    
     /* border: 10px solid green; */
   }
   
@@ -23,9 +24,10 @@
 .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    background-color: lavender;
 }
 
-.mat-option {
+.mp-sp {
     margin: 20px 0px 20px 20px;
     border-radius: 50px;
     color: black;
@@ -34,6 +36,21 @@
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
     height: 200px !important;
 }
+
+/* .mat-option {
+    margin: 20px 0px 20px 20px;
+    border-radius: 50px;
+    color: black;
+    background-color: transparent;
+    font-size: 28px;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    height: 200px !important;
+} */
+
+/* .map-sp{
+    max-height: 500px !important;
+    border-radius: 50px !important;
+} */
 
 .mat-autocomplete-panel {
     max-height: 500px !important;

@@ -1,0 +1,25 @@
+<mat-form-field>
+    <mat-label >Please Select Categories</mat-label>
+    <mat-select (focus)="matSelectFocusGetCategories()" [formControl]="categoryControl" multiple disableOptionCentering panelClass="selectPanel">
+
+        <mat-select-trigger>
+            <mat-chip-list #chipList [formControl]="chipListControl">
+                <mat-chip #chipValue *ngFor="let category of categoryControl.value" [removable]="true" (removed)="onCategoryRemoved(category)">
+                    {{ category }}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-select-trigger>
+        <mat-form-field class="searchForm" appearance="outline">
+            <mat-label>Start searching category...</mat-label>
+            <input (keydown)="$event.stopPropagation()"
+             class="selectOptionInputAlwaysOnTop" color="primary" matInput #input [(ngModel)]="inputText">
+        </mat-form-field>
+        <mat-option *ngFor="let category of allSearchCategories" [ngClass]="showHideOption(category.name)
+        ? 'showOption' : 'hideOption'" [value]="category.name">
+         
+            <img class="option-img" aria-hidden [src]="category.image.src" height="100">
+          <span>Name: {{category.name}}</span> <br/> <span>Description: {{category.description}}</span>
+    </mat-option>
+    </mat-select>
+</mat-form-field>
