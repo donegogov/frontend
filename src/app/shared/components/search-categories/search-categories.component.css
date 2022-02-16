@@ -33,7 +33,7 @@
 }
 
 .mat-select {
-    background: lavender !important;
+    background: pink !important;
     min-height: var(--marginSizeChipSelectPanel) !important;
     border-radius: 50px !important;
 }
