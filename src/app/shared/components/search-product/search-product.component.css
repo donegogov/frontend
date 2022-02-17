@@ -1,4 +1,12 @@
 /*! purgecss start ignore */
+:root {
+    --matChipHeight: 100px;
+}
+@media (max-width: 992px) { 
+    :root {
+        --matChipHeight: 61px;
+    }   
+}
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -7,7 +15,8 @@
   
   .full-width {
     width: 100%;
-    
+    margin: 0 !important;
+    padding: 0 !important;
     /* border: 10px solid green; */
   }
   
@@ -24,7 +33,7 @@
 .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
-    background-color: #fafafa;
+    background-color: transparent;
 }
 
 .mp-sp {
@@ -90,9 +99,77 @@ input.mat-input-element {
 }
 .mat-standard-chip {
     font-size: 27px;
-    background-color: floralwhite !important;
-    height: 70px !important;
-    border-radius: 100% !important;
+    background-color: floralwhite;
+    height: var(--matChipHeight);
+    border-radius: 100%;
     cursor: pointer;
+}
+
+@media (max-width: 992px) { 
+
+    .mp-sp {
+        margin: 0 !important;
+        border-radius: 30px;
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 17px;
+        font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+        height: 40px !important;
+        overflow-x: scroll !important;
+        overflow-y: scroll !important;
+        padding: 0 !important;
+    }
+    .mat-standard-chip {
+        font-size: 17px;
+    }
+
+    input.mat-input-element {
+        font-size: 40px !important;
+        padding: 0 !important;
+        height: 30px !important;
+        color: #fafafa;
+    }
+
+    .mat-form-field-label {
+    
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 27px !important;
+        margin-left: 15px !important;
+        color: #fafafa;
+    }
+    
+    .mat-focused .mat-form-field-label{ 
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 20px !important;
+        margin-left: 20px !important;
+    }
+
+    .mat-autocomplete-panel {
+        max-height: 300px !important;
+    }
+
+    .option-img {
+        margin-right: 30px !important;
+        border-radius: 100% !important;
+        height: 70px;
+        width: 70px;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0 !important;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-flex {
+        padding: 0;
+        margin: 0;
+      }
+
+      .mat-standard-chip {
+        font-size: 17px !important;
+        background-color: floralwhite !important;
+        height: var(--matChipHeight) !important;
+        border-radius: 100% !important;
+        min-height: var(--matChipHeight) !important;
+    }
+    
 }
 /*! purgecss end ignore */

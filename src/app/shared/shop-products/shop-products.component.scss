@@ -84,3 +84,14 @@ section {
       }
     }
   }
+
+  @media (max-width: 992px) { 
+    section {
+        width: 100%;
+        height: 140px;
+    }
+
+    .stuff {
+      font-size: 17x;
+    }
+}

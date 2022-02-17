@@ -152,8 +152,8 @@ ngOnInit(): void {
             height = height * ratio;    // Reset height to match scaled image
         }
       } else {
-        (image as HTMLElement).style.width = (this.scrWidth - 100) + 'px';
-        (image as HTMLElement).style.height = '1200px';
+        (image as HTMLElement).style.width = this.scrWidth + 'px';
+        (image as HTMLElement).style.height = '400px';
         //(image as HTMLElement).style.borderRadius = '50%';
       }
   }

@@ -84,7 +84,19 @@
     text-shadow: 0 0 300px #fff;
   }
 }
-/*! purgecss end ignore */
-#text3d {
-  
+
+@media (max-width: 992px) { 
+
+  .panel {
+    width: 70px;
+    height: 70px;
+  }
+
+  .title {
+    font-size: 60px;
+    vertical-align: middle;
+    text-align: center;
+  }
+
 }
+/*! purgecss end ignore */

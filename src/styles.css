@@ -56,6 +56,24 @@ body{
 		font-size: 26px;
 	
 	}
+	.menu {
+		font-size: 14px !important;
+	}
+	.container-fluid {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.row {
+		padding: 0 !important;
+		margin: 0 !important;
+		--bs-gutter-x: 0;
+	}
+
+	.col* {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
 
 	.content {
 		margin: 0 auto;

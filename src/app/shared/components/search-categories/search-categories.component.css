@@ -1,6 +1,12 @@
 /*! purgecss start ignore */
 :root {
-    --marginSizeChipSelectPanel: 150px;
+    --marginSizeChipSelectPanel: 100px;
+    --matChipHeight: 100px;
+}
+@media (max-width: 992px) { 
+    :root {
+        --matChipHeight: 61px;
+    }   
 }
 .example-form {
     min-width: 150px;
@@ -19,8 +25,8 @@
   
   .option-img {
     vertical-align: middle;
-    margin-right: 50px !important;
-    border-radius: 100% !important;
+    margin-right: 50px;
+    border-radius: 100%;
   }
 
   .mat-input-class {
@@ -51,9 +57,9 @@ input.mat-input-element {
 }
 .mat-standard-chip {
     font-size: 27px;
-    background-color: floralwhite !important;
-    height: 70px !important;
-    border-radius: 100% !important;
+    background-color: floralwhite;
+    height: var(--matChipHeight);
+    border-radius: 100%;
     cursor: pointer;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
@@ -154,9 +160,9 @@ input.mat-input-element {
 }
 .mat-standard-chip {
     font-size: 37px;
-    background-color: floralwhite !important;
-    height: var(--marginSizeChipSelectPanel) !important;
-    border-radius: 100% !important;
+    background-color: floralwhite;
+    height: var(--matChipHeight);
+    border-radius: 100%;
     cursor: pointer;
 }
 
@@ -193,5 +199,52 @@ input.mat-input-element {
 
   .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: rgba(0, 0, 0, 0.87);;
+  }
+
+  @media (max-width: 992px) { 
+    .mat-standard-chip {
+        font-size: 17px !important;
+        background-color: floralwhite !important;
+        height: var(--matChipHeight) !important;
+        border-radius: 100% !important;
+        min-height: var(--matChipHeight) !important;
+    }
+
+    .mat-option {
+        margin: 0 !important;
+        border-radius: 50px;
+        color: rgba(0, 0, 0, 0.7);
+        background-color: transparent;
+        font-size: 17px !important;
+        font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+        height: 120px !important;
+        max-width: 100% !important;
+        min-width: 90% !important;
+    }
+
+    input.mat-input-element {
+        font-size: 18px;
+        padding: 0 !important;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0 !important;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-flex {
+        padding: 0;
+        margin: 0;
+      }
+
+      .searchForm {
+        margin-left: 9px;
+        width: 95%;
+      }
+
+      .option-img {
+        vertical-align: middle;
+        margin-right: 50px;
+        border-radius: 100%;
+      }
   }
   /*! purgecss end ignore */
