@@ -8,6 +8,7 @@
         --matChipHeight: 61px;
     }   
 }
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -39,7 +40,7 @@
 }
 
 .mat-select {
-    background: #fafafa !important;
+    background: transparent !important;
     min-height: var(--marginSizeChipSelectPanel) !important;
     border-radius: 50px !important;
 }
@@ -57,7 +58,7 @@ input.mat-input-element {
 }
 .mat-standard-chip {
     font-size: 27px;
-    background-color: floralwhite;
+    background-color: #fafafa;
     height: var(--matChipHeight);
     border-radius: 100%;
     cursor: pointer;
@@ -73,7 +74,9 @@ input.mat-input-element {
     border-radius: 30px 0 0 30px !important;
   }
 
-
+  .mat-form-field-label {
+  font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 
@@ -160,7 +163,7 @@ input.mat-input-element {
 }
 .mat-standard-chip {
     font-size: 37px;
-    background-color: floralwhite;
+    background-color: #fafafa;
     height: var(--matChipHeight);
     border-radius: 100%;
     cursor: pointer;
@@ -204,7 +207,7 @@ input.mat-input-element {
   @media (max-width: 992px) { 
     .mat-standard-chip {
         font-size: 17px !important;
-        background-color: floralwhite !important;
+        background-color: #fafafa !important;
         height: var(--matChipHeight) !important;
         border-radius: 100% !important;
         min-height: var(--matChipHeight) !important;
@@ -223,8 +226,9 @@ input.mat-input-element {
     }
 
     input.mat-input-element {
-        font-size: 18px;
-        padding: 0 !important;
+        font-size: 24px;
+        padding: 14px 14px !important;
+        font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
     }
 
     .mat-form-field-appearance-outline .mat-form-field-infix {
@@ -237,8 +241,9 @@ input.mat-input-element {
       }
 
       .searchForm {
-        margin-left: 9px;
-        width: 95%;
+        margin-left: 14px;
+        width: 90%;
+          font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
       }
 
       .option-img {

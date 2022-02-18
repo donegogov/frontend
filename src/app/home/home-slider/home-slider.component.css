@@ -221,7 +221,7 @@
 @media (max-width: 992px) { 
 	.content {
 		height: 400px !important;
-        margin-top: 10px;
+        margin-top: 0 !important;
         z-index: 10004 !important;
 	}
 
@@ -230,7 +230,7 @@
       }
 
     .arrow-container {
-		height: 600px;
+		height: 500px;
 	  }
       .slider-button {
         margin-top: 30px;
@@ -248,13 +248,13 @@
       }
 
       .slider-title {
-        font-size: 27px !important;
-        margin-top: 30px;
+        font-size: 20px !important;
+        margin-top: 20px;
     }
 
     .slider-subtitle {
-      font-size: 20px !important;
-      margin-top: 100px;
+      font-size: 16px !important;
+      margin-top: 30px;
   }
 
   .arrows-button {
@@ -266,6 +266,11 @@
     
   width: 80px;
   height: 80px;
+}
+
+.slider-button {
+  font-size: 20px;
+      padding: 10px;
 }
 }
 /*! purgecss end ignore */

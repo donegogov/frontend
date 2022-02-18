@@ -77,33 +77,33 @@
     display: none;
 }
 
-.mat-form-field-label {
-    
+.mat-form-field-appearance-legacy .mat-form-field-label {
     color: rgba(0, 0, 0, 0.87);
-    font-size: 28px !important;
-    margin-left: 15px !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-focused .mat-form-field-label{ 
-    color: rgba(0, 0, 0, 0.87);
-    font-size: 20px !important;
-    margin-left: 20px !important;
+.mat-form-field.mat-focused .mat-form-field-label{ 
+    color: rgba(0, 0, 0, 0.17);
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 input.mat-input-element {
-    font-size: 28px;
-    padding: 17px 17px !important;
+    padding: 0 !important;
 }
 .img-div {
     all: unset;
 }
 .mat-standard-chip {
     font-size: 27px;
-    background-color: floralwhite;
+    background-color: #fafafa;
     height: var(--matChipHeight);
     border-radius: 100%;
     cursor: pointer;
 }
+
+.mat-form-field-label {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+  }
 
 @media (max-width: 992px) { 
 
@@ -123,29 +123,31 @@ input.mat-input-element {
     }
 
     input.mat-input-element {
-        font-size: 40px !important;
         padding: 0 !important;
-        height: 30px !important;
-        color: #fafafa;
+        color: rgba(0, 0, 0, 0.87);
     }
 
     .mat-form-field-label {
     
+        font-size: inherit !important;
         color: rgba(0, 0, 0, 0.87);
-        font-size: 27px !important;
-        margin-left: 15px !important;
-        color: #fafafa;
     }
     
     .mat-focused .mat-form-field-label{ 
         color: rgba(0, 0, 0, 0.87);
-        font-size: 20px !important;
-        margin-left: 20px !important;
+        font-size: inherit !important;
+    }
+
+    .form-input {
+        background-color: transparent;
+        border-radius: 30px;
     }
 
     .mat-autocomplete-panel {
         max-height: 300px !important;
     }
+
+    
 
     .option-img {
         margin-right: 30px !important;

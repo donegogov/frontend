@@ -8,9 +8,9 @@
             {{product_name}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label for="inputProduct">Start Typing Keywords...</mat-label>
-          <input id="inputProduct"
+          <mat-form-field class="full-width form-input" appearance="outline">
+            <mat-label>Start Typing Keywords...</mat-label>
+          <input
             matInput
             #productInput
             [formControl]="productCtrl"
@@ -19,7 +19,7 @@
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
             (matChipInputTokenEnd)="add($event)">
-          </mat-form-field>
+            </mat-form-field>
         </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option class="mp-sp" *ngFor="let product of filteredProducts | async" [value]="product.name">
