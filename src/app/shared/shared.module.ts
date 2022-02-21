@@ -15,16 +15,10 @@ import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ShopProductsComponent } from './shop-products/shop-products.component';
-import { ShopTitleComponent } from './components/shop-title/shop-title.component';
-import { SearchProductComponent } from './components/search-product/search-product.component';
 import { HomePageSliderResolver } from './_resolvers/home-page-slider.resolver';
 import { ProductsService } from './_services/products.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
-import { SearchCategoriesComponent } from './components/search-categories/search-categories.component';
-import { PriceFromToComponent } from './components/price-from-to/price-from-to.component';
-
 
 
 @NgModule({
@@ -32,27 +26,10 @@ import { PriceFromToComponent } from './components/price-from-to/price-from-to.c
     MagicMainMenuComponent,
     HeaderComponent,
     FooterComponent,
-    ShopProductsComponent,
-    ShopTitleComponent,
-    SearchProductComponent,
-    SearchCategoriesComponent,
-    PriceFromToComponent,
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
-    CarouselModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatChipsModule,
-    HttpClientModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    FormsModule,
-    MatSliderModule
   ],
   providers: [
     HomePageSliderResolver,
@@ -65,7 +42,19 @@ import { PriceFromToComponent } from './components/price-from-to/price-from-to.c
     FooterComponent,
     MagicMainMenuComponent,
     CarouselModule,
-    ShopProductsComponent,
+    CommonModule,
+    MatSelectModule,
+    FormsModule,
+    MatSliderModule,
+    MatChipsModule,
+    HttpClientModule,
+    MatIconModule,
+    MatCheckboxModule,
+    CarouselModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

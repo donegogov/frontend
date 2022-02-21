@@ -6,11 +6,11 @@ import { MatChipInputEvent} from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
 import { ViewEncapsulation } from '@angular/core';
-import { ProductsService } from '../../_services/products.service';
-import { ProductsForHomePageSlider } from '../../_models/products-for-home-page-slider';
-import { ProductsForHomePageSearch } from '../../_models/products-for-home-page-search';
+import { ProductsService } from '../../../shared/_services/products.service';
+import { ProductsForHomePageSlider } from '../../../shared/_models/products-for-home-page-slider';
+import { ProductsForHomePageSearch } from '../../../shared/_models/products-for-home-page-search';
 import { ActivatedRoute } from '@angular/router';
-import { ProductSearchAsRootObject } from '../../_models/products-search-as-root-object';
+import { ProductSearchAsRootObject } from '../../../shared/_models/products-search-as-root-object';
 
 
 @Component({

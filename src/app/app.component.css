@@ -1,0 +1,19 @@
+/*! purgecss start ignore */
+.main-content {
+    margin-top: 100px;
+}
+
+.shop-content {
+    margin-top: 100px;
+}
+@media (max-width: 992px) { 
+    .main-content {
+        margin-top: 0px;
+    }
+    
+    .shop-content {
+        margin-top: 30px;
+    }
+}
+
+/*! purgecss end ignore */

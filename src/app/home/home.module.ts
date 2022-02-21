@@ -15,7 +15,6 @@ import { MainContentComponent } from './main-content/main-content.component';
     MainContentComponent
   ],
   imports: [
-    CommonModule,
     HomeRoutingModule,
     SharedModule
   ],

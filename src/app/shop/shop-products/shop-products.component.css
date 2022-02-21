@@ -12,5 +12,15 @@
     align-self: center; */
 }
 
+.shop-content {
+    margin-top: 100px !important;
+}
+
+@media (max-width: 992px) { 
+    
+    .shop-content {
+        margin-top: 30px !important;
+    }
+}
 
 /*! purgecss end ignore */
