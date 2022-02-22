@@ -4,9 +4,13 @@
 }
 @media (max-width: 992px) { 
     :root {
-        --matChipHeight: 61px;
+        --matChipHeight: 50px;
     }   
 }
+
+.mat-form-field-infix {
+    padding: 0 !important;
+  }
 
 .mat-form-field-wrapper {
     background: #fafafa;

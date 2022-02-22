@@ -1,11 +1,11 @@
 /*! purgecss start ignore */
 :root {
-    --marginSizeChipSelectPanel: 100px;
+    --marginSizeChipSelectPanel: 50px;
     --matChipHeight: 100px;
 }
 @media (max-width: 992px) { 
     :root {
-        --matChipHeight: 61px;
+        --matChipHeight: 50px;
     }   
 }
 
@@ -171,7 +171,7 @@ input.mat-input-element {
 
 .mat-select-trigger {
     cursor: pointer;
-    min-height: 100px !important;
+    min-height: var(--marginSizeChipSelectPanel) !important;
 
   }
 
