@@ -1,6 +1,6 @@
 /*! purgecss start ignore */
 :root {
-    --matChipHeight: 100px;
+    --matChipHeight: 50px;
 }
 @media (max-width: 992px) { 
     :root {
@@ -103,7 +103,7 @@
 }
 
 input.mat-input-element {
-    padding: 0 !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 .img-div {
     all: unset;
