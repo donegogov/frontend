@@ -1,0 +1,119 @@
+.top-selling-section {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2;
+    column-gap: 10px;
+    row-gap: 15px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.product-article {
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 40px;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 10px;
+}
+@for $i from 1 through 4 {
+    article:nth-child(#{$i}) {
+        grid-column-start: #{$i};
+        grid-column-end: #{$i + 1};
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+  }
+
+  @for $i from 5 through 8 {
+    article:nth-child(#{$i}) {
+        grid-column-start: #{$i - 4};
+        grid-column-end: #{$i -3};
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+  }
+  .product-img {
+      border-radius: 40px;
+      padding: 15px;
+  }
+  .product-add-to-cart-button {
+    animation-name: slideInUp;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: inline-block;
+        width: fit-content;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 30px;
+        padding: 30px 40px;
+        color: #fafafa; 
+        border: none; 
+        background-color: #fb0000;
+}
+
+
+$fireColor: rgb(255,80,0);
+$fireColorT: rgba(255,80,0,0);
+$dur: 1s;
+$blur: 0.02em;
+$fireRad: 3em;
+$parts: 50;
+$partSize: 5em;
+
+.fire {
+	font-size: 24px;
+	filter: blur($blur);
+	-webkit-filter: blur($blur);
+	margin: 3em auto 0 auto;
+	position: relative;
+	width: 10em;
+	height: 12em;
+}
+.particle {
+	animation: rise $dur ease-in infinite;
+	background-image: radial-gradient($fireColor 20%,$fireColorT 70%);
+	border-radius: 50%;
+	mix-blend-mode: screen;
+	opacity: 0;
+	position: absolute;
+	bottom: 0;
+	width: $partSize;
+	height: $partSize;
+	// spread particles out in time and x-position to get desired effect
+	@for $p from 1 through $parts {
+		&:nth-of-type(#{$p}) {
+			animation-delay: $dur * random();
+			left: calc((100% - #{$partSize}) * #{($p - 1)/$parts});
+		}
+	}
+}
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(0) scale(1);
+	}
+	25% {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-10em) scale(0);
+	}
+}
+
+.hot-products {
+    text-align: center;
+    padding: 100px;
+    font-size: 65px;
+}

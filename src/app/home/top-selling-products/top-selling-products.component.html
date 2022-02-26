@@ -1,0 +1,24 @@
+<div style="display: flex; flex-direction: row; align-items: center; align-content: center; justify-content: center; margin-bottom: 50px;">
+    
+            <div class="fire" style="order: 1; margin-right: 0;">
+                <div *ngFor="let item of numbers" class="particle"></div>
+            </div>
+    
+    <div style="order: 2;">
+        <h1 class="hot-products">HOT PRODUCTS</h1>
+    </div>
+    
+            <div style="order: 3; margin-left: 0;" class="fire" >
+                <div *ngFor="let item of numbers" class="particle"></div>
+                </div>
+</div>
+
+<section class="top-selling-section">
+    <article class="product-article" *ngFor="let product of topSellingProducts">
+        
+        <img class="product-img" src="{{product.images[0].src}}" width="300"/>
+        <h1>{{product.name}}</h1>
+        <h4>{{product.short_description}}</h4>
+        <button class="product-add-to-cart-button">ADD TO CART</button>
+    </article>
+</section>

@@ -6,13 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { MainContentComponent } from './main-content/main-content.component';
+import { TopSellingProductsComponent } from './top-selling-products/top-selling-products.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     HomeSliderComponent,
-    MainContentComponent
+    MainContentComponent,
+    TopSellingProductsComponent
   ],
   imports: [
     HomeRoutingModule,
