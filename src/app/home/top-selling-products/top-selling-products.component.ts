@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 
@@ -29,12 +29,32 @@ export class TopSellingProductsComponent implements OnInit {
   ];
   numbers!: Array<number>;
 
+  scrHeight:any;
+  scrWidth:any;
+  mobile = false;
+  productToReturn = 7;
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
+
   constructor(private productsService: ProductsService) { 
-    this.numbers = Array(50).fill(4);
+    this.numbers = Array(60).fill(4);
+    this.getScreenSize();
+
+    if (this.scrWidth <= 993) {
+      this.mobile = true;
+    }
+    if (this.mobile) {
+      this.productToReturn = 3;
+    }
   }
 
   ngOnInit(): void {
-    this.productsService.getTopSellingProducts(250, 1, 7).subscribe(data => {
+    this.productsService.getTopSellingProducts(250, 1, this.productToReturn).subscribe(data => {
       console.log(data);
       if (data) {
         console.log('this.topSellingProducts');
