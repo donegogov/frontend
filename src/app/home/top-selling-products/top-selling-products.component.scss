@@ -1,4 +1,7 @@
 /*! purgecss start ignore */
+:root {
+    --imgResultVisibility: hidden;
+}
 @media (min-width: 993px) { 
     .top-selling-section {
         width: 100%;
@@ -11,8 +14,8 @@
         background-color: #fafafa;
         text-align: center;
         padding: 10px;
-        min-width: 450px;
-        max-width: 600px;
+        min-width: 410px;
+        max-width: 410px;
         flex: 1 0 auto;
     }
 }

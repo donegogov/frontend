@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, HostListener, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 
@@ -7,7 +8,7 @@ import { ProductsService } from 'src/app/shared/_services/products.service';
   templateUrl: './top-selling-products.component.html',
   styleUrls: ['./top-selling-products.component.css', './top-selling-products.component.scss']
 })
-export class TopSellingProductsComponent implements OnInit {
+export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   topSellingProducts: ProductsTopSelling[] = 
     [
     {
@@ -32,7 +33,9 @@ export class TopSellingProductsComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   mobile = false;
-  productToReturn = 7;
+  productToReturn = 5;
+  showZoom = false;
+  isLoadedScript = true;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -41,7 +44,8 @@ export class TopSellingProductsComponent implements OnInit {
         console.log(this.scrHeight, this.scrWidth);
   }
 
-  constructor(private productsService: ProductsService) { 
+  constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
+    @Inject(DOCUMENT) private _document: Document) { 
     this.numbers = Array(60).fill(4);
     this.getScreenSize();
 
@@ -64,5 +68,27 @@ export class TopSellingProductsComponent implements OnInit {
       }
     });
   }
+
+  ngAfterViewInit(): void {
+  }
+
+ loadScript(event: any) {
+  console.log('event');
+  console.log(event.target.children[0].children);
+  //script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
+    if (this.isLoadedScript) {
+    this.topSellingProducts.forEach(element => {
+      /* var script = document.createElement("script");
+      script.type = "text/javascript";
+      console.log('id');
+      console.log(element.id);
+      script.text = 'zoomIn(' + event.target.children[0].children[0] + ',' + event.target.children[0].children[1] + ');';
+      console.log(script); */
+      var script = '<script> zoomIn(' + element.id + '); </script>';
+      document.body.append(script);
+    });
+  }
+  this.isLoadedScript = false;
+}
 
 }
