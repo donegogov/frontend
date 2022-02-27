@@ -168,7 +168,7 @@
         margin: auto auto auto 0;
       display: block;
       position: absolute;
-      left: 0;
+      left: 17px;
       right: 0;
       height: 3px;
       bottom: 31px;
@@ -182,7 +182,7 @@
       display: block;
       position: absolute;
       left: 0;
-      right: 0;
+      right: 17px;
       height: 3px;
       top: 27px;
       z-index: -1;
