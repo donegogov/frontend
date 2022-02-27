@@ -1,7 +1,9 @@
 function zoomIn(event) {
+    /* var result = document.getElementById(event.target.id + 'result');
+    result.style.display = "inline-block"; */
+    var img = event.target;
     var result = document.getElementById(event.target.id + 'result');
     result.style.display = "inline-block";
-    var img = event.target;
     /* console.log(img);
     console.log(element);
     var posX = event.offsetX ? (event.offsetX) : event.pageX - img.offsetLeft;

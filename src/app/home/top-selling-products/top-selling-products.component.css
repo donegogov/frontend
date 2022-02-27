@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 /* .product-article:hover .img-result {
     visibility: visible;
     opacity: 1;
@@ -30,3 +31,4 @@
     width: 300px;
     height: 300px;
   }
+  /*! purgecss end ignore */
