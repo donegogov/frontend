@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 .why-us-title {
     font-size: 100px;
     text-align: center;
@@ -112,14 +113,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 37px;
+  height: 17px;
   top: -40px;
   width: 90vw;
   background: transparent;
   /* animation: waveunderlinecontainer 4s linear infinite; */
   border-radius: 110px;
   /* border: 10px solid #fafafa; */
-  background-color: #fb0000;
+  background-color: #fafafa;
 }
 
 .why-us-title-content-container::after {
@@ -130,14 +131,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 37px;
+  height: 17px;
   bottom: -40px;
   width: 90vw;
   background: transparent;
   /* animation: waveunderlinecontainer 4s linear infinite; */
   border-radius: 110px;
   /* border: 10px solid #fafafa; */
-  background-color: #fb0000;
+  background-color: #fafafa;
 }
 @keyframes waveunderlinecontainer {
     0% {
@@ -162,7 +163,7 @@
         flex-basis: 100%;
         margin: 0;
         border-radius: 45px;
-        border: 7px solid #fb0000;
+        border: 7px solid #fafafa;
     }
     .why-us-title-content-container::before {
       height: 7px;
@@ -173,3 +174,4 @@
       background-color: transparent;
     }
 }
+/*! purgecss end ignore */
