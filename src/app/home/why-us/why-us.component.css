@@ -162,16 +162,11 @@
         flex-basis: 100%;
         margin: 0;
         border-radius: 45px;
-        border: 10px solid #fb0000;
+        border: 7px solid #fb0000;
     }
     .why-us-title-content-container::before {
-      height: 17px;
+      height: 7px;
       top: -27px;
-    }
-    
-    .why-us-title-content-container::after {
-      height: 17px;
-      bottom: -17px;
     }
     .why-us-title-content-container::after {
       height: 0px;
