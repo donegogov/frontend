@@ -6,6 +6,9 @@
 .top-selling-products-content {
     margin-top: 40px;
 }
+.why-us-content {
+    margin-top: 117px;
+}
 
 @media (max-width: 992px) { 
     .main-content {
@@ -13,6 +16,9 @@
     }
 
     .top-selling-products-content {
+        margin-top: 50px;
+    }
+    .why-us-content {
         margin-top: 10px;
     }
 }

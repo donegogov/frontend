@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { TopSellingProductsComponent } from './top-selling-products/top-selling-products.component';
+import { WhyUsComponent } from './why-us/why-us.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { TopSellingProductsComponent } from './top-selling-products/top-selling-
     HomeComponent,
     HomeSliderComponent,
     MainContentComponent,
-    TopSellingProductsComponent
+    TopSellingProductsComponent,
+    WhyUsComponent
   ],
   imports: [
     HomeRoutingModule,
