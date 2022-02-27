@@ -31,4 +31,48 @@
     width: 300px;
     height: 300px;
   }
+  @media (min-width: 993px) { 
+    .overlay{ 
+        min-width: 1000px;
+    min-height: 1000px;
+    margin-left: 30vw;
+    }
+}
+@media (max-width: 992px) { 
+    .overlay{ 
+        min-width: 410px;
+    min-height: 410px;
+    margin-top: 420px;
+    }
+}
+.overlay{
+    position:absolute;
+    background:#000;
+    opacity: 0;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1;
+    display: none;
+    visibility: hidden;
+    border-radius: 30px;
+    transition: opacity 0.5s linear, visibility 0.5s linear;
+  }
+  .img-zoom-container:hover .overlay {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      border: 10px solid rgba(0, 0, 0, 0.87);
+  }
+  .overlay:hover {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+  }
+  .img-zoom-container:hover {
+    border: 10px solid rgba(0, 0, 0, 0.87);
+    border-radius: 30px;
+}
+
   /*! purgecss end ignore */

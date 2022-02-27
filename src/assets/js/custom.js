@@ -4,6 +4,8 @@ function zoomIn(event) {
     var img = event.target;
     var result = document.getElementById(event.target.id + 'result');
     result.style.display = "inline-block";
+        console.log('HOOOOOOOOOOOOOVVVVVVVVVVVVVVVVEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR');
+        
     /* console.log(img);
     console.log(element);
     var posX = event.offsetX ? (event.offsetX) : event.pageX - img.offsetLeft;
@@ -71,6 +73,8 @@ lens.addEventListener("mousemove", moveLens);
     y = y - window.pageYOffset;
     return {x : x, y : y};
   }
+  $('#' + result.id).fadeIn();
+        console.log($('#' + result.id));
 }
     
   

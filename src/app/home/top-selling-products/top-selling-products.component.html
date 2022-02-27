@@ -15,18 +15,17 @@
 
 <section class="top-selling-section">
     <article (mouseenter)="showZoom=true" class="product-article" *ngFor="let product of topSellingProducts">
-        <div class="img-zoom-container">
-        <img id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}" width="300"        
-        onmouseenter="zoomIn(event)"/>
-        <img id="imgZoom{{product.id}}result" class="img-zoom-result" style="width: 300px;  height: 300px;"
+        <div class="img-zoom-container" style="min-width: 100%;">
+        <img #sourceImg id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}"      
+        onmouseenter="zoomIn(event)"
         />
+        
+        <img id="imgZoom{{product.id}}result" class="img-zoom-result overlay" style="width: 100%;  height: 100%;"
+        />
+        
         </div>
         <h1>{{product.name}}</h1>
         <h4>{{product.short_description}}</h4>
         <button class="product-add-to-cart-button">ADD TO CART</button>
     </article>
 </section>
-
-
-<img id="imgZoom" width="200px" height="200px" onmousemove="zoomIn(event)" onmouseout="zoomOut()" src="https://via.placeholder.com/200.png">
-<div id="overlay" onmousemove="zoomIn(event)"></div>

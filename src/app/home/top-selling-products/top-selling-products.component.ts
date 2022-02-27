@@ -36,6 +36,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   productToReturn = 5;
   showZoom = false;
   isLoadedScript = true;
+  hover = false;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
