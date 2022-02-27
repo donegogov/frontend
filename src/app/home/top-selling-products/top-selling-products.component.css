@@ -34,9 +34,9 @@
   @media (min-width: 993px) { 
     .overlay{ 
         min-width: 60vw;
-    min-height: 60vw;
+    min-height: 90vh;
     margin-left: 30vw;
-    margin-top: -400px;
+    margin-top: -200px;
     }
 }
 @media (max-width: 992px) { 
