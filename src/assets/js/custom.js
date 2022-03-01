@@ -124,23 +124,22 @@ var height = Math.max( body.scrollHeight, body.offsetHeight,
 
     console.log(height, window.scrollY, window.scrollX, window.pageYOffset, window.pageXOffset, document.documentElement.clientWidth, document.documentElement.clientHeight);
   console.log(x, leftSpace, imgWidth);
-     if (mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+  if (mainImg.getBoundingClientRect().left < 20 && 20 > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+    console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
+    var top = mainImg.height + 30;
+    var width = 'calc(100vw - 45px)';
+    var height = mainImg.height;
+    var right = 0;
+    document.documentElement.style.setProperty('--overlayTop', top + "px");
+    document.documentElement.style.setProperty('--overlayWidth', width);
+    document.documentElement.style.setProperty('--overlayHeight', height + "px");
+    document.documentElement.style.setProperty('--overlayMarginLeft', "calc(-50vw + 50%)");
+    document.documentElement.style.setProperty('--overlayLeft', '0px');
+  
+
+}
+    else if (mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
          console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
-      //resultImg.style.marginTop = '70px';
-      //resultImg.style.marginLeft = (leftSpace + imgWidth) + 'px';
-      /* var top = resultImg.getBoundingClientRect().top;
-      resultImg.style.minWidth = rightSpace - 140 + 'px';
-      resultImg.style.maxWidth = rightSpace - 140 + 'px';
-      resultImg.style.minHeight = innerHeight - 140 + 'px';
-      resultImg.style.maxHeight = innerHeight - 140 + 'px';
-      var top = 110 - resultImg.offsetTop;
-      resultImg.style.position = 'fixed';
-      resultImg.style.marginTop = top + 'px';
-      resultImg.style.top = top + 'px';
-      resultImg.style.left = imgWidth + x + 'px'; */
-      //resultImg.style.right = 70 + 'px';
-      //resultImg.style.bottom = 70 + 'px';
-      //var top = window.scrollY - height;
       var top = mainImg.getBoundingClientRect().top;
       var width = document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth;
       var height = document.documentElement.clientHeight;
@@ -150,20 +149,7 @@ var height = Math.max( body.scrollHeight, body.offsetHeight,
       document.documentElement.style.setProperty('--overlayMarginRight', "auto");
       document.documentElement.style.setProperty('--overlayLeft', imgWidth + "px");
      }
-      else if (mainImg.getBoundingClientRect().left < 5 && 5 > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
-        console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
-        var top = imgHeight;
-        var width = document.documentElement.clientWidth;
-        var height = imgHeight;
-        var right = 0;
-        document.documentElement.style.setProperty('--overlayTop', "0px");
-        document.documentElement.style.setProperty('--overlayWidth', width + "px");
-        document.documentElement.style.setProperty('--overlayHeight', height + "px");
-        //document.documentElement.style.setProperty('--overlayMarginRight', right + "px");
-        document.documentElement.style.setProperty('--overlayLeft', '0px');
-      
-    
-    } else if (mainImg.getBoundingClientRect().left > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+       else if (mainImg.getBoundingClientRect().left > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
         console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
         var top = mainImg.getBoundingClientRect().top;
         var width = mainImg.getBoundingClientRect().left;

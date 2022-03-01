@@ -111,6 +111,9 @@ $partSize: 3em;
 
 
 @media (max-width: 992px) { 
+    .img-zoom-result {
+        padding: 0 !important
+    }
     .hot-products {
         padding: 30px;
         font-size: 27px;

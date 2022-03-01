@@ -165,7 +165,7 @@
         font-size: 17px !important;
     }
     .why-us-title {
-        font-size: 27px !important;
+        font-size: 28px !important;
         font-style: normal;
         font-weight: 900;
         /* border: 3px solid rgba(255, 255, 255, 0.9); */
@@ -183,7 +183,7 @@
       left: 17px;
       right: 0;
       height: 3px;
-      bottom: 31px;
+      bottom: 23px;
       z-index: -1;
       width: 26vw;
       background: rgba(255, 255, 255, 0.9);
@@ -196,7 +196,7 @@
       left: 0;
       right: 17px;
       height: 3px;
-      top: 27px;
+      top: 22px;
       z-index: -1;
       width: 26vw;
       background: rgba(255, 255, 255, 0.9);

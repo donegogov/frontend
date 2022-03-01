@@ -60,13 +60,13 @@
     --overlayMarginLeft: auto;
 }
 .overlay{
-    margin: var(--overlayMarginTop) var(--overlayMarginRight) var(--overlayMarginBottom) var(--overlayMarginLeft);
+    margin: var(--overlayMarginTop) var(--overlayMarginRight) var(--overlayMarginBottom) var(--overlayMarginLeft) !important;
     width: var(--overlayWidth) !important;
     height: var(--overlayHeight) !important;
     position:absolute;
     background:#000;
     opacity: 0;
-    left:var(--overlayLeft);
+    left:var(--overlayLeft) !important;
     right:var(--overlayRight);
     top:var(--overlayTop);
     bottom:var(--overlayBottom);
