@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 
@@ -37,6 +37,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   showZoom = false;
   isLoadedScript = true;
   hover = false;
+  @Input('mainImg') mainImg!: HTMLImageElement;
+  @Input('resultImg') resultImg!: HTMLImageElement;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -44,6 +46,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
   }
+  innerWidth = 0;
+  innerHeight = 0;
 
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document) { 
@@ -68,6 +72,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         this.productsService.topSellingProducts = data.products;
       }
     });
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
   }
 
   ngAfterViewInit(): void {

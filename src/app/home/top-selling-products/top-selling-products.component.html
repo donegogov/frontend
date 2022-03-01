@@ -16,7 +16,7 @@
 <section class="top-selling-section">
     <article (mouseenter)="showZoom=true" class="product-article" *ngFor="let product of topSellingProducts">
         <div class="img-zoom-container" style="min-width: 100%;">
-        <img #sourceImg id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}"      
+        <img id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}"      
         onmouseenter="zoomIn(event)"
         />
         

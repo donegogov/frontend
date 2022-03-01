@@ -220,17 +220,17 @@
 
 @media (max-width: 992px) { 
 	.content {
-		height: 400px !important;
+		height: 570px !important;
         margin-top: 0 !important;
         z-index: 10004 !important;
 	}
 
     .slider-content {
-        height: 400px !important;
+        height: 570px !important;
       }
 
     .arrow-container {
-		height: 500px;
+		height: 670px;
 	  }
       .slider-button {
         margin-top: 30px;
@@ -238,22 +238,19 @@
         font-size: 29px;
     }
     .slider-arrow-container {
-        height: 400px;
+        height: 570px;
       }
       .imgage-slider-options {
-        height: 400px;
+        height: 5700px;
     }
-    .slider-arrow-container {
-        height: 400px;
-      }
 
       .slider-title {
-        font-size: 20px !important;
+        font-size: 27px !important;
         margin-top: 20px;
     }
 
     .slider-subtitle {
-      font-size: 16px !important;
+      font-size: 17px !important;
       margin-top: 30px;
   }
 

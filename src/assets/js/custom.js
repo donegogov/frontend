@@ -1,4 +1,5 @@
 function zoomIn(event) {
+    /* $(".menu").removeClass('desktopTopFixed'); */
     /* var result = document.getElementById(event.target.id + 'result');
     result.style.display = "inline-block"; */
     var img = event.target;
@@ -12,6 +13,7 @@ function zoomIn(event) {
     var posY = event.offsetY ? (event.offsetY) : event.pageY - img.offsetTop;
     element.style.backgroundPosition = (-posX * 1) + "px " + (-posY * 1) + "px"; */
 /*create lens:*/
+
 lens = 1;
 console.log(img);
     console.log(result);
@@ -23,6 +25,7 @@ lens = document.createElement("DIV");
 lens.setAttribute("id", "img-zoom-lens");
 lens.setAttribute("class", "img-zoom-lens");
 lens.style="position:absolute; border: 1px solid #d4d4d4; width: 40px; height: 40px; ";
+
     }
     else {
         lens = document.getElementById("img-zoom-lens");
@@ -75,10 +78,112 @@ lens.addEventListener("mousemove", moveLens);
   }
   $('#' + result.id).fadeIn();
         console.log($('#' + result.id));
+
+        setImg(img, result);
 }
     
   
-  function zoomOut() {
-    var element = document.getElementById("overlay");
-    element.style.display = "none";
+  function mouseout(event) {
+    /* var element = document.getElementById("overlay");
+    element.style.display = "none"; */
+    /* menu = document.getElementsByClassName("menu")[0];
+    menu.style.visibility = "visible";
+    menu.style.opcity = 1;
+    menu.style.display = "flex"; */
+    /* $(".menu").on("mouseout", function () {
+        // add class and fade in
+        $(".menu").addClass('desktopTopFixed');
+    }); */
+    $(".menu").addClass('desktopTopFixed');
   }
+
+  function setImg(mainImg, resultImg) {
+    
+    
+
+    var x = mainImg.offsetWidth;
+    var y = mainImg.offsetTop;
+  
+    var imgWidth = mainImg.offsetWidth;
+    var imgHeight = mainImg.offsetHeight;
+  
+    var leftSpace = x + mainImg.offsetWidth;
+    var topSpace = y;
+    var rightSpace = innerWidth - x - imgWidth;
+    var bottomSpace = innerHeight - y - imgHeight;
+    console.log(x, y, imgWidth, imgHeight, leftSpace, topSpace, rightSpace, bottomSpace);
+    var top  = window.pageYOffset || document.documentElement.scrollTop,
+    left = window.pageXOffset || document.documentElement.scrollLeft;
+    console.log('top, left');
+    var body = document.body,
+    html = document.documentElement;
+
+var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+
+    console.log(height, window.scrollY, window.scrollX, window.pageYOffset, window.pageXOffset, document.documentElement.clientWidth, document.documentElement.clientHeight);
+  console.log(x, leftSpace, imgWidth);
+     if (mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+         console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
+      //resultImg.style.marginTop = '70px';
+      //resultImg.style.marginLeft = (leftSpace + imgWidth) + 'px';
+      /* var top = resultImg.getBoundingClientRect().top;
+      resultImg.style.minWidth = rightSpace - 140 + 'px';
+      resultImg.style.maxWidth = rightSpace - 140 + 'px';
+      resultImg.style.minHeight = innerHeight - 140 + 'px';
+      resultImg.style.maxHeight = innerHeight - 140 + 'px';
+      var top = 110 - resultImg.offsetTop;
+      resultImg.style.position = 'fixed';
+      resultImg.style.marginTop = top + 'px';
+      resultImg.style.top = top + 'px';
+      resultImg.style.left = imgWidth + x + 'px'; */
+      //resultImg.style.right = 70 + 'px';
+      //resultImg.style.bottom = 70 + 'px';
+      //var top = window.scrollY - height;
+      var top = mainImg.getBoundingClientRect().top;
+      var width = document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth;
+      var height = document.documentElement.clientHeight;
+      document.documentElement.style.setProperty('--overlayTop', -top + "px");
+      document.documentElement.style.setProperty('--overlayWidth', width + "px");
+      document.documentElement.style.setProperty('--overlayHeight', height + "px");
+      document.documentElement.style.setProperty('--overlayMarginRight', "auto");
+      document.documentElement.style.setProperty('--overlayLeft', imgWidth + "px");
+     }
+      else if (mainImg.getBoundingClientRect().left < 5 && 5 > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+        console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
+        var top = imgHeight;
+        var width = document.documentElement.clientWidth;
+        var height = imgHeight;
+        var right = 0;
+        document.documentElement.style.setProperty('--overlayTop', "0px");
+        document.documentElement.style.setProperty('--overlayWidth', width + "px");
+        document.documentElement.style.setProperty('--overlayHeight', height + "px");
+        //document.documentElement.style.setProperty('--overlayMarginRight', right + "px");
+        document.documentElement.style.setProperty('--overlayLeft', '0px');
+      
+    
+    } else if (mainImg.getBoundingClientRect().left > document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth) {
+        console.log(mainImg.getBoundingClientRect().left < document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth);
+        var top = mainImg.getBoundingClientRect().top;
+        var width = mainImg.getBoundingClientRect().left;
+        var height = document.documentElement.clientHeight;
+        var right = document.documentElement.clientWidth - mainImg.getBoundingClientRect().left - imgWidth;
+        document.documentElement.style.setProperty('--overlayTop', -top + "px");
+        document.documentElement.style.setProperty('--overlayWidth', width + "px");
+        document.documentElement.style.setProperty('--overlayHeight', height + "px");
+        //document.documentElement.style.setProperty('--overlayMarginRight', right + "px");
+        document.documentElement.style.setProperty('--overlayLeft', '-' + (mainImg.getBoundingClientRect().left) + 'px');
+      }
+      
+    }
+
+
+$( document ).ready(function() {
+    $(".img-zoom-container").on("mouseover", function () {
+        $(".menu").removeClass('desktopTopFixed');
+    });
+    $(".img-zoom-container").on("mouseout", function () {
+        $(".menu").addClass('desktopTopFixed');
+    });
+});  
