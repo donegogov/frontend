@@ -9,6 +9,10 @@
 .why-us-content {
     margin-top: 117px;
 }
+.animated-shop {
+    margin-top: 40px;
+    max-width: 100%;
+}
 
 @media (max-width: 992px) { 
     .main-content {
@@ -20,6 +24,9 @@
     }
     .why-us-content {
         margin-top: 45px;
+    }
+    .animated-shop {
+        margin-top: 10px;
     }
 }
 

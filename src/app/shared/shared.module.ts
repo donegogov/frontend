@@ -19,6 +19,7 @@ import { HomePageSliderResolver } from './_resolvers/home-page-slider.resolver';
 import { ProductsService } from './_services/products.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
+import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
     MagicMainMenuComponent,
     HeaderComponent,
     FooterComponent,
+    AnimatedShopComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    AnimatedShopComponent
   ]
 })
 export class SharedModule { }
