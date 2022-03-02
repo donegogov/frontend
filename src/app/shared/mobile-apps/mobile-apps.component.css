@@ -40,6 +40,40 @@ vertical-align: middle;
 .font2-apps {
     font-size: 70px;
 }
+.div-apps-title {
+    position: relative;
+    margin-top: 10px;
+}
+.div-apps-title::after {
+    content: "";
+    font-size: 100px;
+    margin: 0 auto;
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  width: 45vw;
+  border-radius: 110px;
+  background-color: #fafafa;
+  color: #fafafa;
+}
+.div-apps-title::before {
+    content: "";
+    font-size: 100px;
+    margin: 0 auto;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  width: 45vw;
+  border-radius: 110px;
+  background-color: #fafafa;
+  color: #fafafa;
+}
 
 @media (max-width: 992px) { 
     .mobile-apps-container {
@@ -55,5 +89,33 @@ vertical-align: middle;
     }
     .font2-apps {
         font-size: 17px;
+    }
+    .div-apps-title {
+        position: relative;
+        margin-top: 0px;
+    }
+    .div-apps-title::after {
+      height: 0px;
+    }
+    .div-apps-title::before {
+        width: 20vw;
+      }
+      .app-store {
+        position: relative;
+    }
+    .app-store::after {
+        content: "";
+        font-size: 100px;
+        margin: 0 auto;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      width: 27vw;
+      border-radius: 110px;
+      background-color: #fafafa;
+      color: #fafafa;
     }
 }
