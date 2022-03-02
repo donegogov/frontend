@@ -20,6 +20,7 @@ import { ProductsService } from './_services/products.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
+import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
     HeaderComponent,
     FooterComponent,
     AnimatedShopComponent,
+    MobileAppsComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    AnimatedShopComponent
+    AnimatedShopComponent,
+    MobileAppsComponent
   ]
 })
 export class SharedModule { }

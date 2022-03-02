@@ -3,12 +3,15 @@
     font-size: 100px;
     text-align: center;
     position: relative;
+    font-family: 'Soria', serif;
 }
 .font1 {
     font-size: 70px;
+    font-family: 'Soria', serif;
 }
 .font2 {
     font-size: 45px;
+    font-family: 'Soria', serif;
 }
 
 /* .why-us-title::before {
@@ -182,7 +185,7 @@
       position: absolute;
       left: 17px;
       right: 0;
-      height: 3px;
+      height: 1px;
       bottom: 23px;
       z-index: -1;
       width: 26vw;
@@ -195,7 +198,7 @@
       position: absolute;
       left: 0;
       right: 17px;
-      height: 3px;
+      height: 1px;
       top: 22px;
       z-index: -1;
       width: 26vw;

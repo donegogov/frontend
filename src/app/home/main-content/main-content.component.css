@@ -13,6 +13,10 @@
     margin-top: 40px;
     max-width: 100%;
 }
+.mobile-apps {
+    margin-top: 40px;
+    max-width: 100%;
+}
 
 @media (max-width: 992px) { 
     .main-content {
@@ -27,6 +31,10 @@
     }
     .animated-shop {
         margin-top: 10px;
+    }
+    .mobile-apps {
+        margin-top: 10px;
+        max-width: 100%;
     }
 }
 

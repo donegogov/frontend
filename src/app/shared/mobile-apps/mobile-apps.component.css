@@ -1,0 +1,59 @@
+.mobile-apps-container {
+    width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        max-width: 100%;
+        flex-direction: row;
+        margin-top: 30px;
+        border-radius: 40px;
+}
+.play-store {
+    order: 1;
+    align-self: flex-start;
+    text-align: center;
+vertical-align: middle;
+}
+.app-store {
+    order: 2;
+    align-self: flex-start;
+    text-align: center;
+    vertical-align: middle;
+}
+.mobile-apps {
+        text-align: center;
+        padding: 10px;
+        max-width: 100%;
+}
+.playstore-appstore-logo {
+    width: 50%;
+    margin-top: 100px;
+}
+.apps-title {
+    font-size: 100px;
+    margin-bottom: 30px;
+    font-family: 'Soria', serif;
+}
+.font2-apps {
+    font-size: 70px;
+}
+
+@media (max-width: 992px) { 
+    .mobile-apps-container {
+            flex-direction: column;
+            border: none;
+    }
+    .playstore-appstore-logo {
+        width: 80%;
+        margin-top: 30px;
+    }
+    .apps-title {
+        font-size: 28px;
+    }
+    .font2-apps {
+        font-size: 17px;
+    }
+}
