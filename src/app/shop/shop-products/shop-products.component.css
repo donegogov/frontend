@@ -1,9 +1,6 @@
 /*! purgecss start ignore */
 .shop {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
 }
 .shop-title {
     font-size: 100px;
@@ -14,12 +11,13 @@
 
 .shop-content {
     margin-top: 100px !important;
+    max-width: 99vw;
 }
 
 @media (max-width: 992px) { 
     
     .shop-content {
-        margin-top: 30px !important;
+        margin-top: 40px !important;
     }
 }
 

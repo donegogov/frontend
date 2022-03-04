@@ -6,6 +6,8 @@
   justify-content: center;
   flex-wrap: nowrap;
   margin-top: 0px;
+  align-items: center;
+  justify-items: center;
 }
 
 .panel {
@@ -96,6 +98,8 @@
     font-size: 60px;
     vertical-align: middle;
     text-align: center;
+  }
+  .container {
   }
 
 }

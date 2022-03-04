@@ -1,4 +1,4 @@
-         <mat-chip-list #chipList>
+  <mat-chip-list #chipList>
           <mat-chip
             *ngFor="let product_name of searchProduct"
             [selectable]="selectable"
@@ -7,7 +7,7 @@
             {{product_name}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <mat-form-field class="full-width form-input" appearance="outline">
+          <mat-form-field class="full-width form-input" style="max-width: 100% !important;" appearance="outline">
             <mat-label>Start Typing Keywords...</mat-label>
           <input
             matInput
