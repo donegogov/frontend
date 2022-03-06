@@ -8,6 +8,8 @@ import { Observable, Subject } from 'rxjs';
 import { ProductSearchAsRootObject } from '../_models/products-search-as-root-object';
 import { ProductsTopSelling } from '../_models/products-top-selling';
 import { ProductTopSellingAsRootObject } from '../_models/products-top-selling-as-root-object';
+import { ProductsPricingAsRootObject } from '../_models/products-pricing-as-root-object';
+import { ProductsPricing } from '../_models/products-pricing';
 
 
 @Injectable()
@@ -16,6 +18,7 @@ export class ProductsService {
     sliderProducts!: ProductsForHomePageSlider[];
     searchProducts!: ProductsForHomePageSearch[];
     topSellingProducts!: ProductsTopSelling[];
+    productsPricing!: ProductsPricing[];
     searchProductChange: Subject<ProductsForHomePageSearch[]> = new Subject<ProductsForHomePageSearch[]>();
 
 constructor(private http: HttpClient) {
@@ -35,7 +38,11 @@ getSearchProducts(limit: number, page: number, searchTearm: string, search_name:
 }
 
 getTopSellingProducts(limit: number, page: number, productsToReturn: number) {
-    return this.http.get<any>(this.apiUrl + 'top-selling-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString() + '&ProductToReturn=' + productsToReturn.toString());
+    return this.http.get<ProductTopSellingAsRootObject>(this.apiUrl + 'top-selling-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString() + '&ProductToReturn=' + productsToReturn.toString());
+}
+
+getPrices(limit: number = 250, page: number = 1) {
+    return this.http.get<ProductsPricingAsRootObject>(this.apiUrl + 'price-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString());
 }
 
 changesearchProduct(products: ProductsForHomePageSearch[]) {

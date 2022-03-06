@@ -1,0 +1,111 @@
+mat-slider {
+    width: 300px;
+  }
+  .price-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+  .label-price {
+    order: 1;
+    align-self: flex-start;
+}
+.price-slider {
+    order: 2;
+    align-self: flex-start;
+}
+.slider-chart {
+    order: 2;
+    align-self: flex-start;
+    position: relative;
+    margin-bottom: 100px;
+}
+.slider-chart div {
+    width: 50px;
+    height: 100px;
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    float: left;
+}
+.slider-chart div {
+    --chart1Height: 20%;
+    --chart2Height: 40%;
+    --chart3Height: 60%;
+    --chart4Height: 80%;
+    --chart5Height: 100%;
+}
+/* .slider-chart div::after {
+    content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: rgba(0, 0, 0, 0.9);
+} */
+.chart1::after {
+      height: var(--chart1Height);
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: #fb0000;
+}
+.chart2::after {
+      height: var(--chart2Height);
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50px;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: #fb0000;
+}
+.chart3::after {
+    height: var(--chart3Height);
+    content: "";
+      display: block;
+      position: absolute;
+      left: 100px;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: #fb0000;
+}
+.chart4::after {
+    height: var(--chart4Height);
+    content: "";
+      display: block;
+      position: absolute;
+      left: 150px;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: #fb0000;
+}
+.chart5::after {
+    height: var(--chart5Height);
+    content: "";
+      display: block;
+      position: absolute;
+      left: 200px;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: #fb0000;
+}
+@media (max-width: 992px) { 
+    .footer {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+}

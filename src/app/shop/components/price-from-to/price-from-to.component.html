@@ -1,1 +1,39 @@
-<p>price-from-to works!</p>
+    <div class="price-container">
+
+    <div class="label-price">
+    <mat-label>Price {{FromTo}}</mat-label>
+</div>
+<div class="price-slider">
+<mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="{{tickInterval}}"
+  step="{{step}}"
+  min="{{min}}"
+  max="{{max}}"
+  aria-label="units"
+  (change)="matValue($event)">
+</mat-slider>
+</div>
+<div class="slider-chart" #sliderChartContainer>
+    <div class="chart1" (touchmove)="setChartValues('1')" (mouseenter)="setChartValues('1')" (click)="setChartStyles($event, 1)">
+
+    </div>
+    <div class="chart2" (touchmove)="setChartValues('2')" (mouseenter)="setChartValues('2')" (click)="setChartStyles($event, 2)">
+        
+    </div>
+    <div class="chart3" (touchmove)="setChartValues('3')" (mouseenter)="setChartValues('3')" (click)="setChartStyles($event, 3)">
+        
+    </div>
+    <div class="chart4" (touchmove)="setChartValues('4')" (mouseenter)="setChartValues('4')" (click)="setChartStyles($event, 4)">
+         
+    </div> 
+    <div class="chart5" (touchmove)="setChartValues('5')" (mouseenter)="setChartValues('5')" (click)="setChartStyles($event, 5)">
+        
+    </div>
+   
+</div>
+<div style="order: 3; align-self: flex-start;">
+<h4>Products: {{productsInChart}} Price From {{fromPriceInChart}} PriceTo {{toPriceInChart}}</h4>
+</div>
+</div>

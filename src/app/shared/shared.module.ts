@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
+import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
     HomePageSliderResolver,
     ProductsService,
     HttpClient,
-    SearchProductResolver
+    SearchProductResolver,
+    PriceFromToResolver
   ],
   exports: [
     HeaderComponent,
@@ -60,7 +62,7 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
     MatInputModule,
     ReactiveFormsModule,
     AnimatedShopComponent,
-    MobileAppsComponent
+    MobileAppsComponent,
   ]
 })
 export class SharedModule { }
