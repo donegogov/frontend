@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ProductsPricing } from 'src/app/shared/_models/products-pricing';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 
 @Component({
   selector: 'app-price-from-to',
   templateUrl: './price-from-to.component.html',
-  styleUrls: ['./price-from-to.component.css']
+  styleUrls: ['./price-from-to.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PriceFromToComponent implements OnInit, AfterViewInit {
   @Input()FromTo!: string;
