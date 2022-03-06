@@ -15,6 +15,8 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
   step = 0;
   min = 0;
   max = 0;
+  minTo = 0;
+  maxFrom = 0;
   chart1Products = 0;
   chart2Products = 0;
   chart3Products = 0;
@@ -38,7 +40,12 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
       return Math.round(value / 1);
   }
 
-  matValue(event: any) {
+  matValue(event: any, fromTo: boolean) {
+    if (fromTo) {
+      this.maxFrom = event.value;
+    } else if (!fromTo) {
+      this.minTo = event.value;
+    }
     console.log(event.value);
   }
 
@@ -73,6 +80,8 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
   setCharts() {
     this.min = this.getMinValue();
     this.max = this.getMaxValue();
+    this.maxFrom = this.max;
+    this.minTo = this.min;
     this.step = this.tickInterval = this.getStepAndTickInterval();
 
     var charts = this.sliderChartContainer.nativeElement.getElementsByTagName('div');
@@ -132,35 +141,35 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
 
   setChartStyles(event: any, chart: number) {
     if (chart == 1) {
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.border = '10px solid black';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.border = 'none';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
     } else if (chart == 2) {
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.border = '10px solid black';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.border = 'none';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '1';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
     } else if (chart == 3) {
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.border = '10px solid black';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.border = 'none';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '1';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
     } else if (chart == 4) {
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.border = '10px solid black';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.border = 'none';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '1';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
     } else if (chart == 5) {
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.border = 'none';
-      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.border = '10px solid black';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
     }
   }
 

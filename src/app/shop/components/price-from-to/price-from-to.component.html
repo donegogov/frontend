@@ -7,12 +7,28 @@
 <mat-slider
   thumbLabel
   [displayWith]="formatLabel"
-  tickInterval="{{tickInterval}}"
+  tickInterval="auto"
   step="{{step}}"
   min="{{min}}"
+  max="{{maxFrom}}"
+  aria-label="units"
+  (change)="matValue($event, false)">
+</mat-slider>
+</div>
+
+    <div class="label-price">
+    <mat-label>Price {{FromTo}}</mat-label>
+</div>
+<div class="price-slider">
+<mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="auto"
+  step="{{step}}"
+  min="{{minTo}}"
   max="{{max}}"
   aria-label="units"
-  (change)="matValue($event)">
+  (change)="matValue($event, true)">
 </mat-slider>
 </div>
 <div class="slider-chart" #sliderChartContainer>
