@@ -171,6 +171,148 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
       this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
       this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
     }
+
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].addEventListener('mouseenter',  (e: any) => {
+      if (chart != 1) {
+        this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
+      }
+  }, false);
+
+  this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].addEventListener('mouseleave',  (e: any) => {
+    if (chart != 1) {
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+    } else if (chart == 1) {
+      this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
+    }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].addEventListener('mouseenter',  (e: any) => {
+  if (chart != 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '1';
+  } 
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].addEventListener('mouseleave',  (e: any) => {
+  if (chart != 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+  } else if (chart == 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].addEventListener('mouseenter',  (e: any) => {
+  if (chart != 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].addEventListener('mouseleave',  (e: any) => {
+  if (chart != 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+  } else if (chart == 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].addEventListener('mouseenter',  (e: any) => {
+  if (chart != 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].addEventListener('mouseleave',  (e: any) => {
+  if (chart != 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+  } else if (chart == 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].addEventListener('mouseenter',  (e: any) => {
+  if (chart != 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].addEventListener('mouseleave',  (e: any) => {
+  if (chart != 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
+  } else if (chart == 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
+  }
+}, false);
+
+
+//touch events
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].addEventListener('touchmove',  (e: any) => {
+  if (chart != 1) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].addEventListener('touchend',  (e: any) => {
+  if (chart != 1) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '0.6';
+  } else if (chart == 1) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].addEventListener('touchmove',  (e: any) => {
+  if (chart != 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '1';
+  } 
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].addEventListener('touchend',  (e: any) => {
+  if (chart != 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
+  } else if (chart == 2) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].addEventListener('touchmove',  (e: any) => {
+  if (chart != 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].addEventListener('touchend',  (e: any) => {
+  if (chart != 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '0.6';
+  } else if (chart == 3) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[2].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].addEventListener('touchmove',  (e: any) => {
+  if (chart != 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].addEventListener('touchend',  (e: any) => {
+  if (chart != 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '0.6';
+  } else if (chart == 4) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[3].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].addEventListener('touchmove',  (e: any) => {
+  if (chart != 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
+  }
+}, false);
+
+this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].addEventListener('touchend',  (e: any) => {
+  if (chart != 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '0.6';
+  } else if (chart == 5) {
+    this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].style.opacity = '1';
+  }
+}, false);
   }
 
 }

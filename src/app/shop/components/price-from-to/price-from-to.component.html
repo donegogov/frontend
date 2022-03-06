@@ -7,8 +7,8 @@
 <mat-slider
   thumbLabel
   [displayWith]="formatLabel"
-  tickInterval="auto"
-  step="{{step}}"
+  tickInterval="10"
+  step="10"
   min="{{min}}"
   max="{{maxFrom}}"
   aria-label="units"
@@ -16,15 +16,15 @@
 </mat-slider>
 </div>
 
-    <div class="label-price">
+    <div class="label-price" style="order: 3 !important;">
     <mat-label>Price {{FromTo}}</mat-label>
 </div>
-<div class="price-slider">
-<mat-slider
+<div class="price-slider" style="order: 4 !important;">
+<mat-slider 
   thumbLabel
   [displayWith]="formatLabel"
-  tickInterval="auto"
-  step="{{step}}"
+  tickInterval="10"
+  step="10"
   min="{{minTo}}"
   max="{{max}}"
   aria-label="units"
@@ -49,7 +49,7 @@
     </div>
    
 </div>
-<div style="order: 3; align-self: flex-start;">
+<div style="order: 6; align-self: flex-start;">
 <h4>Products: {{productsInChart}} Price From {{fromPriceInChart}} PriceTo {{toPriceInChart}}</h4>
 </div>
 </div>
