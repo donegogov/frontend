@@ -183,7 +183,7 @@ body{
   height: 0px;
   border-style: solid;
   border-width: 25px 0 0 5px;
-  border-color: transparent transparent transparent #ff4747;
+  border-color: transparent transparent transparent #fafafa;
 }
 #cesta:before
 {
@@ -192,7 +192,7 @@ body{
   height: 0px;
   border-style: solid;
   border-width: 0 0 6px 25px;
-  border-color: transparent transparent #ff4747 transparent;
+  border-color: transparent transparent #fafafa transparent;
   position: absolute;
   bottom: 3px;
   right: 0px;
