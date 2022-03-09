@@ -93,7 +93,7 @@ body{
   height: 87px;
   border-radius: 6px;
   position: absolute;
-  z-index: 100000000000000000000000000000000000000;
+  z-index: 9999999999999999999999999999999999999999 !important;
 }
 .animElem
 {
