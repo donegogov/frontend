@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarouselComponent, OwlOptions, SlideModel, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
 import { ProductsForHomePageSlider } from 'src/app/shared/_models/products-for-home-page-slider';
@@ -89,7 +89,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
         console.log(this.scrHeight, this.scrWidth);
   }
 
-  constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService) {
+  constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService, private router: Router) {
     this.getScreenSize();
 
     if (this.scrWidth <= 993) {
@@ -247,7 +247,7 @@ getAnimation() {
 }
 
 addToCart() {
-  alert('Hello');
+  this.router.navigate(['/shop']);
 }
 
 prev() {
