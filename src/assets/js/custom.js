@@ -172,4 +172,4 @@ $( document ).ready(function() {
     $(".img-zoom-container").on("mouseout", function () {
         $(".menu").addClass('desktopTopFixed');
     });
-});  
+});
