@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { ProductsService } from 'src/app/shared/_services/products.service';
+declare function addToCart(): any;
 
 @Component({
   selector: 'app-top-selling-products',
@@ -48,6 +49,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   }
   innerWidth = 0;
   innerHeight = 0;
+  wishList: wishList[] = [];
 
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document) { 
@@ -70,6 +72,10 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
+        setTimeout(function(){
+          console.log('Timeout add to cart');
+          addToCart();
+        }, 100);
       }
     });
     this.innerWidth = window.innerWidth;
@@ -98,4 +104,31 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   this.isLoadedScript = false;
 }
 
+addToWishList(id: number) {
+  if (this.wishList.filter(w => w.ids == id).length > 0) {
+    //var index = this.wishList.ids.indexOf(id);
+    this.wishList.filter(w => w.ids == id)[0].wishList = !this.wishList.filter(w => w.ids == id)[0].wishList;
+  }
+  else {
+    this.wishList.push({ids: id, wishList: true});
+  }
 }
+
+wishListYn(id: number) {
+  /* console.log('this.wishList.filter(w => w.ids == id)');
+  console.log(this.wishList.filter(w => w.ids == id)); */
+  if (this.wishList.filter(w => w.ids == id).length > 0) {
+    return this.wishList.filter(w => w.ids == id)[0].wishList;
+  }
+  else {
+    return false;
+  }
+}
+
+}
+
+
+export interface wishList {
+  ids: number,
+  wishList: boolean
+};

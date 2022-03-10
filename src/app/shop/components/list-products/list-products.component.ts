@@ -53,6 +53,7 @@ categoryIdsGetData = false;
 priceFromToGetData = false;
 searchTearmGetData = false;
 initGetData = false;
+wishList: wishList[] = [];
 private _priceFromTo!: number[];
     
     @Input() set priceFromTo(value: number[]) {
@@ -161,6 +162,27 @@ getData() {
 ngAfterViewInit(): void {
 }
 
+addToWishList(id: number) {
+  if (this.wishList.filter(w => w.ids == id).length > 0) {
+    //var index = this.wishList.ids.indexOf(id);
+    this.wishList.filter(w => w.ids == id)[0].wishList = !this.wishList.filter(w => w.ids == id)[0].wishList;
+  }
+  else {
+    this.wishList.push({ids: id, wishList: true});
+  }
+}
+
+wishListYn(id: number) {
+  /* console.log('this.wishList.filter(w => w.ids == id)');
+  console.log(this.wishList.filter(w => w.ids == id)); */
+  if (this.wishList.filter(w => w.ids == id).length > 0) {
+    return this.wishList.filter(w => w.ids == id)[0].wishList;
+  }
+  else {
+    return false;
+  }
+}
+
 categoryChanged(categoryIds: number[]) {
   this.getData();
   console.log('Category changed ' + categoryIds);
@@ -196,3 +218,9 @@ this.isLoadedScript = false;
 }
 
 }
+
+
+export interface wishList {
+    ids: number,
+    wishList: boolean
+};
