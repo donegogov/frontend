@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="product-images">
+        <div class="product-images-grid">
+      <div class="main-image">
+        <div style="all: unset;" *ngFor="let image of product.images">
+          <img  src="{{image.src}}" width="600px" height="600px" *ngIf="image.position == 1"/>
+      </div>
+      </div>
+      <div class="images-thumbnails"  >
+          <div style="all: unset;" *ngFor="let image of product.images">
+        <img *ngIf="image.position != 1" src="{{image.src}}" width="100px" height="100px"/>
+      </div>
+    </div>
+</div>
+    </div>
+    <div class="product-details">
+  <h1>{{product.name}}</h1>
+  <h4>{{product.short_description}}</h4>
+  {{product.full_description}}
+  <ul>
+    <li></li>
+  </ul>
+  <ul>
+    <li></li>
+  </ul>
+  <button></button>
+    </div>
+  </div>

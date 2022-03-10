@@ -59,6 +59,10 @@ getForShopPageSearchProducts(limit: number, page: number, searchTearm: string, s
     + '&SearchFullDescription=' + search_full_description.toString() + '&' + categoryIds + 'PriceTo=' + price_to + '&PriceFrom=' + price_from);
 }
 
+getProductById(id: string) {
+    return this.http.get<any>(this.apiUrl + 'products/' + id);
+}
+
 changesearchProduct(products: ProductsForHomePageSearch[]) {
     this.searchProductChange.next(products);
 }

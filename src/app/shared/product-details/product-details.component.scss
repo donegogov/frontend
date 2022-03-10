@@ -1,0 +1,10 @@
+.images-thumbnails {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    @for $p from 1 through 6 {
+      &:nth-of-type(#{$p}) {
+        grid-column-start: #{$p};
+        grid-column-end: #{$p + 1};
+    }
+  }
+}

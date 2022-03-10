@@ -24,8 +24,10 @@
         />
         
         </div>
+        <a [routerLink]="['/shop/details/', product.id]" routerLinkActive="router-link-active" style="color: #fb0000; text-decoration: none;" >
         <h1 style="font-weight: 900;">{{product.name}}</h1>
         <h4 style="font-weight: 900;">{{product.short_description}}</h4>
+    </a>
         <div class="page-wrapper">
             <button id="addtocart" class="addtocart product-add-to-cart-button">
               Add to Cart

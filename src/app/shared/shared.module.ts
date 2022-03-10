@@ -22,6 +22,7 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
     FooterComponent,
     AnimatedShopComponent,
     MobileAppsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +65,7 @@ import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
     ReactiveFormsModule,
     AnimatedShopComponent,
     MobileAppsComponent,
+    ProductDetailsComponent
   ]
 })
 export class SharedModule { }
