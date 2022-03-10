@@ -70,7 +70,7 @@
     right:var(--overlayRight);
     top:var(--overlayTop);
     bottom:var(--overlayBottom);
-    z-index:1;
+    z-index:2022;
     display: none;
     visibility: hidden;
     border-radius: 30px;

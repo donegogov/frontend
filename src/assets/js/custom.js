@@ -190,8 +190,8 @@ function addToCart() {
   document.documentElement.style.setProperty('--y-cart', -button.offset().top + cart.offset().top + 'px');
   var cartTotal = cart.attr('data-totalitems');
   var newCartTotal = parseInt(cartTotal) + 1;
-  $(this).css('z-index', 90000000000000000);
-  $('.cart-item').css('z-index', 90000000000000000);
+  $(this).css('z-index', 2021);
+  $('.cart-item').css('z-index', 2021);
   button.addClass('sendtocart');
   setTimeout(function(){
     button.removeClass('sendtocart');
