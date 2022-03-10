@@ -8,6 +8,7 @@ import { SearchProductComponent } from './components/search-product/search-produ
 import { ShopTitleComponent } from './components/shop-title/shop-title.component';
 import { ShopProductsComponent } from './shop-products/shop-products.component';
 import { SharedModule } from '../shared/shared.module';
+import { ListProductsComponent } from './components/list-products/list-products.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     SearchProductComponent,
     SearchCategoriesComponent,
     PriceFromToComponent,
+    ListProductsComponent,
   ],
   imports: [
     ShopRoutingModule,

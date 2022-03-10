@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ProductsPricing } from 'src/app/shared/_models/products-pricing';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 
@@ -12,6 +12,8 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
   @Input()FromTo!: string;
   @Input()productsPricing!: ProductsPricing[];
   @ViewChild('sliderChartContainer', { static: true }) sliderChartContainer!: ElementRef;
+  @ViewChild('sliderFrom', { static: true }) sliderFrom!: ElementRef;
+  @ViewChild('sliderTo', { static: true }) sliderTo!: ElementRef;
   tickInterval = 0
   step = 0;
   min = 0;
@@ -26,6 +28,9 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
   productsInChart = 0;
   fromPriceInChart = 0;
   toPriceInChart = 0;
+  priceFrom = 0;
+  priceTo = 0;
+  @Output() onPricePicked = new EventEmitter<any>();
 
   constructor(private productService: ProductsService) { }
 
@@ -41,13 +46,18 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
       return Math.round(value / 1);
   }
 
-  matValue(event: any, fromTo: boolean) {
+  matValue(event: any, fromTo: boolean, sliderFromToValue: any) {
     if (fromTo) {
       this.maxFrom = event.value;
+      this.priceTo = event.value;
+      this.priceFrom = sliderFromToValue;
     } else if (!fromTo) {
+      this.priceFrom = event.value;
       this.minTo = event.value;
+      this.priceTo = sliderFromToValue;
     }
-    console.log(event.value);
+    this.pickPrice(this.priceFrom, this.priceTo);
+    console.log(event.value + ' fromTo= ' + this.priceFrom + ' ' + this.priceTo);
   }
 
   getMinValue() {
@@ -141,6 +151,9 @@ export class PriceFromToComponent implements OnInit, AfterViewInit {
   }
 
   setChartStyles(event: any, chart: number) {
+    //set price from and to then apply styles
+    this.setPriceFromTo();
+
     if (chart == 1) {
       this.sliderChartContainer.nativeElement.getElementsByTagName('div')[0].style.opacity = '1';
       this.sliderChartContainer.nativeElement.getElementsByTagName('div')[1].style.opacity = '0.6';
@@ -315,5 +328,17 @@ this.sliderChartContainer.nativeElement.getElementsByTagName('div')[4].addEventL
   }
 }, false);
   }
+
+  setPriceFromTo() {
+    this.priceFrom = this.fromPriceInChart;
+    this.priceTo = this.toPriceInChart;
+    console.log('fromTo= ' + this.priceFrom + ' ' + this.priceTo);
+    this.pickPrice(this.priceFrom, this.priceTo);
+  }
+
+  public pickPrice(from: any, to: any): void {
+    var priceFromTo: number[] = [from, to];
+    this.onPricePicked.emit(priceFromTo);
+}
 
 }

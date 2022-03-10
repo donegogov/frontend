@@ -11,6 +11,9 @@ export class ShopProductsComponent implements OnInit {
   From = 'From';
   To = 'To';
   productPricing!: ProductsPricing[];
+  categoryIds: number[] = [];
+  searchTearms: string[] = [];
+  priceFromTo: number[] = [];
 
   constructor(private route: ActivatedRoute) { }
 
@@ -21,5 +24,21 @@ export class ShopProductsComponent implements OnInit {
       this.productPricing = data['productPricing'].products;
     });
   }
+
+  public categoryPicked(categoryIds: number[]):void {
+    this.categoryIds = categoryIds;
+    console.log('Picked categories: ', categoryIds.toString());
+  }
+
+  public searchTearmPicked(searchTearms: string[]):void {
+    this.searchTearms = searchTearms;
+    console.log('Picked search tearms: ', searchTearms.toString());
+  }
+
+  public pricePicked(priceFromTo: number[]):void {
+    this.priceFromTo = priceFromTo;
+    console.log('Picked price: ', priceFromTo.toString());
+  }
+
 
 }

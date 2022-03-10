@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent} from '@angular/material/chips';
@@ -49,26 +49,32 @@ categoryControl = new FormControl([]);
   inputText: string = '';
   @ViewChild("chipList", { static: true })
   input!: ElementRef;
-
-
-
-
-
+  matChipList: any;
 @ViewChild('categoryInput') categoryInput!: ElementRef;
+@Output() onCategoryPicked = new EventEmitter<any>();
 
 constructor(private categorySearvice: CategoryService,
   private route: ActivatedRoute) {  
 }
 
-
-
-
-
-
 onCategoryRemoved(category: string) {
   const categories = this.categoryControl.value as string[];
   this.removeFirst(categories, category);
   this.categoryControl.setValue(categories); // To trigger change detection
+  console.log('this.matChipList');
+  console.log(this.categoryControl.value);
+}
+
+categoryControlModelChanged(event: any) {
+  var categoryIds: number[] = [];
+  this.allSearchCategories.forEach((element, i) => {
+    if (this.categoryControl.value.indexOf(element.name) >= 0) {
+      categoryIds.push(element.id);
+    }
+  });
+  console.log(this.categoryControl.value);
+  console.log(categoryIds.toString());
+  this.onCategoryPicked.emit(categoryIds);
 }
 
 private removeFirst<T>(array: T[], toRemove: T): void {

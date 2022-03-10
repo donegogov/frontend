@@ -9,16 +9,20 @@
                     </section>
                     
                     <div style="width: 100%; margin-top: 20px !important; padding: 0px !important;">
-                      <app-search-product></app-search-product>
+                      <app-search-product (onSearchTearmPicked)="searchTearmPicked($event)"></app-search-product>
                     </div>
                     
                     
                     <div style="width: 100%; margin-top: 20px !important; padding: 0px !important;">
-                      <app-search-categories></app-search-categories>
+                      <app-search-categories (onCategoryPicked)="categoryPicked($event)"></app-search-categories>
                     </div>
 
                     <div style="width: 100%; margin-top: 20px !important; padding: 0px !important;">
-                      <app-price-from-to [FromTo]="From" [productsPricing]="productPricing"></app-price-from-to>
+                      <app-price-from-to (onPricePicked)="pricePicked($event)" [FromTo]="From" [productsPricing]="productPricing"></app-price-from-to>
+                    </div>
+
+                    <div style="width: 100%; margin-top: 0px !important; padding: 0px !important;">
+                      <app-list-products [categoryIds]="categoryIds" [priceFromTo]="priceFromTo" [searchTearms]="searchTearms"></app-list-products>
                     </div>
                   </div>
               </div>

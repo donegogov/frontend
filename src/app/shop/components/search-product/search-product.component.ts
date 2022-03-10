@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent} from '@angular/material/chips';
@@ -49,6 +49,7 @@ export class SearchProductComponent implements OnInit {
   filteredProducts!: Observable<ProductsForHomePageSearch[]>;
 
   @ViewChild('productInput') productInput!: ElementRef;
+  @Output() onSearchTearmPicked = new EventEmitter<any>();
 
   constructor(private productsService: ProductsService,
     private route: ActivatedRoute) {
@@ -89,6 +90,7 @@ export class SearchProductComponent implements OnInit {
     // Add our fruit
     if ((productName || '').trim()) {
       this.searchProduct.push(productName);
+      this.emitSearchTearm();
       /* this.searchProduct.forEach((element, i) => {
         if (productName == element.name) {
           this.searchProduct.push(element);
@@ -116,10 +118,15 @@ export class SearchProductComponent implements OnInit {
     
     if ((productName || '').trim()) {
       this.searchProduct.push(productName);
+      this.emitSearchTearm();
     }
     this.productInput.nativeElement.value = '';
     this.productCtrl.setValue(null);
   }
+
+  public emitSearchTearm(): void {
+    this.onSearchTearmPicked.emit(this.searchProduct);
+}
 
 
 }

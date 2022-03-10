@@ -5,14 +5,14 @@
 </div>
 <div class="price-slider">
 <mat-slider
-  thumbLabel
+  thumbLabel #sliderFrom
   [displayWith]="formatLabel"
   tickInterval="10"
   step="10"
   min="{{min}}"
   max="{{maxFrom}}"
   aria-label="units"
-  (change)="matValue($event, false)">
+  (change)="matValue($event, false, sliderTo.value)">
 </mat-slider>
 </div>
 
@@ -20,7 +20,7 @@
     <mat-label>Price {{FromTo}}</mat-label>
 </div>
 <div class="price-slider" style="order: 4 !important;">
-<mat-slider 
+<mat-slider #sliderTo
   thumbLabel
   [displayWith]="formatLabel"
   tickInterval="10"
@@ -28,7 +28,7 @@
   min="{{minTo}}"
   max="{{max}}"
   aria-label="units"
-  (change)="matValue($event, true)">
+  (change)="matValue($event, true, sliderFrom.value)">
 </mat-slider>
 </div>
 <div class="slider-chart" #sliderChartContainer>

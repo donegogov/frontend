@@ -34,7 +34,7 @@ getHomePageSliderProducts(limit: number, page: number) {
 getSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean, search_full_description: boolean) : Observable<ProductSearchAsRootObject> {
     return this.http.get<ProductSearchAsRootObject>(this.apiUrl + 'search-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
     + '&SearchTearm=' + searchTearm + '&SearchName=' + search_name.toString() + '&SearchShortDescription=' + search_short_description.toString()
-    + '&SearchFullDescription=' + search_short_description.toString());
+    + '&SearchFullDescription=' + search_full_description.toString());
 }
 
 getTopSellingProducts(limit: number, page: number, productsToReturn: number) {
@@ -43,6 +43,20 @@ getTopSellingProducts(limit: number, page: number, productsToReturn: number) {
 
 getPrices(limit: number = 250, page: number = 1) {
     return this.http.get<ProductsPricingAsRootObject>(this.apiUrl + 'price-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString());
+}
+
+getForShopPageSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean,
+     search_full_description: boolean, price_from: number = 0, price_to: number = 0,
+     category_ids: number[]) : Observable<ProductTopSellingAsRootObject> {
+
+        var categoryIds = '';
+        category_ids.forEach((element, i) => {
+            categoryIds += 'CategoryIds=' + element.toString() + '&';
+        });
+
+    return this.http.get<ProductTopSellingAsRootObject>(this.apiUrl + 'search-tearm-price-category-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
+    + '&SearchTearm=' + searchTearm + '&SearchName=' + search_name.toString() + '&SearchShortDescription=' + search_short_description.toString()
+    + '&SearchFullDescription=' + search_full_description.toString() + '&' + categoryIds + 'PriceTo=' + price_to + '&PriceFrom=' + price_from);
 }
 
 changesearchProduct(products: ProductsForHomePageSearch[]) {

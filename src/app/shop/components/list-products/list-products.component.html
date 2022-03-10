@@ -1,0 +1,36 @@
+<div style="display: flex; flex-direction: row; align-items: center; align-content: center; justify-content: center; margin-bottom: 50px;">
+    
+    <div class="fire" style="order: 1; margin-right: 0;">
+        <div *ngFor="let item of numbers" class="particle"></div>
+    </div>
+
+<div style="order: 2;">
+<h1 class="hot-products">SHOP</h1>
+</div>
+
+    <div style="order: 3; margin-left: 0;" class="fire" >
+        <div *ngFor="let item of numbers" class="particle"></div>
+        </div>
+</div>
+
+<section class="top-selling-section">
+<article (mouseenter)="showZoom=true" class="product-article" *ngFor="let product of topSellingProducts">
+<div class="img-zoom-container" style="min-width: 100%;">
+<img id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}"      
+onmouseenter="zoomIn(event)"
+/>
+
+<img id="imgZoom{{product.id}}result" class="img-zoom-result overlay" style="width: 100%;  height: 100%;"
+/>
+
+</div>
+<h1 style="font-weight: 900;">{{product.name}}</h1>
+<h4 style="font-weight: 900;">{{product.short_description}}</h4>
+<div class="page-wrapper">
+    <button id="addtocart" class="addtocart product-add-to-cart-button">
+      Add to Cart
+      <div style="font-family: 'Soria', serif;" class="cart-item"></div>
+    </button>
+  </div>
+</article>
+</section>

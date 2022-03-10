@@ -173,3 +173,37 @@ $( document ).ready(function() {
         $(".menu").addClass('desktopTopFixed');
     });
 });
+
+
+function addToCart() {
+  console.log('Add To Cart Shop Page');
+  var addToCart = $('.addtocart');
+  console.log(addToCart);
+  $('.addtocart').each(function(i, element) {
+      
+      console.log(element);
+      $(this).on('click',function(){
+  console.log('Add To Cart');
+  var button = $(this);
+  var cart = $('#cart');
+  console.log(cart.offset().top);
+  document.documentElement.style.setProperty('--y-cart', -button.offset().top + cart.offset().top + 'px');
+  var cartTotal = cart.attr('data-totalitems');
+  var newCartTotal = parseInt(cartTotal) + 1;
+  $(this).css('z-index', 90000000000000000);
+  $('.cart-item').css('z-index', 90000000000000000);
+  button.addClass('sendtocart');
+  setTimeout(function(){
+    button.removeClass('sendtocart');
+    cart.addClass('shake').attr('data-totalitems', newCartTotal);
+    $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
+    setTimeout(function(){
+      cart.removeClass('shake');
+    },500)
+    setTimeout(function(){
+      $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
+    },1000)
+  },1000)
+})
+})
+};
