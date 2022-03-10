@@ -10,6 +10,7 @@ import { ProductsTopSelling } from '../_models/products-top-selling';
 import { ProductTopSellingAsRootObject } from '../_models/products-top-selling-as-root-object';
 import { ProductsPricingAsRootObject } from '../_models/products-pricing-as-root-object';
 import { ProductsPricing } from '../_models/products-pricing';
+import { ListProductAsRootObject } from '../_models/list-products-as-root-object';
 
 
 @Injectable()
@@ -47,14 +48,14 @@ getPrices(limit: number = 250, page: number = 1) {
 
 getForShopPageSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean,
      search_full_description: boolean, price_from: number = 0, price_to: number = 0,
-     category_ids: number[]) : Observable<ProductTopSellingAsRootObject> {
+     category_ids: number[]) : Observable<ListProductAsRootObject> {
 
         var categoryIds = '';
         category_ids.forEach((element, i) => {
             categoryIds += 'CategoryIds=' + element.toString() + '&';
         });
 
-    return this.http.get<ProductTopSellingAsRootObject>(this.apiUrl + 'search-tearm-price-category-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
+    return this.http.get<ListProductAsRootObject>(this.apiUrl + 'search-tearm-price-category-products' + '?limit=' + limit.toString() + '&page=' + page.toString()
     + '&SearchTearm=' + searchTearm + '&SearchName=' + search_name.toString() + '&SearchShortDescription=' + search_short_description.toString()
     + '&SearchFullDescription=' + search_full_description.toString() + '&' + categoryIds + 'PriceTo=' + price_to + '&PriceFrom=' + price_from);
 }

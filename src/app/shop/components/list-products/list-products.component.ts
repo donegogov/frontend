@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { ListProducts } from 'src/app/shared/_models/list-products';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 declare function addToCart(): any;
@@ -10,7 +11,7 @@ declare function addToCart(): any;
   styleUrls: ['./list-products.component.css', './list-products.component.scss']
 })
 export class ListProductsComponent implements OnInit {
-  topSellingProducts: ProductsTopSelling[] = 
+  topSellingProducts: ListProducts[] = 
   [
   {
       id: 0,

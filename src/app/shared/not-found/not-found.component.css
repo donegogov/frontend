@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+  }
+  .not-found-container {
+    width: 100%;
+    min-height: 100%;
+    background: transparent;
+    margin: 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 0.5em;
+    overflow: auto;
+    margin-top: 40px;
+  }
+  
+  canvas {
+    max-width: calc(100vw - 2em);
+    max-height: calc(100vh - 2em);
+  /*   border: 1px solid white; */
+    align-self: center;
+    cursor: move;
+  }
