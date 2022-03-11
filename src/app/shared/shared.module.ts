@@ -43,7 +43,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
   providers: [
     HomePageSliderResolver,
     ProductsService,
-    HttpClient,
     SearchProductResolver,
     PriceFromToResolver
   ],
@@ -57,7 +56,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     MatSliderModule,
     MatChipsModule,
-    HttpClientModule,
     MatIconModule,
     MatCheckboxModule,
     CarouselModule,
