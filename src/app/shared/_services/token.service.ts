@@ -29,7 +29,7 @@ export class TokenService {
       if (data) {
         console.log('TOKEN TOKEN TOKEN TOKEN TOKEN TOKEN TOKEN');
         console.log(data);
-        localStorage.setItem('token', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(data));
         this.setCurrentUser(data);
       }
     }
