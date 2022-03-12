@@ -1,22 +1,24 @@
 <div class="container">
-    <div class="product-images">
-        <div class="product-images-grid">
-      <div class="main-image">
+    <div class="product-images" style="margin: 0; padding: 0;">
+        <div class="product-images-grid" style="margin: 0; padding: 0;">
+      <div class="main-image" style="margin: 0; padding: 0;">
         <div style="all: unset;" *ngFor="let image of product.images">
-          <img  src="{{image.src}}" width="600px" height="600px" *ngIf="image.position == 1"/>
+          <img style="margin: 0; padding: 0;" class="mainImg"
+          (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')" id="myImg" [style.width.px]="mainImageWidth" src="{{image.src}}" *ngIf="image.position == showImageByPosition"/>
       </div>
       </div>
-      <div class="images-thumbnails"  >
-          <div style="all: unset;" *ngFor="let image of product.images">
-        <img src="{{image.src}}" width="100px" height="100px"/>
+      <div class="images-thumbnails" *ngIf="!mobile">
+          <div class="thumbnail" *ngFor="let image of product.images" style="float: left;">
+        <img (click)="changeMainImg(image.position)" src="{{image.src}}" width="100px" height="100px"/>
       </div>
     </div>
 </div>
     </div>
-    <div class="product-details">
+    <div class="product-details" style="padding-left: 10px; padding-right: 10px; font-weight: 900;">
   <h1>{{product.name}}</h1>
   <h2>{{product.full_description}}</h2>
-  <div *ngFor="let attribute of product.attributes">
+  
+  <div *ngFor="let attribute of product.attributes" style="margin-left: 10px;">
 
     <!-- if attribute is dropdownlist -->
     <div *ngIf="attribute.attribute_control_type_name == 'DropdownList'">
@@ -56,7 +58,25 @@
       <img style="width: 100px; height: 100px; border-radius: 10px; border: 1px solid #fb0000; margin: 5px; float: left;" 
       src="{{attributeValue.image_squares_image.src}}"/>
     </div>
-    </div>
-
+    </div>  
+    
   </div>
+  
+</div>
+<div>
+  <input style="width: 100px; margin-left: 10px;" matInput type="number" placeholder="Quantity" value="1" min="1">
+</div>
+</div>
+  <!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="mobile" style="margin-top: 85px; z-index: 9999999999999;">
+
+  <!-- The Close Button -->
+  <span style="z-index: 999999999999;" class="close" (click)="modalClose()">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img #imgMobileSlider style="z-index: 999999999999;" class="modal-content" id="img01" (click)="doubleTap($event)">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
  

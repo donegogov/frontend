@@ -57,7 +57,7 @@
   }
   
   .fa:hover {
-      opacity: 0.7;
+      opacity: 0.8;
   }
   
   .fa-facebook {
@@ -102,10 +102,5 @@
     .footer-items::after {
       width: 90vw;
     }
-    .fa {
-        padding: 10px;
-        font-size: 20px;
-        width: 40px;
-      }
 }
 /*! purgecss end ignore */

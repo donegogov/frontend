@@ -1,10 +1,9 @@
-.images-thumbnails {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    @for $p from 1 through 6 {
-      &:nth-of-type(#{$p}) {
-        grid-column-start: #{$p};
-        grid-column-end: #{$p + 1};
-    }
-  }
+/*! purgecss start ignore */
+@media (min-width: 993px) { 
+@for $p from 1 through 6 {
+  .thumbnail:nth-of-type(#{$p}) {
+    order: #{$p};
 }
+}
+}
+/*! purgecss end ignore */
