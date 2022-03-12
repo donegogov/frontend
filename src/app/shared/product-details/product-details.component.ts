@@ -1,12 +1,24 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../_services/products.service';
+import { SwiperComponent } from "swiper/angular";
+
+// import Swiper core and required modules
+import SwiperCore, { EffectCreative, Lazy, Pagination, Zoom } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
+
 declare function productDetailsModal(): any;
+declare function zoomInProductDetails(event: any, position: any): any;
+declare function productDetailsTopMenuRemove(): any;
+declare function productDetailsTopMenuAdd(): any;
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css', './product-details.component.scss']
+  styleUrls: ['./product-details.component.css', './product-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('imgMobileSlider') imgMobileSlider!: ElementRef;
@@ -22,6 +34,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   secondTap: number = 0
   imageScaled = false;
   changeImg = false;
+  imgThumbnailPrev!: HTMLImageElement;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -54,8 +67,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     
     if (this.mobile) {
-      productDetailsModal();
+      //productDetailsModal();
     }
+    productDetailsTopMenuRemove();
   }
 
   ngOnInit(): void {
@@ -76,6 +90,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   ngOnDestroy() {
     localStorage.setItem('reload', 'true');
+    productDetailsTopMenuAdd();
   }
 
   doubleTap(event: any) {
@@ -104,7 +119,15 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.secondTap = 0;
   }
 
-  changeMainImg(imagePosition: number) {
+  changeMainImg(imagePosition: number, imgThumbnail: HTMLImageElement) {
+    if (this.imgThumbnailPrev == undefined || this.imgThumbnailPrev == null) {
+      imgThumbnail.style.border = '4px solid #fb0000';
+      this.imgThumbnailPrev = imgThumbnail;
+    } else if (this.imgThumbnailPrev != imgThumbnail) {
+      imgThumbnail.style.border = '4px solid #fb0000';
+      this.imgThumbnailPrev.style.border = 'none';
+      this.imgThumbnailPrev = imgThumbnail;
+    }
     this.showImageByPosition = imagePosition;
     console.log('this.product.images');
     console.log(this.product.images);
@@ -141,6 +164,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
           }
       }
     }
+  }
+
+  zoomInProductDetails(imgZoom: any, imgZoomResult: any) {
+    zoomInProductDetails(imgZoom, imgZoomResult);
   }
 
 }

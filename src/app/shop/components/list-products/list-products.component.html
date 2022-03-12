@@ -1,42 +1,39 @@
 <div style="display: flex; flex-direction: row; align-items: center; align-content: center; justify-content: center; margin-bottom: 50px;">
-    
+
     <div class="fire" style="order: 1; margin-right: 0;">
         <div *ngFor="let item of numbers" class="particle"></div>
     </div>
 
-<div style="order: 2;">
-<h1 class="hot-products">SHOP</h1>
-</div>
+    <div style="order: 2;">
+        <h1 class="hot-products">SHOP</h1>
+    </div>
 
-    <div style="order: 3; margin-left: 0;" class="fire" >
+    <div style="order: 3; margin-left: 0;" class="fire">
         <div *ngFor="let item of numbers" class="particle"></div>
-        </div>
+    </div>
 </div>
 
 <section class="top-selling-section">
-<article (mouseenter)="showZoom=true" class="product-article" *ngFor="let product of topSellingProducts">
-<div class="img-zoom-container" style="min-width: 100%;">
-<img id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}"      
-onmouseenter="zoomIn(event)"
-/>
+    <article (mouseenter)="showZoom=true" class="product-article" *ngFor="let product of topSellingProducts">
+        <div class="img-zoom-container" style="min-width: 100%;">
+            <img id="imgZoom{{product.id}}" class="product-img" src="{{product.images[0].src}}" onmouseenter="zoomIn(event)" />
 
-<img id="imgZoom{{product.id}}result" class="img-zoom-result overlay" style="width: 100%;  height: 100%;"
-/>
+            <img id="imgZoom{{product.id}}result" class="img-zoom-result overlay" style="width: 100%;  height: 100%;" />
 
-</div>
-<a [routerLink]="['/shop/details/', product.id]" routerLinkActive="router-link-active" style="color: #fb0000; text-decoration: none;" >
-<h1 style="font-weight: 900;">{{product.name}}</h1>
-<h4 style="font-weight: 900;">{{product.short_description}}</h4>
-</a>
-<div class="page-wrapper" style="padding: 0px !important;">
-    <button id="addtocart" class="addtocart product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-      <div style="font-family: 'Soria', serif;" class="cart-item"></div>
-    </button>
-    <button class="product-add-to-cart-button" (click)="addToWishList(product.id)" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
-        <i *ngIf="wishListYn(product.id)" class="fa fa-heart" aria-hidden="true"></i>
-        <i *ngIf="!wishListYn(product.id)" class="fa fa-heart-o" aria-hidden="true"></i>
-    </button>
-  </div>
-</article>
+        </div>
+        <a [routerLink]="['/shop/details/', product.id]" routerLinkActive="router-link-active" style="color: #fb0000; text-decoration: none;">
+            <h1 style="font-weight: 900;">{{product.name}}</h1>
+            <h4 style="font-weight: 900;">{{product.short_description}}</h4>
+        </a>
+        <div class="page-wrapper" style="padding: 0px !important;">
+            <button id="addtocart" class="addtocart product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <div style="font-family: 'Soria', serif;" class="cart-item"></div>
+        </button>
+            <button class="product-add-to-cart-button" (click)="addToWishList(product.id)" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
+            <i *ngIf="wishListYn(product.id)" class="fa fa-heart" aria-hidden="true"></i>
+            <i *ngIf="!wishListYn(product.id)" class="fa fa-heart-o" aria-hidden="true"></i>
+        </button>
+        </div>
+    </article>
 </section>

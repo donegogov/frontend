@@ -10,7 +10,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSliderModule} from '@angular/material/slider'; 
 import {MatRadioModule} from '@angular/material/radio'; 
-import { SwiperModule } from 'swiper/angular';
+import { SwiperModule } from "swiper/angular";
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
@@ -19,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HomePageSliderResolver } from './_resolvers/home-page-slider.resolver';
 import { ProductsService } from './_services/products.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';

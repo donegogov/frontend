@@ -1,9 +1,19 @@
 /*! purgecss start ignore */
-@media (min-width: 993px) { 
-@for $p from 1 through 6 {
-  .thumbnail:nth-of-type(#{$p}) {
-    order: #{$p};
+
+@media (min-width: 993px) {
+    @for $p from 1 through 6 {
+        .thumbnail:nth-of-type(#{$p}) {
+            order: #{$p};
+        }
+    }
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        overflow: hidden;
+    }
 }
-}
-}
+
+
 /*! purgecss end ignore */

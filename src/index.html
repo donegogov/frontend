@@ -1,238 +1,252 @@
 <!doctype html>
 <html lang="mk">
+
 <head>
-  <meta charset="utf-8">
-  <base href="/">
-  <title>Солидарност.мк</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <base href="/">
+    <title>Солидарност.мк</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+
 <body>
-  <app-root>
-  </app-root>
+    <app-root>
+    </app-root>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script>
-  setTimeout(function() {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function() {
+            setTimeout(function() {
+                if (window.location.href.indexOf("shop") > -1) {
+                    const menuItems = menu.querySelectorAll(".menu__item");
+                    clickItem(menuItems[1], 1);
+                }
+            }, 100);
 
-  
-/* function magic_menu() { */
-    const body = document.body;
-const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
-const menu = body.querySelector(".menu");
-const menuItems = menu.querySelectorAll(".menu__item");
-const menuBorder = menu.querySelector(".menu__border");
-let activeItem = menu.querySelector(".active");
+            /* function magic_menu() { */
+            const body = document.body;
+            const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
+            const menu = body.querySelector(".menu");
+            const menuItems = menu.querySelectorAll(".menu__item");
+            const menuBorder = menu.querySelector(".menu__border");
+            let activeItem = menu.querySelector(".active");
 
-function clickItem(item, index) {
+            function clickItem(item, index) {
 
-menu.style.removeProperty("--timeOut");
+                menu.style.removeProperty("--timeOut");
 
-if (activeItem == item) return;
+                if (activeItem == item) return;
 
-if (activeItem) {
-    activeItem.classList.remove("active");
-}
-
-
-item.classList.add("active");
-body.style.backgroundColor = bgColorsBody[index];
-activeItem = item;
-offsetMenuBorder(activeItem, menuBorder);
-
-
-}
-
-function offsetMenuBorder(element, menuBorder) {
-
-/* const offsetActiveItem = element.getBoundingClientRect();
-const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
-menuBorder.style.transform = `translate3d(${left}, 0 , 0)`; */
-
-const offsetActiveItem = element.getBoundingClientRect();
-    const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
-    /* const top = (menu.offsetTop + menu.offsetHeight) + 'px';
-    console.log(top); */
-    menuBorder.style.transform = `translate3d(${left}, 0, 0)`
-    menuBorder.style.transform += `rotate(180deg)`;
-    /* menuBorder.style.marginTop = (menu.offsetTop + menu.offsetHeight);
-    console.log('menu height ' + menu.offsetHeight);
-    console.log('offset top ' + menu.offsetTop); */
-
-}
-
-offsetMenuBorder(activeItem, menuBorder);
-
-menuItems.forEach((item, index) => {
-
-item.addEventListener("click", () => clickItem(item, index));
-
-})
-
-window.addEventListener("resize", () => {
-offsetMenuBorder(activeItem, menuBorder);
-menu.style.setProperty("--timeOut", "none");
-});
+                if (activeItem) {
+                    activeItem.classList.remove("active");
+                }
 
 
-function clickLeftArrow(leftArrow) {
-if(!leftArrow.classList.contains('rotate-left-anim-wrapper')){
-leftArrow.classList.add('rotate-left-anim-wrapper');
-} else {
-leftArrow.classList.remove('rotate-left-anim-wrapper');
-// Add it back after 3 seconds;
-setTimeout(function(){
-    leftArrow.classList.add('rotate-left-anim-wrapper');
-}, 100);
-}
-}
-
-function clickRightArrow(rightArrow) {
-if(!rightArrow.classList.contains('rotate-right-anim-wrapper')){
-    rightArrow.classList.add('rotate-right-anim-wrapper');
-} else {
-rightArrow.classList.remove('rotate-right-anim-wrapper');
-// Add it back after 3 seconds;
-setTimeout(function(){
-    rightArrow.classList.add('rotate-right-anim-wrapper');
-}, 100);
-}
-}
-
-var leftArrow = body.querySelector('.left');
-console.log(leftArrow);
-leftArrow.addEventListener("click", () => clickLeftArrow(leftArrow));
-
-var rightArrow = body.querySelector('.right');
-rightArrow.addEventListener("click", () => clickRightArrow(rightArrow));
-}, 600);
+                item.classList.add("active");
+                body.style.backgroundColor = bgColorsBody[index];
+                activeItem = item;
+                offsetMenuBorder(activeItem, menuBorder);
 
 
-$( document ).ready(function() {
-        var scrollFlag = true;
-        // sticky header
-        function stickyHeader() {
-                        // variable
-                        var $window = $(window);
-                            
-                            scrollFlagMobile = true;
-                            // off the scroll
-                            $window.off('scroll');
-                            // check if the sticky header true
-                                // scroll function
-                                $window.on('scroll', function () {
-                                  menu = document.getElementsByClassName("menu")[0];
-                                  console.log(menu.offsetTop);
-                                  console.log(window.pageYOffset);
-                                  if (window.pageYOffset >= (menu.offsetTop + menu.offsetHeight)) {
-                                        // check if flag true
-                                        if (scrollFlag === true) {
-                                            // fade out
-                                            $(".menu").fadeOut(200, function () {
-                                                // add class and fade in
-                                                $(".menu").addClass('desktopTopFixed').fadeIn(200);
-                                            });
-                                            // scroll flag false
-                                            scrollFlag = false;
-                                        }
-                                    } else {
-                                        // check if flag false
-                                        if (scrollFlag === false) {
-                                            // fade out
-                                            $(".menu").fadeOut(200, function () {
-                                                // add class and fade in
-                                                $(".menu").removeClass('desktopTopFixed').fadeIn(200);
-                                            });
-                                            // scroll flag true
-                                            scrollFlag = true;
-                                        }
-                                    }
-                                });
-                            };
-    
-    
-    
-    
-    
-        document.addEventListener('scroll', function(e){
-          stickyHeader();
-         }, true);
-        
-         var matSelectOffsetHeight = document.getElementById("home-city");
-         console.log('matSelectOffsetHeight' + matSelectOffsetHeight);
-         document.documentElement.style.setProperty('--selectPanelCityMargin', matSelectOffsetHeight + 'px'); //suffix may be px or ''
-    
-    
+            }
+
+            function offsetMenuBorder(element, menuBorder) {
+
+                /* const offsetActiveItem = element.getBoundingClientRect();
+                const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth  - offsetActiveItem.width) / 2) +  "px";
+                menuBorder.style.transform = `translate3d(${left}, 0 , 0)`; */
+
+                const offsetActiveItem = element.getBoundingClientRect();
+                const left = Math.floor(offsetActiveItem.left - menu.offsetLeft - (menuBorder.offsetWidth - offsetActiveItem.width) / 2) + "px";
+                /* const top = (menu.offsetTop + menu.offsetHeight) + 'px';
+                console.log(top); */
+                menuBorder.style.transform = `translate3d(${left}, 0, 0)`
+                menuBorder.style.transform += `rotate(180deg)`;
+                /* menuBorder.style.marginTop = (menu.offsetTop + menu.offsetHeight);
+                console.log('menu height ' + menu.offsetHeight);
+                console.log('offset top ' + menu.offsetTop); */
+
+            }
+
+            offsetMenuBorder(activeItem, menuBorder);
+
+            menuItems.forEach((item, index) => {
+
+                item.addEventListener("click", () => clickItem(item, index));
+
+            })
+
+            window.addEventListener("resize", () => {
+                offsetMenuBorder(activeItem, menuBorder);
+                menu.style.setProperty("--timeOut", "none");
+            });
+
+
+            function clickLeftArrow(leftArrow) {
+                if (!leftArrow.classList.contains('rotate-left-anim-wrapper')) {
+                    leftArrow.classList.add('rotate-left-anim-wrapper');
+                } else {
+                    leftArrow.classList.remove('rotate-left-anim-wrapper');
+                    // Add it back after 3 seconds;
+                    setTimeout(function() {
+                        leftArrow.classList.add('rotate-left-anim-wrapper');
+                    }, 100);
+                }
+            }
+
+            function clickRightArrow(rightArrow) {
+                if (!rightArrow.classList.contains('rotate-right-anim-wrapper')) {
+                    rightArrow.classList.add('rotate-right-anim-wrapper');
+                } else {
+                    rightArrow.classList.remove('rotate-right-anim-wrapper');
+                    // Add it back after 3 seconds;
+                    setTimeout(function() {
+                        rightArrow.classList.add('rotate-right-anim-wrapper');
+                    }, 100);
+                }
+            }
+
+            var leftArrow = body.querySelector('.left');
+            console.log(leftArrow);
+            leftArrow.addEventListener("click", () => clickLeftArrow(leftArrow));
+
+            var rightArrow = body.querySelector('.right');
+            rightArrow.addEventListener("click", () => clickRightArrow(rightArrow));
+        }, 600);
+
+
+        $(document).ready(function() {
+            var scrollFlag = true;
+            // sticky header
+            function stickyHeader() {
+                // variable
+                var $window = $(window);
+
+                scrollFlagMobile = true;
+                // off the scroll
+                $window.off('scroll');
+                // check if the sticky header true
+                // scroll function
+                $window.on('scroll', function() {
+                    menu = document.getElementsByClassName("menu")[0];
+                    console.log(menu.offsetTop);
+                    console.log(window.pageYOffset);
+                    if (window.pageYOffset >= (menu.offsetTop + menu.offsetHeight)) {
+                        // check if flag true
+                        if (scrollFlag === true) {
+                            // fade out
+                            $(".menu").fadeOut(200, function() {
+                                // add class and fade in
+                                $(".menu").addClass('desktopTopFixed').fadeIn(200);
+                            });
+                            // scroll flag false
+                            scrollFlag = false;
+                        }
+                    } else {
+                        // check if flag false
+                        if (scrollFlag === false) {
+                            // fade out
+                            $(".menu").fadeOut(200, function() {
+                                // add class and fade in
+                                $(".menu").removeClass('desktopTopFixed').fadeIn(200);
+                            });
+                            // scroll flag true
+                            scrollFlag = true;
+                        }
+                    }
+                });
+            };
+
+
+
+
+
+            document.addEventListener('scroll', function(e) {
+                stickyHeader();
+            }, true);
+
+            var matSelectOffsetHeight = document.getElementById("home-city");
+            console.log('matSelectOffsetHeight' + matSelectOffsetHeight);
+            document.documentElement.style.setProperty('--selectPanelCityMargin', matSelectOffsetHeight + 'px'); //suffix may be px or ''
+
+
         });
 
 
-$( document ).ready(function() {
-        jQuery.event.special.touchstart = {
-        setup: function( _, ns, handle ) {
-            this.addEventListener("touchstart", handle, { passive: true });
-        }
-    };
-    jQuery.event.special.touchmove = {
-        setup: function( _, ns, handle ) {
-            this.addEventListener("touchmove", handle, { passive: true });
-        }
-    };
-    jQuery.event.special.wheel = {
-        setup: function( _, ns, handle ){
-            this.addEventListener("wheel", handle, { passive: true });
-        }
-    };
-    jQuery.event.special.mousewheel = {
-        setup: function( _, ns, handle ){
-            this.addEventListener("mousewheel", handle, { passive: true });
-        }
-    };
-
-    
-});
-
-
-/* $(document).ready(function(){
-    console.log('Add To Cart');
-    var addToCart = $('.addtocart');
-    console.log(addToCart);
-    $('.addtocart').each(function(i, element) {
-        
-        console.log(element);
-        $(this).on('click',function(){
-    console.log('Add To Cart');
-    var button = $(this);
-    var cart = $('#cart');
-    console.log(cart.offset().top);
-    document.documentElement.style.setProperty('--y-cart', -button.offset().top + cart.offset().top + 'px');
-    var cartTotal = cart.attr('data-totalitems');
-    var newCartTotal = parseInt(cartTotal) + 1;
-    $(this).css('z-index', 90000000000000000);
-    $('.cart-item').css('z-index', 90000000000000000);
-    button.addClass('sendtocart');
-    setTimeout(function(){
-      button.removeClass('sendtocart');
-      cart.addClass('shake').attr('data-totalitems', newCartTotal);
-      $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
-      setTimeout(function(){
-        cart.removeClass('shake');
-      },500)
-      setTimeout(function(){
-        $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
-      },1000)
-    },1000)
-  })
-});
-}); */
-
-$(document).ready(function(){
-  $("#shoppingCard").click(function(e){
-    e.preventDefault();
-    $(this).find("#check, #carrito").toggleClass("elmActive");
-  });
-});
+        $(document).ready(function() {
+            jQuery.event.special.touchstart = {
+                setup: function(_, ns, handle) {
+                    this.addEventListener("touchstart", handle, {
+                        passive: true
+                    });
+                }
+            };
+            jQuery.event.special.touchmove = {
+                setup: function(_, ns, handle) {
+                    this.addEventListener("touchmove", handle, {
+                        passive: true
+                    });
+                }
+            };
+            jQuery.event.special.wheel = {
+                setup: function(_, ns, handle) {
+                    this.addEventListener("wheel", handle, {
+                        passive: true
+                    });
+                }
+            };
+            jQuery.event.special.mousewheel = {
+                setup: function(_, ns, handle) {
+                    this.addEventListener("mousewheel", handle, {
+                        passive: true
+                    });
+                }
+            };
 
 
-</script>
+        });
+
+
+        /* $(document).ready(function(){
+            console.log('Add To Cart');
+            var addToCart = $('.addtocart');
+            console.log(addToCart);
+            $('.addtocart').each(function(i, element) {
+                
+                console.log(element);
+                $(this).on('click',function(){
+            console.log('Add To Cart');
+            var button = $(this);
+            var cart = $('#cart');
+            console.log(cart.offset().top);
+            document.documentElement.style.setProperty('--y-cart', -button.offset().top + cart.offset().top + 'px');
+            var cartTotal = cart.attr('data-totalitems');
+            var newCartTotal = parseInt(cartTotal) + 1;
+            $(this).css('z-index', 90000000000000000);
+            $('.cart-item').css('z-index', 90000000000000000);
+            button.addClass('sendtocart');
+            setTimeout(function(){
+              button.removeClass('sendtocart');
+              cart.addClass('shake').attr('data-totalitems', newCartTotal);
+              $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
+              setTimeout(function(){
+                cart.removeClass('shake');
+              },500)
+              setTimeout(function(){
+                $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
+              },1000)
+            },1000)
+          })
+        });
+        }); */
+
+        $(document).ready(function() {
+            $("#shoppingCard").click(function(e) {
+                e.preventDefault();
+                $(this).find("#check, #carrito").toggleClass("elmActive");
+            });
+        });
+    </script>
 </body>
+
 </html>
