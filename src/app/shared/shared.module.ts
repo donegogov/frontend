@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSliderModule} from '@angular/material/slider'; 
+import {MatRadioModule} from '@angular/material/radio'; 
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
@@ -39,6 +40,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     SharedRoutingModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     HomePageSliderResolver,

@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 .container {
     display: flex;
     flex-direction: row;
@@ -44,3 +45,14 @@
     float: right;
     margin: 11px;
   }
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  }
+  /*! purgecss end ignore */

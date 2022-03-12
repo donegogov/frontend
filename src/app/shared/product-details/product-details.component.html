@@ -8,21 +8,55 @@
       </div>
       <div class="images-thumbnails"  >
           <div style="all: unset;" *ngFor="let image of product.images">
-        <img *ngIf="image.position != 1" src="{{image.src}}" width="100px" height="100px"/>
+        <img src="{{image.src}}" width="100px" height="100px"/>
       </div>
     </div>
 </div>
     </div>
     <div class="product-details">
   <h1>{{product.name}}</h1>
-  <h4>{{product.short_description}}</h4>
-  {{product.full_description}}
-  <ul>
-    <li></li>
-  </ul>
-  <ul>
-    <li></li>
-  </ul>
-  <button></button>
+  <h2>{{product.full_description}}</h2>
+  <div *ngFor="let attribute of product.attributes">
+
+    <!-- if attribute is dropdownlist -->
+    <div *ngIf="attribute.attribute_control_type_name == 'DropdownList'">
+      <mat-form-field appearance="fill" style="margin-top: 10px; width: 80%;">
+        <mat-label>{{attribute.product_attribute_name}}</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let attributeValue of attribute.attribute_values" value="attributeValue.id">{{attributeValue.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+
+    <!-- if attribute is radiobuttonlist -->
+    <div *ngIf="attribute.attribute_control_type_name == 'RadioList'">
+      <label id="radio-group-label">{{attribute.product_attribute_name}}</label>
+      <mat-radio-group
+        aria-labelledby="radio-group-label"
+        class="radio-group">
+        <mat-radio-button class="radio-button" *ngFor="let attributeValue of attribute.attribute_values" [value]="attributeValue.id">
+          {{attributeValue.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!-- if attribute is ColorSquares -->
+    <div *ngIf="attribute.attribute_control_type_name == 'ColorSquares'">
+      <div style="all: unset; " *ngFor="let attributeValue of attribute.attribute_values">
+      <div style="width: 50px; height: 50px; border-radius: 100%; border: none; margin: 5px; float: left;" 
+      [style.background-color]="attributeValue.color_squares_rgb">
+      </div>
+    </div>
+    </div>
+
+    <!-- if attribute is ImageSquares -->
+    <div *ngIf="attribute.attribute_control_type_name == 'ImageSquares'">
+      <label id="radio-group-label">{{attribute.product_attribute_name}}</label>
+      <div *ngFor="let attributeValue of attribute.attribute_values">
+      <img style="width: 100px; height: 100px; border-radius: 10px; border: 1px solid #fb0000; margin: 5px; float: left;" 
+      src="{{attributeValue.image_squares_image.src}}"/>
+    </div>
+    </div>
+
   </div>
+ 
