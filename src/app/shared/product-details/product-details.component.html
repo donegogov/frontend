@@ -44,7 +44,7 @@
         <h1>{{product.name}}</h1>
         <h2>{{product.full_description}}</h2>
         <div style="width: 100%;">
-            <div *ngFor="let attribute of product.attributes" style="margin-left: 10px;">
+            <div *ngFor="let attribute of product.attributes; let mainIndex = index;" style="margin-left: 10px;">
 
                 <!-- if attribute is dropdownlist -->
                 <div *ngIf="attribute.attribute_control_type_name == 'DropdownList'">
@@ -69,7 +69,8 @@
                 <!-- if attribute is ColorSquares -->
                 <div *ngIf="attribute.attribute_control_type_name == 'ColorSquares'">
 
-                    <div *ngFor="let attributeValue of attribute.attribute_values" style="width: 50px; height: 50px; border-radius: 100%; border: none; margin: 5px; display:inline-block" [style.background-color]="attributeValue.color_squares_rgb">
+                    <div (click)="colorSquares(mainIndex, i, attribute.product_attribute_id, attributeValue.id)" *ngFor="let attributeValue of attribute.attribute_values; let i = index;" style="width: 50px; height: 50px; border-radius: 100%; border: none; margin: 5px; display:inline-block"
+                        [style.background-color]="attributeValue.color_squares_rgb">
                     </div>
 
                 </div>

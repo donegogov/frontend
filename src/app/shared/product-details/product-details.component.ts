@@ -170,4 +170,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     zoomInProductDetails(imgZoom, imgZoomResult);
   }
 
+  colorSquares(mainIndex: number, i: number,attribute_product_attribute_id: any, attributeValue_id: any) {
+    
+  }
+
 }
