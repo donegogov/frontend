@@ -88,13 +88,13 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Select Quantity</mat-label>
-                    <input [(ngModel)]='addToCartItemsNumber' style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="1 " min="1 ">
+                    <input [(ngModel)]='addToCartItemsNumber' (ngModelChange)="addToMainCartItemsNumber()" style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="1 " min="1 ">
                 </mat-form-field>
             </div>
         </div>
 
         <div class="page-wrapper " style="padding: 0px !important; ">
-            <button id="addtocart " class="addtocart product-add-to-cart-button " (click)="addToMainCartItemsNumber()">
+            <button id="addtocart " class="addtocart product-add-to-cart-button " (click)="addToCartAllItems()">
                 Add To Basket
               <div style="font-family: 'Soria', serif; " class="cart-item "></div>
             </button>

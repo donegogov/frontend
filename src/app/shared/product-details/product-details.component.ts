@@ -210,12 +210,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   addToMainCartItemsNumber() {
     document.documentElement.style.setProperty('--add-to-cart-number-of-items', '\'' + this.addToCartItemsNumber.toString() + '\'');
     console.log(this.addToCartItemsNumber);
-    addToCartNumberOfItems(this.addToCartItemsNumber);
+    //addToCartNumberOfItems(this.addToCartItemsNumber);
   }
 
   addToCartItems(control: string, attributeId: string, event: any) {
     console.log('eventeventeventeventeventeventeventeventeventeventeventevent');
     console.log(event);
+  }
+
+  addToCartAllItems() {
+    
   }
 
 }
