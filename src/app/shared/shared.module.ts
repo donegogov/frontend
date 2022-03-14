@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input'; 
+import {MatInput, MatInputModule} from '@angular/material/input'; 
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -43,7 +43,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatFormFieldModule,
     MatSelectModule,
     MatRadioModule,
-    SwiperModule
+    SwiperModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [
     HomePageSliderResolver,

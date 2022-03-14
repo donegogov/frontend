@@ -181,6 +181,15 @@ function productDetailsTopMenuRemove() {
 function productDetailsTopMenuAdd() {
     $(".menu").addClass('desktopTopFixed');
 }
+// za kolku da se zgolemi kosnickata
+function addToCartNumberOfItems(itemsToAdd) {
+    var cart = $('#cart');
+    var cartTotal = cart.attr('data-totalitems');
+    var newCartTotal = parseInt(cartTotal) + itemsToAdd;
+    setTimeout(function() {
+        cart.attr('data-totalitems', newCartTotal);
+    }, 1000)
+}
 
 
 function addToCart() {
@@ -203,7 +212,7 @@ function addToCart() {
             button.addClass('sendtocart');
             setTimeout(function() {
                 button.removeClass('sendtocart');
-                cart.addClass('shake').attr('data-totalitems', newCartTotal);
+                cart.addClass('shake') /* .attr('data-totalitems', newCartTotal) */ ;
                 $("#shoppingCard").find("#check, #carrito").toggleClass("elmActive");
                 setTimeout(function() {
                     cart.removeClass('shake');

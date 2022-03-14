@@ -130,10 +130,10 @@ getData() {
         console.log(data.products);
         this.topSellingProducts = data.products;
         //setTimeout(addToCart(), 1000);
-        setTimeout(function(){
+        /* setTimeout(function(){
           console.log('Timeout add to cart');
           addToCart();
-        }, 100);
+        }, 100); */
         //addToCart();
         //this.productsService.topSellingProducts = data.products;
       }

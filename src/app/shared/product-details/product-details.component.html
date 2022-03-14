@@ -42,65 +42,76 @@
     </div>
     <div class="product-details" style="padding-left: 10px; padding-right: 10px; font-weight: 900;">
         <h1>{{product.name}}</h1>
-        <h2>{{product.full_description}}</h2>
-        <div style="width: 100%;">
-            <div *ngFor="let attribute of product.attributes; let mainIndex = index;" style="margin-left: 10px;">
+        <!-- <h2 style="display: inline-block;">{{product.full_description}}</h2> -->
+        <a style="text-decoration: solid; color: inherit;" (click)="showMoreLess()"><span style="text-decoration: none; color: black">{{tempFullDescription}}</span>{{moreLess}}</a>
+        <div style="width: 100%; margin-left: 10px; margin-top: 90px;">
+            <div *ngFor="let attribute of product.attributes; let mainIndex = index;">
 
                 <!-- if attribute is dropdownlist -->
                 <div *ngIf="attribute.attribute_control_type_name == 'DropdownList'">
                     <mat-form-field appearance="fill" style="margin-top: 10px; width: 80%;">
                         <mat-label>{{attribute.product_attribute_name}}</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let attributeValue of attribute.attribute_values" value="attributeValue.id">{{attributeValue.name}}</mat-option>
+                        <mat-select (selectionChange)="addToCartItems('matSelect', attribute.product_attribute_id, $event)">
+                            <mat-option *ngFor=" let attributeValue of attribute.attribute_values;" value="attributeValue.id ">{{attributeValue.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <!-- if attribute is radiobuttonlist -->
-                <div *ngIf="attribute.attribute_control_type_name == 'RadioList'">
-                    <label id="radio-group-label">{{attribute.product_attribute_name}}</label>
-                    <mat-radio-group aria-labelledby="radio-group-label" class="radio-group">
-                        <mat-radio-button class="radio-button" *ngFor="let attributeValue of attribute.attribute_values" [value]="attributeValue.id">
+                <div *ngIf="attribute.attribute_control_type_name=='RadioList' ">
+                    <label id="radio-group-label ">{{attribute.product_attribute_name}}</label>
+                    <mat-radio-group aria-labelledby="radio-group-label " class="radio-group ">
+                        <mat-radio-button class="radio-button " *ngFor="let attributeValue of attribute.attribute_values " [value]="attributeValue.id ">
                             {{attributeValue.name}}
                         </mat-radio-button>
                     </mat-radio-group>
                 </div>
 
                 <!-- if attribute is ColorSquares -->
-                <div *ngIf="attribute.attribute_control_type_name == 'ColorSquares'">
-
-                    <div (click)="colorSquares(mainIndex, i, attribute.product_attribute_id, attributeValue.id)" *ngFor="let attributeValue of attribute.attribute_values; let i = index;" style="width: 50px; height: 50px; border-radius: 100%; border: none; margin: 5px; display:inline-block"
-                        [style.background-color]="attributeValue.color_squares_rgb">
+                <div #colorSquaresMainDiv *ngIf="attribute.attribute_control_type_name =='ColorSquares' ">
+                    <label style="display: block; ">{{attribute.product_attribute_name}}</label>
+                    <div (click)="colorSquares(i, colorSquaresMainDiv) " *ngFor="let attributeValue of attribute.attribute_values; let i = index; " style="width: 50px; height: 50px; border-radius: 100%; border: none; margin: 5px; display:inline-block;
+                            cursor: pointer; " [style.background-color]="attributeValue.color_squares_rgb ">
                     </div>
 
                 </div>
 
                 <!-- if attribute is ImageSquares -->
-                <div *ngIf="attribute.attribute_control_type_name == 'ImageSquares'">
-                    <label id="radio-group-label">{{attribute.product_attribute_name}}</label>
-                    <div *ngFor="let attributeValue of attribute.attribute_values">
-                        <img style="width: 100px; height: 100px; border-radius: 10px; border: 1px solid #fb0000; margin: 5px; display:inline-block;" src="{{attributeValue.image_squares_image.src}}" />
+                <div *ngIf="attribute.attribute_control_type_name=='ImageSquares' ">
+                    <label id="radio-group-label ">{{attribute.product_attribute_name}}</label>
+                    <div *ngFor="let attributeValue of attribute.attribute_values ">
+                        <img style="width: 100px; height: 100px; border-radius: 10px; border: 1px solid #fb0000; margin: 5px; display:inline-block; " src="{{attributeValue.image_squares_image.src}} " />
                     </div>
                 </div>
 
             </div>
             <div>
-                <input style="width: 100px; margin-left: 10px;" matInput type="number" placeholder="Quantity" value="1" min="1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Select Quantity</mat-label>
+                    <input [(ngModel)]='addToCartItemsNumber' style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="1 " min="1 ">
+                </mat-form-field>
             </div>
+        </div>
+
+        <div class="page-wrapper " style="padding: 0px !important; ">
+            <button id="addtocart " class="addtocart product-add-to-cart-button " (click)="addToMainCartItemsNumber()">
+                Add To Basket
+              <div style="font-family: 'Soria', serif; " class="cart-item "></div>
+            </button>
         </div>
 
     </div>
 
 </div>
 <!--  The Modal 
-<div id="myModal" class="modal" *ngIf="mobile" style="margin-top: 85px; z-index: 9999999999999;">
+<div id="myModal " class="modal " *ngIf="mobile " style="margin-top: 85px; z-index: 9999999999999; ">
 
      The Close Button 
-    <span style="z-index: 999999999999;" class="close" (click)="modalClose()">&times;</span>
+    <span style="z-index: 999999999999; " class="close " (click)="modalClose() ">&times;</span>
 
      Modal Content (The Image) 
-    <img #imgMobileSlider style="z-index: 999999999999;" class="modal-content" id="img01" (click)="doubleTap($event)">
+    <img #imgMobileSlider style="z-index: 999999999999; " class="modal-content " id="img01 " (click)="doubleTap($event) ">
 
      Modal Caption (Image Text) 
-    <div id="caption"></div>
+    <div id="caption "></div>
 </div> -->

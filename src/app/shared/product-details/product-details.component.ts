@@ -2,9 +2,12 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../_services/products.service';
 import { SwiperComponent } from "swiper/angular";
+declare function addToCart(): any;
+declare function addToCartNumberOfItems(itemsToAdd: number): any;
 
 // import Swiper core and required modules
 import SwiperCore, { EffectCreative, Lazy, Pagination, Zoom } from "swiper";
+import { E } from '@angular/cdk/keycodes';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
@@ -46,6 +49,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   showImageByPosition = 1;
   private swipeCoord!: [number, number];
   private swipeTime!: number;
+  moreLess: string = 'more';
+  tempFullDescription = '';
+  addToCartItemsNumber = 1;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductsService,
@@ -85,7 +91,15 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       console.log('getProductById');
       this.product = data.products[0];
       console.log(this.product);
+      this.tempFullDescription = this.product.full_description.substring(3, this.product.full_description.length - 5);
+      this.tempFullDescription = this.tempFullDescription.substring(0, 180);
+      this.tempFullDescription += ' ... ';
+      setTimeout(function(){
+        console.log('Timeout add to cart');
+        addToCart();
+      }, 100);
     });
+    
   }
 
   ngOnDestroy() {
@@ -170,8 +184,38 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     zoomInProductDetails(imgZoom, imgZoomResult);
   }
 
-  colorSquares(mainIndex: number, i: number,attribute_product_attribute_id: any, attributeValue_id: any) {
-    
+  colorSquares(i: number, colorSquaresMainDiv: HTMLDivElement) {
+    var colors = colorSquaresMainDiv.getElementsByTagName('div');
+
+    for (var index = 0; index <= colors.length; index++) {
+      if (i != index) {
+        colors[index].style.border = 'none';
+      } else if (i == index) {
+        colors[index].style.border = '4px solid #fb0000';
+      }
+    }
+  }
+
+  showMoreLess() {
+    if (this.moreLess == 'more') {
+      this.moreLess = 'less';
+      this.tempFullDescription = this.product.full_description + ' ';
+    } else if (this.moreLess == 'less') {
+      this.moreLess = 'more';
+      this.tempFullDescription = this.tempFullDescription.substring(0, 180);
+    this.tempFullDescription += ' ... ';
+    }
+  }
+
+  addToMainCartItemsNumber() {
+    document.documentElement.style.setProperty('--add-to-cart-number-of-items', '\'' + this.addToCartItemsNumber.toString() + '\'');
+    console.log(this.addToCartItemsNumber);
+    addToCartNumberOfItems(this.addToCartItemsNumber);
+  }
+
+  addToCartItems(control: string, attributeId: string, event: any) {
+    console.log('eventeventeventeventeventeventeventeventeventeventeventevent');
+    console.log(event);
   }
 
 }

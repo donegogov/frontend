@@ -1,228 +1,231 @@
 /*! purgecss start ignore */
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 html {
-
-	box-sizing: border-box;
-	--bgColorMenu : #92cfff;
-	--duration: .7s;
+    box-sizing: border-box;
+    --bgColorMenu: #92cfff;
+    --duration: .7s;
 }
 
 html *,
 html *::before,
 html *::after {
-
-	box-sizing: inherit;
-
+    box-sizing: inherit;
 }
 
 @font-face {
-	font-family: 'Soria';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Soria'), url('assets/fonts/soria-font.ttf') format('truetype');
-	font-display: swap;
-  }
-
-body{
-	
-	margin: 0 auto;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	background-color: #ffb457;
-	-webkit-tap-highlight-color: transparent;
-	transition: background-color var(--duration);
-	font-size: 18px;
-	font-family: 'Soria', serif;
+    font-family: 'Soria';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Soria'), url('assets/fonts/soria-font.ttf') format('truetype');
+    font-display: swap;
 }
- 
+
+body {
+    margin: 0 auto;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffb457;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color var(--duration);
+    font-size: 18px;
+    font-family: 'Soria', serif;
+}
+
 :root {
     --selectPanelCityMargin: 0px;
     --selectPanelBackgroundColor: yellow;
     --y-cart: calc(-50vh - 160px);
+    --add-to-cart-number-of-items: '1';
 }
 
 .mat-select-panel-home-city {
-	margin-top: var(--selectPanelCityMargin) !important;
-	background: var(--selectPanelBackgroundColor);
+    margin-top: var(--selectPanelCityMargin) !important;
+    background: var(--selectPanelBackgroundColor);
 }
+
 
 /* // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap */
 
+
 /* // Small devices (landscape phones, 576px and up) */
-@media (max-width: 992px) { 
-	body{
-		font-size: 26px;
-	
-	}
-	.menu {
-		font-size: 14px !important;
-	}
-	.container-fluid {
-		padding: 0 !important;
-		margin: 0 !important;
-	}
 
-	.row {
-		padding: 0 !important;
-		margin: 0 !important;
-		--bs-gutter-x: 0;
-	}
-
-	.col* {
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-
-	.content {
-		margin: 0 auto;
-		height: 100%;
-	}
-	  .owl-item {
-		  height: 1200px !important;
-	  }
+@media (max-width: 992px) {
+    body {
+        font-size: 26px;
+    }
+    .menu {
+        font-size: 14px !important;
+    }
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .row {
+        padding: 0 !important;
+        margin: 0 !important;
+        --bs-gutter-x: 0;
+    }
+    .col* {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .content {
+        margin: 0 auto;
+        height: 100%;
+    }
+    .owl-item {
+        height: 1200px !important;
+    }
 }
 
-#shoppingCard
-{
-  display: block;
-  background-color: #fafafa;
-  width: 92px;
-  height: 87px;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 2021 !important;
+#shoppingCard {
+    display: block;
+    background-color: #fafafa;
+    width: 92px;
+    height: 87px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2021 !important;
 }
-.animElem
-{
-  opacity: 0;
-  position: absolute;
-  width: 92px;
-  height: 87px;
-  /* Animation */
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+
+.animElem {
+    opacity: 0;
+    position: absolute;
+    width: 92px;
+    height: 87px;
+    /* Animation */
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
+
+
 /* Tick */
-#check
-{
-  -webkit-transform: scale(0);
-  -o-transform: scale(0);
-  -moz-transform: scale(0);
-  transform: scale(0);
-}
-#check:after
-{
-  content: "";
-  display: block;
-  width: 8px;
-  height: 22px;
-  border-radius: 9px;
-  background-color: #ff4747;
-  position: absolute;
-  left: 32px;
-  top: 42px;
-  -webkit-transform: rotate(-35deg);
-  -o-transform: rotate(-35deg);
-  -moz-transform: rotate(-35deg);
-  transform: rotate(-35deg);
+
+#check {
+    -webkit-transform: scale(0);
+    -o-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
 }
 
-#check:before
-{
-  content: "";
-  display: block;
-  width: 8px;
-  height: 42px;
-  border-radius: 10px;
-  background-color: #ff4747;
-  position: absolute;
-  left: 48px;
-  top: 24px;
-  -webkit-transform: rotate(35deg);
-  -o-transform: rotate(40deg);
-  -moz-transform: rotate(40deg);
-  transform: rotate(40deg);
+#check:after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 22px;
+    border-radius: 9px;
+    background-color: #ff4747;
+    position: absolute;
+    left: 32px;
+    top: 42px;
+    -webkit-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+    transform: rotate(-35deg);
 }
+
+#check:before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: #ff4747;
+    position: absolute;
+    left: 48px;
+    top: 24px;
+    -webkit-transform: rotate(35deg);
+    -o-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    transform: rotate(40deg);
+}
+
 
 /* Carrito */
-#carrito
-{
-  -webkit-transform: scale(0);
-  -o-transform: scale(0);
-  -moz-transform: scale(0);
-  transform: scale(0);
+
+#carrito {
+    -webkit-transform: scale(0);
+    -o-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
 }
-#mango
-{
-  position: absolute;
-  left: 26px;
-  top: 25px;
-  width: 8px;
-  height: 4px;
-  background-color: #ff4747;
+
+#mango {
+    position: absolute;
+    left: 26px;
+    top: 25px;
+    width: 8px;
+    height: 4px;
+    background-color: #ff4747;
 }
-#cesta
-{
-  width: 35px;
-  height: 25px;
-  background-color: #ff4747;
-  position: absolute;
-  top: 29px;
-  left: 30px;
+
+#cesta {
+    width: 35px;
+    height: 25px;
+    background-color: #ff4747;
+    position: absolute;
+    top: 29px;
+    left: 30px;
 }
-#cesta:after
-{
-  content: "";
-  display: block;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 25px 0 0 5px;
-  border-color: transparent transparent transparent #fafafa;
+
+#cesta:after {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 25px 0 0 5px;
+    border-color: transparent transparent transparent #fafafa;
 }
-#cesta:before
-{
-  content: "";
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 0 0 6px 25px;
-  border-color: transparent transparent #fafafa transparent;
-  position: absolute;
-  bottom: 3px;
-  right: 0px;
+
+#cesta:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 6px 25px;
+    border-color: transparent transparent #fafafa transparent;
+    position: absolute;
+    bottom: 3px;
+    right: 0px;
 }
-#ruedas
-{
-  width: 9px;
-  height: 9px;
-  border-radius: 100%;
-  position: absolute;
-  left: 32px;
-  top: 54px;
-  background-color: #ff4747;
-  box-shadow: 22px 0px 0px #ff4747;
+
+#ruedas {
+    width: 9px;
+    height: 9px;
+    border-radius: 100%;
+    position: absolute;
+    left: 32px;
+    top: 54px;
+    background-color: #ff4747;
+    box-shadow: 22px 0px 0px #ff4747;
 }
+
+
 /* Fin Carrito */
+
+
 /* CssEvent */
-.elmActive
-{
-  opacity: 1 !important;
-  -webkit-transform: scale(1) !important;
-  -o-transform: scale(1) !important;
-  -moz-transform: scale(1) !important;
-  transform: scale(1) !important;
+
+.elmActive {
+    opacity: 1 !important;
+    -webkit-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    transform: scale(1) !important;
 }
 
-
-.owl-carousel, .owl-carousel .owl-item {
+.owl-carousel,
+.owl-carousel .owl-item {
     position: initial;
-	margin: 0 auto;
-	padding: 0 0 0 0;
+    margin: 0 auto;
+    padding: 0 0 0 0;
 }
+
+
 /*! purgecss end ignore */

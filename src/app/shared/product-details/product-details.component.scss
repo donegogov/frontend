@@ -1,5 +1,27 @@
 /*! purgecss start ignore */
 
+.product-add-to-cart-button {
+    animation-name: slideInUp;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 38px;
+    margin-left: 10px;
+    margin-right: auto;
+    border-radius: 10px;
+    padding: 30px 40px;
+    color: #fafafa;
+    border: none;
+    background-color: #fb0000;
+    font-weight: 900;
+}
+
 @media (min-width: 993px) {
     @for $p from 1 through 6 {
         .thumbnail:nth-of-type(#{$p}) {

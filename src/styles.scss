@@ -11,14 +11,14 @@
     align-items: center;
     justify-content: center;
     button {
-        padding: 20px;
+        /* padding: 20px;
         border: none;
         background: lighten(#292d48, 65);
         position: relative;
         outline: none;
         border-radius: 5px;
         color: #292d48;
-        font-size: 18px;
+        font-size: 18px; */
         .cart-item {
             position: absolute;
             height: 24px;
@@ -26,7 +26,7 @@
             top: -10px;
             right: -10px;
             &:before {
-                content: '1';
+                content: var(--add-to-cart-number-of-items);
                 display: block;
                 line-height: 24px;
                 height: 24px;
