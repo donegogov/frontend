@@ -201,6 +201,12 @@ function addToCart() {
         console.log(element);
         $(this).on('click', function() {
             console.log('Add To Cart');
+            var YesNo = document.documentElement.style.getPropertyValue('--yes-no-add-to-cart');
+            console.log('YesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNoYesNo');
+            console.log(YesNo);
+            if (YesNo == 'false') {
+                return;
+            }
             var button = $(this);
             var cart = $('#cart');
             console.log(cart.offset().top);

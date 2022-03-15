@@ -1,7 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { ListProducts } from 'src/app/shared/_models/list-products';
+import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
+import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 declare function addToCart(): any;
 
@@ -101,7 +103,8 @@ private _categoryId!: number[];
     }
 
 constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
-  @Inject(DOCUMENT) private _document: Document) { 
+  @Inject(DOCUMENT) private _document: Document,
+  private cartService: CartService) { 
   this.numbers = Array(60).fill(4);
   this.getScreenSize();
 
@@ -163,7 +166,7 @@ getData() {
 ngAfterViewInit(): void {
 }
 
-addToWishList(id: number) {
+/* addToWishList(id: number) {
   if (this.wishList.filter(w => w.ids == id).length > 0) {
     //var index = this.wishList.ids.indexOf(id);
     this.wishList.filter(w => w.ids == id)[0].wishList = !this.wishList.filter(w => w.ids == id)[0].wishList;
@@ -171,6 +174,50 @@ addToWishList(id: number) {
   else {
     this.wishList.push({ids: id, wishList: true});
   }
+} */
+
+addToWishList(product: any) {
+  var addWishlist = false;
+  if (this.wishList.filter(w => w.ids == product.id).length > 0) {
+    this.wishList.filter(w => w.ids == product.id)[0].wishList = !this.wishList.filter(w => w.ids == product.id)[0].wishList;
+    addWishlist = this.wishList.filter(w => w.ids == product.id)[0].wishList;
+  }
+  else {
+    this.wishList.push({ids: product.id, wishList: true});
+    addWishlist = true;
+  }
+  console.log(this.wishList);
+  if (!addWishlist) {
+    //addWishlist = true;
+    var tempDictAttributeIdAttributeValueId: productAttributeIdAttributeValuesId[] = [];
+    for(var i = 0; i < product.attributes.length; i++) {
+      var attributeIdValueId: productAttributeIdAttributeValuesId = {key: product.attributes[i].id, value: product.attributes[i].attribute_values[0].id};
+      tempDictAttributeIdAttributeValueId.push(attributeIdValueId);
+    }
+    this.cartService.addToWishListOrCart(tempDictAttributeIdAttributeValueId,
+      '1', 'Wishlist', product.id.toString()).subscribe(data => {
+        console.log('datadatadatadatadatadatadatadatadatadatadatadatadata');
+        console.log(data);
+        //this.showErrorMessage = false;
+      });
+    return true;
+  }
+  else {
+    //this.wishList = false;
+    this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
+      if (data) {
+        data.shopping_carts.forEach((element: any, i: number) => {
+          if (element.product.id == product.id) {
+            this.cartService.deleteWishlistCartItem(element.id).subscribe(data => {
+              console.log(data);
+            });
+          }
+        });
+      }
+    });
+    return false;
+  }
+  
 }
 
 wishListYn(id: number) {

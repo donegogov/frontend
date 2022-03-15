@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Hello</h1>
+<div mat-dialog-content>
+    <p>Do you want to view the shopping cart or to continue shopping?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onViewShoppingCartClick()">View Shopping Cart</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Continue Shopping</button>
+</div>

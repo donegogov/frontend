@@ -7,7 +7,10 @@ declare function addToCartNumberOfItems(itemsToAdd: number): any;
 
 // import Swiper core and required modules
 import SwiperCore, { EffectCreative, Lazy, Pagination, Zoom } from "swiper";
-import { E } from '@angular/cdk/keycodes';
+import { productAttributeIdAttributeValuesId } from '../_models/product-attribute-id-attribute-values-id';
+import { CartService } from '../_services/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ShoppingCartContinueShoppingComponent } from '../_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
@@ -52,10 +55,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   moreLess: string = 'more';
   tempFullDescription = '';
   addToCartItemsNumber = 1;
+  dictAttributeIdAttributeValueId: productAttributeIdAttributeValuesId[] = []; //key value pair for product attributes specifications for example which color
+  //in nopcommerce every product has attribute example color and attribute values for example red green yellow ect
+  showErrorMessage: boolean = false;
+  wishList!: boolean;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductsService,
-    private router: Router) {
+    private router: Router,
+    private cartService: CartService,
+    public dialog: MatDialog) {
       if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
       } else {
@@ -94,12 +103,28 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.tempFullDescription = this.product.full_description.substring(3, this.product.full_description.length - 5);
       this.tempFullDescription = this.tempFullDescription.substring(0, 180);
       this.tempFullDescription += ' ... ';
+      this.product.attributes.forEach((element: any, i: number) => {
+        
+      });
+      for(var i = 0; i < this.product.attributes.length; i++) {
+        var attributeIdValueId: productAttributeIdAttributeValuesId = {key: this.product.attributes[i].id, value: '-1'};
+        this.dictAttributeIdAttributeValueId.push(attributeIdValueId);
+      }
       setTimeout(function(){
         console.log('Timeout add to cart');
         addToCart();
       }, 100);
     });
-    
+
+    this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
+      if (data) {
+        data.shopping_carts.forEach((element: any, i: number) => {
+          if (element.product.id == this.product.id) {
+            this.wishList = true;
+          }
+        });
+      }
+    });   
   }
 
   ngOnDestroy() {
@@ -187,7 +212,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   colorSquares(i: number, colorSquaresMainDiv: HTMLDivElement) {
     var colors = colorSquaresMainDiv.getElementsByTagName('div');
 
-    for (var index = 0; index <= colors.length; index++) {
+    for (var index = 0; index < colors.length; index++) {
       if (i != index) {
         colors[index].style.border = 'none';
       } else if (i == index) {
@@ -213,12 +238,110 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     //addToCartNumberOfItems(this.addToCartItemsNumber);
   }
 
-  addToCartItems(control: string, attributeId: string, event: any) {
+  addToCartItems(control: string, attributeId: string, attributeValueId: string, event: any) {
     console.log('eventeventeventeventeventeventeventeventeventeventeventevent');
     console.log(event);
+    var updated = false;
+    for(var i = 0; i < this.dictAttributeIdAttributeValueId.length; i++) {
+      if (this.dictAttributeIdAttributeValueId[i].key == attributeId) {
+        this.dictAttributeIdAttributeValueId[i].value = attributeValueId;
+        //updated = true;
+      }
+    }
+    /* if (!updated) {
+      var attributeIdValueId: productAttributeIdAttributeValuesId = {key: attributeId, value: attributeValueId};
+      this.dictAttributeIdAttributeValueId.push(attributeIdValueId);
+    } */
+  }
+
+  imageSquares(i: number, colorSquaresMainDiv: HTMLDivElement) {
+    var images = colorSquaresMainDiv.getElementsByTagName('img');
+    console.log('images.lengthimages.lengthimages.lengthimages.lengthimages.lengthimages.length');
+    console.log(images.length);
+    for (var index = 0; index < images.length; index++) {
+      if (i != index) {
+        images[index].style.border = 'none';
+      } else if (i == index) {
+        images[index].style.border = '4px solid #fb0000';
+      }
+    }
   }
 
   addToCartAllItems() {
+    console.log('this.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueId');
+    console.log(this.dictAttributeIdAttributeValueId);
+    var addToCart = true;
+
+    for(var i = 0; i < this.dictAttributeIdAttributeValueId.length; i++) {
+      if (this.dictAttributeIdAttributeValueId[i].value == '-1') {
+        addToCart = false;
+        this.showErrorMessage = true;
+        document.documentElement.style.setProperty('--yes-no-add-to-cart', 'false');
+      }
+    }
+
+    if (addToCart) {
+      document.documentElement.style.setProperty('--yes-no-add-to-cart', 'true');
+      this.cartService.addToWishListOrCart(this.dictAttributeIdAttributeValueId,
+        this.addToCartItemsNumber.toString(), 'ShoppingCart', this.product.id.toString()).subscribe(data => {
+          console.log('datadatadatadatadatadatadatadatadatadatadatadatadata');
+          console.log(data);
+          this.showErrorMessage = false;
+          /* this.cartService.getShoppingCartItems().subscribe(cart => {
+            console.log('cartcartcartcartcartcartcartcartcartcartcartcartcartcartcartcart');
+            console.log(cart);
+          }); */
+          this.openDialog();
+        });
+    }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ShoppingCartContinueShoppingComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  wishListYn(id: number) {
+    return this.wishList;
+  }
+
+  addToWishList(id: number) {
+    console.log(this.wishList);
+    if (!this.wishList) {
+      this.wishList = true;
+      var tempDictAttributeIdAttributeValueId: productAttributeIdAttributeValuesId[] = [];
+      for(var i = 0; i < this.product.attributes.length; i++) {
+        var attributeIdValueId: productAttributeIdAttributeValuesId = {key: this.product.attributes[i].id, value: this.product.attributes[i].attribute_values[0].id};
+        tempDictAttributeIdAttributeValueId.push(attributeIdValueId);
+      }
+      this.cartService.addToWishListOrCart(tempDictAttributeIdAttributeValueId,
+        '1', 'Wishlist', this.product.id.toString()).subscribe(data => {
+          console.log('datadatadatadatadatadatadatadatadatadatadatadatadata');
+          console.log(data);
+          this.showErrorMessage = false;
+        });
+      return true;
+    }
+    else {
+      this.wishList = false;
+      this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
+        if (data) {
+          data.shopping_carts.forEach((element: any, i: number) => {
+            if (element.product.id == this.product.id) {
+              this.cartService.deleteWishlistCartItem(element.id).subscribe(data => {
+                console.log(data);
+              });
+            }
+          });
+        }
+      });
+      return false;
+    }
     
   }
 

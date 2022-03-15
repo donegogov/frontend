@@ -11,6 +11,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSliderModule} from '@angular/material/slider'; 
 import {MatRadioModule} from '@angular/material/radio'; 
 import { SwiperModule } from "swiper/angular";
+import {MatDialogModule} from '@angular/material/dialog'; 
+import { MatButtonModule } from '@angular/material/button'
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
@@ -25,6 +27,7 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MobileAppsComponent,
     ProductDetailsComponent,
     NotFoundComponent,
+    ShoppingCartContinueShoppingComponent,
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatRadioModule,
     SwiperModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     HomePageSliderResolver,

@@ -38,6 +38,7 @@ body {
     --selectPanelBackgroundColor: yellow;
     --y-cart: calc(-50vh - 160px);
     --add-to-cart-number-of-items: '1';
+    --yes-no-add-to-cart: false;
 }
 
 .mat-select-panel-home-city {
