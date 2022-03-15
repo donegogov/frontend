@@ -26,11 +26,11 @@
             <h4 style="font-weight: 900;">{{product.short_description}}</h4>
         </a>
         <div class="page-wrapper" style="padding: 0px !important;">
-            <button id="addtocart" class="addtocart product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
+            <button [routerLink]="['/shop/details/', product.id]" class="product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           <div style="font-family: 'Soria', serif;" class="cart-item"></div>
         </button>
-            <button [routerLink]="['/shop/details/', product.id]" class="product-add-to-cart-button" (click)="addToWishList(product)" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
+            <button class="product-add-to-cart-button" (click)="addToWishList(product)" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
             <i *ngIf="wishListYn(product.id)" class="fa fa-heart" aria-hidden="true"></i>
             <i *ngIf="!wishListYn(product.id)" class="fa fa-heart-o" aria-hidden="true"></i>
         </button>
