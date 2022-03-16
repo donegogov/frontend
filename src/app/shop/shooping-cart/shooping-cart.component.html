@@ -18,7 +18,7 @@
                         <input [(ngModel)]="cartItem.quantity" (ngModelChange)="updateQuantity($event, cartItem.id)" style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="{{cartItem.quantity}}" min="1 ">
                     </mat-form-field>
                     <button (click)="deleteItem(cartItem.id)" style="all: unset; margin-left: 10px; cursor: pointer; color: red; font-size:40px;background-color: transparent; padding: 10px !important; width: fit-content !important; height: fit-content !important;">
-                        <i style="font-size: 38px;" class="fa fa-trash-o" aria-hidden="true"></i>
+                        <i style="font-size: 38px !important;" class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                 </div>
                 <!-- <div class="delete-cart-item">
