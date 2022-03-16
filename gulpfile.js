@@ -23,10 +23,11 @@ gulp.task('concat', function() {
 
 gulp.task('compress-js-uglify', function() {
     return pipeline(
-        gulp.src('./dist/bundle.min.js'),
+        gulp.src('./dist/*.js'),
         uglify({
             compress: {
                 dead_code: true,
+                pure_funcs: ['zoomIn', 'mouseout', 'setImg', 'productDetailsTopMenuRemove', 'productDetailsTopMenuAdd', 'addToCartNumberOfItems', 'addToCart', 'notFound', 'productDetailsModal', 'zoomInProductDetails', 'getCursorPos', 'setImgProductDetails'],
                 global_defs: {
                     DEBUG: false
                 },
