@@ -1,7 +1,5 @@
-/*! purgecss start ignore */
-
-
-/* .product-article:hover .img-result {
+    /*! purgecss start ignore */
+    /* .product-article:hover .img-result {
     visibility: visible;
     opacity: 1;
     position: relative;
@@ -15,29 +13,26 @@
     margin: auto;
     z-index: 101;
 } */
-
-.img-zoom-container {
-    position: relative;
-}
-
-.img-zoom-lens {
-    position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    ;
-    /*set the size of the lens:*/
-    width: 40px;
-    height: 40px;
-}
-
-.img-zoom-result {
-    border: 1px solid #d4d4d4;
-    /*set the size of the result div:*/
-    width: 300px;
-    height: 300px;
-}
-
-
-/*   @media (min-width: 993px) { 
+    
+    .img-zoom-container {
+        position: relative;
+    }
+    
+    .img-zoom-lens {
+        position: absolute;
+        border: 4px solid lightblue;
+        /*set the size of the lens:*/
+        width: 140px;
+        height: 140px;
+    }
+    
+    .img-zoom-result {
+        border: 1px solid #d4d4d4;
+        /*set the size of the result div:*/
+        width: 300px;
+        height: 300px;
+    }
+    /*   @media (min-width: 993px) { 
     .overlay{ 
         min-width: 60vw;
     min-height: 90vh;
@@ -53,61 +48,67 @@
     margin-top: 420px;
     }
 } */
-
-:root {
-    --overlayTop: 0;
-    --overlayLeft: 0;
-    --overlayRight: 0;
-    --overlayBottom: 0;
-    --overlayWidth: 400px;
-    --overlayHeight: 400px;
-    --overlayMarginTop: auto;
-    --overlayMarginBottom: auto;
-    --overlayMarginRight: auto;
-    --overlayMarginLeft: auto;
-}
-
-.overlay {
-    margin: var(--overlayMarginTop) var(--overlayMarginRight) var(--overlayMarginBottom) var(--overlayMarginLeft) !important;
-    width: var(--overlayWidth) !important;
-    height: var(--overlayHeight) !important;
-    position: absolute;
-    background: #000;
-    opacity: 0;
-    left: var(--overlayLeft) !important;
-    right: var(--overlayRight);
-    top: var(--overlayTop);
-    bottom: var(--overlayBottom);
-    z-index: 2022;
-    display: none;
-    visibility: hidden;
-    border-radius: 30px;
-    transition: opacity 0.7s linear, visibility 0.5s linear;
-}
-
-.img-zoom-container:hover .overlay {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    border: 10px solid rgba(0, 0, 0, 0.9);
-}
-
-.overlay:hover {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-}
-
-.img-zoom-container:hover {
-    border: 10px solid rgba(0, 0, 0, 0.9);
-    border-radius: 30px;
-}
-
-.fa {
-    font-size: 100px !important;
-    /* padding: 29px; */
-    color: #fb0000;
-}
-
-
-/*! purgecss end ignore */
+    
+     :root {
+        --overlayTop: 0;
+        --overlayLeft: 0;
+        --overlayRight: 0;
+        --overlayBottom: 0;
+        --overlayWidth: 400px;
+        --overlayHeight: 400px;
+        --overlayMarginTop: auto;
+        --overlayMarginBottom: auto;
+        --overlayMarginRight: auto;
+        --overlayMarginLeft: auto;
+    }
+    
+    .overlay {
+        margin: var(--overlayMarginTop) var(--overlayMarginRight) var(--overlayMarginBottom) var(--overlayMarginLeft) !important;
+        width: var(--overlayWidth) !important;
+        height: var(--overlayHeight) !important;
+        position: absolute;
+        background: #000;
+        opacity: 0;
+        left: var(--overlayLeft) !important;
+        right: var(--overlayRight);
+        top: var(--overlayTop);
+        bottom: var(--overlayBottom);
+        z-index: 2022;
+        display: none;
+        visibility: hidden;
+        border-radius: 30px;
+        transition: opacity 0.7s linear, visibility 0.5s linear;
+    }
+    
+    .img-zoom-container:hover .overlay {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        border: 10px solid rgba(0, 0, 0, 0.9);
+    }
+    
+    .overlay:hover {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .img-zoom-container:hover {
+        border: 10px solid rgba(0, 0, 0, 0.9);
+        border-radius: 30px;
+    }
+    
+    .fa {
+        font-size: 100px !important;
+        /* padding: 29px; */
+        color: #fb0000;
+    }
+    
+    @media (max-width: 992px) {
+        .img-zoom-lens {
+            /*set the size of the lens:*/
+            width: 90px;
+            height: 900px;
+        }
+    }
+    /*! purgecss end ignore */

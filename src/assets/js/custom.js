@@ -24,7 +24,7 @@ function zoomIn(event) {
         lens = document.createElement("DIV");
         lens.setAttribute("id", "img-zoom-lens");
         lens.setAttribute("class", "img-zoom-lens");
-        lens.style = "position:absolute; border: 1px solid #d4d4d4; width: 40px; height: 40px; ";
+        lens.style = "position:absolute; border: 4px solid lightblue; width: 140px; height: 140px; ";
 
     } else {
         lens = document.getElementById("img-zoom-lens");
@@ -339,7 +339,7 @@ function zoomInProductDetails(imgZoom, imgZoomResult) {
         lens = document.createElement("DIV");
         lens.setAttribute("id", "img-zoom-lens");
         lens.setAttribute("class", "img-zoom-lens");
-        lens.style = "position:absolute; border: 1px solid #d4d4d4; width: 40px; height: 40px; ";
+        lens.style = "position:absolute; border: 4px solid lightblue; width: 140px; height: 140px; ";
 
     } else {
         lens = document.getElementById("img-zoom-lens");
