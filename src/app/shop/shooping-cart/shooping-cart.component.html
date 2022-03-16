@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="cart-items">
+        <ng-container *ngFor="let cartItem of shoppingCartItems; let index = index">
+            <div class="item" [style.order]="index">
+                <div style="width: 300px;" class="img-description">
+                    <img style="float: left; border-radius: 30px;" width="100px" height="100px" src="{{cartItem.product.images[0].src}}" />
+                    <h4 style="font-size: 18px; float: left;">{{cartItem.product.short_description}}</h4>
+                </div>
+                <div style="font-size: 18px; width: 300px;" class="attribute-values">
+                    <h4>Specs</h4>
+                    <ng-container *ngFor="let attribute of attribute[index].attributes; let i = index">
+                        <h4 style="font-size: 18px;" class="attribute-values-h4"><span>✅ </span><span>{{attribute.attributeName}}: </span><span>{{attribute.attributeValue}};   </span></h4>
+                    </ng-container>
+                </div>
+                <div class="quantity">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select Quantity</mat-label>
+                        <input [(ngModel)]="cartItem.quantity" (ngModelChange)="updateQuantity($event, cartItem.id)" style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="{{cartItem.quantity}}" min="1 ">
+                    </mat-form-field>
+                    <button (click)="deleteItem(cartItem.id)" style="all: unset; margin-left: 10px; cursor: pointer; color: red; font-size:40px;background-color: transparent; padding: 10px !important; width: fit-content !important; height: fit-content !important;">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!-- <div class="delete-cart-item">
+
+                </div> -->
+            </div>
+        </ng-container>
+    </div>
+    <div class="checkout-button-wrapper">
+        <button class="checkout-button">
+            Checkout
+        </button>
+    </div>
+</div>

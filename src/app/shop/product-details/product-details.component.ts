@@ -1,16 +1,16 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from '../_services/products.service';
+import { ProductsService } from '../../shared/_services/products.service';
 import { SwiperComponent } from "swiper/angular";
 declare function addToCart(): any;
 declare function addToCartNumberOfItems(itemsToAdd: number): any;
 
 // import Swiper core and required modules
 import SwiperCore, { EffectCreative, Lazy, Pagination, Zoom } from "swiper";
-import { productAttributeIdAttributeValuesId } from '../_models/product-attribute-id-attribute-values-id';
-import { CartService } from '../_services/cart.service';
+import { productAttributeIdAttributeValuesId } from '../../shared/_models/product-attribute-id-attribute-values-id';
+import { CartService } from '../../shared/_services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ShoppingCartContinueShoppingComponent } from '../_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
+import { ShoppingCartContinueShoppingComponent } from '../../shared/_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);

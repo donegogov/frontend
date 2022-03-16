@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductDetailsComponent } from '../shared/product-details/product-details.component';
 import { PriceFromToResolver } from '../shared/_resolvers/price-from-to.resolver';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ShoopingCartComponent } from './shooping-cart/shooping-cart.component';
 import { ShopProductsComponent } from './shop-products/shop-products.component';
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: ProductDetailsComponent
+  },
+  {
+    path: 'cart',
+    component: ShoopingCartComponent
   },
 ];
 

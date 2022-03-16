@@ -1,0 +1,115 @@
+body {
+    background-color: #92cfff !important;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.cart-items {
+    order: 1;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-basis: 30%;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    flex-direction: column;
+    /* border: 4px solid #fb0000;
+    border-radius: 0 40px 40px 40px; */
+    margin: 4px;
+    padding: 10px;
+}
+
+.checkout-button-wrapper {
+    order: 2;
+    flex-basis: 50%;
+    margin: auto;
+}
+
+.checkout-button {
+    font-size: 40px;
+    text-align: center;
+    border-radius: 30px;
+    padding: 30px 40px;
+    color: #fafafa;
+    border: none;
+    background-color: #fb0000;
+    font-weight: 900;
+    padding: 20px;
+    position: fixed;
+    top: 200px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+
+.img-description {
+    order: 1;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+.attribute-values {
+    order: 2;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+.quantity {
+    order: 3;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+.delete-cart-item {
+    order: 4;
+    flex-basis: auto;
+    display: inline-block;
+}
+
+.attribute-values-h4 {
+    display: block;
+    font-weight: 900;
+}
+
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+    .cart-items {
+        flex-basis: 100%;
+    }
+    .checkout-button {
+        flex-basis: 100%;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+    }
+    .item {
+        flex-direction: column;
+    }
+    .attribute-values-h4 {
+        display: block;
+    }
+}

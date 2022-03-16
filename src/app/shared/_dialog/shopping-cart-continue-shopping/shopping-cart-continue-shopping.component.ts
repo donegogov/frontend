@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart-continue-shopping',
@@ -9,13 +10,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ShoppingCartContinueShoppingComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ShoppingCartContinueShoppingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onViewShoppingCartClick(): void {
     this.dialogRef.close();
+    this.router.navigate(['/shop/cart']);
   }
 
 }

@@ -25,7 +25,6 @@ import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 
@@ -37,7 +36,6 @@ import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-c
     FooterComponent,
     AnimatedShopComponent,
     MobileAppsComponent,
-    ProductDetailsComponent,
     NotFoundComponent,
     ShoppingCartContinueShoppingComponent,
   ],
@@ -46,8 +44,6 @@ import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-c
     SharedRoutingModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatRadioModule,
-    SwiperModule,
     MatInputModule,
     FormsModule,
     MatDialogModule,
@@ -78,8 +74,13 @@ import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-c
     ReactiveFormsModule,
     AnimatedShopComponent,
     MobileAppsComponent,
-    ProductDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SwiperModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ]
 })
 export class SharedModule { }

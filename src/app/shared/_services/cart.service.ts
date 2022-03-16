@@ -128,4 +128,11 @@ export class CartService {
   deleteWishlistCartItem(wishlistShoppingCartItemId: string) {
     return this.http.delete<any>(this.apiUrl + 'shopping_cart_items' + '/' + wishlistShoppingCartItemId);
   }
+
+  updateShoppingCartQuantity(quantity: string, cartItemId: string) {
+    var json = '';
+    json += '{ "ObjectPropertyNameValuePairs": {}, "shopping_cart_item": { "quantity": ' + quantity + ' } }'
+
+    return this.http.put<any>(this.apiUrl + 'shopping_cart_items' + '/' + cartItemId, { } );
+  }
 }
