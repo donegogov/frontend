@@ -74,18 +74,16 @@ gulp.task('compress-js-terser', async function() {
 
 
 gulp.task('js-compile-closure', function() {
-    return gulp.src('./dist/bundle.js', { base: './' })
+    return gulp.src('./dist/*.js', { base: './' })
         .pipe(closureCompiler({
             compilation_level: 'SIMPLE',
             warning_level: 'DEFAULT',
             language_in: 'ECMASCRIPT_2020',
             language_out: 'ECMASCRIPT_2021',
-            output_wrapper: '(function(){\n%output%\n}).call(this)',
             js_output_file: 'bundle.min.js',
+            externs: ['./dist/assets/js/custom.js', './dist/scripts.js']
         }, {
             platform: ['native', 'java', 'javascript'],
-            ignore_failing_processing: true,
-            manage_closure_dependencies: true,
         }))
         .on('error', console.log)
         .pipe(gulp.dest('./dist'));

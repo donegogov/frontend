@@ -26,7 +26,8 @@
                             { "glob": ".htaccess", "input": "src/assets/htaccess", "output": "./" },
                             "src/favicon.ico",
                             "src/assets/images",
-                            "src/assets/fonts"
+                            "src/assets/fonts",
+                            "src/assets/js/custom.js"
                         ],
                         "styles": [
                             "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
