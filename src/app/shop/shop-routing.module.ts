@@ -4,6 +4,7 @@ import { PriceFromToResolver } from '../shared/_resolvers/price-from-to.resolver
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShoopingCartComponent } from './shooping-cart/shooping-cart.component';
 import { ShopProductsComponent } from './shop-products/shop-products.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ShoopingCartComponent
+  },
+  {
+    path: 'wishlist',
+    component: WishlistComponent
   },
 ];
 

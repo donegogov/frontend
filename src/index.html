@@ -17,7 +17,10 @@
     <script>
         setTimeout(function() {
             setTimeout(function() {
-                if (window.location.href.indexOf("shop") > -1) {
+                if (window.location.href.indexOf("wishlist") > -1) {
+                    const menuItems = menu.querySelectorAll(".menu__item");
+                    clickItem(menuItems[2], 2);
+                } else if (window.location.href.indexOf("shop") > -1) {
                     const menuItems = menu.querySelectorAll(".menu__item");
                     clickItem(menuItems[1], 1);
                 }
