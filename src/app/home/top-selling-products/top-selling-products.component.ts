@@ -79,6 +79,11 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
           console.log('Timeout add to cart');
           addToCart();
         }, 100);
+        this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
+          dataWl.shopping_carts.forEach((element: any, i: number) => {
+            this.wishList.push({ids: element.product.id, wishList: true});
+          });
+        });
       }
     });
     this.innerWidth = window.innerWidth;
@@ -127,7 +132,7 @@ addToWishList(product: any) {
     addWishlist = true;
   }
   console.log(this.wishList);
-  if (!addWishlist) {
+  if (addWishlist) {
     //addWishlist = true;
     var tempDictAttributeIdAttributeValueId: productAttributeIdAttributeValuesId[] = [];
     for(var i = 0; i < product.attributes.length; i++) {

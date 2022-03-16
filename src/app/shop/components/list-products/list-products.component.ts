@@ -132,13 +132,15 @@ getData() {
         console.log('this.topSellingProducts');
         console.log(data.products);
         this.topSellingProducts = data.products;
-        //setTimeout(addToCart(), 1000);
-        /* setTimeout(function(){
-          console.log('Timeout add to cart');
-          addToCart();
-        }, 100); */
-        //addToCart();
-        //this.productsService.topSellingProducts = data.products;
+        this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
+          console.log('dataWldataWldataWldataWldataWldataWldataWldataWldataWldataWldataWldataWl');
+        console.log(dataWl);
+          dataWl.shopping_carts.forEach((element: any, i: number) => {
+            this.wishList.push({ids: element.product.id, wishList: true});
+          });
+        });
+        console.log('this.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishList');
+        console.log(this.wishList);
       }
     });
   }
@@ -187,7 +189,7 @@ addToWishList(product: any) {
     addWishlist = true;
   }
   console.log(this.wishList);
-  if (!addWishlist) {
+  if (addWishlist) {
     //addWishlist = true;
     var tempDictAttributeIdAttributeValueId: productAttributeIdAttributeValuesId[] = [];
     for(var i = 0; i < product.attributes.length; i++) {
