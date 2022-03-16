@@ -46,6 +46,14 @@ body {
     background: var(--selectPanelBackgroundColor);
 }
 
+.img-zoom-lens {
+    position: absolute;
+    border: 4px solid lightblue;
+    /*set the size of the lens:*/
+    width: 140px;
+    height: 140px;
+}
+
 
 /* // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap */
@@ -79,6 +87,11 @@ body {
     }
     .owl-item {
         height: 1200px !important;
+    }
+    .img-zoom-lens {
+        /*set the size of the lens:*/
+        width: 90px;
+        height: 900px;
     }
 }
 
