@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShoopingCartComponent } from './shooping-cart/shooping-cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ShoopingCartComponent } from './shooping-cart/shooping-cart.component';
     PriceFromToComponent,
     ListProductsComponent,
     ProductDetailsComponent,
-    ShoopingCartComponent
+    ShoopingCartComponent,
+    WishlistComponent
   ],
   imports: [
     ShopRoutingModule,
