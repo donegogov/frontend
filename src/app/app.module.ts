@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
 import { APP_INITIALIZER } from '@angular/core';
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,8 @@ import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
     HomeModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGoogleMapsAutocompleteModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -33,6 +35,8 @@ import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
       multi: true
       
     },
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,12 @@
+function longtitute() {
+    return new google.maps.LatLngBounds(new google.maps.LatLng(43.941160, -78.895187), new google.maps.LatLng(43.941160, -78.895187));
+}
+
+function latitute() {
+    return new google.maps.LatLng(43.941160, -78.895187);
+}
+
+
 function zoomIn(event) {
     /* $(".menu").removeClass('desktopTopFixed'); */
     /* var result = document.getElementById(event.target.id + 'result');

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PriceFromToResolver } from '../shared/_resolvers/price-from-to.resolver';
+import { CheckoutUsernamePasswordComponent } from './checkout-username-password/checkout-username-password.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShoopingCartComponent } from './shooping-cart/shooping-cart.component';
 import { ShopProductsComponent } from './shop-products/shop-products.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'wishlist',
     component: WishlistComponent
+  },
+  {
+    path: 'signin',
+    component: CheckoutUsernamePasswordComponent
   },
 ];
 
