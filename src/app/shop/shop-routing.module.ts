@@ -26,7 +26,7 @@ const routes: Routes = [
     component: WishlistComponent
   },
   {
-    path: 'signin',
+    path: 'checkout/signin',
     component: CheckoutUsernamePasswordComponent
   },
 ];

@@ -6,25 +6,17 @@ import { MapsAPILoader } from '@agm/core';
 declare function longtitute(): any;
 declare function latitute(): any;
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 @Component({
   selector: 'app-checkout-username-password',
   templateUrl: './checkout-username-password.component.html',
   styleUrls: ['./checkout-username-password.component.css']
 })
 export class CheckoutUsernamePasswordComponent implements OnInit {
-  matcher = new MyErrorStateMatcher();
   minPw = 8;
   checkoutForm!: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(this.minPw)]);
+  address = new FormControl('', [Validators.required]);
 
   establishmentAddress: any;
 
@@ -45,7 +37,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   latitude!: number;
   longitude!: number;
   zoom!: number;
-  address!: string;
+  addressString!: string;
   private geoCoder: any;
   @ViewChild('search') public searchElementRef!: ElementRef;
   formBuilder: FormBuilder = new FormBuilder();
@@ -55,6 +47,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   state = "";
   country = "";
   zip = "";
+  formated_address = '';
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -66,13 +59,17 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     this.checkoutForm = this.formBuilder.group({
       email: this.email,
       password: this.password,
+      firstname: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      address: this.address,
+      zip: new FormControl('')
     });
 
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
+      this.setCurrentLocation();
       const options = {
-        componentRestrictions: { country: "MK" },
+        componentRestrictions: { country: ["MK", "DE"] },
       };
     
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
@@ -88,8 +85,9 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
           }
           this.latitude = place.geometry.location?.lat() || 1;
           this.longitude = place.geometry.location?.lng() || 1;
-          this.address2 = place.formatted_address || '';
+          this.formattedAddress = place.formatted_address || '';
           this.zip = place.formatted_address?.split(',')[1].replace(/\D/g, "") || '';
+          this.city = place.formatted_address?.split(',')[1].replace(/[^a-zA-Z]+/g, '') || '';
           this.phone = place.formatted_phone_number || '1';
           this.zoom = 12;
         });
@@ -104,21 +102,35 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   }
 
   private setCurrentLocation() {
+    console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
+    console.log('geolocation' in navigator);
     if ('geolocation' in navigator) {
+      console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
+      console.log(navigator.geolocation.getCurrentPosition)
       navigator.geolocation.getCurrentPosition((position) => {
+        console.log('[0]results[0]results[0]results[0]results[0]');
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
         this.getAddress(this.latitude, this.longitude);
+      }, (error) => {
+        console.log(error);
       });
     }
   }
   getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results: any, status: any) => {
+      console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
+          console.log(results[0]);
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
-          this.address = results[0].formatted_address;
+          this.addressString = results[0].formatted_address;
+          console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
+          console.log(results[0]);
+          this.formattedAddress = results[0].formatted_address || '';
+          this.zip = results[0].formatted_address?.split(',')[1].replace(/\D/g, "") || '';
+          this.city = results[0].formatted_address?.split(',')[1].replace(/[^a-zA-Z]+/g, '') || '';
         } else {
           window.alert('No results found');
         }
