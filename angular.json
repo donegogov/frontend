@@ -17,6 +17,9 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "ngx-google-places-autocomplete"
+                        ],
                         "outputPath": "dist/",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -49,13 +52,13 @@
                         "production": {
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "2mb"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "10mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "10kb"
+                                    "maximumWarning": "100kb",
+                                    "maximumError": "1mb"
                                 }
                             ],
                             "fileReplacements": [{
@@ -64,7 +67,7 @@
                             }],
                             "optimization": true,
                             "outputHashing": "none",
-                            "sourceMap": false,
+                            "sourceMap": true,
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,

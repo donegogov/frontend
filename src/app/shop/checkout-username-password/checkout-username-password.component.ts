@@ -86,8 +86,8 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
           this.latitude = place.geometry.location?.lat() || 1;
           this.longitude = place.geometry.location?.lng() || 1;
           this.formattedAddress = place.formatted_address || '';
-          this.zip = place.formatted_address?.split(',')[1].replace(/\D/g, "") || '';
-          this.city = place.formatted_address?.split(',')[1].replace(/[^a-zA-Z]+/g, '') || '';
+          this.zip = place.formatted_address?.split(',')[place.formatted_address.split(',').length - 2].replace(/\D/g, "") || '';
+          this.city = place.formatted_address?.split(',')[place.formatted_address.split(',').length - 2].replace(/[^a-zA-Z]+/g, '') || '';
           this.phone = place.formatted_phone_number || '1';
           this.zoom = 12;
         });
@@ -121,16 +121,16 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results: any, status: any) => {
       console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
-          console.log(results[0]);
+          console.log(results);
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
           this.addressString = results[0].formatted_address;
           console.log('results[0]results[0]results[0]results[0]results[0]results[0]results[0]results[0]');
-          console.log(results[0]);
+          console.log(results);
           this.formattedAddress = results[0].formatted_address || '';
-          this.zip = results[0].formatted_address?.split(',')[1].replace(/\D/g, "") || '';
-          this.city = results[0].formatted_address?.split(',')[1].replace(/[^a-zA-Z]+/g, '') || '';
+          this.zip = results[0].formatted_address?.split(',')[results[0].formatted_address.split(',').length - 2].replace(/\D/g, "") || '';
+          this.city = results[0].formatted_address?.split(',')[results[0].formatted_address.split(',').length - 2].replace(/[^a-zA-Z]+/g, '') || '';
         } else {
           window.alert('No results found');
         }
