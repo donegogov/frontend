@@ -264,4 +264,183 @@
 }
 
 
+/*! purgecss start ignore */
+
+:root {
+    --marginSizeChipSelectPanel: 50px;
+    --matChipHeight: 50px;
+}
+
+@media (max-width: 992px) {
+     :root {
+        --matChipHeight: 50px;
+    }
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.searchForm {
+    margin-left: 50px;
+    width: 95%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.option-img {
+    vertical-align: middle;
+    margin-right: 50px;
+    border-radius: 100%;
+}
+
+.mat-input-class {
+    border-radius: 50px;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 200px !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-select {
+    background: transparent !important;
+    min-height: var(--marginSizeChipSelectPanel) !important;
+    border-radius: 50px !important;
+}
+
+.mat-form-field-underline {
+    display: none;
+}
+
+input.mat-input-element {
+    font-size: 28px;
+    padding: 17px 17px !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.img-div {
+    all: unset;
+}
+
+.mat-standard-chip {
+    font-size: 27px;
+    background-color: #fafafa;
+    height: var(--matChipHeight);
+    border-radius: 100%;
+    cursor: pointer;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 0 30px 30px 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 30px 0 0 30px !important;
+}
+
+.mat-form-field-label {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.selectPanel {
+    all: initial;
+}
+
+.mat-input-class {
+    all: initial;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    all: initial;
+}
+
+.mat-option {
+    all: initial;
+}
+
+.mat-form-field-underline {
+    all: initial;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    all: initial;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    all: initial;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+input.mat-input-element {
+    all: initial;
+}
+
+.img-div {
+    all: unset;
+}
+
+.mat-standard-chip {
+    all: initial;
+}
+
+.mat-select-trigger {
+    all: initial;
+}
+
+.mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+    all: initial;
+}
+
+.mat-pseudo-checkbox {
+    all: initial;
+}
+
+.mat-pseudo-checkbox-checked::after {
+    all: initial;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    all: initial;
+}
+
+@media (max-width: 992px) {
+    .mat-standard-chip {
+        all: initial;
+    }
+    .mat-option {
+        all: initial;
+    }
+    input.mat-input-element {
+        all: initial;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        all: initial;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-flex {
+        all: initial;
+    }
+    .searchForm {
+        all: initial;
+        font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    }
+    .option-img {
+        all: initial;
+    }
+}
+
+
+/*! purgecss end ignore */
+
+
 /*! purgecss end ignore */

@@ -89,7 +89,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (this.reload == 'true') {
-      window.location.reload();
+      //window.location.reload();
       localStorage.setItem('reload', 'false');
     }
     this.route.paramMap.subscribe(params => { 
