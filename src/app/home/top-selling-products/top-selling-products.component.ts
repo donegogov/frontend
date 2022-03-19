@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { CartService } from 'src/app/shared/_services/cart.service';
@@ -55,7 +56,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
 
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
-    private cartService: CartService) { 
+    private cartService: CartService,
+    private router: Router) { 
     this.numbers = Array(60).fill(4);
     this.getScreenSize();
 
@@ -180,6 +182,13 @@ wishListYn(id: number) {
 /* ngOnDestroy() {
   localStorage.setItem('reload', 'true');
 } */
+
+productDetails(id: number) {
+  this.router.navigate(['/shop/details/', id])
+  .then(() => {
+    window.location.reload();
+  });
+}
 
 }
 

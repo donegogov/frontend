@@ -21,12 +21,12 @@
             <img id="imgZoom{{product.id}}result" class="img-zoom-result overlay" style="width: 100%;  height: 100%;" />
 
         </div>
-        <a [routerLink]="['/shop/details/', product.id]" routerLinkActive="router-link-active" style="color: #fb0000; text-decoration: none;">
+        <a (click)="productDetails(product.id)" routerLinkActive="router-link-active" style="color: #fb0000; text-decoration: none;">
             <h1 style="font-weight: 900;">{{product.name}}</h1>
             <h4 style="font-weight: 900;">{{product.short_description}}</h4>
         </a>
         <div class="page-wrapper" style="padding: 0px !important;">
-            <button [routerLink]="['/shop/details/', product.id]" class="product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
+            <button (click)="productDetails(product.id)" class="product-add-to-cart-button" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
                 <i class="fa fa-external-link" aria-hidden="true"></i>
         </button>
             <button class="product-add-to-cart-button" (click)="addToWishList(product)" style="background-color: #fafafa; padding: 0px !important; width: fit-content !important; height: fit-content !important;">
