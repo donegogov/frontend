@@ -65,11 +65,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private cartService: CartService,
     public dialog: MatDialog) {
-      if (!localStorage.getItem('reload')) {
+      /* if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
       } else {
         this.reload = localStorage.getItem('reload') || 'false';
-      }
+      } */
       this.getScreenSize();
 
     if (this.scrWidth <= 992) {
@@ -88,10 +88,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    if (this.reload == 'true') {
+    /* if (this.reload == 'true') {
       //window.location.reload();
       localStorage.setItem('reload', 'false');
-    }
+    } */
     this.route.paramMap.subscribe(params => { 
       this.id = params.get('id') || ''; 
       console.log('ID = ' + this.id);
@@ -128,7 +128,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
-    localStorage.setItem('reload', 'true');
+    /* localStorage.setItem('reload', 'true'); */
     productDetailsTopMenuAdd();
   }
 
