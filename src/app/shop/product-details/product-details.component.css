@@ -66,7 +66,7 @@
 }
 
 .radio-group {
-    all: initial;
+    all: initial !important;
     display: flex;
     flex-direction: row;
     margin: 15px 0;
@@ -74,7 +74,7 @@
 }
 
 .radio-button {
-    all: initial;
+    all: initial !important;
     margin: 5px;
 }
 
@@ -256,7 +256,7 @@
         cursor: pointer;
     } */
     .radio-group {
-        all: initial;
+        all: initial !important;
         flex-direction: column;
     }
     .img-zoom-lens {
@@ -302,24 +302,24 @@
 }
 
 .mat-input-class {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
-    all: initial;
+    all: initial !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-select {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-underline {
-    all: initial;
+    all: initial !important;
 }
 
 input.mat-input-element {
-    all: initial;
+    all: initial !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -328,16 +328,16 @@ input.mat-input-element {
 }
 
 .mat-standard-chip {
-    all: initial;
+    all: initial !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-end {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-start {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-label {
@@ -349,37 +349,37 @@ mat-form-field {
 }
 
 .selectPanel {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-input {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-option {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-underline {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
-    all: initial;
+    all: initial !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-form-field.mat-focused .mat-form-field-label {
-    all: initial;
+    all: initial !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 input.mat-input-element {
-    all: initial;
+    all: initial !important;
 }
 
 .img-div {
@@ -387,56 +387,56 @@ input.mat-input-element {
 }
 
 .mat-standard-chip {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-select-trigger {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-pseudo-checkbox {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-pseudo-checkbox-checked::after {
-    all: initial;
+    all: initial !important;
 }
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-    all: initial;
+    all: initial !important;
 }
 
 @media (max-width: 992px) {
     .mat-standard-chip {
-        all: initial;
+        all: initial !important;
     }
     .mat-option {
-        all: initial;
+        all: initial !important;
     }
     input.mat-input-element {
-        all: initial;
+        all: initial !important;
     }
     .mat-form-field-appearance-outline .mat-form-field-infix {
-        all: initial;
+        all: initial !important;
     }
     .mat-form-field-appearance-outline .mat-form-field-flex {
-        all: initial;
+        all: initial !important;
     }
     .searchForm {
-        all: initial;
+        all: initial !important;
         font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
     }
     .option-img {
-        all: initial;
+        all: initial !important;
     }
 }
 
 .mat-select {
-    all: initial;
+    all: initial !important;
 }
 
 
