@@ -6,7 +6,7 @@ import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'app-checkout-username-password',
   templateUrl: './checkout-username-password.component.html',
-  styleUrls: ['./checkout-username-password.component.css']
+  styleUrls: ['./checkout-username-password.component.css', '../../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css']
 })
 export class CheckoutUsernamePasswordComponent implements OnInit {
   minPw = 8;

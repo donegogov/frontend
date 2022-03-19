@@ -5,7 +5,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent} from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
-import { ViewEncapsulation } from '@angular/core';
 import { ProductsService } from '../../../shared/_services/products.service';
 import { ProductsForHomePageSlider } from '../../../shared/_models/products-for-home-page-slider';
 import { ProductsForHomePageSearch } from '../../../shared/_models/products-for-home-page-search';
@@ -16,8 +15,7 @@ import { ProductSearchAsRootObject } from '../../../shared/_models/products-sear
 @Component({
   selector: 'app-search-product',
   templateUrl: './search-product.component.html',
-  styleUrls: ['./search-product.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./search-product.component.css']
 })
 export class SearchProductComponent implements OnInit {
   allSearchProducts: ProductsForHomePageSearch[] = 

@@ -5,7 +5,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent} from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
-import { ViewEncapsulation } from '@angular/core';
 import { ProductsService } from '../../../shared/_services/products.service';
 import { ProductsForHomePageSlider } from '../../../shared/_models/products-for-home-page-slider';
 import { ProductsForHomePageSearch } from '../../../shared/_models/products-for-home-page-search';
@@ -18,8 +17,7 @@ import { CategoryForHomePageSearch } from '../../../shared/_models/catefory-for-
 @Component({
   selector: 'app-search-categories',
   templateUrl: './search-categories.component.html',
-  styleUrls: ['./search-categories.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./search-categories.component.css']
 })
 export class SearchCategoriesComponent implements OnInit {
   allSearchCategories: CategoryForHomePageSearch[] = 

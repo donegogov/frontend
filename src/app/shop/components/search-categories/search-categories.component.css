@@ -1,63 +1,56 @@
 /*! purgecss start ignore */
-:root {
-    --marginSizeChipSelectPanel: 50px;
-    --matChipHeight: 50px;
-}
-@media (max-width: 992px) { 
-    :root {
-        --matChipHeight: 50px;
-    }   
-}
 
 .example-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
-  }
+}
 
-  .searchForm {
+.searchForm {
     margin-left: 50px;
     width: 95%;
-  }
-  
-  .full-width {
+}
+
+.full-width {
     width: 100%;
-  }
-  
-  .option-img {
+}
+
+.option-img {
     vertical-align: middle;
     margin-right: 50px;
     border-radius: 100%;
-  }
+}
 
-  .mat-input-class {
-      border-radius: 50px;
-  }
+::ng-deep .mat-input-class {
+    border-radius: 50px;
+}
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
+ ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-select {
+::ng-deep .mat-select {
     background: transparent !important;
     min-height: var(--marginSizeChipSelectPanel) !important;
     border-radius: 50px !important;
 }
 
-.mat-form-field-underline {
+::ng-deep .mat-form-field-underline {
     display: none;
 }
 
-input.mat-input-element {
+::ng-deep input.mat-input-element {
     font-size: 28px;
     padding: 17px 17px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
+
 .img-div {
     all: unset;
 }
-.mat-standard-chip {
+
+::ng-deep .mat-standard-chip {
     font-size: 27px;
     background-color: #fafafa;
     height: var(--matChipHeight);
@@ -66,26 +59,23 @@ input.mat-input-element {
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-.mat-form-field-appearance-outline .mat-form-field-outline-end {
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
     border-radius: 0 30px 30px 0 !important;
-  }
-
-  .mat-form-field-appearance-outline .mat-form-field-outline-start {
-    border-radius: 30px 0 0 30px !important;
-  }
-
-  .mat-form-field-label {
-  font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 30px 0 0 30px !important;
+}
 
+::ng-deep .mat-form-field-label {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
 
-mat-form-field {
+::ng-deep mat-form-field {
     width: 100%;
 }
 
-.selectPanel {
+::ng-deep .selectPanel {
     margin-top: var(--marginSizeChipSelectPanel) !important;
     border-radius: 50px !important;
     max-width: 100% !important;
@@ -96,7 +86,7 @@ mat-form-field {
 }
 
 .hideOption {
-   display: none !important;
+    display: none !important;
 }
 
 .showOption {
@@ -107,28 +97,28 @@ mat-form-field {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
-  }
-  
-  .example-full-width {
+}
+
+.example-full-width {
     width: 100%;
-  }
-  
-  .option-img {
+}
+
+.option-img {
     vertical-align: middle;
     margin-right: 50px !important;
     border-radius: 100% !important;
-  }
+}
 
-  .mat-input-class {
-      border-radius: 50px;
-  }
+::ng-deep .mat-input-class {
+    border-radius: 50px;
+}
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-option {
+::ng-deep .mat-option {
     margin: 20px 0px 20px 20px;
     border-radius: 50px;
     color: rgba(0, 0, 0, 0.7);
@@ -140,29 +130,31 @@ mat-form-field {
     min-width: 90% !important;
 }
 
-.mat-form-field-underline {
+::ng-deep .mat-form-field-underline {
     display: none;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-label {
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
     color: rgba(0, 0, 0, 0.87);
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-form-field.mat-focused .mat-form-field-label{ 
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: rgba(0, 0, 0, 0.17);
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-input.mat-input-element {
+::ng-deep input.mat-input-element {
     font-size: 34px;
     padding: 7px 7px !important;
     line-height: 37px;
 }
+
 .img-div {
     all: unset;
 }
-.mat-standard-chip {
+
+::ng-deep .mat-standard-chip {
     font-size: 37px;
     background-color: #fafafa;
     height: var(--matChipHeight);
@@ -170,27 +162,26 @@ input.mat-input-element {
     cursor: pointer;
 }
 
-.mat-select-trigger {
+::ng-deep .mat-select-trigger {
     cursor: pointer;
     min-height: var(--marginSizeChipSelectPanel) !important;
+}
 
-  }
-
-  .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
     background-color: #A5C73C;
     height: 50px !important;
     width: 50px !important;
     border-radius: 100% !important;
 }
 
-.mat-pseudo-checkbox {
+::ng-deep .mat-pseudo-checkbox {
     color: unset;
     height: 50px !important;
     width: 50px !important;
     border-radius: 100% !important;
 }
 
-.mat-pseudo-checkbox-checked::after {
+::ng-deep .mat-pseudo-checkbox-checked::after {
     top: 4px !important;
     left: 1px !important;
     width: 34px !important;
@@ -199,22 +190,21 @@ input.mat-input-element {
     right: auto !important;
     border-bottom: 5px solid !important;
     border-left: 5px solid !important;
-  }
+}
 
-  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-    color: rgba(0, 0, 0, 0.87);;
-  }
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: rgba(0, 0, 0, 0.87);
+}
 
-  @media (max-width: 992px) { 
-    .mat-standard-chip {
+@media (max-width: 992px) {
+     ::ng-deep .mat-standard-chip {
         font-size: 17px !important;
         background-color: #fafafa !important;
         height: var(--matChipHeight) !important;
         border-radius: 100% !important;
         min-height: var(--matChipHeight) !important;
     }
-
-    .mat-option {
+     ::ng-deep .mat-option {
         margin: 0 !important;
         border-radius: 50px;
         color: rgba(0, 0, 0, 0.7);
@@ -225,32 +215,29 @@ input.mat-input-element {
         max-width: 100% !important;
         min-width: 90% !important;
     }
-
-    input.mat-input-element {
+     ::ng-deep input.mat-input-element {
         font-size: 24px;
         padding: 14px 14px !important;
         font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
     }
-
-    .mat-form-field-appearance-outline .mat-form-field-infix {
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
         padding: 0 !important;
-      }
-
-      .mat-form-field-appearance-outline .mat-form-field-flex {
+    }
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
         padding: 0;
         margin: 0;
-      }
-
-      .searchForm {
+    }
+    .searchForm {
         margin-left: 14px;
         width: 90%;
-          font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
-      }
-
-      .option-img {
+        font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    }
+    .option-img {
         vertical-align: middle;
         margin-right: 50px;
         border-radius: 100%;
-      }
-  }
-  /*! purgecss end ignore */
+    }
+}
+
+
+/*! purgecss end ignore */

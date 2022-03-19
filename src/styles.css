@@ -365,5 +365,16 @@ body {
     font-weight: 900;
 }
 
+:root {
+    --marginSizeChipSelectPanel: 50px;
+    --matChipHeight: 50px;
+}
+
+@media (max-width: 992px) {
+     :root {
+        --matChipHeight: 50px;
+    }
+}
+
 
 /*! purgecss end ignore */

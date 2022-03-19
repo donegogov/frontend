@@ -1,47 +1,50 @@
 /*! purgecss start ignore */
+
 :root {
     --matChipHeight: 50px;
 }
-@media (max-width: 992px) { 
-    :root {
+
+@media (max-width: 992px) {
+     :root {
         --matChipHeight: 50px;
-    }   
+    }
 }
 
-.mat-form-field-infix {
+::ng-deep .mat-form-field-infix {
     padding: 0 !important;
-  }
+}
 
-.mat-form-field-wrapper {
+::ng-deep .mat-form-field-wrapper {
     background: #fafafa;
     border-radius: 10px 30px 30px 10px;
     padding: 0 !important;
     margin: 0 !important;
-  }
+}
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
-  }
-  
-  .full-width {
+}
+
+.full-width {
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
     /* border: 10px solid green; */
-  }
-  
-  .option-img {
+}
+
+.option-img {
     vertical-align: middle;
     margin-right: 50px !important;
     border-radius: 100% !important;
-  }
+}
 
-  .mat-input-class {
-      border-radius: 50px;
-  }
+.mat-input-class {
+    border-radius: 50px;
+}
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 200px !important;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
     background-color: transparent;
@@ -57,6 +60,7 @@
     height: 200px !important;
 }
 
+
 /* .mat-option {
     margin: 20px 0px 20px 20px;
     border-radius: 50px;
@@ -67,48 +71,52 @@
     height: 200px !important;
 } */
 
+
 /* .map-sp{
     max-height: 500px !important;
     border-radius: 50px !important;
 } */
 
-.mat-autocomplete-panel {
+::ng-deep .mat-autocomplete-panel {
     max-height: 500px !important;
 }
 
-.mat-autocomplete-panel.mat-autocomplete-visible {
+::ng-deep .mat-autocomplete-panel.mat-autocomplete-visible {
     border-radius: 50px;
 }
 
-.mat-autocomplete-panel-above .mat-autocomplete-panel {
+::ng-deep .mat-autocomplete-panel-above .mat-autocomplete-panel {
     border-radius: 50px !important;
 }
 
-.mat-form-field-underline {
+::ng-deep .mat-form-field-underline {
     display: none;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-label {
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
     color: rgba(0, 0, 0, 0.87);
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
-.mat-form-field-label {
+
+::ng-deep .mat-form-field-label {
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif !important;
     color: rgba(0, 0, 0, 0.87);
-  }
+}
 
-.mat-form-field.mat-focused .mat-form-field-label{ 
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: rgba(0, 0, 0, 0.17);
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
-input.mat-input-element {
+::ng-deep input.mat-input-element {
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
+
 .img-div {
     all: unset;
 }
-.mat-standard-chip {
+
+::ng-deep .mat-standard-chip {
     font-size: 27px;
     background-color: #fafafa;
     height: var(--matChipHeight);
@@ -116,12 +124,11 @@ input.mat-input-element {
     cursor: pointer;
 }
 
-.mat-form-field-label {
+::ng-deep .mat-form-field-label {
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
-  }
+}
 
-@media (max-width: 992px) { 
-
+@media (max-width: 992px) {
     .mp-sp {
         margin: 0 !important;
         border-radius: 30px;
@@ -133,60 +140,49 @@ input.mat-input-element {
         overflow-y: scroll !important;
         padding: 0 !important;
     }
-    .mat-standard-chip {
+     ::ng-deep .mat-standard-chip {
         font-size: 17px;
     }
-
-    input.mat-input-element {
+     ::ng-deep input.mat-input-element {
         padding: 0 !important;
         color: rgba(0, 0, 0, 0.87);
     }
-
-    .mat-form-field-label {
-    
+     ::ng-deep .mat-form-field-label {
         font-size: inherit !important;
         color: rgba(0, 0, 0, 0.87);
     }
-    
-    .mat-focused .mat-form-field-label{ 
+     ::ng-deep .mat-focused .mat-form-field-label {
         color: rgba(0, 0, 0, 0.87);
         font-size: inherit !important;
     }
-
     .form-input {
         background-color: transparent;
         border-radius: 30px;
     }
-
-    .mat-autocomplete-panel {
+     ::ng-deep .mat-autocomplete-panel {
         max-height: 300px !important;
     }
-
-    
-
     .option-img {
         margin-right: 30px !important;
         border-radius: 100% !important;
         height: 70px;
         width: 70px;
-      }
-
-      .mat-form-field-appearance-outline .mat-form-field-infix {
+    }
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
         padding: 0 !important;
-      }
-
-      .mat-form-field-appearance-outline .mat-form-field-flex {
+    }
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
         padding: 0;
         margin: 0;
-      }
-
-      .mat-standard-chip {
+    }
+     ::ng-deep .mat-standard-chip {
         font-size: 17px !important;
         background-color: floralwhite !important;
         height: var(--matChipHeight) !important;
         border-radius: 100% !important;
         min-height: var(--matChipHeight) !important;
     }
-    
 }
+
+
 /*! purgecss end ignore */
