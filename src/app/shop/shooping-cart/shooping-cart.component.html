@@ -13,7 +13,7 @@
                     </ng-container>
                 </div>
                 <div class="quantity">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field class="quantity-items" appearance="outline">
                         <mat-label>Select Quantity</mat-label>
                         <input [(ngModel)]="cartItem.quantity" (ngModelChange)="updateQuantity($event, cartItem.id)" style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="{{cartItem.quantity}}" min="1 ">
                     </mat-form-field>

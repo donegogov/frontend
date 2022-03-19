@@ -88,6 +88,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     });
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
+    localStorage.setItem('reload', 'true');
   }
 
   ngAfterViewInit(): void {
@@ -175,6 +176,10 @@ wishListYn(id: number) {
     return false;
   }
 }
+
+/* ngOnDestroy() {
+  localStorage.setItem('reload', 'true');
+} */
 
 }
 

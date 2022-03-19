@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
   },
   {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

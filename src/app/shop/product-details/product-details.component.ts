@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from '../../shared/_services/products.service';
 import { SwiperComponent } from "swiper/angular";
 declare function addToCart(): any;
@@ -23,7 +23,8 @@ declare function productDetailsTopMenuAdd(): any;
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css', './product-details.component.scss', '../../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css']
+  styleUrls: ['./product-details.component.css', './product-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('imgMobileSlider') imgMobileSlider!: ElementRef;
@@ -58,17 +59,20 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   //in nopcommerce every product has attribute example color and attribute values for example red green yellow ect
   showErrorMessage: boolean = false;
   wishList!: boolean;
+  navigationSubscription: any;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductsService,
     private router: Router,
     private cartService: CartService,
     public dialog: MatDialog) {
-      /* if (!localStorage.getItem('reload')) {
+      if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
+        this.reload = 'true';
       } else {
         this.reload = localStorage.getItem('reload') || 'false';
-      } */
+      }
+      console.log('this.reload= ' + this.reload + ' localStorage.getItem(reload)= ' + localStorage.getItem('reload') + 'OOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOO');
       this.getScreenSize();
 
     if (this.scrWidth <= 992) {
@@ -86,15 +90,31 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     productDetailsTopMenuRemove();
   }
 
-  ngOnInit(): void {
-    /* if (this.reload == 'true') {
-      //window.location.reload();
-      localStorage.setItem('reload', 'false');
-    } */
+  async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(params => { 
       this.id = params.get('id') || ''; 
       console.log('ID = ' + this.id);
-    }); 
+    });
+    this.navigationSubscription = this.router.events.subscribe(async (e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        await this.reloadUrl('/shop/details/' + this.id);
+      }
+    });
+    /* this.route.paramMap.subscribe(params => { 
+      this.id = params.get('id') || ''; 
+      console.log('ID = ' + this.id);
+    }); */
+    /* console.log('this.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reload'); 
+    console.log(this.reload); */
+    /* if (this.reload == 'true') {
+      console.log('reloadreloadreloadreloadreloadreloadreloadreloadreloadreload')
+      await this.reloadUrl('/shop/details/' + this.id);
+      localStorage.setItem('reload', 'false');
+    } */
+    /* this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/shop/details/' + this.id]); // navigate to same route
+   });  */
     this.productService.getProductById(this.id).subscribe(data => {
       console.log('getProductById');
       this.product = data.products[0];
@@ -127,8 +147,18 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
-    /* localStorage.setItem('reload', 'true'); */
+    localStorage.setItem('reload', 'false');
     productDetailsTopMenuAdd();
+
+      // avoid memory leaks here by cleaning up after ourselves. If we  
+      // don't then we will continue to run our initialiseInvites()   
+      // method on every navigationEnd event.
+      if (this.navigationSubscription) {  
+         this.navigationSubscription.unsubscribe();
+      }
+  }
+
+  initialiseInvites() {
   }
 
   doubleTap(event: any) {
@@ -342,6 +372,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       return false;
     }
     
+  }
+
+  async reloadUrl(url: string): Promise<boolean> {
+    await this.router.navigateByUrl('/not-found', { skipLocationChange: true });
+    return await this.router.navigateByUrl(url);
   }
 
 }

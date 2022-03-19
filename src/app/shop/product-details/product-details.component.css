@@ -289,5 +289,156 @@
     }
 }
 
+.quantity {
+    width: 200px;
+    background-color: transparent;
+}
+
+
+/* 
+Stavi initial na site vrednost so sum gi smenil vo predhodnite komponenti
+SEARCH.PRODUCT.COMPONENT
+ */
+
+:root {
+    --matChipHeight: 50px;
+}
+
+@media (max-width: 992px) {
+     :root {
+        --matChipHeight: 50px;
+    }
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: initial !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    background: initial !important;
+    border-radius: initial !important;
+    padding: initial !important;
+    margin: initial !important;
+}
+
+.mat-input-class {
+    border-radius: initial !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: initial !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    background-color: initial !important;
+}
+
+
+/* .mat-option {
+    margin: 20px 0px 20px 20px;
+    border-radius: 50px;
+    color: black;
+    background-color: transparent;
+    font-size: 28px;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+    height: 200px !important;
+} */
+
+
+/* .map-sp{
+    max-height: 500px !important;
+    border-radius: 50px !important;
+} */
+
+::ng-deep .mat-autocomplete-panel {
+    max-height: initial !important;
+}
+
+::ng-deep .mat-autocomplete-panel.mat-autocomplete-visible {
+    border-radius: initial !important;
+}
+
+::ng-deep .mat-autocomplete-panel-above .mat-autocomplete-panel {
+    border-radius: initial !important;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: initial !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: initial !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep .mat-form-field-label {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif !important;
+    color: initial !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: initial !important;
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep input.mat-input-element {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.img-div {
+    all: unset;
+}
+
+::ng-deep .mat-standard-chip {
+    font-size: initial !important;
+    background-color: initial !important;
+    height: var(--matChipHeight);
+    border-radius: initial !important;
+    cursor: initial !important;
+}
+
+::ng-deep .mat-form-field-label {
+    font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 992px) {
+     ::ng-deep .mat-standard-chip {
+        font-size: initial !important;
+    }
+     ::ng-deep input.mat-input-element {
+        padding: initial !important;
+        color: initial !important;
+    }
+     ::ng-deep .mat-form-field-label {
+        font-size: initial !important;
+        color: initial !important;
+    }
+     ::ng-deep .mat-focused .mat-form-field-label {
+        color: initial !important;
+        font-size: initial !important;
+    }
+     ::ng-deep .mat-autocomplete-panel {
+        max-height: initial !important;
+    }
+    .option-img {
+        margin-right: initial !important;
+        border-radius: initial !important;
+        height: initial !important;
+        width: initial !important;
+    }
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: initial !important;
+    }
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+        padding: initial !important;
+        margin: initial !important;
+    }
+     ::ng-deep .mat-standard-chip {
+        font-size: initial !important;
+        background-color: initial !important;
+        height: var(--matChipHeight) !important;
+        border-radius: initial !important;
+        min-height: var(--matChipHeight) !important;
+    }
+}
+
 
 /*! purgecss end ignore */
