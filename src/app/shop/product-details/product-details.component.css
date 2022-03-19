@@ -66,6 +66,7 @@
 }
 
 .radio-group {
+    all: initial;
     display: flex;
     flex-direction: row;
     margin: 15px 0;
@@ -73,6 +74,7 @@
 }
 
 .radio-button {
+    all: initial;
     margin: 5px;
 }
 
@@ -254,6 +256,7 @@
         cursor: pointer;
     } */
     .radio-group {
+        all: initial;
         flex-direction: column;
     }
     .img-zoom-lens {
@@ -299,27 +302,24 @@
 }
 
 .mat-input-class {
-    border-radius: 50px;
+    all: initial;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
-    border-radius: 200px !important;
+    all: initial;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-select {
-    background: transparent !important;
-    min-height: var(--marginSizeChipSelectPanel) !important;
-    border-radius: 50px !important;
+    all: initial;
 }
 
 .mat-form-field-underline {
-    display: none;
+    all: initial;
 }
 
 input.mat-input-element {
-    font-size: 28px;
-    padding: 17px 17px !important;
+    all: initial;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -328,20 +328,16 @@ input.mat-input-element {
 }
 
 .mat-standard-chip {
-    font-size: 27px;
-    background-color: #fafafa;
-    height: var(--matChipHeight);
-    border-radius: 100%;
-    cursor: pointer;
+    all: initial;
     font-family: Soria, Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-end {
-    border-radius: 0 30px 30px 0 !important;
+    all: initial;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-start {
-    border-radius: 30px 0 0 30px !important;
+    all: initial;
 }
 
 .mat-form-field-label {
@@ -356,7 +352,7 @@ mat-form-field {
     all: initial;
 }
 
-.mat-input-class {
+.mat-input {
     all: initial;
 }
 
@@ -437,6 +433,10 @@ input.mat-input-element {
     .option-img {
         all: initial;
     }
+}
+
+.mat-select {
+    all: initial;
 }
 
 
