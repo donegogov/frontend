@@ -105,6 +105,3 @@ dist
 
 .angular/
 .angular/cache
-
-package-lock.json
-

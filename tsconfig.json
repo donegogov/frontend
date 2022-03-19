@@ -19,9 +19,7 @@
     "target": "es2017",
     "module": "es2020",
     "types": [
-      "googlemaps",
-      "jest",
-      "mocha"
+      "googlemaps"
     ],
     "lib": [
       "es2020",
