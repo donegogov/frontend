@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from '@agm/core';
 
 
@@ -34,7 +33,6 @@ import { CheckoutUsernamePasswordComponent } from './checkout-username-password/
   imports: [
     ShopRoutingModule,
     SharedModule,
-    GooglePlaceModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAxGNXSTPo5mP2zO7ZjuVFzfIFema-x0yc',
       libraries: ['places']

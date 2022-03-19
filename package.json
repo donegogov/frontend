@@ -29,7 +29,6 @@
         "gulp-brotli": "^3.0.0",
         "gulp-purifycss": "^0.2.0",
         "material-design-icons": "^3.0.1",
-        "ngx-google-places-autocomplete": "^2.0.5",
         "ngx-owl-carousel-o": "^7.0.1",
         "readable-stream": "^3.6.0",
         "rxjs": "~7.4.0",

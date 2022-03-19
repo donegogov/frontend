@@ -1,10 +1,7 @@
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-declare function longtitute(): any;
-declare function latitute(): any;
 
 @Component({
   selector: 'app-checkout-username-password',
