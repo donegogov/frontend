@@ -246,7 +246,7 @@
         $(document).ready(function() {
             $("#shoppingCard").click(function(e) {
                 e.preventDefault();
-                $(this).find("#check, #carrito").toggleClass("elmActive");
+                $(this).find("#check, #carrito").toggleClass("elmActive").delay(500).toggleClass("elmActive");
             });
         });
     </script>
