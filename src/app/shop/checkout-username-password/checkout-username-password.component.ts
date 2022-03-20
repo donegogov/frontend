@@ -2,6 +2,9 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
+import { CustomerService } from 'src/app/shared/_services/customer.service';
+import { TokenService } from 'src/app/shared/_services/token.service';
+import { OrderService } from 'src/app/shared/_services/order.service';
 
 @Component({
   selector: 'app-checkout-username-password',
@@ -14,6 +17,12 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(this.minPw)]);
   address = new FormControl('', [Validators.required]);
+  firstnameFormControl = new FormControl('', [Validators.required]);
+  lastnameFormControl = new FormControl('', [Validators.required]);
+  zipFormControl = new FormControl('', [Validators.required]);
+  cityFormControl = new FormControl('', [Validators.required]);
+  housenumberFormControl = new FormControl('');
+  phoneFormControl = new FormControl('', [Validators.required]);
 
   establishmentAddress: any;
 
@@ -48,7 +57,10 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private customerService: CustomerService,
+    private tokenService: TokenService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -56,10 +68,13 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     this.checkoutForm = this.formBuilder.group({
       email: this.email,
       password: this.password,
-      firstname: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
+     firstname: this.firstnameFormControl, 
+     lastname: this.lastnameFormControl, 
+      city: this.cityFormControl,
       address: this.address,
-      zip: new FormControl('')
+      zip: this.zipFormControl,
+      house_number: this.housenumberFormControl,
+      phone: this.phoneFormControl
     });
 
     this.mapsAPILoader.load().then(() => {
@@ -93,9 +108,59 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
+    var formData = this.checkoutForm.value;
     console.warn('Your order has been submitted');
     console.warn(this.checkoutForm.value);
+    console.warn(this.checkoutForm.value.firstname);
     //this.checkoutForm.reset();
+    if (this.checkoutForm.valid) {
+      this.customerService.setBillingAddress(formData.email,
+        formData.firstname,
+        formData.lastname,
+        formData.city,
+        formData.address,
+        formData.zip,
+        formData.phones).subscribe(dataBillingAddress => {
+        console.log('dataBillingAddressdataBillingAddressdataBillingAddressdataBillingAddressdataBillingAddress');
+        console.log(dataBillingAddress);
+        if (dataBillingAddress) {
+          this.customerService.setShippingAddress(formData.email,
+             formData.firstname,
+             formData.lastname,
+             formData.city,
+             formData.address,
+             formData.zip,
+             formData.phone ).subscribe(dataShippingAddress => {
+              console.log('dataShippingAddressdataShippingAddressdataShippingAddressdataShippingAddressdataShippingAddressdataShippingAddress'); 
+              console.log(dataShippingAddress);
+              if (dataShippingAddress) {
+                this.customerService.updateCustomer(formData.email,
+                  formData.firstname,
+                  formData.lastname,
+                  formData.city,
+                  formData.address,
+                  formData.zip,
+                  formData.phone,
+                  formData.password).subscribe(dataUpdateCustomer => {
+                    console.log('dataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomer');
+                    console.log(dataUpdateCustomer);
+                    if (dataUpdateCustomer) {
+                      localStorage.setItem('user', '');
+                      this.tokenService.getToken(false,
+                        true,
+                        dataUpdateCustomer.customers[0].username,
+                        formData.password
+                        )?.then(() => {
+                          console.log('ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ');
+                          console.log(this.orderService.setOrder());
+                        });
+                    }
+                  });
+              }
+             });
+        }
+      });
+    }
   }
 
   private setCurrentLocation() {

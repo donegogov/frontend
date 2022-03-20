@@ -15,7 +15,7 @@ export class TokenService {
   constructor(private http: HttpClient) { }
 
   getToken(guest: boolean = true, remember_me: boolean = true, username: string = 'username', password: string = 'password'){
-    if (localStorage.getItem('user') != null) {
+    if (localStorage.getItem('user') != null && localStorage.getItem('user') != '') {
       var token = JSON.parse(localStorage.getItem('user') || '');
       if (this.checkToken(token.access_token)) {
         this.setCurrentUser(token);

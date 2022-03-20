@@ -133,6 +133,14 @@ export class CartService {
     var json = '';
     json += '{ "ObjectPropertyNameValuePairs": {}, "shopping_cart_item": { "quantity": ' + quantity + ' } }'
 
-    return this.http.put<any>(this.apiUrl + 'shopping_cart_items' + '/' + cartItemId, { } );
+    return this.http.put<any>(this.apiUrl + 'shopping_cart_items' + '/' + cartItemId, json );
+  }
+
+  deleteShoppingCart() {
+    let currentUser!: Token;
+    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    var CustomerId = currentUser.customer_id;
+
+    return this.http.delete<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=ShoppingCart&CustomerId=' + CustomerId);
   }
 }
