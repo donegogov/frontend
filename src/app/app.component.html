@@ -1,3 +1,7 @@
+<ngx-loading [show]="true" *ngIf="loadingService.isLoadingAsObservable | async" [config]="{
+    backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+    primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }"></ngx-loading>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
