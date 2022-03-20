@@ -1,0 +1,46 @@
+<div class="container">
+    <ng-container *ngFor="let order of orders; let indexOrder = index">
+        <div class="order-items">
+            <ng-container *ngFor="let order_item of order.order_items; let index = index">
+                <div class="item">
+                    <div style="width: 300px;" class="img-description">
+                        <img style="float: left; border-radius: 30px;" width="100px" height="100px" src="{{order_item.product.images[0].src}}" />
+                        <h2 style="font-size: 18px; float: left;">{{order_item.product.name}}</h2>
+                        <h4 style="font-size: 18px; float: left;">{{order_item.product.short_description}}</h4>
+                    </div>
+                    <!-- <div style="font-size: 18px; width: 300px;" class="attribute-values">
+                        <h4>Specs</h4>
+                        <ng-container *ngFor="let attribute of order_item.product.attributes; let i = index">
+                            <h4 style="font-size: 18px;" class="attribute-values-h4"><span>✅ </span><span>{{attribute.attributeName}}: </span><span>{{attribute.attributeValue}};   </span></h4>
+                        </ng-container>
+                    </div> -->
+                    <div class="quantity">
+                        <mat-form-field class="quantity-items" appearance="outline">
+                            <mat-label>Quantity</mat-label>
+                            <input [readonly]="true" style="width: 100px; margin-left: 10px; " matInput type="number " placeholder="Quantity " value="{{order_item.quantity}}">
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="delete-cart-item">
+
+                </div> -->
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>End Of Item</p>
+                <hr style="display: block;" />
+            </ng-container>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr/>
+        <hr/>
+        <p>End Of Order</p>
+        <hr/>
+        <hr/>
+    </ng-container>
+</div>

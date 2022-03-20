@@ -1,9 +1,11 @@
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { CustomerService } from './customer.service';
+import { Token } from '../_models/token';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ export class OrderService {
 
   constructor(private http: HttpClient,
     private cartService: CartService,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private tokenService: TokenService) { }
 
     setOrder() {
       this.customerService.getCurrentCustomer().subscribe(dataCurrentCustomer => {
@@ -85,4 +88,14 @@ export class OrderService {
        });
     }
 
+    getOrdersForCustomer() {
+      let currentUser!: Token;
+
+      this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+
+      return this.http.get<any>(this.apiUrl + 'orders/customer/' + currentUser.customer_id);
+    }
+
 }
+
+357
