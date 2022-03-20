@@ -47,6 +47,12 @@ export class AccountComponent implements OnInit {
       } else if (event.submitter.innerText == 'Register') {
         this.customerService.updateCustomer(this.loginFrom.value.email, 'test', 'test', 'test', 'test', '1000', '1234567890', this.loginFrom.value.password).subscribe(dataRegister => {
           console.log(dataRegister);
+          localStorage.setItem('user', '');
+        this.tokenService.getToken(false, true, this.loginFrom.value.email, this.loginFrom.value.password)?.then(() =>{
+          if (localStorage.getItem('user') == null || localStorage.getItem('user') == '') {
+            this.tokenService.getToken(true, true, 'username', 'password');
+          }
+        });
         });
       }
     }
