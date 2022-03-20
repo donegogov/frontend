@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="login" *ngIf="showLoginRegister">
+    <div class="login" *ngIf="showLoginRegisterForm()">
         <form [formGroup]="loginFrom" class="form" (ngSubmit)="onSubmit($event)">
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Email</mat-label>
@@ -25,7 +25,11 @@
         </form>
     </div>
 
-    <div style="width: 100%;">
+    <div style="width: 100%; margin: 10px;" *ngIf="!showLoginRegisterForm()">
+        <button (click)="logout()" style="margin-top: 40px; padding: 10px 20px; font-size: 28px; margin: 0 auto;" mat-raised-button color="danger">Логоут</button>
+    </div>
+
+    <div style="width: 100%; margin: 10px;">
         <button [routerLink]="['/account/orders']" style="margin-top: 40px; padding: 10px 20px; font-size: 28px; margin: 0 auto;" mat-raised-button color="primary">View Orders</button>
     </div>
 </div>

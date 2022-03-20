@@ -29,13 +29,6 @@ export class AccountComponent implements OnInit {
       email: this.email,
       password: this.password,
     });
-    let currentUser!: Token;
-
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
-
-    if (currentUser.username != '' && currentUser.username != null) {
-      this.showLoginRegister = false;
-    }
   }
 
   onSubmit(event: any): void {
@@ -57,6 +50,22 @@ export class AccountComponent implements OnInit {
         });
       }
     }
+  }
+
+  logout() {
+    localStorage.setItem('user', '');
+    this.tokenService.getToken(true, true, 'username', 'password');
+  }
+
+  showLoginRegisterForm() {
+    let currentUser!: Token;
+
+    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    if (currentUser.username != '' && currentUser.username != null) {
+      this.showLoginRegister = false;
+      return false;
+    }
+    return true;
   }
 
 }
