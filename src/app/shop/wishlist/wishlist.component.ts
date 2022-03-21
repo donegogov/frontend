@@ -7,6 +7,7 @@ import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling'
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 import { Thumbs } from 'swiper';
+import { Title, Meta } from '@angular/platform-browser';
 declare function addToCart(): any;
 
 @Component({
@@ -59,7 +60,9 @@ export class WishlistComponent implements OnInit {
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
     private cartService: CartService,
-    private router: Router) { 
+    private router: Router,
+    private titleService: Title,
+    private metaTagService: Meta) { 
     this.numbers = Array(60).fill(4);
     this.getScreenSize();
 
@@ -72,6 +75,20 @@ export class WishlistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle( 'Омилени Продукти' );
+        this.metaTagService.updateTag(
+      { name: 'description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' }
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:title', content: 'Омилени Продукти' },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' },
+        );
+        /* this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        ); */
+
     this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(data => {
       console.log(data);
       if (data) {

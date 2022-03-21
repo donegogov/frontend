@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsPricing } from 'src/app/shared/_models/products-pricing';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shop-products',
@@ -15,7 +16,9 @@ export class ShopProductsComponent implements OnInit {
   searchTearms: string[] = [];
   priceFromTo: number[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private titleService: Title,
+    private metaTagService: Meta) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -23,6 +26,20 @@ export class ShopProductsComponent implements OnInit {
       console.log(data['productPricing']);
       this.productPricing = data['productPricing'].products;
     });
+
+    this.titleService.setTitle('Купувајте Пребарувајте Зумирајте Додадете Во Омилени');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Пребарувајте На Неколку Начини, Зумирајте, Додадете Продукт Во Вашите Омилени И Многу Повеќе' }
+    );
+    this.metaTagService.updateTag(
+      { name: 'og:title', content: 'Купувајте Пребарувајте Зумирајте Додадете Во Омилени' },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: 'Пребарувајте На Неколку Начини, Зумирајте, Додадете Продукт Во Вашите Омилени И Многу Повеќе' },
+        );
+        /* this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        ); */
   }
 
   public categoryPicked(categoryIds: number[]):void {

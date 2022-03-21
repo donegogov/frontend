@@ -5,6 +5,7 @@ import { MapsAPILoader } from '@agm/core';
 import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
 import { OrderService } from 'src/app/shared/_services/order.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-checkout-username-password',
@@ -60,10 +61,27 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     private ngZone: NgZone,
     private customerService: CustomerService,
     private tokenService: TokenService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle( 'Направете Нарачка' );
+        this.metaTagService.updateTag(
+      { name: 'description', content: 'Автоматско Пополнување На Полињата За Локација, Внесете Податоци И Купете Поклон За Вашиот Сакан' }
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:title', content: 'Направете Нарачка' },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: 'Автоматско Пополнување На Полињата За Локација, Внесете Податоци И Купете Поклон За Вашиот Сакан' },
+        );
+        /* this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        ); */
+
+
     //this.formControl = new FormControl('', [Validators.required, Validators.email]);
     this.checkoutForm = this.formBuilder.group({
       email: this.email,

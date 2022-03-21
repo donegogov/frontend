@@ -18,7 +18,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HomeModule,
     BrowserAnimationsModule,

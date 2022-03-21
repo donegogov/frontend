@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/_services/cart.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shooping-cart',
@@ -11,7 +12,9 @@ export class ShoopingCartComponent implements OnInit {
   attribute: productAttributes[] = [];
   quantityModel!: number;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+    private titleService: Title,
+    private metaTagService: Meta) { }
 
   ngOnInit(): void {
     this.cartService.getShoppingCartItems().subscribe(data => {
@@ -57,6 +60,20 @@ export class ShoopingCartComponent implements OnInit {
         console.log(this.attribute);
       }
     });
+    this.titleService.setTitle( 'Кошничка' );
+        this.metaTagService.updateTag(
+      { name: 'description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' }
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:title', content: 'Кошничка' },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' },
+        );
+        /* this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        ); */
+      
   }
 
   deleteItem(cartItemId: string) {

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from '../../shared/_services/products.service';
+import { Title, Meta } from '@angular/platform-browser';
 import { SwiperComponent } from "swiper/angular";
 declare function addToCart(): any;
 declare function addToCartNumberOfItems(itemsToAdd: number): any;
@@ -65,7 +66,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     private productService: ProductsService,
     private router: Router,
     private cartService: CartService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private titleService: Title,
+    private metaTagService: Meta) {
       if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
         this.reload = 'true';
@@ -95,12 +98,12 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.id = params.get('id') || ''; 
       console.log('ID = ' + this.id);
     });
-    this.navigationSubscription = this.router.events.subscribe(async (e: any) => {
+    /* this.navigationSubscription = this.router.events.subscribe(async (e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
         await this.reloadUrl('/shop/details/' + this.id);
       }
-    });
+    }); */
     /* this.route.paramMap.subscribe(params => { 
       this.id = params.get('id') || ''; 
       console.log('ID = ' + this.id);
@@ -123,7 +126,19 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.tempFullDescription = this.tempFullDescription.substring(0, 180);
       this.tempFullDescription += ' ... ';
       this.product.attributes.forEach((element: any, i: number) => {
-        
+        this.titleService.setTitle( this.product.name );
+        this.metaTagService.updateTag(
+      { name: 'description', content: this.product.short_description }
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:title', content: this.product.name },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: this.product.short_description },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        );
       });
       for(var i = 0; i < this.product.attributes.length; i++) {
         var attributeIdValueId: productAttributeIdAttributeValuesId = {key: this.product.attributes[i].id, value: '-1'};

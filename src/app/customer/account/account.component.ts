@@ -4,6 +4,7 @@ import { take } from 'rxjs';
 import { Token } from 'src/app/shared/_models/token';
 import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-account',
@@ -22,13 +23,29 @@ export class AccountComponent implements OnInit {
   showLoginRegister = true;
 
   constructor(private tokenService: TokenService,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private titleService: Title,
+    private metaTagService: Meta) { }
 
   ngOnInit(): void {
     this.loginFrom = this.formBuilder.group({
       email: this.email,
       password: this.password,
     });
+
+    this.titleService.setTitle('Акаунт Најава Креирање Сметка Погледнете Ги Нарачките');
+    this.metaTagService.updateTag(
+      { name: 'description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' }
+    );
+    this.metaTagService.updateTag(
+      { name: 'og:title', content: 'Акаунт Најава Креирање Сметка Погледнете Ги Нарачките' },
+        );
+        this.metaTagService.updateTag(
+      { name: 'og:description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' },
+        );
+        /* this.metaTagService.updateTag(
+      { name: 'og:image', content: this.product.images[0].src },
+        ); */
   }
 
   onSubmit(event: any): void {
