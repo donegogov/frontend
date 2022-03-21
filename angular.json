@@ -72,7 +72,7 @@
                             "extractLicenses": true,
                             "vendorChunk": true,
                             "buildOptimizer": true,
-                            "deleteOutputPath": true
+                            "deleteOutputPath": false
                         },
                         "development": {
                             "buildOptimizer": false,
