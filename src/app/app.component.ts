@@ -27,16 +27,16 @@ export class AppComponent implements OnInit {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { charset: 'UTF-8' }
     ]);
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'description', content: 'Овде Можете Да Најдете Секаков Вид На Домашно Рачно Изработени Продукти' }
     );
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'og:title', content: this.title },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Овде Можете Да Најдете Секаков Вид На Домашно Рачно Изработени Продукти' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
   }

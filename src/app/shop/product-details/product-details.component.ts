@@ -127,16 +127,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.tempFullDescription += ' ... ';
       this.product.attributes.forEach((element: any, i: number) => {
         this.titleService.setTitle( this.product.name );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'description', content: this.product.short_description }
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:title', content: this.product.name },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: this.product.short_description },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         );
       });

@@ -76,16 +76,16 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle( 'Омилени Продукти' );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' }
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:title', content: 'Омилени Продукти' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
 

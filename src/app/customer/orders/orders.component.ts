@@ -22,16 +22,16 @@ export class OrdersComponent implements OnInit {
     });
 
     this.titleService.setTitle('Нарачки');
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'description', content: 'Погледнете Ја Историјата На Нарачките' }
     );
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'og:title', content: 'Нарачки' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Погледнете Ја Историјата На Нарачките' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
   }

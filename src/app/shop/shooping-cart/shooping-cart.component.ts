@@ -61,16 +61,16 @@ export class ShoopingCartComponent implements OnInit {
       }
     });
     this.titleService.setTitle( 'Кошничка' );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' }
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:title', content: 'Кошничка' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
       

@@ -28,16 +28,16 @@ export class ShopProductsComponent implements OnInit {
     });
 
     this.titleService.setTitle('Купувајте Пребарувајте Зумирајте Додадете Во Омилени');
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'description', content: 'Пребарувајте На Неколку Начини, Зумирајте, Додадете Продукт Во Вашите Омилени И Многу Повеќе' }
     );
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'og:title', content: 'Купувајте Пребарувајте Зумирајте Додадете Во Омилени' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Пребарувајте На Неколку Начини, Зумирајте, Додадете Продукт Во Вашите Омилени И Многу Повеќе' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
   }

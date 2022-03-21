@@ -34,16 +34,16 @@ export class AccountComponent implements OnInit {
     });
 
     this.titleService.setTitle('Акаунт Најава Креирање Сметка Погледнете Ги Нарачките');
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' }
     );
-    this.metaTagService.updateTag(
+    this.metaTagService.addTag(
       { name: 'og:title', content: 'Акаунт Најава Креирање Сметка Погледнете Ги Нарачките' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
   }

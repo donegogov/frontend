@@ -68,16 +68,16 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle( 'Направете Нарачка' );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'description', content: 'Автоматско Пополнување На Полињата За Локација, Внесете Податоци И Купете Поклон За Вашиот Сакан' }
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:title', content: 'Направете Нарачка' },
         );
-        this.metaTagService.updateTag(
+        this.metaTagService.addTag(
       { name: 'og:description', content: 'Автоматско Пополнување На Полињата За Локација, Внесете Податоци И Купете Поклон За Вашиот Сакан' },
         );
-        /* this.metaTagService.updateTag(
+        /* this.metaTagService.addTag(
       { name: 'og:image', content: this.product.images[0].src },
         ); */
 
