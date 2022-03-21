@@ -54,7 +54,7 @@ RewriteEngine on
 
 # redirect to 8080 if "some-prefix/" is matched
 RewriteCond %{SERVER_PORT} !^4000$
-RewriteRule ^/(.*[^/])/?$ http://%{HTTP_HOST}:4000/ [R=301,L]
+RewriteRule ^/(.*[^/])/?$ https://%{HTTP_HOST}:4000/ [R=301,L]
 
 # redirect with trailing slash if not an existing file and no trailing slash
 RewriteCond %{REQUEST_FILENAME} !-f

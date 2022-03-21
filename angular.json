@@ -30,7 +30,9 @@
                             "src/favicon.ico",
                             "src/assets/images",
                             "src/assets/fonts",
-                            "src/assets/js/custom.js"
+                            "src/assets/js/custom.js",
+                            "src/assets/ssl/cert.key",
+                            "src/assets/ssl/cert.pem"
                         ],
                         "styles": [
                             "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
