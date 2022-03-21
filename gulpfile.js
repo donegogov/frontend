@@ -126,7 +126,7 @@ gulp.task('replace-script-tags', function() {
         .pipe(gulp.dest('./'));
 });
 
-var folders = ['./dist/assets/fonts/*.ttf', './dist/assets/images/*.webp', './dist/*.css', './dist/*.html', './dist/*.js', './dist/*.ttf', './dist/*.txt', './dist/*.ico', './dist/*.webp', './dist/*.eot', './dist/*.woff', './dist/*.woff2', './dist/*.png'];
+var folders = ['./dist/client/browser/assets/fonts/*.ttf', './dist/client/browser/assets/images/*.webp', './dist/client/browser/*.css', './dist/client/browser/*.html', './dist/client/browser/*.js', './dist/client/browser/*.ttf', './dist/client/browser/*.txt', './dist/client/browser/*.ico', './dist/client/browser/*.webp', './dist/client/browser/*.eot', './dist/client/browser/*.woff', './dist/client/browser/*.woff2', './dist/client/browser/*.png'];
 
 
 gulp.task('compress-gzip', async function() {
