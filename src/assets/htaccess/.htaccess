@@ -49,10 +49,10 @@ allow from all
     AddOutputFilterByType DEFLATE text/plain text/xml application/xml 
 </IfModule> 
 
-<IfModule mod_headers.c>
+<IfModule mod_rewrite.c>
 RewriteEngine on
+RewriteRule ^$ http://127.0.0.1:4000 [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ http://localhost:4000 [L,QSA]
+RewriteRule ^(.*)$ http://127.0.0.1:4000/$1 [P,L]
 </IfModule>
-
