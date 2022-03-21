@@ -15,6 +15,7 @@ export class TokenService {
   constructor(private http: HttpClient) { }
 
   getToken(guest: boolean = true, remember_me: boolean = true, username: string = 'username', password: string = 'password'){
+    if (typeof window !== 'undefined') {
     if (localStorage.getItem('user') != null && localStorage.getItem('user') != '') {
       var token = JSON.parse(localStorage.getItem('user') || '');
       if (this.checkToken(token.access_token)) {
@@ -22,6 +23,7 @@ export class TokenService {
         return;
       }
     }
+  }
     let json = '';
     json += '{ "guest":"' + guest.toString() + '",';
     json += '"remember_me":"' + remember_me.toString() + '",';
@@ -36,7 +38,9 @@ export class TokenService {
       if (data) {
         console.log('TOKEN TOKEN TOKEN TOKEN TOKEN TOKEN TOKEN');
         console.log(data);
+        if (typeof window !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(data));
+        }
         this.setCurrentUser(data);
       }
     }

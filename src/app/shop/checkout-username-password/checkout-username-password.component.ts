@@ -163,7 +163,9 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
                     console.log('dataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomerdataUpdateCustomer');
                     console.log(dataUpdateCustomer);
                     if (dataUpdateCustomer) {
+                      if (typeof window !== 'undefined') {
                       localStorage.setItem('user', '');
+                      }
                       this.tokenService.getToken(false,
                         true,
                         dataUpdateCustomer.customers[0].username,

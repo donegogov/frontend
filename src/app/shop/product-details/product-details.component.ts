@@ -69,13 +69,15 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     private titleService: Title,
     private metaTagService: Meta) {
+      if (typeof window !== 'undefined') {
       if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
         this.reload = 'true';
       } else {
         this.reload = localStorage.getItem('reload') || 'false';
       }
-      console.log('this.reload= ' + this.reload + ' localStorage.getItem(reload)= ' + localStorage.getItem('reload') + 'OOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOO');
+    }
+      //console.log('this.reload= ' + this.reload + ' localStorage.getItem(reload)= ' + localStorage.getItem('reload') + 'OOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOO');
       this.getScreenSize();
 
     if (this.scrWidth <= 992) {
@@ -162,7 +164,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
+    if (typeof window !== 'undefined') {
     localStorage.setItem('reload', 'false');
+    }
     productDetailsTopMenuAdd();
 
       // avoid memory leaks here by cleaning up after ourselves. If we  

@@ -90,7 +90,9 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     });
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
+    if (typeof window !== 'undefined') {
     localStorage.setItem('reload', 'true');
+    }
   }
 
   ngAfterViewInit(): void {

@@ -123,7 +123,9 @@ ngOnInit(): void {
   this.getData();
   this.innerWidth = window.innerWidth;
   this.innerHeight = window.innerHeight;
+  if (typeof window !== 'undefined') {
   localStorage.setItem('reload', 'true');
+  }
 }
 
 getData() {
