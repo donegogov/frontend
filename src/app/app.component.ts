@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
     this.titleService.setTitle(this.title);
     this.metaTagService.addTags([
       { name: 'keywords', content: 'Elektronska Prodavnica, Prodavnica, Racno Izraboteni Produkti, Pliko' },
-      { name: 'robots', content: 'index, follow' },
       { name: 'author', content: 'Done Gogov' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { charset: 'UTF-8' }

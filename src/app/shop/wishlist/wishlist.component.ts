@@ -49,9 +49,11 @@ export class WishlistComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
+    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
+    }
   }
   innerWidth = 0;
   innerHeight = 0;
@@ -103,10 +105,10 @@ export class WishlistComponent implements OnInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products; */
-        setTimeout(function(){
+        /* setTimeout(function(){
           console.log('Timeout add to cart');
           addToCart();
-        }, 100);
+        }, 100); */
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
             this.wishList.push({ids: element.product.id, wishList: true});
@@ -114,8 +116,10 @@ export class WishlistComponent implements OnInit {
         });
       }
     });
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    if (typeof window !== 'undefined') {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+    }
   }
 
   ngAfterViewInit(): void {

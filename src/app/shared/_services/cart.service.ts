@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie';
 import { take } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { productAttributeIdAttributeValuesId } from '../_models/product-attribute-id-attribute-values-id';
@@ -18,8 +19,9 @@ export class CartService {
   constructor(private http: HttpClient,
     private tokenService: TokenService,
     private httpGet: CustomHttpClientService,
-    @Inject(DOCUMENT) private document: Document,
-    private cookieManager: CookieManagerService) { }
+    private cookieService: CookieService
+    /* @Inject(DOCUMENT) private document: Document,
+    private cookieManager: CookieManagerService */) { }
 
   addToWishListOrCart(attributeIdAttributeValueId: productAttributeIdAttributeValuesId[],
     quantity: string,
@@ -126,13 +128,13 @@ export class CartService {
   getWishlistShoppingCartItems(shoppingCartType: string) {
     /* let currentUser!: Token;
     this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
-    let currentUser!: Token;
+    /* let currentUser!: Token;
     if (typeof window == 'undefined') {
       currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
     } else if (typeof window !== 'undefined') {
       currentUser = JSON.parse(localStorage.getItem('user') || '');
-    }
-    var CustomerId = currentUser.customer_id;
+    } */
+    var CustomerId = JSON.parse(this.cookieService.get('user')).customer_id;
 
     return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
   }
@@ -151,13 +153,13 @@ export class CartService {
   deleteShoppingCart() {
     /* let currentUser!: Token;
     this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
-    let currentUser!: Token;
+    /* let currentUser!: Token;
     if (typeof window == 'undefined') {
       currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
     } else if (typeof window !== 'undefined') {
       currentUser = JSON.parse(localStorage.getItem('user') || '');
-    }
-    var CustomerId = currentUser.customer_id;
+    } */
+    var CustomerId = JSON.parse(this.cookieService.get('user')).customer_id;
 
     return this.http.delete<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=ShoppingCart&CustomerId=' + CustomerId);
   }

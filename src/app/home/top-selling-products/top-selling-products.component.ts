@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
@@ -46,18 +46,23 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
+    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
+    }
   }
   innerWidth = 0;
   innerHeight = 0;
   wishList: wishList[] = [];
 
+  private isBrowser!: boolean;
+
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
     private cartService: CartService,
-    private router: Router) { 
+    private router: Router,
+    @Inject(PLATFORM_ID) platformId: Object) { 
     this.numbers = Array(60).fill(4);
     this.getScreenSize();
 
@@ -67,6 +72,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     if (this.mobile) {
       this.productToReturn = 3;
     }
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit(): void {
@@ -77,10 +83,12 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
-        setTimeout(function(){
-          console.log('Timeout add to cart');
-          addToCart();
-        }, 100);
+        if (this.isBrowser) {
+          setTimeout(function(){
+            console.log('Timeout add to cart');
+            addToCart();
+          }, 100);
+        }
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
             this.wishList.push({ids: element.product.id, wishList: true});
@@ -88,10 +96,11 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         });
       }
     });
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
     if (typeof window !== 'undefined') {
-    localStorage.setItem('reload', 'true');
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+      
+      localStorage.setItem('reload', 'true');
     }
   }
 

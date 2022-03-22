@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from '../../shared/_services/products.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -12,6 +12,7 @@ import { productAttributeIdAttributeValuesId } from '../../shared/_models/produc
 import { CartService } from '../../shared/_services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartContinueShoppingComponent } from '../../shared/_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
+import { isPlatformBrowser } from '@angular/common';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
@@ -44,9 +45,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
+    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
+    }
   }
 
   showImageByPosition = 1;
@@ -60,6 +63,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   showErrorMessage: boolean = false;
   wishList!: boolean;
   navigationSubscription: any;
+  private isBrowser!: boolean;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductsService,
@@ -67,7 +71,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     private cartService: CartService,
     public dialog: MatDialog,
     private titleService: Title,
-    private metaTagService: Meta) {
+    private metaTagService: Meta,
+    @Inject(PLATFORM_ID) platformId: Object) {
       if (typeof window !== 'undefined') {
       if (!localStorage.getItem('reload')) {
         localStorage.setItem('reload', 'true');
@@ -85,13 +90,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     if (this.mobile) {
       this.mainImageWidth = this.scrWidth;
     }
+    this.isBrowser = isPlatformBrowser(platformId);
      }
   ngAfterViewInit(): void {
     
     if (this.mobile) {
       //productDetailsModal();
     }
-    productDetailsTopMenuRemove();
+    if (this.isBrowser) {
+      productDetailsTopMenuRemove();
+    }
   }
 
   async ngOnInit(): Promise<void> {
@@ -145,10 +153,12 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         var attributeIdValueId: productAttributeIdAttributeValuesId = {key: this.product.attributes[i].id, value: '-1'};
         this.dictAttributeIdAttributeValueId.push(attributeIdValueId);
       }
-      setTimeout(function(){
-        console.log('Timeout add to cart');
-        addToCart();
-      }, 100);
+      if (this.isBrowser) {
+        setTimeout(function(){
+          console.log('Timeout add to cart');
+          addToCart();
+        }, 100);
+      }
     });
 
     this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
@@ -166,7 +176,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     if (typeof window !== 'undefined') {
     localStorage.setItem('reload', 'false');
     }
-    productDetailsTopMenuAdd();
+    if (this.isBrowser) {
+      productDetailsTopMenuAdd();
+    }
 
       // avoid memory leaks here by cleaning up after ourselves. If we  
       // don't then we will continue to run our initialiseInvites()   
@@ -253,7 +265,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   zoomInProductDetails(imgZoom: any, imgZoomResult: any) {
-    zoomInProductDetails(imgZoom, imgZoomResult);
+    if (this.isBrowser) {
+      zoomInProductDetails(imgZoom, imgZoomResult);
+    }
   }
 
   colorSquares(i: number, colorSquaresMainDiv: HTMLDivElement) {

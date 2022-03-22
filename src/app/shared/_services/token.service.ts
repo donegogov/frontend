@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Token } from '../_models/token';
@@ -15,8 +16,9 @@ export class TokenService {
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient,
-    @Inject(DOCUMENT) private document: Document,
-    private cookieManager: CookieManagerService) { }
+    private cookieService: CookieService
+    /* @Inject(DOCUMENT) private document: Document,
+    private cookieManager: CookieManagerService */) { }
 
   getToken(guest: boolean = true, remember_me: boolean = true, username: string = 'username', password: string = 'password'){
     if (typeof window !== 'undefined') {
@@ -24,7 +26,9 @@ export class TokenService {
       var token = JSON.parse(localStorage.getItem('user') || '');
       if (this.checkToken(token.access_token)) {
         this.setCurrentUser(token);
-        this.saveInCookies('user', token);
+        /* this.saveInCookies('user', token); */
+        this.cookieService.put('user', token);
+        this.cookieService.put('token', token.access_token);
         return;
       }
     }
@@ -47,7 +51,9 @@ export class TokenService {
         localStorage.setItem('user', JSON.stringify(data));
         }
         this.setCurrentUser(data);
-        this.saveInCookies('user', data);
+        /* this.saveInCookies('user', data); */
+        this.cookieService.put('user', JSON.stringify(data));
+        this.cookieService.put('token', data.access_token);
       }
     }
   );
@@ -101,10 +107,12 @@ export class TokenService {
   } */
   }
 
-  private saveInCookies(key: any, data: any){
-    let cookieStorage = this.cookieManager.getItem(this.document.cookie, 'user');
-    var cookieStorageJson = JSON.parse(cookieStorage || '{ }');
-    cookieStorageJson[key] = data;
-    this.document.cookie = this.cookieManager.setItem(this.document.cookie, 'user', JSON.stringify(cookieStorageJson));
-}
+  /* public saveInCookies(key: any, data: any){
+    if (typeof window !== 'undefined') {
+      let cookieStorage = this.cookieManager.getItem(this.document.cookie, 'user');
+      var cookieStorageJson = JSON.parse(cookieStorage || '{ }');
+      cookieStorageJson[key] = data;
+      this.document.cookie = this.cookieManager.setItem(this.document.cookie, 'user', JSON.stringify(cookieStorageJson));
+    }
+} */
 }

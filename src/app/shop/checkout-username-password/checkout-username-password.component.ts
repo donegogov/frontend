@@ -214,10 +214,10 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
           this.zip = results[0].formatted_address?.split(',')[results[0].formatted_address.split(',').length - 2].replace(/\D/g, "") || '';
           this.city = results[0].formatted_address?.split(',')[results[0].formatted_address.split(',').length - 2].replace(/[^a-zA-Z]+/g, '') || '';
         } else {
-          window.alert('No results found');
+          //window.alert('No results found');
         }
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        //window.alert('Geocoder failed due to: ' + status);
       }
     });
   }

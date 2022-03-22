@@ -28,12 +28,18 @@ export function app(): express.Express {
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
-
+  var REQUEST: typeof Request;
+  var RESPONSE: typeof Response;
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, {
+       req, 
+       res,
+       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
+        {provide: REQUEST, useValue: req},
+        {provide: RESPONSE, useValue: res}] 
+      });
   });
-
   return server;
 }
 

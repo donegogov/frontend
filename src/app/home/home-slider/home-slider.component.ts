@@ -84,9 +84,11 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
+    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
+    }
   }
 
   constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService, private router: Router) {

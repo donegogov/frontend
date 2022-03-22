@@ -6,7 +6,6 @@ import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/prod
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
-declare function addToCart(): any;
 
 @Component({
   selector: 'app-list-products',
@@ -47,9 +46,11 @@ hover = false;
 
 @HostListener('window:resize', ['$event'])
 getScreenSize() {
+  if (typeof window !== 'undefined') {
       this.scrHeight = window.innerHeight;
       this.scrWidth = window.innerWidth;
       console.log(this.scrHeight, this.scrWidth);
+  }
 }
 innerWidth = 0;
 innerHeight = 0;
@@ -121,10 +122,10 @@ constructor(private productsService: ProductsService, private _renderer2: Render
 ngOnInit(): void {
   this.initGetData = true;
   this.getData();
-  this.innerWidth = window.innerWidth;
-  this.innerHeight = window.innerHeight;
   if (typeof window !== 'undefined') {
-  localStorage.setItem('reload', 'true');
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+    localStorage.setItem('reload', 'true');
   }
 }
 
