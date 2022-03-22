@@ -188,7 +188,7 @@ wishListYn(id: number) {
 productDetails(id: number) {
   this.router.navigate(['/shop/details/', id])
   .then(() => {
-    window.location.reload();
+    //window.location.reload();
   });
 }
 

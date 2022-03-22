@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   shoppingCart() {
     this.router.navigate(['/shop/cart'])
     .then(() => {
-      window.location.reload();
+      //window.location.reload();
     });
   }
 

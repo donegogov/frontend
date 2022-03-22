@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from '../../shared/_services/products.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -24,8 +24,7 @@ declare function productDetailsTopMenuAdd(): any;
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css', './product-details.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./product-details.component.css', './product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('imgMobileSlider') imgMobileSlider!: ElementRef;
