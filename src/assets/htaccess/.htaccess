@@ -51,7 +51,6 @@ allow from all
 
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteRule ^$ https://localhost:4000 [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ https://localhost:4000/$1 [P,L]
