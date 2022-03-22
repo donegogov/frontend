@@ -64,4 +64,5 @@ RewriteCond %{SERVER_PORT} !^4000$
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule https://%{HTTP_HOST}:443/^(.*)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
+
 </IfModule>
