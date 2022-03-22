@@ -53,6 +53,7 @@ allow from all
 RewriteEngine on
 
 # redirect to 8080 if "some-prefix/" is matched
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
 RewriteCond %{SERVER_PORT} !^4000$
 RewriteRule ^/(.*[^/])/?$ http://%{HTTP_HOST}:4000/$1/ [R=301,L]
 
