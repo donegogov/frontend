@@ -202,3 +202,26 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !/$
 RewriteRule ^(.*)$ /$1/ [R=301,L]
 </IfModule>
+
+
+==============================
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+# redirect to 8080 if "some-prefix/" is matched
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
+RewriteRule https://%{HTTP_HOST}:80 https://%{HTTP_HOST}:4000/ [R=301,L]
+
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
+RewriteRule https://%{HTTP_HOST}:443 https://%{HTTP_HOST}:4000/ [R=301,L]
+
+# redirect with trailing slash if not an existing file and no trailing slash
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
