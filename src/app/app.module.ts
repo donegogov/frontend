@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
 import { APP_INITIALIZER } from '@angular/core';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
     SharedModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({
-      animationType: ngxLoadingAnimationTypes.rectangleBounce,
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
       backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
       backdropBorderRadius: '4px',
       primaryColour: '#ffffff', 
@@ -44,6 +45,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       multi: true
       
     },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   exports: [
   ],
