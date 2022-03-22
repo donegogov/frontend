@@ -52,11 +52,16 @@ allow from all
 <IfModule mod_rewrite.c>
 RewriteEngine on
 
-# Don't rewrite files or directories
-RewriteCond %{REQUEST_FILENAME} -f [OR]  
-RewriteCond %{REQUEST_FILENAME} -d  
-RewriteRule ^ - [L]
+# redirect to 8080 if "some-prefix/" is matched
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule https://%{HTTP_HOST}:80/^(.*)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
 
-# Rewrite everything else to index.html to allow html5 state links
-RewriteRule ^ https://%{HTTP_HOST}:4000 [L]  
+
+# redirect to 8080 if "some-prefix/" is matched
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule https://%{HTTP_HOST}:443/^(.*)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
 </IfModule>
