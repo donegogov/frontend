@@ -1,11 +1,14 @@
 import { Observable, take } from 'rxjs';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { CustomerService } from './customer.service';
 import { Token } from '../_models/token';
 import { TokenService } from './token.service';
+import { CustomHttpClientService } from './custom-http-client.service';
+import { DOCUMENT } from '@angular/common';
+import { CookieManagerService } from './cookie-manager.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,10 @@ export class OrderService {
   constructor(private http: HttpClient,
     private cartService: CartService,
     private customerService: CustomerService,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private httpGet: CustomHttpClientService,
+    @Inject(DOCUMENT) private document: Document,
+    private cookieManager: CookieManagerService) { }
 
     setOrder() {
       this.customerService.getCurrentCustomer().subscribe(dataCurrentCustomer => {
@@ -89,11 +95,18 @@ export class OrderService {
     }
 
     getOrdersForCustomer() {
+      /* let currentUser!: Token;
+
+      this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
       let currentUser!: Token;
+    if (typeof window == 'undefined') {
+      currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
+    } else if (typeof window !== 'undefined') {
+      currentUser = JSON.parse(localStorage.getItem('user') || '');
+    }
+    var CustomerId = currentUser.customer_id;
 
-      this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
-
-      return this.http.get<any>(this.apiUrl + 'orders/customer/' + currentUser.customer_id);
+      return this.httpGet.get<any>(this.apiUrl + 'orders/customer/' + CustomerId);
     }
 
 }

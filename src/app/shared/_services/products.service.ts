@@ -11,6 +11,7 @@ import { ProductTopSellingAsRootObject } from '../_models/products-top-selling-a
 import { ProductsPricingAsRootObject } from '../_models/products-pricing-as-root-object';
 import { ProductsPricing } from '../_models/products-pricing';
 import { ListProductAsRootObject } from '../_models/list-products-as-root-object';
+import { CustomHttpClientService } from './custom-http-client.service';
 
 
 @Injectable()
@@ -22,14 +23,15 @@ export class ProductsService {
     productsPricing!: ProductsPricing[];
     searchProductChange: Subject<ProductsForHomePageSearch[]> = new Subject<ProductsForHomePageSearch[]>();
 
-constructor(private http: HttpClient) {
+constructor(private http: HttpClient,
+    private httpGet: CustomHttpClientService) {
     this.searchProductChange.subscribe((value) => {
         this.searchProducts = value;
     });
  }
 
 getHomePageSliderProducts(limit: number, page: number) {
-    return this.http.get<ProductAsRootObject>(this.apiUrl + 'home-page-slider-products' + '?limit=' + limit.toString() + '&page=' + page.toString());
+    return this.httpGet.get<ProductAsRootObject>(this.apiUrl + 'home-page-slider-products' + '?limit=' + limit.toString() + '&page=' + page.toString());
 }
 
 getSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean, search_full_description: boolean) : Observable<ProductSearchAsRootObject> {
@@ -39,11 +41,11 @@ getSearchProducts(limit: number, page: number, searchTearm: string, search_name:
 }
 
 getTopSellingProducts(limit: number, page: number, productsToReturn: number) {
-    return this.http.get<ProductTopSellingAsRootObject>(this.apiUrl + 'top-selling-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString() + '&ProductToReturn=' + productsToReturn.toString());
+    return this.httpGet.get<ProductTopSellingAsRootObject>(this.apiUrl + 'top-selling-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString() + '&ProductToReturn=' + productsToReturn.toString());
 }
 
 getPrices(limit: number = 250, page: number = 1) {
-    return this.http.get<ProductsPricingAsRootObject>(this.apiUrl + 'price-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString());
+    return this.httpGet.get<ProductsPricingAsRootObject>(this.apiUrl + 'price-products' + '?Limit=' + limit.toString() + '&Page=' + page.toString());
 }
 
 getForShopPageSearchProducts(limit: number, page: number, searchTearm: string, search_name: boolean, search_short_description: boolean,
@@ -61,7 +63,7 @@ getForShopPageSearchProducts(limit: number, page: number, searchTearm: string, s
 }
 
 getProductById(id: string) {
-    return this.http.get<any>(this.apiUrl + 'products/' + id);
+    return this.httpGet.get<any>(this.apiUrl + 'products/' + id);
 }
 
 changesearchProduct(products: ProductsForHomePageSearch[]) {

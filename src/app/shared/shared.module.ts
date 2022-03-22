@@ -28,6 +28,8 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
+import { CookieManagerService } from './_services/cookie-manager.service';
+import { CustomHttpClientService } from './_services/custom-http-client.service';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-c
     HomePageSliderResolver,
     ProductsService,
     SearchProductResolver,
-    PriceFromToResolver
+    PriceFromToResolver,
+    CookieManagerService,
+    CustomHttpClientService
   ],
   exports: [
     HeaderComponent,

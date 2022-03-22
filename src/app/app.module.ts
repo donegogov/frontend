@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
 import { APP_INITIALIZER } from '@angular/core';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
@@ -32,7 +32,8 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       primaryColour: '#ffffff', 
       secondaryColour: '#ffffff', 
       tertiaryColour: '#ffffff'
-  })
+    }),
+    BrowserTransferStateModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

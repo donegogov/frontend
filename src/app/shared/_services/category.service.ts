@@ -8,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 import { ProductSearchAsRootObject } from '../_models/products-search-as-root-object';
 import { CategoryAsRootObject } from '../_models/category-as-root-object';
 import { CategoryForHomePageSearch } from '../_models/catefory-for-home-page-search';
+import { CustomHttpClientService } from './custom-http-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,11 @@ export class CategoryService {
   apiUrl = environment.apiUrl;
   categories!: CategoryForHomePageSearch[];
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient,
+  private httpGet: CustomHttpClientService) { }
 
 getAllCategories(limit: number, page: number) {
-  return this.http.get<CategoryAsRootObject>(this.apiUrl + 'allcategories' + '?limit=' + limit.toString() + '&page=' + page.toString());
+  return this.httpGet.get<CategoryAsRootObject>(this.apiUrl + 'allcategories' + '?limit=' + limit.toString() + '&page=' + page.toString());
 }
 
 }

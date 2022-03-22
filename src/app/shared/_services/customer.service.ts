@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Token } from '../_models/token';
 import { catchError, take, tap, throwError } from 'rxjs';
+import { CustomHttpClientService } from './custom-http-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class CustomerService {
   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private httpGet: CustomHttpClientService) { }
 
   setBillingAddress(email: string,
     firstname: string,
@@ -121,7 +123,7 @@ this.http.get<any>('https://geolocation-db.com/json/')
 }
 
 getCurrentCustomer() {
-  return this.http.get<any>(this.apiUrl + 'customers/me');
+  return this.httpGet.get<any>(this.apiUrl + 'customers/me');
 }
 
 }

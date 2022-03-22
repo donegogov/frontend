@@ -1,9 +1,12 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { take } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { productAttributeIdAttributeValuesId } from '../_models/product-attribute-id-attribute-values-id';
 import { Token } from '../_models/token';
+import { CookieManagerService } from './cookie-manager.service';
+import { CustomHttpClientService } from './custom-http-client.service';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -13,7 +16,10 @@ export class CartService {
   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private httpGet: CustomHttpClientService,
+    @Inject(DOCUMENT) private document: Document,
+    private cookieManager: CookieManagerService) { }
 
   addToWishListOrCart(attributeIdAttributeValueId: productAttributeIdAttributeValuesId[],
     quantity: string,
@@ -114,15 +120,21 @@ export class CartService {
   }
 
   getShoppingCartItems() {
-    return this.http.get<any>(this.apiUrl + 'shopping_cart_items/me');
+    return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items/me');
   }
 
   getWishlistShoppingCartItems(shoppingCartType: string) {
+    /* let currentUser!: Token;
+    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
     let currentUser!: Token;
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    if (typeof window == 'undefined') {
+      currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
+    } else if (typeof window !== 'undefined') {
+      currentUser = JSON.parse(localStorage.getItem('user') || '');
+    }
     var CustomerId = currentUser.customer_id;
 
-    return this.http.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
+    return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
   }
 
   deleteWishlistCartItem(wishlistShoppingCartItemId: string) {
@@ -137,8 +149,14 @@ export class CartService {
   }
 
   deleteShoppingCart() {
+    /* let currentUser!: Token;
+    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
     let currentUser!: Token;
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    if (typeof window == 'undefined') {
+      currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
+    } else if (typeof window !== 'undefined') {
+      currentUser = JSON.parse(localStorage.getItem('user') || '');
+    }
     var CustomerId = currentUser.customer_id;
 
     return this.http.delete<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=ShoppingCart&CustomerId=' + CustomerId);
