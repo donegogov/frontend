@@ -49,16 +49,21 @@ allow from all
     AddOutputFilterByType DEFLATE text/plain text/xml application/xml 
 </IfModule> 
 
-<IfModule mod_headers.c>
-RewriteEngine On
+<IfModule mod_rewrite.c>
+RewriteEngine on
 
-RewriteRule ^$ https://127.0.0.1:4000/ [P,L]
+# redirect to 8080 if "some-prefix/" is matched
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
+RewriteRule https://%{HTTP_HOST}:80 https://%{HTTP_HOST}:4000/ [R=301,L]
+
+RewriteCond %{SERVER_PORT} !^4000$
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
+RewriteRule https://%{HTTP_HOST}:443 https://%{HTTP_HOST}:4000/ [R=301,L]
+
+# redirect with trailing slash if not an existing file and no trailing slash
+RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ https://127.0.0.1:4000/$1 [P,L]
-
-RewriteBase /
-RewriteCond %{THE_REQUEST} index\.html
-RewriteRule ^index\.html$ https://127.0.0.1:4000/ [R=301,L]
-
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ /$1/ [R=301,L]
 </IfModule>
