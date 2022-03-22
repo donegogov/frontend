@@ -51,13 +51,8 @@ allow from all
 
 <IfModule mod_rewrite.c>
 RewriteEngine on
-
-# redirect to 8080 if "some-prefix/" is matched
-RewriteCond %{SERVER_PORT} !^4000$
-RewriteRule https://%{HTTP_HOST}:443 https://%{HTTP_HOST}:4000/ [R=301,L]
-
-# redirect with trailing slash if not an existing file and no trailing slash
+RewriteRule ^$ https://localhost:4000 [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !/$
-RewriteRule ^(.*)$ /$1/ [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ https://localhost:4000/$1 [P,L]
 </IfModule>
