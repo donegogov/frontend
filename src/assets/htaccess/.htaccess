@@ -52,17 +52,11 @@ allow from all
 <IfModule mod_rewrite.c>
 RewriteEngine on
 
-# redirect to 8080 if "some-prefix/" is matched
-RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
-RewriteCond %{SERVER_PORT} !^4000$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^/(.*[^/])/?$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
+# Don't rewrite files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]  
+RewriteCond %{REQUEST_FILENAME} -d  
+RewriteRule ^ - [L]
 
-# redirect with trailing slash if not an existing file and no trailing slash
-RewriteCond %{REQUEST_URI}  !(\.css|\.js)$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !/$
-RewriteRule ^(.*)$ /$1/ [R=301,L,QSA]
+# Rewrite everything else to index.html to allow html5 state links
+RewriteRule ^ https://%{HTTP_HOST}:4000 [L]  
 </IfModule>
