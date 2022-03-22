@@ -56,13 +56,13 @@ RewriteEngine on
 RewriteCond %{SERVER_PORT} !^4000$
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule https://%{HTTP_HOST}:80/^(.*)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
+RewriteRule https://%{HTTP_HOST}:80/^(shop|shop/wishlist|shop/shop/checkout/signin|shop/cart|shop/details/[0-9]+|account|account/orders||not-found)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
 
 
 # redirect to 8080 if "some-prefix/" is matched
 RewriteCond %{SERVER_PORT} !^4000$
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule https://%{HTTP_HOST}:443/^(.*)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
+RewriteRule https://%{HTTP_HOST}:443/^(shop|shop/wishlist|shop/shop/checkout/signin|shop/cart|shop/details/[0-9]+|account|account/orders||not-found)$ https://%{HTTP_HOST}:4000/$1/ [R=301,L,QSA]
 
 </IfModule>
