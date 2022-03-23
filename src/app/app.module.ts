@@ -48,7 +48,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       multi: true
       
     },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
 
   exports: [
