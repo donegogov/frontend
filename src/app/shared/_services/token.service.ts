@@ -27,8 +27,8 @@ export class TokenService {
       if (this.checkToken(token.access_token)) {
         this.setCurrentUser(token);
         /* this.saveInCookies('user', token); */
-        this.cookieService.put('user', token);
-        this.cookieService.put('token', token.access_token);
+        this.cookieService.put('user', JSON.stringify(token));
+        this.cookieService.put('token', JSON.stringify(token.access_token));
         return;
       }
     }
@@ -52,8 +52,10 @@ export class TokenService {
         }
         this.setCurrentUser(data);
         /* this.saveInCookies('user', data); */
-        this.cookieService.put('user', JSON.stringify(data));
-        this.cookieService.put('token', data.access_token);
+          this.cookieService.put('user', JSON.stringify(data));
+          this.cookieService.put('token', data.access_token);
+        //onsole.log(this.cookieService.get('tokem'));
+        console.log('tokemtokemtokemtokemtokemtokemtokemtokemtokemtokemtokem');
       }
     }
   );

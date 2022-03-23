@@ -30,6 +30,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { CookieManagerService } from './_services/cookie-manager.service';
 import { CustomHttpClientService } from './_services/custom-http-client.service';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { CustomHttpClientService } from './_services/custom-http-client.service'
     MobileAppsComponent,
     NotFoundComponent,
     ShoppingCartContinueShoppingComponent,
+    ThankYouComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { CustomHttpClientService } from './_services/custom-http-client.service'
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    SwiperModule
   ],
   providers: [
     HomePageSliderResolver,
@@ -86,6 +89,7 @@ import { CustomHttpClientService } from './_services/custom-http-client.service'
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    ThankYouComponent
   ]
 })
 export class SharedModule { }

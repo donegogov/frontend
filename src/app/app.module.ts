@@ -3,7 +3,6 @@ import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-bro
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
 import { APP_INITIALIZER } from '@angular/core';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,8 +46,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       deps: [TokenService],
       multi: true
       
-    },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    }
   ],
   exports: [
   ],

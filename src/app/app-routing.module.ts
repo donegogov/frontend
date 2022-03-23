@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { ThankYouComponent } from './shared/thank-you/thank-you.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
+  },
+  {
+    path: 'thanks',
+    component: ThankYouComponent
   },
   {
     path: 'not-found',

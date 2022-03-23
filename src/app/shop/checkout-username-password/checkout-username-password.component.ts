@@ -6,6 +6,8 @@ import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
 import { OrderService } from 'src/app/shared/_services/order.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/shared/_services/cart.service';
 
 @Component({
   selector: 'app-checkout-username-password',
@@ -63,7 +65,9 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     private tokenService: TokenService,
     private orderService: OrderService,
     private titleService: Title,
-    private metaTagService: Meta
+    private metaTagService: Meta,
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -173,6 +177,18 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
                         )?.then(() => {
                           console.log('ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ');
                           console.log(this.orderService.setOrder());
+                          this.orderService.setOrder().subscribe((dataOrder: any) => {
+                            if (dataOrder) {
+                              this.router.navigate(['thanks']);
+                            }
+                            console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
+                            console.log(dataOrder);
+                            this.cartService.deleteShoppingCart().subscribe((dataCart: any) => {
+                              console.log(dataCart);
+                            });
+                            //return dataOrder;
+                           });;
+                          
                         });
                     }
                   });

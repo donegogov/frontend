@@ -1,23 +1,48 @@
+// These are important and needed before anything else
 import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
+import { renderModule } from '@angular/platform-server';
+import { enableProdMode } from '@angular/core';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join, resolve } from 'path';
-
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync, readFileSync } from 'fs';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
+
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
+  // Faster server renders w/ Prod mode (dev mode never needed)
+  enableProdMode();
   const server = express();
   const distFolder = join(process.cwd(), 'dist/client/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  //const indexHtmlShop = existsSync(join(distFolder, 'index.original.html/shop')) ? 'index.original.html/shop' : 'index/shop';
+  //const indexHtmlAccount = existsSync(join(distFolder, 'index.original.html/account')) ? 'index.original.html/account' : 'account';
+
+/*   const domino = require("domino");
+
+const win = domino.createWindow(indexHtml);
+win.Object = Object;
+win.Math = Math;
+
+global["window"] = win;
+global["document"] = win.document;
+global["localStorage"] = win.localStorage;
+
+ */
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
+    bootstrap: AppServerModule
   }));
+
+
+  
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
@@ -28,9 +53,18 @@ export function app(): express.Express {
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
-  var REQUEST: typeof Request;
-  var RESPONSE: typeof Response;
+  //var REQUEST: typeof Request;
+  //var RESPONSE: typeof Response; 
   // All regular routes use the Universal engine
+  /* server.get('*', (req, res) => {
+    res.render(indexHtmlShop, {
+       req, 
+       res,
+       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
+        {provide: REQUEST, useValue: req},
+        {provide: RESPONSE, useValue: res}] 
+      });
+  }); */
   server.get('*', (req, res) => {
     res.render(indexHtml, {
        req, 
@@ -40,6 +74,25 @@ export function app(): express.Express {
         {provide: RESPONSE, useValue: res}] 
       });
   });
+  /* server.get('/', (request, response) => {
+    renderModule(HomeModule, {
+      document: indexHtml,
+      url: request.url,
+        extraProviders: [
+            {provide: APP_BASE_HREF, useValue: request.baseUrl},
+            {provide: REQUEST, useValue: request},
+            {provide: RESPONSE, useValue: response}
+       ]
+  })
+      .then(html => {
+          response.status(200).send(html);
+      })
+      .catch(err => {
+          console.log(err);
+          response.sendStatus(500);
+      }); 
+});*/
+
   return server;
 }
 

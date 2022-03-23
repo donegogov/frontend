@@ -29,10 +29,10 @@ export class JwtInterceptor implements HttpInterceptor {
     this._tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
     if (!(typeof window !== 'undefined')) {
       console.log('console.log(this.cookieService.get(user));console.log(this.cookieService.get(user));console.log(this.cookieService.get(user));');
-      console.log(this.cookieService.get('user'));
-      console.log(this.cookieService.get('token'));
+      //console.log(this.cookieService.get('user'));
+      //console.log(this.cookieService.get('token'));
     }
-    if (this.cookieService.get('token')) {
+    if (this.cookieService.hasKey('token')) {
       console.log('Bearer ' + this.cookieService.get('token'));
       request = request.clone({
         setHeaders: {

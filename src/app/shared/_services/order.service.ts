@@ -26,17 +26,17 @@ export class OrderService {
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
-    setOrder() {
+    setOrder(): any {
       this.customerService.getCurrentCustomer().subscribe(dataCurrentCustomer => {
         if (dataCurrentCustomer) {
           this.cartService.getShoppingCartItems().subscribe(dataShoppingCartItems => {
-              this.setOrderWithData(dataCurrentCustomer, dataShoppingCartItems);
+              return this.setOrderWithData(dataCurrentCustomer, dataShoppingCartItems);
           });
         }
       });
     }
 
-    setOrderWithData(currentCustomer: any, shoppingCartItems: any) {
+    setOrderWithData(currentCustomer: any, shoppingCartItems: any): Observable<any> {
       console.log(currentCustomer.customers[0].shipping_address);
       console.log(shoppingCartItems);
       var json = '{ ';
@@ -86,14 +86,14 @@ export class OrderService {
 
        json = JSON.parse(json);
 
-       return this.http.post<any>(this.apiUrl + 'orders', json).subscribe(dataOrder => {
+       return this.http.post<any>(this.apiUrl + 'orders', json);/* .subscribe(dataOrder => {
         console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
         console.log(dataOrder);
         this.cartService.deleteShoppingCart().subscribe(dataCart => {
           console.log(dataCart);
         });
         return dataOrder;
-       });
+       }); */
     }
 
     getOrdersForCustomer() {

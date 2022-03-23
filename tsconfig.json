@@ -16,12 +16,18 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
+    "target": "esnext",
+    "module": "esnext",
+    "paths": {
+      "swiper_angular": ["node_modules/swiper/angular"]
+    },
     "lib": [
       "es2020",
       "dom"
     ]
+  },
+  "paths": {
+    "swiper_angular": ["node_modules/swiper/angular"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
