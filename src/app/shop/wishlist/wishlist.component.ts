@@ -82,14 +82,14 @@ export class WishlistComponent implements OnInit {
       { name: 'description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' }
         );
         this.metaTagService.addTag(
-      { name: 'og:title', content: 'Омилени Продукти' },
+      { property: 'og:title', content: 'Омилени Продукти' },
         );
         this.metaTagService.addTag(
-      { name: 'og:description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' },
+      { property:  'og:description', content: 'Погледнете Ги Вашите Омилени Продукти, Споделете Го Со Некој Ваш Пријател' },
         );
-        /* this.metaTagService.addTag(
-      { name: 'og:image', content: this.product.images[0].src },
-        ); */
+        this.metaTagService.addTag(
+          { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
+            );
 
     this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(data => {
       console.log(data);

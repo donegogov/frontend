@@ -140,13 +140,13 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       { name: 'description', content: this.product.short_description }
         );
         this.metaTagService.addTag(
-      { name: 'og:title', content: this.product.name },
+      { property: 'og:title', content: this.product.name },
         );
         this.metaTagService.addTag(
-      { name: 'og:description', content: this.product.short_description },
+      { property:  'og:description', content: this.product.short_description },
         );
         this.metaTagService.addTag(
-      { name: 'og:image', content: this.product.images[0].src },
+      { property: 'og:image', content: this.product.images[0].src },
         );
       });
       for(var i = 0; i < this.product.attributes.length; i++) {

@@ -38,14 +38,14 @@ export class AccountComponent implements OnInit {
       { name: 'description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' }
     );
     this.metaTagService.addTag(
-      { name: 'og:title', content: 'Акаунт Најава Креирање Сметка Погледнете Ги Нарачките' },
+      { property: 'og:title', content: 'Акаунт Најава Креирање Сметка Погледнете Ги Нарачките' },
         );
         this.metaTagService.addTag(
-      { name: 'og:description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' },
+      { property:  'og:description', content: 'Најавете Се, Ако Немате Кориснички Профил Креирајте Сметка Погледнете Ја Историјата На Нарачките' },
         );
-        /* this.metaTagService.addTag(
-      { name: 'og:image', content: this.product.images[0].src },
-        ); */
+        this.metaTagService.addTag(
+      { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
+        );
   }
 
   onSubmit(event: any): void {

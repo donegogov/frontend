@@ -65,14 +65,14 @@ export class ShoopingCartComponent implements OnInit {
       { name: 'description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' }
         );
         this.metaTagService.addTag(
-      { name: 'og:title', content: 'Кошничка' },
+      { property: 'og:title', content: 'Кошничка' },
         );
         this.metaTagService.addTag(
-      { name: 'og:description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' },
+      { property:  'og:description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' },
         );
-        /* this.metaTagService.addTag(
-      { name: 'og:image', content: this.product.images[0].src },
-        ); */
+        this.metaTagService.addTag(
+          { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
+            );
       
   }
 
