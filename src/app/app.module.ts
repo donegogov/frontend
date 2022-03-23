@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { APP_INITIALIZER } from '@angular/core';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 import { CookieModule } from 'ngx-cookie';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,8 +47,10 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       deps: [TokenService],
       multi: true
       
-    }
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
+
   exports: [
   ],
   bootstrap: [AppComponent]
