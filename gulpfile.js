@@ -8,7 +8,7 @@ var zlib = require('zlib');
 const terser = require('gulp-terser');
 const cleanCSS = require('gulp-clean-css');
 const purgecss = require('gulp-purgecss');
-const closureCompiler = require('google-closure-compiler').gulp();
+/* const closureCompiler = require('google-closure-compiler').gulp(); */
 var concat = require('gulp-concat');
 var gulpReplace = require('gulp-replace');
 var del = require('del');
@@ -74,7 +74,7 @@ gulp.task('compress-js-terser', async function() {
 });
 
 
-gulp.task('js-compile-closure', function() {
+/* gulp.task('js-compile-closure', function() {
     return gulp.src('./dist/*.js', { base: './' })
         .pipe(closureCompiler({
             compilation_level: 'SIMPLE',
@@ -88,7 +88,7 @@ gulp.task('js-compile-closure', function() {
         }))
         .on('error', console.log)
         .pipe(gulp.dest('./dist'));
-});
+}); */
 
 
 gulp.task('purgecss', () => {
