@@ -30,7 +30,7 @@ jobs:
         run: npm install
       - name: Build project
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
-        run: npm run prod && npm install -g pm2 && pm2 start dist/client/server/main.js
+        run: npm run prod && npm install -g pm2 && pm2 start dist/client/server
         env:
           CI: true
           SITE_URL: ${{ steps.project.outputs.site-url }}
