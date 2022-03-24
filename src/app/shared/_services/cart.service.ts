@@ -6,7 +6,6 @@ import { take } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { productAttributeIdAttributeValuesId } from '../_models/product-attribute-id-attribute-values-id';
 import { Token } from '../_models/token';
-import { CookieManagerService } from './cookie-manager.service';
 import { CustomHttpClientService } from './custom-http-client.service';
 import { TokenService } from './token.service';
 
@@ -18,8 +17,8 @@ export class CartService {
 
   constructor(private http: HttpClient,
     private tokenService: TokenService,
-    private httpGet: CustomHttpClientService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private httpGet: CustomHttpClientService
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
@@ -134,7 +133,11 @@ export class CartService {
     } else if (typeof window !== 'undefined') {
       currentUser = JSON.parse(localStorage.getItem('user') || '');
     } */
-    var CustomerId = JSON.parse(this.cookieService.get('user')).customer_id;
+    console.log('JSON.parse(this.cookieService.get(user))this.cookieService.get(user)this.cookieService.get(user)this.cookieService.get(user)');
+    //console.log(JSON.parse(this.cookieService.get('user')));
+    var CustomerId = this.cookieService.get('customer_id');
+    console.log(shoppingCartType);
+    console.log(this.cookieService.get('customer_id'));
 
     return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
   }
@@ -159,7 +162,7 @@ export class CartService {
     } else if (typeof window !== 'undefined') {
       currentUser = JSON.parse(localStorage.getItem('user') || '');
     } */
-    var CustomerId = JSON.parse(this.cookieService.get('user')).customer_id;
+    var CustomerId = this.cookieService.get('customer_id');
 
     return this.http.delete<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=ShoppingCart&CustomerId=' + CustomerId);
   }

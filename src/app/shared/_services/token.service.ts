@@ -21,18 +21,32 @@ export class TokenService {
     private cookieManager: CookieManagerService */) { }
 
   getToken(guest: boolean = true, remember_me: boolean = true, username: string = 'username', password: string = 'password'){
-    if (typeof window !== 'undefined') {
-    if (localStorage.getItem('user') != null && localStorage.getItem('user') != '') {
-      var token = JSON.parse(localStorage.getItem('user') || '');
-      if (this.checkToken(token.access_token)) {
-        this.setCurrentUser(token);
-        /* this.saveInCookies('user', token); */
-        this.cookieService.put('user', JSON.stringify(token));
-        this.cookieService.put('token', JSON.stringify(token.access_token));
-        return;
+    /* if (typeof window !== 'undefined') {
+      if (localStorage.getItem('user') != null && localStorage.getItem('user') != '') {
+        var token = JSON.parse(localStorage.getItem('user') || '{ }');
+        console.log('BROWSERBROWSERBROWSERgetTokengetTokengetTokengetTokengetTokengetTokengetTokengetToken');
+        console.log(token)
+        if (this.checkToken(token.access_token)) {
+          this.setCurrentUser(token);
+          this.setCookies(token);
+          return;
+        }
+      } else if (this.cookieService.hasKey('token') && this.cookieService.hasKey('user')) {
+        var token = JSON.parse(this.cookieService.get('user') || '{ }');
+        console.log('SERVERSERVERSERVERSERVERSERVERgetTokengetTokengetTokengetTokengetTokengetTokengetTokengetToken');
+        console.log(token)
+        if (this.checkToken(token.access_token)) {
+          this.setCurrentUser(token);
+          localStorage.setItem('user', JSON.stringify(token));
+          localStorage.setItem('token', JSON.stringify(token.access_token));
+          return;
+        }
       }
+    } */
+    if (this.cookieService.hasKey('token') && this.cookieService.hasKey('user')) {
+      return;
     }
-  }
+
     let json = '';
     json += '{ "guest":"' + guest.toString() + '",';
     json += '"remember_me":"' + remember_me.toString() + '",';
@@ -52,13 +66,22 @@ export class TokenService {
         }
         this.setCurrentUser(data);
         /* this.saveInCookies('user', data); */
-          this.cookieService.put('user', JSON.stringify(data));
-          this.cookieService.put('token', data.access_token);
+        this.setCookies(data);
         //onsole.log(this.cookieService.get('tokem'));
         console.log('tokemtokemtokemtokemtokemtokemtokemtokemtokemtokemtokem');
       }
     }
   );
+  }
+
+  setCookies(data: Token) {
+    this.cookieService.put('access_token', data.access_token);
+    this.cookieService.put('created_at_utc', data.created_at_utc.toString());
+    this.cookieService.put('customer_guid', data.customer_guid);
+    this.cookieService.put('customer_id', data.customer_id.toString());
+    this.cookieService.put('expires_at_utc', data.expires_at_utc.toString());
+    this.cookieService.put('token_type', data.token_type);
+    this.cookieService.put('username', data.username);
   }
 
   unsubscribe() {

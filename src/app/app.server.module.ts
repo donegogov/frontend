@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    CookieBackendModule.forRoot()
+    CookieBackendModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

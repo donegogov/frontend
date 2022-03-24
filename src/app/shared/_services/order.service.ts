@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment.prod';
 import { CustomerService } from './customer.service';
 import { Token } from '../_models/token';
 import { TokenService } from './token.service';
-import { CustomHttpClientService } from './custom-http-client.service';
 import { DOCUMENT } from '@angular/common';
 import { CookieManagerService } from './cookie-manager.service';
 import { CookieService } from 'ngx-cookie';
@@ -21,15 +20,14 @@ export class OrderService {
     private cartService: CartService,
     private customerService: CustomerService,
     private tokenService: TokenService,
-    private httpGet: CustomHttpClientService,
     private cookieService: CookieService
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
     setOrder(): any {
-      this.customerService.getCurrentCustomer().subscribe(dataCurrentCustomer => {
+      this.customerService.getCurrentCustomer().subscribe((dataCurrentCustomer: any) => {
         if (dataCurrentCustomer) {
-          this.cartService.getShoppingCartItems().subscribe(dataShoppingCartItems => {
+          this.cartService.getShoppingCartItems().subscribe((dataShoppingCartItems: any) => {
               return this.setOrderWithData(dataCurrentCustomer, dataShoppingCartItems);
           });
         }
@@ -106,9 +104,9 @@ export class OrderService {
     } else if (typeof window !== 'undefined') {
       currentUser = JSON.parse(localStorage.getItem('user') || '');
     } */
-    var CustomerId = JSON.parse(this.cookieService.get('user')).customer_id;
+    var CustomerId = this.cookieService.get('customer_id');
 
-      return this.httpGet.get<any>(this.apiUrl + 'orders/customer/' + CustomerId);
+      return this.http.get<any>(this.apiUrl + 'orders/customer/' + CustomerId);
     }
 
 }

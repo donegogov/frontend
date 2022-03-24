@@ -20,12 +20,18 @@ export class AppComponent implements OnInit {
     private metaTagService: Meta) { }
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
-    this.metaTagService.addTags([
-      { name: 'keywords', content: 'Elektronska Prodavnica, Prodavnica, Racno Izraboteni Produkti, Pliko' },
-      { name: 'author', content: 'Done Gogov' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    this.metaTagService.addTag(
+      { name: 'keywords', content: 'Elektronska Prodavnica, Prodavnica, Racno Izraboteni Produkti, Pliko' }
+    );
+    this.metaTagService.addTag(
+      { name: 'author', content: 'Done Gogov' }
+    );
+    this.metaTagService.addTag(
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    );
+    this.metaTagService.addTag(
       { charset: 'UTF-8' }
-    ]);
+    );
     this.metaTagService.addTag(
       { name: 'description', content: 'Овде Можете Да Најдете Секаков Вид На Домашно Рачно Изработени Продукти' }
     );

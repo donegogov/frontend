@@ -69,7 +69,7 @@
                             "optimization": true,
                             "outputHashing": "none",
                             "sourceMap": true,
-                            "namedChunks": false,
+                            "namedChunks": true,
                             "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": true,
@@ -131,14 +131,16 @@
                     },
                     "configurations": {
                         "production": {
-                            "outputHashing": "media",
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
                             }],
-                            "optimization": true,
+                            "optimization": false,
+                            "outputHashing": "none",
                             "sourceMap": true,
-                            "extractLicenses": true
+                            "namedChunks": true,
+                            "extractLicenses": true,
+                            "deleteOutputPath": true
                         },
                         "development": {
                             "optimization": false,

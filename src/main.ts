@@ -13,7 +13,6 @@ function bootstrap() {
   .catch(err => console.error(err));
 };
 
-
 if (document.readyState === 'complete') {
   bootstrap();
 } else {

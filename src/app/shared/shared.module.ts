@@ -29,7 +29,6 @@ import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { CookieManagerService } from './_services/cookie-manager.service';
-import { CustomHttpClientService } from './_services/custom-http-client.service';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 
 
@@ -61,7 +60,6 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     SearchProductResolver,
     PriceFromToResolver,
     CookieManagerService,
-    CustomHttpClientService
   ],
   exports: [
     HeaderComponent,
@@ -89,7 +87,7 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    ThankYouComponent
+    ThankYouComponent,
   ]
 })
 export class SharedModule { }

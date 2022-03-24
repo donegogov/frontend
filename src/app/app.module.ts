@@ -14,6 +14,9 @@ import { TokenService } from './shared/_services/token.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
 import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
+import { ServerStateInterceptor } from './shared/_interceptor/server-state.interceptor';
+import { BrowserStateInterceptor } from './shared/_interceptor/browser-state.interceptor';
+import { CustomHttpClientService } from './shared/_services/custom-http-client.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,7 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       tertiaryColour: '#ffffff'
     }),
     BrowserTransferStateModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -49,8 +52,18 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
       
     },
     {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerStateInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BrowserStateInterceptor,
+      multi: true
+    },
+    CustomHttpClientService
   ],
-
   exports: [
   ],
   bootstrap: [AppComponent]

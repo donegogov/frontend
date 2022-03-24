@@ -16,27 +16,30 @@ export class JwtInterceptor implements HttpInterceptor {
     private cookieManager: CookieManagerService */) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    /* let currentUser!: Token;
-    if (typeof window === 'undefined' && this.document) {
-      currentUser = JSON.parse(this.cookieManager.getItem(this.document.cookie, 'user') || '{ }');
-    } else if (typeof window !== 'undefined') {
-      currentUser = JSON.parse(localStorage.getItem('user') || '');
-      this._tokenService.saveInCookies('user', JSON.parse(localStorage.getItem('user') || '{ }'))
-    } */
+    /* let access_token!: string;
+    if (typeof window !== 'undefined') {
+      access_token = JSON.parse(localStorage.getItem('user') || '{ }').access_token;
+      this.cookieService.put('user', JSON.parse(localStorage.getItem('user') || '{ }'))
+    } else if (typeof window === 'undefined') {
+      access_token = this.cookieService.get('customer_id');
+    }  */
     //request.body.cookieStorage
-    let currentUser!: Token;
+    //let currentUser!: Token;
     
-    this._tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    /* this._tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
     if (!(typeof window !== 'undefined')) {
       console.log('console.log(this.cookieService.get(user));console.log(this.cookieService.get(user));console.log(this.cookieService.get(user));');
       //console.log(this.cookieService.get('user'));
       //console.log(this.cookieService.get('token'));
-    }
-    if (this.cookieService.hasKey('token')) {
-      console.log('Bearer ' + this.cookieService.get('token'));
+    } */
+    let access_token!: string;
+    access_token = this.cookieService.get('access_token');
+
+    if (access_token) {
+      console.log('Bearer ' + access_token);
       request = request.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + this.cookieService.get('token')
+          Authorization: 'Bearer ' + access_token
         }
       });
     }
