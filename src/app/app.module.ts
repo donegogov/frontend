@@ -1,22 +1,21 @@
-import { NgModule } from '@angular/core';
+import { NgModule, PLATFORM_ID } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
-import { APP_INITIALIZER } from '@angular/core';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 import { CookieModule } from 'ngx-cookie';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { TokenService } from './shared/_services/token.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
 import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
 import { ServerStateInterceptor } from './shared/_interceptor/server-state.interceptor';
 import { BrowserStateInterceptor } from './shared/_interceptor/browser-state.interceptor';
 import { CustomHttpClientService } from './shared/_services/custom-http-client.service';
+import { UrlSerializer } from '@angular/router';
+import { urlSerializerFactory } from './shared/_models/trailing-slash-serializer';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { CustomHttpClientService } from './shared/_services/custom-http-client.s
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    HomeModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
@@ -41,18 +39,10 @@ import { CustomHttpClientService } from './shared/_services/custom-http-client.s
     CookieModule.forRoot(),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     TokenService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (ds: TokenService) => () => { return ds.getToken() },
-      deps: [TokenService],
-      multi: true
-      
-    },
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    /* {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerStateInterceptor,
       multi: true
@@ -61,8 +51,13 @@ import { CustomHttpClientService } from './shared/_services/custom-http-client.s
       provide: HTTP_INTERCEPTORS,
       useClass: BrowserStateInterceptor,
       multi: true
-    },
-    CustomHttpClientService
+    }, */
+    CustomHttpClientService,
+    /* {
+      provide: UrlSerializer,
+      useFactory: urlSerializerFactory,
+      deps: [PLATFORM_ID]
+    } */
   ],
   exports: [
   ],

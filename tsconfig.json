@@ -18,16 +18,10 @@
     "importHelpers": true,
     "target": "esnext",
     "module": "esnext",
-    "paths": {
-      "swiper_angular": ["node_modules/swiper/angular"]
-    },
     "lib": [
-      "es2020",
+      "esnext",
       "dom"
     ]
-  },
-  "paths": {
-    "swiper_angular": ["node_modules/swiper/angular"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

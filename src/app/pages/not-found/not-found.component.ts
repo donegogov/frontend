@@ -14,12 +14,10 @@ export class NotFoundComponent implements OnInit, AfterViewInit {
     this.isBrowser = isPlatformBrowser(platformId);
   }
   ngAfterViewInit(): void {
-    if (this.isBrowser) {
       setTimeout(function(){
         console.log('Timeout not found');
         notFound();
       }, 10);
-    }
   }
 
   ngOnInit(): void {

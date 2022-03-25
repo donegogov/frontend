@@ -1,15 +1,12 @@
-import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
-import { ReplaySubject } from 'rxjs';
+import { of, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Token } from '../_models/token';
 import { CookieManagerService } from './cookie-manager.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TokenService {
   apiUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<Token>(1);
@@ -72,6 +69,13 @@ export class TokenService {
       }
     }
   );
+  }
+
+  isLogedIn() {
+    if (this.cookieService.get('token') != null || this.cookieService.get('token') != undefined) {
+      return true;
+    }
+    else return false;
   }
 
   setCookies(data: Token) {

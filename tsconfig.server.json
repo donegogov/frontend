@@ -4,7 +4,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/server",
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "types": [
       "node"
     ]

@@ -18,3 +18,5 @@ if (document.readyState === 'complete') {
 } else {
   document.addEventListener('DOMContentLoaded', bootstrap);
 }
+
+/* export { AppModule } from './app/app.module'; */

@@ -1,10 +1,11 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
+import { TokenService } from 'src/app/shared/_services/token.service';
 declare function addToCart(): any;
 
 @Component({
@@ -58,10 +59,10 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
 
   private isBrowser!: boolean;
 
-  constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
-    @Inject(DOCUMENT) private _document: Document,
+  constructor(private productsService: ProductsService, private _renderer2: Renderer2,
     private cartService: CartService,
     private router: Router,
+    private tokenService: TokenService,
     @Inject(PLATFORM_ID) platformId: Object) { 
     this.numbers = Array(60).fill(4);
     this.getScreenSize();
@@ -83,12 +84,11 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
-        if (this.isBrowser) {
           setTimeout(function(){
             console.log('Timeout add to cart');
             addToCart();
           }, 100);
-        }
+        
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
             this.wishList.push({ids: element.product.id, wishList: true});
@@ -96,12 +96,10 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         });
       }
     });
-    if (typeof window !== 'undefined') {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
       
       localStorage.setItem('reload', 'true');
-    }
   }
 
   ngAfterViewInit(): void {
@@ -176,7 +174,6 @@ addToWishList(product: any) {
     });
     return false;
   }
-  
 }
 
 wishListYn(id: number) {

@@ -14,7 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient,
     private tokenService: TokenService,
-    private httpGet: CustomHttpClientService) { }
+    /* private http: CustomHttpClientService */) { }
 
   setBillingAddress(email: string,
     firstname: string,
@@ -123,7 +123,7 @@ this.http.get<any>('https://geolocation-db.com/json/')
 }
 
 getCurrentCustomer() {
-  return this.httpGet.get<any>(this.apiUrl + 'customers/me');
+  return this.http.get<any>(this.apiUrl + 'customers/me');
 }
 
 }

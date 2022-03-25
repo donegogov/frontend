@@ -1,6 +1,6 @@
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, PLATFORM_ID, Inject } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
@@ -8,6 +8,7 @@ import { OrderService } from 'src/app/shared/_services/order.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/shared/_services/cart.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-checkout-username-password',
@@ -57,6 +58,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   country = "";
   zip = "";
   formated_address = '';
+  private isBrowser!: boolean;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -67,8 +69,11 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private router: Router,
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) { 
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle( 'Направете Нарачка' );
@@ -179,7 +184,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
                           console.log(this.orderService.setOrder());
                           this.orderService.setOrder().subscribe((dataOrder: any) => {
                             if (dataOrder) {
-                              this.router.navigate(['thanks']);
+                              this.router.navigate(['pages/thanks']);
                             }
                             console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
                             console.log(dataOrder);

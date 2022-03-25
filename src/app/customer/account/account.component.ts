@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { Token } from 'src/app/shared/_models/token';
 import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-account',
@@ -21,11 +22,13 @@ export class AccountComponent implements OnInit {
 
   errorLogin = false;
   showLoginRegister = true;
+  private isBrowser!: boolean;
 
   constructor(private tokenService: TokenService,
     private customerService: CustomerService,
     private titleService: Title,
-    private metaTagService: Meta) { }
+    private metaTagService: Meta,
+    @Inject(PLATFORM_ID) platformId: Object) { }
 
   ngOnInit(): void {
     this.loginFrom = this.formBuilder.group({

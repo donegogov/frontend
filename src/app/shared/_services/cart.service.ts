@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
@@ -18,7 +17,7 @@ export class CartService {
   constructor(private http: HttpClient,
     private tokenService: TokenService,
     private cookieService: CookieService,
-    private httpGet: CustomHttpClientService
+   /*  private http: CustomHttpClientService */
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
@@ -121,7 +120,7 @@ export class CartService {
   }
 
   getShoppingCartItems() {
-    return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items/me');
+    return this.http.get<any>(this.apiUrl + 'shopping_cart_items/me');
   }
 
   getWishlistShoppingCartItems(shoppingCartType: string) {
@@ -139,7 +138,7 @@ export class CartService {
     console.log(shoppingCartType);
     console.log(this.cookieService.get('customer_id'));
 
-    return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
+    return this.http.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
   }
 
   deleteWishlistCartItem(wishlistShoppingCartItemId: string) {

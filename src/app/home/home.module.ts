@@ -9,7 +9,6 @@ import { MainContentComponent } from './main-content/main-content.component';
 import { TopSellingProductsComponent } from './top-selling-products/top-selling-products.component';
 import { WhyUsComponent } from './why-us/why-us.component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -23,9 +22,6 @@ import { WhyUsComponent } from './why-us/why-us.component';
     SharedModule
   ],
   exports: [
-    HomeSliderComponent,
-    MainContentComponent,
-    HomeComponent
   ]
 })
 export class HomeModule { }

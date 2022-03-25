@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInput, MatInputModule} from '@angular/material/input'; 
+import { MatInputModule} from '@angular/material/input'; 
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSliderModule} from '@angular/material/slider'; 
 import {MatRadioModule} from '@angular/material/radio'; 
-import { SwiperModule } from "swiper/angular";
 import {MatDialogModule} from '@angular/material/dialog'; 
 import { MatButtonModule } from '@angular/material/button'
 
@@ -25,11 +24,9 @@ import { ProductsService } from './_services/products.service';
 import { SearchProductResolver } from './_resolvers/search-product.resolver';
 import { AnimatedShopComponent } from './animated-shop/animated-shop.component';
 import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
-import { PriceFromToResolver } from './_resolvers/price-from-to.resolver';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { CookieManagerService } from './_services/cookie-manager.service';
-import { ThankYouComponent } from './thank-you/thank-you.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -39,9 +36,7 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     FooterComponent,
     AnimatedShopComponent,
     MobileAppsComponent,
-    NotFoundComponent,
-    ShoppingCartContinueShoppingComponent,
-    ThankYouComponent,
+    ShoppingCartContinueShoppingComponent
   ],
   imports: [
     CommonModule,
@@ -52,13 +47,11 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     FormsModule,
     MatDialogModule,
     MatButtonModule,
-    SwiperModule
   ],
   providers: [
     HomePageSliderResolver,
     ProductsService,
     SearchProductResolver,
-    PriceFromToResolver,
     CookieManagerService,
   ],
   exports: [
@@ -67,7 +60,6 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     MagicMainMenuComponent,
     CarouselModule,
     CommonModule,
-    MatSelectModule,
     FormsModule,
     MatSliderModule,
     MatChipsModule,
@@ -75,19 +67,15 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     MatCheckboxModule,
     CarouselModule,
     MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
     ReactiveFormsModule,
     AnimatedShopComponent,
     MobileAppsComponent,
-    NotFoundComponent,
-    SwiperModule,
     MatRadioModule,
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    ThankYouComponent,
+    SwiperModule
   ]
 })
 export class SharedModule { }

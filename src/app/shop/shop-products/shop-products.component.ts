@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsPricing } from 'src/app/shared/_models/products-pricing';
 import { Title, Meta } from '@angular/platform-browser';

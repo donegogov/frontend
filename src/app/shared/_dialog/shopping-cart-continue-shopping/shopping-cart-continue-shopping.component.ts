@@ -18,7 +18,7 @@ export class ShoppingCartContinueShoppingComponent implements OnInit {
 
   onViewShoppingCartClick(): void {
     this.dialogRef.close();
-    this.router.navigate(['/shop/cart']);
+    this.router.navigate(['/checkout/cart']);
   }
 
 }

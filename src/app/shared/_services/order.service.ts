@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment.prod';
 import { CustomerService } from './customer.service';
 import { Token } from '../_models/token';
 import { TokenService } from './token.service';
-import { DOCUMENT } from '@angular/common';
 import { CookieManagerService } from './cookie-manager.service';
 import { CookieService } from 'ngx-cookie';
 

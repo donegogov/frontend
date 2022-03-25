@@ -1,11 +1,12 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListProducts } from 'src/app/shared/_models/list-products';
 import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
+import { isPlatformBrowser } from '@angular/common';
+import { TokenService } from 'src/app/shared/_services/token.service';
 
 @Component({
   selector: 'app-list-products',
@@ -104,10 +105,13 @@ private _categoryId!: number[];
     
     }
 
-constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
-  @Inject(DOCUMENT) private _document: Document,
+    private isBrowser!: boolean;
+
+constructor(private productsService: ProductsService, private _renderer2: Renderer2,
   private cartService: CartService,
-  private router: Router) { 
+  private router: Router,
+  private tokenService: TokenService,
+  @Inject(PLATFORM_ID) platformId: Object) { 
   this.numbers = Array(60).fill(4);
   this.getScreenSize();
 
@@ -117,6 +121,7 @@ constructor(private productsService: ProductsService, private _renderer2: Render
   if (this.mobile) {
     this.productToReturn = 3;
   }
+  this.isBrowser = isPlatformBrowser(platformId);
 }
 
 ngOnInit(): void {
@@ -185,6 +190,7 @@ ngAfterViewInit(): void {
 } */
 
 addToWishList(product: any) {
+  if(this.isBrowser && this.tokenService.isLogedIn()) {
   var addWishlist = false;
   if (this.wishList.filter(w => w.ids == product.id).length > 0) {
     this.wishList.filter(w => w.ids == product.id)[0].wishList = !this.wishList.filter(w => w.ids == product.id)[0].wishList;
@@ -225,6 +231,8 @@ addToWishList(product: any) {
     });
     return false;
   }
+  }
+  return false;
   
 }
 
@@ -278,7 +286,7 @@ this.isLoadedScript = false;
 } */
 
 productDetails(id: number) {
-  this.router.navigate(['/shop/details/', id])
+  this.router.navigate(['/pages/details/', id])
   .then(() => {
     //window.location.reload();
   });

@@ -18,11 +18,11 @@ export class CategoryService {
   categories!: CategoryForHomePageSearch[];
 
 constructor(private http: HttpClient,
-  private httpGet: CustomHttpClientService
+  /* private http: CustomHttpClientService */
  ) { }
 
 getAllCategories(limit: number, page: number) {
-  return this.httpGet.get<CategoryAsRootObject>(this.apiUrl + 'allcategories' + '?limit=' + limit.toString() + '&page=' + page.toString());
+  return this.http.get<CategoryAsRootObject>(this.apiUrl + 'allcategories' + '?limit=' + limit.toString() + '&page=' + page.toString());
 }
 
 }
