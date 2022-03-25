@@ -307,7 +307,8 @@ body {
 
 .menu__border {
     top: 99%;
-    left: 0;
+    left: 2.6;
+    transform: rotate(180deg);
     bottom: 0;
     width: 10.9em;
     height: 2.4em;
