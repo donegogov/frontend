@@ -166,8 +166,8 @@
                     "builder": "@nguniversal/builders:prerender",
                     "options": {
                         "routes": [
-                            "/not-found",
-                            "/thanks",
+                            "/pages/not-found",
+                            "/pages//thanks",
                             "/"
                         ]
                     },
