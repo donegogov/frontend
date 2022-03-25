@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/shared/_services/products.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { TokenService } from 'src/app/shared/_services/token.service';
-declare function addToCart(): any;
+/* declare function addToCart(): any; */
 
 @Component({
   selector: 'app-wishlist',

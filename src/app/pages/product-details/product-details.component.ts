@@ -13,6 +13,7 @@ import { CartService } from '../../shared/_services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartContinueShoppingComponent } from '../../shared/_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { isPlatformBrowser } from '@angular/common';
+import { TokenService } from 'src/app/shared/_services/token.service';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
@@ -70,6 +71,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private cartService: CartService,
     public dialog: MatDialog,
+    private tokenService: TokenService,
     private titleService: Title,
     private metaTagService: Meta,
     @Inject(PLATFORM_ID) platformId: Object) {
@@ -294,9 +296,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   addToMainCartItemsNumber() {
+    if (this.isBrowser && this.tokenService.isLogedIn()) {
     document.documentElement.style.setProperty('--add-to-cart-number-of-items', '\'' + this.addToCartItemsNumber.toString() + '\'');
     console.log(this.addToCartItemsNumber);
-    //addToCartNumberOfItems(this.addToCartItemsNumber);
+    //addToCartNumberOfItems(this.addToCartItemsNumber)
+  }
   }
 
   addToCartItems(control: string, attributeId: string, attributeValueId: string, event: any) {

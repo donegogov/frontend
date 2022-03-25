@@ -6,7 +6,7 @@ import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling'
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
-declare function addToCart(): any;
+/* declare function addToCart(): any; */
 
 @Component({
   selector: 'app-top-selling-products',
