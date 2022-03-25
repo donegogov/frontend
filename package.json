@@ -22,7 +22,7 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "prod": "ng build --configuration production && ng run client:prerender:production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli && pm2 start /var/www/ak/dist/client/server/main.js -f",
-        "prodDev": "ng build --configuration production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
+        "prodDev": "ng build --configuration production && ng run client:prerender:production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
         "dev:ssr": "ng run client:serve-ssr",
         "serve:ssr": "node /var/www/ak/dist/client/server/main.js",
         "build:ssr": "ng build && ng run client:server",
@@ -32,7 +32,6 @@
     "private": true,
     "dependencies": {
         "@agm/core": "^3.0.0-beta.0",
-
         "@angular/animations": "13.3.0",
         "@angular/cdk": "13.3.0",
         "@angular/common": "13.3.0",
