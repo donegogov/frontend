@@ -84,12 +84,12 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
-        if(this.isBrowser) {
+        /* if(this.isBrowser) {
           setTimeout(function(){
             console.log('Timeout add to cart');
             addToCart();
           }, 100);
-        }
+        } */
         if(this.isBrowser && this.tokenService.isLogedIn()) {
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
