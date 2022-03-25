@@ -93,7 +93,7 @@ export class WishlistComponent implements OnInit {
         this.metaTagService.addTag(
           { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
             );
-
+            if(this.isBrowser && this.tokenService.isLogedIn()) {
     this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(data => {
       console.log(data);
       if (data) {
@@ -119,16 +119,16 @@ export class WishlistComponent implements OnInit {
         });
       }
     });
-    if (typeof window !== 'undefined') {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
-    }
+  }
   }
 
   ngAfterViewInit(): void {
   }
 
  loadScript(event: any) {
+  if(this.isBrowser && this.tokenService.isLogedIn()) {
   console.log('event');
   console.log(event.target.children[0].children);
   //script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
@@ -145,6 +145,7 @@ export class WishlistComponent implements OnInit {
     });
   }
   this.isLoadedScript = false;
+}
 }
 
 /* addToWishList(id: number) {

@@ -52,6 +52,7 @@ export class AccountComponent implements OnInit {
   }
 
   onSubmit(event: any): void {
+    if (this.isBrowser) {
     this.errorLogin = false;
     console.log(event.submitter.innerText);
     if (this.loginFrom.valid) {
@@ -84,6 +85,7 @@ export class AccountComponent implements OnInit {
         });
       }
     }
+  }
   }
 
   logout() {

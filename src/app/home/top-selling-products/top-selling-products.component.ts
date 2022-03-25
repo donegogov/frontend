@@ -84,28 +84,34 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
+        if(this.isBrowser) {
           setTimeout(function(){
             console.log('Timeout add to cart');
             addToCart();
           }, 100);
-        
+        }
+        if(this.isBrowser && this.tokenService.isLogedIn()) {
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
             this.wishList.push({ids: element.product.id, wishList: true});
           });
         });
       }
+      }
     });
+    if(this.isBrowser) {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
       
       localStorage.setItem('reload', 'true');
+    }
   }
 
   ngAfterViewInit(): void {
   }
 
  loadScript(event: any) {
+  if(this.isBrowser) {
   console.log('event');
   console.log(event.target.children[0].children);
   //script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
@@ -123,6 +129,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   }
   this.isLoadedScript = false;
 }
+}
 
 /* addToWishList(id: number) {
   if (this.wishList.filter(w => w.ids == id).length > 0) {
@@ -134,6 +141,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
 } */
 
 addToWishList(product: any) {
+  if(this.isBrowser && this.tokenService.isLogedIn()) {
   var addWishlist = false;
   if (this.wishList.filter(w => w.ids == product.id).length > 0) {
     this.wishList.filter(w => w.ids == product.id)[0].wishList = !this.wishList.filter(w => w.ids == product.id)[0].wishList;
@@ -175,6 +183,8 @@ addToWishList(product: any) {
     return false;
   }
 }
+return false;
+}
 
 wishListYn(id: number) {
   /* console.log('this.wishList.filter(w => w.ids == id)');
@@ -192,7 +202,7 @@ wishListYn(id: number) {
 } */
 
 productDetails(id: number) {
-  this.router.navigate(['/shop/details/', id])
+  this.router.navigate(['/pages/details/', id])
   .then(() => {
     //window.location.reload();
   });

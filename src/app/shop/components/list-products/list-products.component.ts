@@ -127,10 +127,10 @@ constructor(private productsService: ProductsService, private _renderer2: Render
 ngOnInit(): void {
   this.initGetData = true;
   this.getData();
-  if (typeof window !== 'undefined') {
+  if(this.isBrowser) {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
-    localStorage.setItem('reload', 'true');
+    localStorage.setItem('reload', 'true')
   }
 }
 
@@ -143,6 +143,7 @@ getData() {
         console.log('this.topSellingProducts');
         console.log(data.products);
         this.topSellingProducts = data.products;
+        if(this.isBrowser && this.tokenService.isLogedIn()) {
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           console.log('dataWldataWldataWldataWldataWldataWldataWldataWldataWldataWldataWldataWl');
         console.log(dataWl);
@@ -150,6 +151,7 @@ getData() {
             this.wishList.push({ids: element.product.id, wishList: true});
           });
         });
+      }
         console.log('this.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishListthis.wishList');
         console.log(this.wishList);
       }
@@ -263,6 +265,7 @@ searchTearmChanged(searchTearm: string[]) {
 }
 
 loadScript(event: any) {
+  if(this.isBrowser) {
 console.log('event');
 console.log(event.target.children[0].children);
 //script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
@@ -279,6 +282,7 @@ console.log(event.target.children[0].children);
   });
 }
 this.isLoadedScript = false;
+  }
 }
 
 /* ngOnDestroy() {

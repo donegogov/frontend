@@ -135,6 +135,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if(this.isBrowser && this.tokenService.isLogedIn()) {
     var formData = this.checkoutForm.value;
     console.warn('Your order has been submitted');
     console.warn(this.checkoutForm.value);
@@ -202,6 +203,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
         }
       });
     }
+  }
   }
 
   private setCurrentLocation() {
