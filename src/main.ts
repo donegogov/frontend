@@ -9,9 +9,11 @@ if (environment.production) {
 }
 
 function bootstrap() {
-  platformBrowserDynamic().bootstrapModule(AppModule)
+  function bootstrap() {
+    platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-};
+  };
+
 
 if (document.readyState === 'complete') {
   bootstrap();
@@ -19,4 +21,10 @@ if (document.readyState === 'complete') {
   document.addEventListener('DOMContentLoaded', bootstrap);
 }
 
-/* export { AppModule } from './app/app.module'; */
+};
+
+if (document.readyState === 'complete') {
+  bootstrap();
+} else {
+  document.addEventListener('DOMContentLoaded', bootstrap);
+}

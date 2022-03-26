@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TestComponent } from './shared/test/test.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {

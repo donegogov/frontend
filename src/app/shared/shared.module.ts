@@ -27,6 +27,7 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { CookieManagerService } from './_services/cookie-manager.service';
 import { SwiperModule } from 'swiper/angular';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SwiperModule } from 'swiper/angular';
     FooterComponent,
     AnimatedShopComponent,
     MobileAppsComponent,
-    ShoppingCartContinueShoppingComponent
+    ShoppingCartContinueShoppingComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,

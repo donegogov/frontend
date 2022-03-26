@@ -14,8 +14,6 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
 import { ServerStateInterceptor } from './shared/_interceptor/server-state.interceptor';
 import { BrowserStateInterceptor } from './shared/_interceptor/browser-state.interceptor';
 import { CustomHttpClientService } from './shared/_services/custom-http-client.service';
-import { UrlSerializer } from '@angular/router';
-import { urlSerializerFactory } from './shared/_models/trailing-slash-serializer';
 
 @NgModule({
   declarations: [
@@ -35,7 +33,7 @@ import { urlSerializerFactory } from './shared/_models/trailing-slash-serializer
       secondaryColour: '#ffffff', 
       tertiaryColour: '#ffffff'
     }),
-    BrowserTransferStateModule,
+    /* BrowserTransferStateModule, */
     CookieModule.forRoot(),
   ],
   providers: [

@@ -74,7 +74,7 @@
                             "extractLicenses": true,
                             "vendorChunk": true,
                             "buildOptimizer": true,
-                            "deleteOutputPath": true
+                            "deleteOutputPath": false
                         },
                         "development": {
                             "buildOptimizer": false,
@@ -131,14 +131,14 @@
                     },
                     "configurations": {
                         "production": {
+                            "outputHashing": "none",
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
                             }],
                             "optimization": true,
                             "sourceMap": true,
-                            "extractLicenses": true,
-                            "deleteOutputPath": true
+                            "extractLicenses": true
                         },
                         "development": {
                             "optimization": false,

@@ -16,10 +16,10 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2017",
+    "module": "es2020",
     "lib": [
-      "esnext",
+      "es2020",
       "dom"
     ]
   },

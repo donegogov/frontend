@@ -21,13 +21,12 @@
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "prod": "ng build --configuration production && ng run client:prerender:production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
-        "prodDev": "ng build --configuration production && ng run client:prerender:production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
+        "prod": "ng run client:prerender:production && ng build --configuration production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
+        "prodDev": "ng run client:prerender:production && ng build --configuration production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
         "dev:ssr": "ng run client:serve-ssr",
-        "serve:ssr": "node /var/www/ak/dist/client/server/main.js",
+        "serve:ssr": "node dist/client/server/main.js",
         "build:ssr": "ng build && ng run client:server",
-        "prerender": "ng run client:prerender:production",
-        "prod:ssr": "ng run client:server:production"
+        "prerender": "ng run client:prerender"
     },
     "private": true,
     "dependencies": {
@@ -44,7 +43,7 @@
         "@angular/platform-server": "^13.3.0",
         "@angular/router": "13.3.0",
         "@auth0/angular-jwt": "^5.0.2",
-        "@nguniversal/express-engine": "^13.1.0",
+        "@nguniversal/express-engine": "^13.1.0-next.1",
         "animate.css": "^4.1.1",
         "bootstrap": "^5.1.3",
         "express": "^4.17.3",
