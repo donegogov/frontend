@@ -13,8 +13,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import { MatButtonModule } from '@angular/material/button'
 
-
-import { SharedRoutingModule } from './shared-routing.module';
 import { MagicMainMenuComponent } from './components/magic-main-menu/magic-main-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -27,8 +25,7 @@ import { MobileAppsComponent } from './mobile-apps/mobile-apps.component';
 import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { CookieManagerService } from './_services/cookie-manager.service';
 import { SwiperModule } from 'swiper/angular';
-import { TestComponent } from './test/test.component';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,17 +35,16 @@ import { TestComponent } from './test/test.component';
     AnimatedShopComponent,
     MobileAppsComponent,
     ShoppingCartContinueShoppingComponent,
-    TestComponent
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     FormsModule,
     MatDialogModule,
     MatButtonModule,
+    RouterModule
   ],
   providers: [
     HomePageSliderResolver,

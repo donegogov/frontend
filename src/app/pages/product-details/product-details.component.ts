@@ -75,24 +75,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     private titleService: Title,
     private metaTagService: Meta,
     @Inject(PLATFORM_ID) platformId: Object) {
-      if (typeof window !== 'undefined') {
-      if (!localStorage.getItem('reload')) {
-        localStorage.setItem('reload', 'true');
-        this.reload = 'true';
-      } else {
-        this.reload = localStorage.getItem('reload') || 'false';
-      }
-    }
-      //console.log('this.reload= ' + this.reload + ' localStorage.getItem(reload)= ' + localStorage.getItem('reload') + 'OOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOOOOOOO OOOOOOOOOOO');
-      this.getScreenSize();
+      this.isBrowser = isPlatformBrowser(platformId);
+        //this.getScreenSize();
 
-    if (this.scrWidth <= 992) {
-      this.mobile = true;
-    }
-    if (this.mobile) {
-      this.mainImageWidth = this.scrWidth;
-    }
-    this.isBrowser = isPlatformBrowser(platformId);
+        if (this.scrWidth <= 992) {
+          this.mobile = true;
+        }
+        if (this.mobile) {
+          this.mainImageWidth = this.scrWidth;
+        }
+    
      }
   ngAfterViewInit(): void {
     
@@ -109,26 +101,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.id = params.get('id') || ''; 
       console.log('ID = ' + this.id);
     });
-    /* this.navigationSubscription = this.router.events.subscribe(async (e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        await this.reloadUrl('/shop/details/' + this.id);
-      }
-    }); */
-    /* this.route.paramMap.subscribe(params => { 
-      this.id = params.get('id') || ''; 
-      console.log('ID = ' + this.id);
-    }); */
-    /* console.log('this.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reloadthis.reload'); 
-    console.log(this.reload); */
-    /* if (this.reload == 'true') {
-      console.log('reloadreloadreloadreloadreloadreloadreloadreloadreloadreload')
-      await this.reloadUrl('/shop/details/' + this.id);
-      localStorage.setItem('reload', 'false');
-    } */
-    /* this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/shop/details/' + this.id]); // navigate to same route
-   });  */
     this.productService.getProductById(this.id).subscribe(data => {
       console.log('getProductById');
       this.product = data.products[0];
@@ -162,35 +134,26 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         }, 100);
       }
     });
-
-    this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
-      if (data) {
-        data.shopping_carts.forEach((element: any, i: number) => {
-          if (element.product.id == this.product.id) {
-            this.wishList = true;
-          }
-        });
-      }
-    });   
+    if (this.isBrowser) {
+      this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe((data: any) => {
+        if (data) {
+          data.shopping_carts.forEach((element: any, i: number) => {
+            if (element.product.id == this.product.id) {
+              this.wishList = true;
+            }
+          });
+        }
+      });
+    }   
   }
 
   ngOnDestroy() {
-    if (typeof window !== 'undefined') {
-    localStorage.setItem('reload', 'false');
-    }
     if (this.isBrowser) {
       productDetailsTopMenuAdd();
     }
-
-      // avoid memory leaks here by cleaning up after ourselves. If we  
-      // don't then we will continue to run our initialiseInvites()   
-      // method on every navigationEnd event.
       if (this.navigationSubscription) {  
          this.navigationSubscription.unsubscribe();
       }
-  }
-
-  initialiseInvites() {
   }
 
   doubleTap(event: any) {
@@ -201,7 +164,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     {
       this.secondTap = new Date().getTime();
       var diff = this.secondTap - this.firstTap;
-      //alert(diff);
       this.firstTap = 0;
       if (!this.imageScaled) {
         this.imgMobileSlider.nativeElement.style.transform = 'scale(2,2)';
@@ -310,13 +272,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     for(var i = 0; i < this.dictAttributeIdAttributeValueId.length; i++) {
       if (this.dictAttributeIdAttributeValueId[i].key == attributeId) {
         this.dictAttributeIdAttributeValueId[i].value = attributeValueId;
-        //updated = true;
       }
     }
-    /* if (!updated) {
-      var attributeIdValueId: productAttributeIdAttributeValuesId = {key: attributeId, value: attributeValueId};
-      this.dictAttributeIdAttributeValueId.push(attributeIdValueId);
-    } */
   }
 
   imageSquares(i: number, colorSquaresMainDiv: HTMLDivElement) {
@@ -376,6 +333,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   addToWishList(id: number) {
+    if (this.isBrowser && this.tokenService.isLogedIn()) {
     console.log(this.wishList);
     if (!this.wishList) {
       this.wishList = true;
@@ -407,6 +365,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       });
       return false;
     }
+  }
+  return false;
     
   }
 

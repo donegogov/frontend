@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+import { TokenService } from 'src/app/shared/_services/token.service';
 
 @Component({
   selector: 'app-shooping-cart',
@@ -11,12 +13,18 @@ export class ShoopingCartComponent implements OnInit {
   shoppingCartItems!: any[];
   attribute: productAttributes[] = [];
   quantityModel!: number;
+  private isBrowser!: boolean;
 
   constructor(private cartService: CartService,
     private titleService: Title,
-    private metaTagService: Meta) { }
+    private metaTagService: Meta,
+    @Inject(PLATFORM_ID) platformId: Object,
+    private tokenService: TokenService) { 
+      this.isBrowser = isPlatformBrowser(platformId);
+    }
 
   ngOnInit(): void {
+    if (this.isBrowser && this.tokenService.isLogedIn()) {
     this.cartService.getShoppingCartItems().subscribe(data => {
       if (data) {
         console.log(data);
@@ -26,10 +34,7 @@ export class ShoopingCartComponent implements OnInit {
         this.shoppingCartItems.forEach((cartItem, index) => {
           var product = cartItem.product;
           var attr: productAttribute[] = [];
-                    /* attr.push(tempAttributes); */
-                    var productAttr: productAttributes; /* = {
-                      attributes: attr
-                     }*/
+          var productAttr: productAttributes;
           cartItem.product_attributes.forEach((attributes: any, i: number) => {
             product.attributes.forEach((productAttribute: any, productAttributeIndex: number) => {
               if (productAttribute.id == attributes.id) {
@@ -40,13 +45,7 @@ export class ShoopingCartComponent implements OnInit {
                     attributeValue: attributeValues.name
                   };
                   attr.push(tempAttributes);
-                  /* if (this.attribute[index] != undefined) {
-                    this.attribute[index].attributes.push(tempAttributes);
-                  } else if (this.attribute[index] == undefined) {
-                    }
-                    attr.push(tempAttributes);
-                    //this.attribute.push(attr);
-                  */} 
+                  } 
               });
             }
             });
@@ -60,6 +59,7 @@ export class ShoopingCartComponent implements OnInit {
         console.log(this.attribute);
       }
     });
+  }
     this.titleService.setTitle( 'Кошничка' );
         this.metaTagService.addTag(
       { name: 'description', content: 'Погледнете Ја Вашата Кошничка, Зголемете Број На Продукти, И Многу Повеќе' }
@@ -77,17 +77,21 @@ export class ShoopingCartComponent implements OnInit {
   }
 
   deleteItem(cartItemId: string) {
+    if (this.isBrowser && this.tokenService.isLogedIn()) {
     this.cartService.deleteWishlistCartItem(cartItemId).subscribe(data => {
       console.log(data);
       this.ngOnInit();
     });
   }
+  }
 
   updateQuantity(event: string, cartItemId: string) {
+    if (this.isBrowser && this.tokenService.isLogedIn()) {
     console.log(event);
     this.cartService.updateShoppingCartQuantity(event, cartItemId).subscribe(data => {
       console.log(data);
     });
+  }
   }
 
 }

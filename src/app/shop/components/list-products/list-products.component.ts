@@ -113,7 +113,7 @@ constructor(private productsService: ProductsService, private _renderer2: Render
   private tokenService: TokenService,
   @Inject(PLATFORM_ID) platformId: Object) { 
   this.numbers = Array(60).fill(4);
-  this.getScreenSize();
+  //this.getScreenSize();
 
   if (this.scrWidth <= 993) {
     this.mobile = true;
@@ -181,16 +181,6 @@ getData() {
 ngAfterViewInit(): void {
 }
 
-/* addToWishList(id: number) {
-  if (this.wishList.filter(w => w.ids == id).length > 0) {
-    //var index = this.wishList.ids.indexOf(id);
-    this.wishList.filter(w => w.ids == id)[0].wishList = !this.wishList.filter(w => w.ids == id)[0].wishList;
-  }
-  else {
-    this.wishList.push({ids: id, wishList: true});
-  }
-} */
-
 addToWishList(product: any) {
   if(this.isBrowser && this.tokenService.isLogedIn()) {
   var addWishlist = false;
@@ -239,8 +229,6 @@ addToWishList(product: any) {
 }
 
 wishListYn(id: number) {
-  /* console.log('this.wishList.filter(w => w.ids == id)');
-  console.log(this.wishList.filter(w => w.ids == id)); */
   if (this.wishList.filter(w => w.ids == id).length > 0) {
     return this.wishList.filter(w => w.ids == id)[0].wishList;
   }
@@ -268,15 +256,8 @@ loadScript(event: any) {
   if(this.isBrowser) {
 console.log('event');
 console.log(event.target.children[0].children);
-//script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
   if (this.isLoadedScript) {
   this.topSellingProducts.forEach(element => {
-    /* var script = document.createElement("script");
-    script.type = "text/javascript";
-    console.log('id');
-    console.log(element.id);
-    script.text = 'zoomIn(' + event.target.children[0].children[0] + ',' + event.target.children[0].children[1] + ');';
-    console.log(script); */
     var script = '<script> zoomIn(' + element.id + '); </script>';
     document.body.append(script);
   });
@@ -284,10 +265,6 @@ console.log(event.target.children[0].children);
 this.isLoadedScript = false;
   }
 }
-
-/* ngOnDestroy() {
-  localStorage.setItem('reload', 'true');
-} */
 
 productDetails(id: number) {
   this.router.navigate(['/pages/details/', id])
@@ -297,7 +274,6 @@ productDetails(id: number) {
 }
 
 }
-
 
 export interface wishList {
     ids: number,

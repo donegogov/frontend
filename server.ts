@@ -7,7 +7,6 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -29,83 +28,10 @@ export function app(): express.Express {
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
-  // All regular routes use the Universal engine
-  /* server.get('*', (req, res) => {
-    res.render('index', { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
-  }); */
-  server.get('/', (req, res) => {
-    res.render('<app-root></app-root>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  server.get('**/shop/', (req, res) => {
-    res.render('<app-shop-products></app-shop-products>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  server.get('**/account/', (req, res) => {
-    res.render('<app-account></app-account>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
 
-  server.get('**/account/orders', (req, res) => {
-    res.render('<app-account></app-account>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  server.get('**/checkout/checkout/signin', (req, res) => {
-    res.render('<app-checkout-username-passwor></app-checkout-username-passwor>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  server.get('**/checkout/cart', (req, res) => {
-    res.render('<app-shooping-cart></app-shooping-cart>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  server.get('**/checkout/wishlist', (req, res) => {
-    res.render('<app-wishlist></app-wishlist>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
-  });
-  
-  server.get('**/pages/details/**', (req, res) => {
-    res.render('<app-product-details></app-product-details>', {
-       req, 
-       res,
-       providers: [{provide: APP_BASE_HREF, useValue: req.baseUrl},
-        {provide: REQUEST, useValue: req},
-        {provide: RESPONSE, useValue: res}] 
-      });
+  // All regular routes use the Universal engine
+  server.get('*', (req, res) => {
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
   return server;

@@ -89,21 +89,17 @@ export class AccountComponent implements OnInit {
   }
 
   logout() {
-    if (typeof window !== 'undefined') {
-    localStorage.setItem('user', '');
-    }
-    this.tokenService.getToken(true, true, 'username', 'password');
+    if (this.isBrowser) {
+    //localStorage.setItem('user', '');
+    
+    //this.tokenService.getToken(true, true, 'username', 'password');
+  }
   }
 
   showLoginRegisterForm() {
-    let currentUser!: Token;
-
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
-    if (currentUser.username != '' && currentUser.username != null) {
-      this.showLoginRegister = false;
-      return false;
+    if (this.isBrowser) {
+      return this.tokenService.isLogedIn();
     }
-    return true;
+    return false;
   }
-
 }

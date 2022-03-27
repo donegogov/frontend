@@ -1,6 +1,7 @@
 import { OrderService } from 'src/app/shared/_services/order.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
@@ -9,17 +10,23 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class OrdersComponent implements OnInit {
   orders: any;
+  private isBrowser!: boolean;
   constructor(private orderService: OrderService,
     private titleService: Title,
-    private metaTagService: Meta) { }
+    private metaTagService: Meta,
+    @Inject(PLATFORM_ID) platformId: Object) {
+      this.isBrowser = isPlatformBrowser(platformId);
+     }
 
   ngOnInit(): void {
-    this.orderService.getOrdersForCustomer().subscribe(dataOrder => {
-      if (dataOrder) {
-        this.orders = dataOrder.orders;
-        console.log(this.orders[0].order_items[0].product.short_description);
-      }
-    });
+    if (this.isBrowser) {
+      this.orderService.getOrdersForCustomer().subscribe(dataOrder => {
+        if (dataOrder) {
+          this.orders = dataOrder.orders;
+          console.log(this.orders[0].order_items[0].product.short_description);
+        }
+      });
+    }
 
     this.titleService.setTitle('Нарачки');
     this.metaTagService.addTag(

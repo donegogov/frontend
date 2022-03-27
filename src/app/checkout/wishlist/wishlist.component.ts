@@ -46,6 +46,7 @@ export class WishlistComponent implements OnInit {
   hover = false;
   @Input('mainImg') mainImg!: HTMLImageElement;
   @Input('resultImg') resultImg!: HTMLImageElement;
+  private isBrowser!: boolean;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
@@ -58,7 +59,7 @@ export class WishlistComponent implements OnInit {
   innerWidth = 0;
   innerHeight = 0;
   wishList: wishList[] = [];
-  private isBrowser!: boolean;
+  
 
   constructor(private productsService: ProductsService, private _renderer2: Renderer2, 
     private cartService: CartService,
@@ -68,15 +69,15 @@ export class WishlistComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta) { 
     this.numbers = Array(60).fill(4);
-    this.getScreenSize();
-
+    this.isBrowser = isPlatformBrowser(platformId);
+    //this.getScreenSize();
     if (this.scrWidth <= 993) {
       this.mobile = true;
     }
     if (this.mobile) {
       this.productToReturn = 3;
     }
-    this.isBrowser = isPlatformBrowser(platformId);
+    
   }
 
   ngOnInit(): void {

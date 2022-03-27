@@ -35,14 +35,6 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
 
   phone!: string;
 
-  /* options: Options={
-    types: [],
-    componentRestrictions: { country: 'UA' },
-    bounds: new .LatLngBounds(new google.maps.LatLng(43.941160, -78.895187), new google.maps.LatLng(43.941160, -78.895187)),
-    fields: [],
-    strictBounds: false,
-    origin: new google.maps.LatLng(43.941160, -78.895187)
-  } */
   title: string = 'AGM project';
   latitude!: number;
   longitude!: number;
@@ -244,41 +236,4 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
       }
     });
   }
-
-
-
-  /* placeChangedCallback(place: any) {
-    this.street_number = "";
-    this.address2 = "";
-    this.city = "";
-    this.state = "";
-    this.country = "";
-    this.zip = "";
-    const addressFrom = {
-      street_number: "short_name",
-      route: "long_name",
-      locality: "long_name",
-      sublocality_level_1: "sublocality_level_1",
-      administrative_area_level_1: "short_name",
-      country: "long_name",
-      postal_code: "short_name",
-    };
-    place.address_components.forEach((add: any) => {
-      add.types.forEach((addType: any) => {
-        if (addType == "street_number")
-          this.street_number = add.short_name;
-        if (addType == "route")
-          this.address2 = add.long_name;
-        if (addType == "locality" || addType == "sublocality_level_1")
-          this.city = add.long_name;
-        if (addType == "administrative_area_level_1")
-          this.state = add.long_name;
-        if (addType == "country")
-          this.country = add.long_name;
-        if (addType == "postal_code")
-          this.zip = add.long_name;
-      });
-    });
-  } */
-
 }

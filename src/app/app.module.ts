@@ -3,7 +3,7 @@ import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-bro
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations" 
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 import { CookieModule } from 'ngx-cookie';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+/* import { HashLocationStrategy, LocationStrategy } from '@angular/common'; */
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,14 +14,17 @@ import { LoadingInterceptor } from './shared/_interceptor/loading.interceptor';
 import { ServerStateInterceptor } from './shared/_interceptor/server-state.interceptor';
 import { BrowserStateInterceptor } from './shared/_interceptor/browser-state.interceptor';
 import { CustomHttpClientService } from './shared/_services/custom-http-client.service';
+import { TestComponent } from './shared/test/test.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
@@ -35,12 +38,14 @@ import { CustomHttpClientService } from './shared/_services/custom-http-client.s
     }),
     /* BrowserTransferStateModule, */
     CookieModule.forRoot(),
+    AppRoutingModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     TokenService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    /* {
+/*     { provide: LocationStrategy, useClass: HashLocationStrategy },
+ */   /*  {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerStateInterceptor,
       multi: true
@@ -50,12 +55,7 @@ import { CustomHttpClientService } from './shared/_services/custom-http-client.s
       useClass: BrowserStateInterceptor,
       multi: true
     }, */
-    CustomHttpClientService,
-    /* {
-      provide: UrlSerializer,
-      useFactory: urlSerializerFactory,
-      deps: [PLATFORM_ID]
-    } */
+    /* CustomHttpClientService, */
   ],
   exports: [
   ],

@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TestComponent } from './shared/test/test.component';
 
 const routes: Routes = [
-  {
+  /* {
     path: '',
-    redirectTo: 'home',
+    component: TestComponent
+  } */
+  {
+    path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-  },
+  }, 
   {
     path: 'shop',
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
   },
-  {
+   {
     path: 'account',
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
   },
@@ -34,7 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled', preloadingStrategy: PreloadAllModules
+    initialNavigation: 'enabledBlocking'
 })],
   exports: [RouterModule]
 })

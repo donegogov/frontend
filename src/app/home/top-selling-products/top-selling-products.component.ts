@@ -6,7 +6,6 @@ import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling'
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
-/* declare function addToCart(): any; */
 
 @Component({
   selector: 'app-top-selling-products',
@@ -65,7 +64,9 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     private tokenService: TokenService,
     @Inject(PLATFORM_ID) platformId: Object) { 
     this.numbers = Array(60).fill(4);
-    this.getScreenSize();
+    this.isBrowser = isPlatformBrowser(platformId);
+      //this.getScreenSize();
+    
 
     if (this.scrWidth <= 993) {
       this.mobile = true;
@@ -73,7 +74,6 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     if (this.mobile) {
       this.productToReturn = 3;
     }
-    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit(): void {
@@ -84,12 +84,6 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
         console.log(data.products);
         this.topSellingProducts = data.products;
         this.productsService.topSellingProducts = data.products;
-        /* if(this.isBrowser) {
-          setTimeout(function(){
-            console.log('Timeout add to cart');
-            addToCart();
-          }, 100);
-        } */
         if(this.isBrowser && this.tokenService.isLogedIn()) {
         this.cartService.getWishlistShoppingCartItems('Wishlist').subscribe(dataWl => {
           dataWl.shopping_carts.forEach((element: any, i: number) => {
@@ -114,15 +108,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   if(this.isBrowser) {
   console.log('event');
   console.log(event.target.children[0].children);
-  //script.text = 'imageZoom(' + product.id + ', result' + product.id + ');';
     if (this.isLoadedScript) {
     this.topSellingProducts.forEach(element => {
-      /* var script = document.createElement("script");
-      script.type = "text/javascript";
-      console.log('id');
-      console.log(element.id);
-      script.text = 'zoomIn(' + event.target.children[0].children[0] + ',' + event.target.children[0].children[1] + ');';
-      console.log(script); */
       var script = '<script> zoomIn(' + element.id + '); </script>';
       document.body.append(script);
     });
@@ -130,15 +117,6 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   this.isLoadedScript = false;
 }
 }
-
-/* addToWishList(id: number) {
-  if (this.wishList.filter(w => w.ids == id).length > 0) {
-    this.wishList.filter(w => w.ids == id)[0].wishList = !this.wishList.filter(w => w.ids == id)[0].wishList;
-  }
-  else {
-    this.wishList.push({ids: id, wishList: true});
-  }
-} */
 
 addToWishList(product: any) {
   if(this.isBrowser && this.tokenService.isLogedIn()) {
@@ -187,8 +165,6 @@ return false;
 }
 
 wishListYn(id: number) {
-  /* console.log('this.wishList.filter(w => w.ids == id)');
-  console.log(this.wishList.filter(w => w.ids == id)); */
   if (this.wishList.filter(w => w.ids == id).length > 0) {
     return this.wishList.filter(w => w.ids == id)[0].wishList;
   }
@@ -196,10 +172,6 @@ wishListYn(id: number) {
     return false;
   }
 }
-
-/* ngOnDestroy() {
-  localStorage.setItem('reload', 'true');
-} */
 
 productDetails(id: number) {
   this.router.navigate(['/pages/details/', id])
@@ -209,7 +181,6 @@ productDetails(id: number) {
 }
 
 }
-
 
 export interface wishList {
   ids: number,

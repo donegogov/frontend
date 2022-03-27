@@ -92,7 +92,7 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService, private router: Router) {
-    this.getScreenSize();
+    //this.getScreenSize();
 
     if (this.scrWidth <= 993) {
       this.mobile = true;
