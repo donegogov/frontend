@@ -349,6 +349,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   addToWishList(id: number) {
     if (this.isBrowser && this.tokenService.isLogedIn()) {
+      if (this.tokenService.isLogedIn()) {
     console.log(this.wishList);
     if (!this.wishList) {
       this.wishList = true;
@@ -381,7 +382,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       return false;
     }
   }
-  return false;
+} else {
+  this.openDialogLoginRegister();
+}
+return false;
     
   }
 

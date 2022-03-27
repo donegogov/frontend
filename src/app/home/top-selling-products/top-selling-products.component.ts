@@ -1,6 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LoginRegisterComponent } from 'src/app/shared/_dialog/login-register/login-register.component';
 import { productAttributeIdAttributeValuesId } from 'src/app/shared/_models/product-attribute-id-attribute-values-id';
 import { ProductsTopSelling } from 'src/app/shared/_models/products-top-selling';
 import { CartService } from 'src/app/shared/_services/cart.service';
@@ -61,6 +63,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   constructor(private productsService: ProductsService, private _renderer2: Renderer2,
     private cartService: CartService,
     private router: Router,
+    public dialog: MatDialog,
     private tokenService: TokenService,
     @Inject(PLATFORM_ID) platformId: Object) { 
     this.numbers = Array(60).fill(4);
@@ -160,8 +163,20 @@ addToWishList(product: any) {
     });
     return false;
   }
+} else {
+  this.openDialogLoginRegister();
 }
 return false;
+}
+
+openDialogLoginRegister(): void {
+  const dialogRef = this.dialog.open(LoginRegisterComponent, {
+    width: '400px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
 }
 
 wishListYn(id: number) {

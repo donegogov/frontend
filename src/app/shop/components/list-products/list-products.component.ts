@@ -7,6 +7,8 @@ import { CartService } from 'src/app/shared/_services/cart.service';
 import { ProductsService } from 'src/app/shared/_services/products.service';
 import { isPlatformBrowser } from '@angular/common';
 import { TokenService } from 'src/app/shared/_services/token.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginRegisterComponent } from 'src/app/shared/_dialog/login-register/login-register.component';
 
 @Component({
   selector: 'app-list-products',
@@ -110,6 +112,7 @@ private _categoryId!: number[];
 constructor(private productsService: ProductsService, private _renderer2: Renderer2,
   private cartService: CartService,
   private router: Router,
+  public dialog: MatDialog,
   private tokenService: TokenService,
   @Inject(PLATFORM_ID) platformId: Object) { 
   this.numbers = Array(60).fill(4);
@@ -224,8 +227,10 @@ addToWishList(product: any) {
     return false;
   }
   }
-  return false;
-  
+  else {
+    this.openDialogLoginRegister();
+  }
+  return false;  
 }
 
 wishListYn(id: number) {
@@ -270,6 +275,16 @@ productDetails(id: number) {
   this.router.navigate(['/pages/details/', id])
   .then(() => {
     //window.location.reload();
+  });
+}
+
+openDialogLoginRegister(): void {
+  const dialogRef = this.dialog.open(LoginRegisterComponent, {
+    width: '400px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
   });
 }
 
