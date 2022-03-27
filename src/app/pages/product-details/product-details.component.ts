@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartContinueShoppingComponent } from '../../shared/_dialog/shopping-cart-continue-shopping/shopping-cart-continue-shopping.component';
 import { isPlatformBrowser } from '@angular/common';
 import { TokenService } from 'src/app/shared/_services/token.service';
+import { LoginRegisterComponent } from 'src/app/shared/_dialog/login-register/login-register.component';
 
 // install Swiper modules
 SwiperCore.use([EffectCreative, Lazy, Pagination, Zoom]);
@@ -290,6 +291,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   addToCartAllItems() {
+    if (this.tokenService.isLogedIn()) {
     console.log('this.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueIdthis.dictAttributeIdAttributeValueId');
     console.log(this.dictAttributeIdAttributeValueId);
     var addToCart = true;
@@ -316,10 +318,23 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
           this.openDialog();
         });
     }
+  } else {
+    this.openDialogLoginRegister();
+  }
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ShoppingCartContinueShoppingComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogLoginRegister(): void {
+    const dialogRef = this.dialog.open(LoginRegisterComponent, {
       width: '400px'
     });
 

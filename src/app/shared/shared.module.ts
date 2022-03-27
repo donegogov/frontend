@@ -26,6 +26,7 @@ import { ShoppingCartContinueShoppingComponent } from './_dialog/shopping-cart-c
 import { CookieManagerService } from './_services/cookie-manager.service';
 import { SwiperModule } from 'swiper/angular';
 import { RouterModule } from '@angular/router';
+import { LoginRegisterComponent } from './_dialog/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RouterModule } from '@angular/router';
     AnimatedShopComponent,
     MobileAppsComponent,
     ShoppingCartContinueShoppingComponent,
+    LoginRegisterComponent,
   ],
   imports: [
     CommonModule,

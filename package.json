@@ -21,7 +21,7 @@
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "prod": "ng build --configuration production && ng run client:server:production && ng run client:prerender:production && gulp compress-gzip && gulp compress-brotli",
+        "prod": "ng build --configuration production && ng run client:server:production && ng run client:prerender:production && gulp purgecss && gulp compress-gzip && gulp compress-brotli",
         "prodDev": "ng run client:prerender:production && ng build --configuration production && ng run client:server:production && gulp compress-gzip && gulp compress-brotli",
         "dev:ssr": "ng run client:serve-ssr",
         "serve:ssr": "node dist/client/server/main.js",

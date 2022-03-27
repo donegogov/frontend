@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Hello</h1>
+<div mat-dialog-content>
+    <p>In Order To Use That Function You Must Be Logged In Or Registered.</p>
+    <p>Do You Want To Login Or Register?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onLoginOrRegisterClick()">Login Or Register</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Continue Viewing</button>
+</div>
