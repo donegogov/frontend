@@ -50,11 +50,9 @@ export class WishlistComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
-    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
-    }
   }
   innerWidth = 0;
   innerHeight = 0;
@@ -70,7 +68,7 @@ export class WishlistComponent implements OnInit {
     private metaTagService: Meta) { 
     this.numbers = Array(60).fill(4);
     this.isBrowser = isPlatformBrowser(platformId);
-    //this.getScreenSize();
+    this.getScreenSize();
     if (this.scrWidth <= 993) {
       this.mobile = true;
     }

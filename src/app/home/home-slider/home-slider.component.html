@@ -40,7 +40,8 @@
                             <button [routerLink]="['/shop']" [ngClass]="{'slider-button': index === 0}" type="button" (click)="addToCart()" style="opacity: 0; color: #fafafa; border: none; background-color: #fb0000; font-weight: 900;">SHOP</button>
                         </div>
                         <div class="slider-image img-content" style="position: absolute; width: 100%;">
-                            <img class="imgage-slider-options" style="position: relative;" [ngClass]="{'slider-image': index === 0}" src="{{content.images[0].src}}" (load)="changeImageDimension($event.target)" />
+                            <!-- <img class="imgage-slider-options" style="position: relative;" [ngClass]="{'slider-image': index === 0}" src="{{content.images[0].src}}" (load)="changeImageDimension($event.target)" /> -->
+                            <img class="imgage-slider-options" style="position: relative;" [ngClass]="{'slider-image': index === 0}" src="{{content.images[0].src}}" />
                         </div>
                     </div>
                 </ng-template>

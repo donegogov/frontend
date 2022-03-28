@@ -46,16 +46,14 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   @Input('mainImg') mainImg!: HTMLImageElement;
   @Input('resultImg') resultImg!: HTMLImageElement;
 
-  @HostListener('window:resize', ['$event'])
+ /*  @HostListener('window:resize', ['$event'])
   getScreenSize() {
-    if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
-    }
   }
   innerWidth = 0;
-  innerHeight = 0;
+  innerHeight = 0; */
   wishList: wishList[] = [];
 
   private isBrowser!: boolean;
@@ -71,12 +69,12 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
       //this.getScreenSize();
     
 
-    if (this.scrWidth <= 993) {
+    /* if (this.scrWidth <= 993) {
       this.mobile = true;
     }
     if (this.mobile) {
       this.productToReturn = 3;
-    }
+    } */
   }
 
   ngOnInit(): void {
@@ -97,8 +95,8 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
       }
     });
     if(this.isBrowser) {
-      this.innerWidth = window.innerWidth;
-      this.innerHeight = window.innerHeight;
+      /* this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight; */
       
       localStorage.setItem('reload', 'true');
     }
@@ -107,8 +105,7 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
- loadScript(event: any) {
-  if(this.isBrowser) {
+ /* loadScript(event: any) {
   console.log('event');
   console.log(event.target.children[0].children);
     if (this.isLoadedScript) {
@@ -118,11 +115,10 @@ export class TopSellingProductsComponent implements OnInit, AfterViewInit {
     });
   }
   this.isLoadedScript = false;
-}
-}
+} */
 
 addToWishList(product: any) {
-  if(this.isBrowser && this.tokenService.isLogedIn()) {
+  if(/* this.isBrowser &&  */this.tokenService.isLogedIn()) {
   var addWishlist = false;
   if (this.wishList.filter(w => w.ids == product.id).length > 0) {
     this.wishList.filter(w => w.ids == product.id)[0].wishList = !this.wishList.filter(w => w.ids == product.id)[0].wishList;
@@ -189,13 +185,12 @@ wishListYn(id: number) {
 }
 
 productDetails(id: number) {
-  this.router.navigate(['/pages/details/', id])
-  .then(() => {
-    //window.location.reload();
-  });
+  console.log('id idid idid idid idid idid idid idid idid id');
+  console.log(id);
+  this.router.navigate(['/pages/details', id]);
+}
 }
 
-}
 
 export interface wishList {
   ids: number,

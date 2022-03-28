@@ -17,7 +17,7 @@ export class CartService {
   constructor(private http: HttpClient,
     private tokenService: TokenService,
     private cookieService: CookieService,
-   /*  private http: CustomHttpClientService */
+    private httpGet: CustomHttpClientService
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
@@ -138,7 +138,7 @@ export class CartService {
     console.log(shoppingCartType);
     console.log(this.cookieService.get('customer_id'));
 
-    return this.http.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
+    return this.httpGet.get<any>(this.apiUrl + 'shopping_cart_items' + '?ShoppingCartType=' + shoppingCartType + '&CustomerId=' + CustomerId);
   }
 
   deleteWishlistCartItem(wishlistShoppingCartItemId: string) {

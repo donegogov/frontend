@@ -4,12 +4,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TestComponent } from './shared/test/test.component';
 
 const routes: Routes = [
-  /* {
-    path: '',
-    component: TestComponent
-  } */
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   }, 
   {

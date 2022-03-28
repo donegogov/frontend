@@ -82,21 +82,22 @@ export class HomeSliderComponent implements OnInit, AfterViewInit {
   mobile = false;
   previousIndex = -1;
 
-  @HostListener('window:resize', ['$event'])
+  /* @HostListener('window:resize', ['$event'])
   getScreenSize() {
     if (typeof window !== 'undefined') {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
         console.log(this.scrHeight, this.scrWidth);
     }
-  }
+  } */
 
   constructor(private elRef: ElementRef, private _elementRef : ElementRef, private productsService: ProductsService, private router: Router) {
     //this.getScreenSize();
-
+    /* if (typeof window !== 'undefined') {
     if (this.scrWidth <= 993) {
       this.mobile = true;
     }
+  } */
    }
   
 
@@ -122,7 +123,8 @@ ngOnInit(): void {
     this.handleMomentSlide(firstSlide);
   }
 
-  changeImageDimension(image: any) {
+  /* changeImageDimension(image: any) {
+    if (typeof window !== 'undefined') {
     if (this.scrWidth > 993) {
     //console.log(image.nativeElement.offsetHeight);
     (image as HTMLImageElement).width = 800;
@@ -158,7 +160,8 @@ ngOnInit(): void {
         (image as HTMLElement).style.height = '400px';
         //(image as HTMLElement).style.borderRadius = '50%';
       }
-  }
+      }
+  } */
 
   sliderChanged(data: any) {
     console.log('changed ' + data.startPosition ?? 0);

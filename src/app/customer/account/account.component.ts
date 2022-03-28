@@ -1,11 +1,10 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { take } from 'rxjs';
-import { Token } from 'src/app/shared/_models/token';
 import { CustomerService } from 'src/app/shared/_services/customer.service';
 import { TokenService } from 'src/app/shared/_services/token.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-account',
@@ -23,12 +22,17 @@ export class AccountComponent implements OnInit {
   errorLogin = false;
   showLoginRegister = true;
   private isBrowser!: boolean;
+  loginRegisterMessage = '';
+  showELoginRegisterMessage = false;
 
   constructor(private tokenService: TokenService,
     private customerService: CustomerService,
     private titleService: Title,
     private metaTagService: Meta,
-    @Inject(PLATFORM_ID) platformId: Object) { }
+    @Inject(PLATFORM_ID) platformId: Object,
+    private cookieService: CookieService) {
+      this.isBrowser = isPlatformBrowser(platformId);
+     }
 
   ngOnInit(): void {
     this.loginFrom = this.formBuilder.group({
@@ -57,32 +61,42 @@ export class AccountComponent implements OnInit {
     console.log(event.submitter.innerText);
     if (this.loginFrom.valid) {
       if (event.submitter.innerText == 'Login') {
-          if (typeof window !== 'undefined') {
-        localStorage.setItem('user', '');
-          }
+            this.cookieService.put('access_token', '')
         this.tokenService.getToken(false, true, this.loginFrom.value.email, this.loginFrom.value.password)?.then(() =>{
-          if (typeof window !== 'undefined') {
-          if (localStorage.getItem('user') == null || localStorage.getItem('user') == '') {
-            this.errorLogin = true;
-            this.tokenService.getToken(true, true, 'username', 'password');
+          if (this.cookieService.hasKey('access_token') && this.cookieService.get('access_token') != null && this.cookieService.get('access_token') != undefined && this.cookieService.get('access_token') != '') {
+            this.loginRegisterMessage = 'Welcome ' + this.cookieService.get('username');
+            this.showELoginRegisterMessage = true;
+          } else {
+            this.loginRegisterMessage = 'Error during login';
+            this.showELoginRegisterMessage = true;
           }
-        }
+        }).catch(err => {
+          if (this.cookieService.hasKey('access_token') && this.cookieService.get('access_token') != null && this.cookieService.get('access_token') != undefined && this.cookieService.get('access_token') != '') {
+            this.loginRegisterMessage = 'Welcome ' + this.cookieService.get('username');
+            this.showELoginRegisterMessage = true;
+          } else {
+            this.loginRegisterMessage = 'Error during login';
+            this.showELoginRegisterMessage = true;
+          }
         });
 
       } else if (event.submitter.innerText == 'Register') {
-        this.customerService.updateCustomer(this.loginFrom.value.email, 'test', 'test', 'test', 'test', '1000', '1234567890', this.loginFrom.value.password).subscribe(dataRegister => {
-          console.log(dataRegister);
-          if (typeof window !== 'undefined') {
-          localStorage.setItem('user', '');
-          }
-        this.tokenService.getToken(false, true, this.loginFrom.value.email, this.loginFrom.value.password)?.then(() =>{
-          if (typeof window !== 'undefined') {
-          if (localStorage.getItem('user') == null || localStorage.getItem('user') == '') {
-            this.tokenService.getToken(true, true, 'username', 'password');
-          }
-        }
+        this.tokenService.getToken(true, true, 'username', 'password')?.then(() =>{
+          this.customerService.updateCustomer(this.loginFrom.value.email, 'test', 'test', 'test', 'test','1000', '1234567890', this.loginFrom.value.password).subscribe(dataRegister => {
+            console.log(dataRegister);
+            this.cookieService.put('access_token', '');
+            this.tokenService.getToken(false, true, this.loginFrom.value.email, this.loginFrom.value.password)?.then(() =>{
+              if (this.cookieService.hasKey('access_token') && this.cookieService.get('access_token') != null && this.cookieService.get('access_token') != undefined && this.cookieService.get('access_token') != '') {
+                this.loginRegisterMessage = 'Welcome ' + this.cookieService.get('username');
+                this.showELoginRegisterMessage = true;
+              } else {
+                this.loginRegisterMessage = 'Error during registration';
+                this.showELoginRegisterMessage = true;
+              }
+          });
         });
         });
+        
       }
     }
   }
@@ -92,14 +106,13 @@ export class AccountComponent implements OnInit {
     if (this.isBrowser) {
     //localStorage.setItem('user', '');
     
-    //this.tokenService.getToken(true, true, 'username', 'password');
+    this.cookieService.put('access_token', '');
   }
   }
 
   showLoginRegisterForm() {
-    if (this.isBrowser) {
-      return this.tokenService.isLogedIn();
-    }
-    return false;
+    console.log('this.tokenService.isLogedIn()');
+    console.log(this.tokenService.isLogedIn());
+      return !this.tokenService.isLogedIn();
   }
 }

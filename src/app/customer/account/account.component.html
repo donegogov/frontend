@@ -33,3 +33,4 @@
         <button [routerLink]="['/account/orders']" style="margin-top: 40px; padding: 10px 20px; font-size: 28px; margin: 0 auto;" mat-raised-button color="primary">View Orders</button>
     </div>
 </div>
+<h1 *ngIf="showELoginRegisterMessage">{{loginRegisterMessage}}</h1>

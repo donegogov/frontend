@@ -17,7 +17,11 @@ export class AppComponent implements OnInit {
     private tokenService: TokenService,
     public loadingService: LoadingService,
     private titleService: Title,
-    private metaTagService: Meta) { }
+    private metaTagService: Meta) { 
+      /* if (this.router.url === '/') {
+        this.router.navigate(['/home']);
+      } */
+    }
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
     this.metaTagService.addTag(

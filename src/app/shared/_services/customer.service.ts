@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Token } from '../_models/token';
 import { catchError, take, tap, throwError } from 'rxjs';
 import { CustomHttpClientService } from './custom-http-client.service';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class CustomerService {
 
   constructor(private http: HttpClient,
     private tokenService: TokenService,
-    /* private http: CustomHttpClientService */) { }
+    private httpGet: CustomHttpClientService,
+    private cookieService: CookieService) { }
 
   setBillingAddress(email: string,
     firstname: string,
@@ -34,12 +36,13 @@ export class CustomerService {
     json += ' "phone_number": "' + phone_number + '",';
     json += '"country_id": 133 }'
 
-      let currentUser!: Token;
-      this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+      /* let currentUser!: Token;
+      this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
+      var customer_id = this.cookieService.get('customer_id');
 
       var jsonToSend = JSON.parse(json);
       
-    return this.http.post<any>(this.apiUrl + 'customers/' + currentUser.customer_id + '/billingaddress/', jsonToSend);
+    return this.http.post<any>(this.apiUrl + 'customers/' + customer_id + '/billingaddress/', jsonToSend);
   }
 
   setShippingAddress(email: string,
@@ -60,12 +63,13 @@ export class CustomerService {
     json += ' "phone_number": "' + phone_number + '",';
     json += '"country_id": 133 }'
 
-    let currentUser!: Token;
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+   /*  let currentUser!: Token;
+    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
+    var customer_id = this.cookieService.get('customer_id');
 
     var jsonToSend = JSON.parse(json);
     
-  return this.http.post<any>(this.apiUrl + 'customers/' + currentUser.customer_id + '/shippingaddress/', jsonToSend);
+  return this.http.post<any>(this.apiUrl + 'customers/' + customer_id + '/shippingaddress/', jsonToSend);
 }
 
 updateCustomer(email: string,
@@ -77,11 +81,12 @@ updateCustomer(email: string,
   phone_number: string,
   password: string) {
 
-  let currentUser!: Token;
-  this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+/*   let currentUser!: Token; */
+  /* this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user); */
 
   var ipv4 = this.getIpAddress();
-  
+  var customer_id = this.cookieService.get('customer_id');
+  var customer_guid = this.cookieService.get('customer_guid');
 
   var json = '';
   json += '{ "customer":';
@@ -89,7 +94,7 @@ updateCustomer(email: string,
   json += ' "last_name": "' + lastname + '",';
   json += ' "username": "' + email + '",';
   json += ' "password": "' + password + '",';
-  json += ' "customer_guid": "' + currentUser.customer_guid + '",';
+  json += ' "customer_guid": "' + customer_guid + '",';
   json += ' "country": "Makedonija",';
 
   json += ' "active": true,';
@@ -104,12 +109,12 @@ updateCustomer(email: string,
   json += ' "phone_number": "' + phone_number + '",';
   json += '"country_id": 133,'
   json += ' "role_ids": [ 3 ],';
-  json += '"id": ' + currentUser.customer_id + ' ';
+  json += '"id": ' + customer_id + ' ';
   json += '} }';
 
   var jsonToSend = JSON.parse(json);
   
-return this.http.put<any>(this.apiUrl + 'customers/' + currentUser.customer_id, jsonToSend);
+return this.http.put<any>(this.apiUrl + 'customers/' + customer_id, jsonToSend);
 }
 
 getIpAddress() {
@@ -123,7 +128,7 @@ this.http.get<any>('https://geolocation-db.com/json/')
 }
 
 getCurrentCustomer() {
-  return this.http.get<any>(this.apiUrl + 'customers/me');
+  return this.httpGet.get<any>(this.apiUrl + 'customers/me');
 }
 
 }

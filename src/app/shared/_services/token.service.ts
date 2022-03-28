@@ -15,7 +15,8 @@ export class TokenService {
     private cookieService: CookieService) { }
 
   getToken(guest: boolean = true, remember_me: boolean = true, username: string = 'username', password: string = 'password'){
-    if (this.cookieService.hasKey('token') && this.cookieService.hasKey('user')) {
+    if (this.cookieService.hasKey('token') && this.cookieService.get('token') != '') {
+      console.log('returnreturnreturnreturnreturnreturnreturnreturnreturn')
       return;
     }
 
@@ -47,10 +48,14 @@ export class TokenService {
   }
 
   isLogedIn() {
-    if (this.cookieService.get('token') != null || this.cookieService.get('token') != undefined) {
+    console.log(this.cookieService.hasKey('access_token') && this.cookieService.get('access_token') !== '')
+    console.log(this.cookieService.get('access_token'));
+    if (this.cookieService.hasKey('access_token') && this.cookieService.get('access_token') != null && this.cookieService.get('access_token') != undefined && this.cookieService.get('access_token') != '') {
       return true;
     }
-    else return false;
+    else  {
+      return false;
+    }
   }
 
   setCookies(data: Token) {

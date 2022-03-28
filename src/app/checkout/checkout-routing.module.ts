@@ -20,9 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class CheckoutRoutingModule { }

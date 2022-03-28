@@ -16,6 +16,13 @@ import { BrowserStateInterceptor } from './shared/_interceptor/browser-state.int
 import { CustomHttpClientService } from './shared/_services/custom-http-client.service';
 import { TestComponent } from './shared/test/test.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ProductsService } from './shared/_services/products.service';
+import { SearchProductResolver } from './shared/_resolvers/search-product.resolver';
+import { CookieManagerService } from './shared/_services/cookie-manager.service';
+import { CustomerService } from './shared/_services/customer.service';
+import { OrderService } from './shared/_services/order.service';
+import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,14 +45,16 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     }),
     /* BrowserTransferStateModule, */
     CookieModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserTransferStateModule
     
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     TokenService,
-/*     { provide: LocationStrategy, useClass: HashLocationStrategy },
- */   /*  {
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerStateInterceptor,
       multi: true
@@ -54,8 +63,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
       provide: HTTP_INTERCEPTORS,
       useClass: BrowserStateInterceptor,
       multi: true
-    }, */
-    /* CustomHttpClientService, */
+    },
   ],
   exports: [
   ],

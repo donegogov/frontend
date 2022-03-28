@@ -27,6 +27,10 @@ import { CookieManagerService } from './_services/cookie-manager.service';
 import { SwiperModule } from 'swiper/angular';
 import { RouterModule } from '@angular/router';
 import { LoginRegisterComponent } from './_dialog/login-register/login-register.component';
+import { TokenService } from './_services/token.service';
+import { CustomerService } from './_services/customer.service';
+import { OrderService } from './_services/order.service';
+import { CustomHttpClientService } from './_services/custom-http-client.service';
 
 @NgModule({
   declarations: [
@@ -50,9 +54,12 @@ import { LoginRegisterComponent } from './_dialog/login-register/login-register.
   ],
   providers: [
     HomePageSliderResolver,
-    ProductsService,
     SearchProductResolver,
+    CustomHttpClientService,
+    ProductsService,
     CookieManagerService,
+    CustomerService,
+    OrderService
   ],
   exports: [
     HeaderComponent,
