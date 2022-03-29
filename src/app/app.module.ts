@@ -53,7 +53,7 @@ import { JwtInterceptor } from './shared/_interceptor/jwt.interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     TokenService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    /* { provide: LocationStrategy, useClass: HashLocationStrategy }, */
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerStateInterceptor,

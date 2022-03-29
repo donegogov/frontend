@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       } */
     }
   ngOnInit(): void {
-    this.titleService.setTitle(this.title);
+    /* this.titleService.setTitle(this.title);
     this.metaTagService.addTag(
       { name: 'keywords', content: 'Elektronska Prodavnica, Prodavnica, Racno Izraboteni Produkti, Pliko' }
     );
@@ -47,7 +47,16 @@ export class AppComponent implements OnInit {
         );
         this.metaTagService.addTag(
       { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
-        );
+        ); */
+        this.titleService.setTitle( this.title + ' | Солидарност.de');
+    this.metaTagService.addTags([
+      { name: 'description', content: 'Овде Можете Да Најдете Секаков Вид На Домашно Рачно Изработени Продукти' },
+      { property: 'og:title', content: this.title + ' | Солидарност.de' },
+      { proprety: 'og:description', content: 'Овде Можете Да Најдете Секаков Вид На Домашно Рачно Изработени Продукти' },
+      { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
+      { property: 'og:url', content: 'https://solidarnost.de' },
+      { name: 'twitter:card', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' }
+    ]);
   }
 
   shoppingCart() {
