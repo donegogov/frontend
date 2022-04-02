@@ -100,10 +100,9 @@ export class CartService {
     json += '"shopping_cart_type": "' + cartOrWishList + '",'
     json += '"product_id": ' + product_id + ',';
 
-    let currentUser!: Token;
-    this.tokenService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    var customerId = this.cookieService.get('customer_id');
     
-    json += '"customer_id": ' + currentUser.customer_id;
+    json += '"customer_id": ' + customerId;
 
     json += '} }';
 

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: WishlistComponent
   },
   {
-    path: 'checkout/signin',
+    path: 'buy-now',
     component: CheckoutUsernamePasswordComponent
   },
 ];

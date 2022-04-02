@@ -8,6 +8,7 @@ import { Token } from '../_models/token';
 import { TokenService } from './token.service';
 import { CookieManagerService } from './cookie-manager.service';
 import { CookieService } from 'ngx-cookie';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class OrderService {
     private cartService: CartService,
     private customerService: CustomerService,
     private tokenService: TokenService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
     /* @Inject(DOCUMENT) private document: Document,
     private cookieManager: CookieManagerService */) { }
 
@@ -33,7 +35,7 @@ export class OrderService {
       });
     }
 
-    setOrderWithData(currentCustomer: any, shoppingCartItems: any): Observable<any> {
+    setOrderWithData(currentCustomer: any, shoppingCartItems: any): any {
       console.log(currentCustomer.customers[0].shipping_address);
       console.log(shoppingCartItems);
       var json = '{ ';
@@ -60,7 +62,9 @@ export class OrderService {
         json += '{ ';
         json += ' "quantity": ' + elementShoppingCartItem.quantity + ', ';
         json += ' "product_id": ' + elementShoppingCartItem.product_id + ', ';
-
+        console.log('shoppingCartItems.shopping_carts.forEach((elementShoppingCartItem: any, i: number) => {');
+        console.log(elementShoppingCartItem);
+        console.log(elementShoppingCartItem.quantity);
         json += ' "product_attributes": [ ';
 
         if ( elementShoppingCartItem.product_attributes > 0) {
@@ -82,16 +86,25 @@ export class OrderService {
        console.log(error);
 
        json = JSON.parse(json);
+       console.log(json);
 
-       return this.http.post<any>(this.apiUrl + 'orders', json);/* .subscribe(dataOrder => {
-        console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
-        console.log(dataOrder);
-        this.cartService.deleteShoppingCart().subscribe(dataCart => {
-          console.log(dataCart);
+       
+            this.cartService.deleteShoppingCart().subscribe((dataCart: any) => {
+              console.log(dataCart);
+              this.http.post<any>(this.apiUrl + 'orders', json).subscribe((dataOrder: any) => {
+                console.log('ORDERORDERORDERORDERORDERORDERORDERORDERORDERORDERORDERORDER');
+                console.log(dataOrder);
+               if (dataOrder) {
+                   console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
+                   console.log(dataOrder);
+                   this.router.navigate(['pages/thanks']);
+               }
+              
+              });
+            
         });
-        return dataOrder;
-       }); */
-    }
+        
+      }
 
     getOrdersForCustomer() {
       /* let currentUser!: Token;

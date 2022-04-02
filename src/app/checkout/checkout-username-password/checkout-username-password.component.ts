@@ -9,6 +9,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/shared/_services/cart.service';
 import { isPlatformBrowser } from '@angular/common';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-checkout-username-password',
@@ -51,6 +52,7 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
   zip = "";
   formated_address = '';
   private isBrowser!: boolean;
+  username: string = '';
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -62,7 +64,8 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
     private metaTagService: Meta,
     private router: Router,
     private cartService: CartService,
-    @Inject(PLATFORM_ID) platformId: Object
+    @Inject(PLATFORM_ID) platformId: Object,
+    private cookieService: CookieService
   ) { 
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -81,8 +84,8 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
         this.metaTagService.addTag(
           { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
             );
-
-
+          this.username = this.cookieService.get('username');
+          this.email.setValue(this.username);
     //this.formControl = new FormControl('', [Validators.required, Validators.email]);
     this.checkoutForm = this.formBuilder.group({
       email: this.email,
@@ -174,19 +177,8 @@ export class CheckoutUsernamePasswordComponent implements OnInit {
                         formData.password
                         )?.then(() => {
                           console.log('ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ITS OKAY ');
-                          console.log(this.orderService.setOrder());
-                          this.orderService.setOrder().subscribe((dataOrder: any) => {
-                            if (dataOrder) {
-                              this.router.navigate(['pages/thanks']);
-                            }
-                            console.log('dataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrderdataOrder'); 
-                            console.log(dataOrder);
-                            this.cartService.deleteShoppingCart().subscribe((dataCart: any) => {
-                              console.log(dataCart);
-                            });
-                            //return dataOrder;
-                           });;
-                          
+                          console.log('this.orderService.setOrder()');
+                          this.orderService.setOrder();
                         });
                     }
                   });

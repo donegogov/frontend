@@ -25,6 +25,8 @@ export class AccountComponent implements OnInit {
   loginRegisterMessage = '';
   showELoginRegisterMessage = false;
 
+  username = '';
+
   constructor(private tokenService: TokenService,
     private customerService: CustomerService,
     private titleService: Title,
@@ -53,6 +55,8 @@ export class AccountComponent implements OnInit {
         this.metaTagService.addTag(
       { property: 'og:image', content: 'https://i.postimg.cc/CLfMNj6R/243186359-375976900673318-3226717078933501191-n.png' },
         );
+
+        this.username = this.cookieService.get('username');
   }
 
   onSubmit(event: any): void {
@@ -114,5 +118,17 @@ export class AccountComponent implements OnInit {
     console.log('this.tokenService.isLogedIn()');
     console.log(this.tokenService.isLogedIn());
       return !this.tokenService.isLogedIn();
+  }
+
+  showViewOrderButton() {
+    console.log('this.tokenService.isLogedIn()');
+    console.log(this.tokenService.isLogedIn());
+      return this.tokenService.isLogedIn();
+  }
+
+  showWelcomeMessage() {
+    console.log('this.tokenService.isLogedIn()');
+    console.log(this.tokenService.isLogedIn());
+      return this.tokenService.isLogedIn();
   }
 }

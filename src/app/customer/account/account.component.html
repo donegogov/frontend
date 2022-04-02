@@ -24,13 +24,17 @@
             <button #register style="margin-top: 40px;" mat-raised-button type="submit" color="primary">Register</button>
         </form>
     </div>
-
-    <div style="width: 100%; margin: 10px;" *ngIf="!showLoginRegisterForm()">
-        <button (click)="logout()" style="margin-top: 40px; padding: 10px 20px; font-size: 28px; margin: 0 auto;" mat-raised-button color="danger">Логоут</button>
+    <div *ngIf="showWelcomeMessage()" style="margin: 20px auto;">
+        <h1 style="text-align: center; color: rgba(0, 0, 0, 0.9); font-weight: 900; font-size: 28px;">Welcome {{username}} You Can Now Add To Cart, Wishlist And Shop</h1>
+    </div>
+    <div style="width: 100%; margin: 20px auto;" *ngIf="!showLoginRegisterForm()">
+        <button (click)="logout()" style=" padding: 10px 20px; font-size: 28px;" mat-raised-button color="danger">Логоут</button>
     </div>
 
-    <div style="width: 100%; margin: 10px;">
-        <button [routerLink]="['/account/orders']" style="margin-top: 40px; padding: 10px 20px; font-size: 28px; margin: 0 auto;" mat-raised-button color="primary">View Orders</button>
+    <div *ngIf="showViewOrderButton()" style="width: 100%; margin: 20px auto;">
+        <button [routerLink]="['/account/orders']" style=" padding: 10px 20px; font-size: 28px;" mat-raised-button color="primary">View Orders</button>
     </div>
 </div>
-<h1 *ngIf="showELoginRegisterMessage">{{loginRegisterMessage}}</h1>
+<div style="margin: 0 auto;">
+    <h1 style="text-align: center; color: red; font-weight: 900; font-size: 28px;" *ngIf="showELoginRegisterMessage">{{loginRegisterMessage}}</h1>
+</div>
