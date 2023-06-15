@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.solidarnost.mk/api/'
+  apiUrl: 'https://api.solidarnost.de/api/'
 };
 
 /*
