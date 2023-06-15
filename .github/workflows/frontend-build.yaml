@@ -37,7 +37,7 @@ jobs:
           CI: true
           SITE_URL: ${{ inputs.site-url }}
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm run prod
 
 # Please do not touch the following action
@@ -46,7 +46,7 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
-          project-id: c4840359-0f58-4e09-a915-7489259f7acf
+          project-id: 512ff34c-fd26-47ad-ab58-e68625e4c597
           branch-id: ${{ inputs.branch-id }}
           version: ${{ github.sha }}
           folder: ${{ env.DEPLOYMENT_FOLDER }}
