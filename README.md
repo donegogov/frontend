@@ -1,3 +1,16 @@
+LIVE PROJECT FOR THIS FRONT END ANGULAR WEBSITE HERE https://ak.solidarnost.de/#/
+BACKEND OF THIS PROJECT CAN BE FOUND HERE https://github.com/donegogov/api-for-nopcommerce
+
+HOW TO USE?
+1. Install NopCommerce 4.5.
+2. Upload plugin api for nopcommerce link above
+3. Install angular website this project change environment variable link to api to your domain
+4. FINITO you are good to go!
+
+God Bless!
+
+============================================
+
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
